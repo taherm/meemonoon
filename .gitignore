@@ -1,0 +1,11 @@
+/vendor
+/node_modules
+/bower_components
+/public/storage
+Homestead.yaml
+Homestead.json
+.env
+.env.example
+.idea/
+/metronic_v4.5.6/
+/public/img/uploads/*
