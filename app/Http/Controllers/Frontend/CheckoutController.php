@@ -206,6 +206,8 @@ class CheckoutController extends PrimaryController
         });
 
 
+        $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails));
+
         //cash case
         if ($request->payment == 'cash') {
 
@@ -215,7 +217,7 @@ class CheckoutController extends PrimaryController
 
         }
         // my_fatoorah case
-        $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails));
+
 
 
         // i stopped here

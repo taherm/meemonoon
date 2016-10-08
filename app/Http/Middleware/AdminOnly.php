@@ -15,12 +15,12 @@ class AdminOnly
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->id == 1) {
+        if ($request->user()->can('isAdmin')) {
 
             return $next($request);
 
         }
 
-        return 'not allowed zone';
+        return abort(404,'not allowed zone');
     }
 }

@@ -17,7 +17,7 @@ class ProductStore extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin();
+        return true;
     }
 
     /**
@@ -40,7 +40,6 @@ class ProductStore extends FormRequest
     public function persist(ProductRepository $productRepository)
     {
         try {
-            $this->request->add(['company_id' => 1, 'branch_id' => 1]);
             $product = $productRepository->model->create($this->except('categories', 'tags'));
             $product->gallery()->create(['description_ar' => $this->input('name_ar'), 'description_en' => $this->input('name_en')]);
             $product->categories()->sync($this->input('categories'));
