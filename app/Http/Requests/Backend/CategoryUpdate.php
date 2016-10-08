@@ -25,8 +25,10 @@ class CategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|unique:categories,name_en,'.$this->category,
-            'description'   => 'string'
+            'name_ar' => 'required',
+            'name_en' => 'required',
+            'description_ar' => 'string',
+            'description_ar' => 'string'
         ];
     }
 }

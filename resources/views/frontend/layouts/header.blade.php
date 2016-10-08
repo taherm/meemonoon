@@ -32,13 +32,11 @@
                                     <li><a class="no-child" href="{{URL('/')}}">{{ trans('general.home') }}</a></li>
                                     @foreach($categories as $category)
                                         <li class="dropdown">
-                                            <a href="#">{{ trans('general.categories') }}</a>
+                                            <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
                                             @if(count($category->children) > 0)
                                                 <ul>
-                                                    <li>
-                                                        <a href="{{ route('category.show',[$category->id]) }}">{{ $category->name }}</a>
-                                                    </li>
                                                     @foreach($category->children as $child)
+
                                                         <li>
                                                             <a href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
                                                         </li>

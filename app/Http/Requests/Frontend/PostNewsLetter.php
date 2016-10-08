@@ -26,7 +26,7 @@ class PostNewsLetter extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'email' => 'required|email'
+            'email' => 'required|email|unique:newsletter,email'
         ];
     }
 }

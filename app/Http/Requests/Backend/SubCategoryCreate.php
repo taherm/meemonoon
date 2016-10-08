@@ -25,9 +25,11 @@ class SubCategoryCreate extends FormRequest
     public function rules()
     {
         return [
-            'name'              => 'required|alpha_num|unique:categories,name_en',
-            'parentCategory'    => 'required',
-            'description'       => 'string'
+            'name_ar' => 'required|unique:categories,name_ar',
+            'name_en' => 'required|unique:categories,name_en',
+            'description_ar' => 'string',
+            'description_ar' => 'string',
+            'parent_id'    => 'required'
         ];
     }
 }

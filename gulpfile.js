@@ -46,7 +46,7 @@ elixir(mix => {
                 './public/meem/frontend/css/jquery-ui.min.css',
                 './public/meem/frontend/css/meanmenu.min.css',
                 './public/meem/frontend/css/owl.carousel.css',
-                //'./public/meem/frontend/css/font-awesome.min.css',
+                './public/meem/frontend/css/owl.carousel.css',
                 './public/meem/frontend/css/jquery.simpleGallery.css',
                 './public/meem/frontend/css/jquery.simpleLens.css',
                 './public/meem/frontend/css/responsive.css',

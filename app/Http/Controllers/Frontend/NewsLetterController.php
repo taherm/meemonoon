@@ -30,7 +30,7 @@ class NewsLetterController extends PrimaryController
      * Access the mailchimp lists API
      * for more info check "https://apidocs.mailchimp.com/api/2.0/lists/subscribe.php"
      */
-    public function store(Newsletter $request)
+    public function store(Requests\Frontend\PostNewsLetter $request)
     {
         $element = $this->newsLetter->where('email', $request->get('email'))->first();
 

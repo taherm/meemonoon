@@ -25,7 +25,7 @@ class CreateOrderMetasTable extends Migration
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict')->onUpdate('restrict');
-            $table->foreign('product_attribute_id')->references('id')->on('product_attributes');
+            $table->foreign('product_attribute_id')->references('id')->on('product_attributes')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
             $table->softDeletes();
         });

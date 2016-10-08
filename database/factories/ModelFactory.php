@@ -205,13 +205,13 @@ $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker
 
 $factory->define(Color::class, function (Faker\Generator $faker) {
     return [
-        'color' => $faker->colorName
+        'color' => $faker->unique()->randomElement(['red', 'white', 'orange', 'green','none'])
     ];
 });
 
 $factory->define(Size::class, function (Faker\Generator $faker) {
     return [
-        'size' => $faker->unique()->randomElement(['small', 'x-small', 'xx-small', 'large', 'x-large', 'xx-large', 'xxx-large', 'medium'])
+        'size' => $faker->unique()->randomElement(['small', 'x-small', 'xx-small', 'large', 'x-large', 'xx-large', 'xxx-large', 'medium','none'])
     ];
 });
 

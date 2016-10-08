@@ -48,7 +48,7 @@ class CategoryController extends PrimaryController
      */
     public function store(CategoryCreate $request)
     {
-        $category = $this->category->create($request->except('_token', '_method'));
+        $category = $this->category->model->create($request->all());
 
         if ($category) {
 
@@ -82,7 +82,9 @@ class CategoryController extends PrimaryController
      */
     public function update(CategoryUpdate $request, $id)
     {
-        if ($this->category->getById($id)->update(['name_en' => $request->name, 'description_en' => $request->description])) {
+        $updated = $this->category->getById($id)->update($request->request->all());
+
+        if ($updated) {
 
             return redirect()->route('backend.category.index')->with('success', 'category updated!!');
 

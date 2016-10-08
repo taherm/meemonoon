@@ -16,7 +16,7 @@ class ProductUpdate extends FormRequest
      */
     public function authorize()
     {
-        return Auth::user()->isAdmin();
+        return Auth::user()->can('isAdmin');
     }
 
     /**

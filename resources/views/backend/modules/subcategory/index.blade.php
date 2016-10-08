@@ -6,9 +6,11 @@
             <thead>
             <tr>
                 <th> id</th>
-                <th> name</th>
+                <th> name_en</th>
+                <th> name_ar</th>
                 <th> parent</th>
-                <th> description</th>
+                <th> description en </th>
+                <th> description ar</th>
                 <th> edit</th>
                 <th> delete</th>
             </tr>
@@ -18,8 +20,10 @@
                 <tr>
                     <td> {{$subcategory->id}}</td>
                     <td> {{$subcategory->name_en}} </td>
+                    <td> {{$subcategory->name_ar}} </td>
                     <td> {{$subcategory->parent['name_en']}} </td>
                     <td> {{$subcategory->description_en}} </td>
+                    <td> {{$subcategory->description_ar}} </td>
                     <td>
                         <a href="{{ route('backend.subcategory.edit',$subcategory->id) }}"
                            class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i> Edit

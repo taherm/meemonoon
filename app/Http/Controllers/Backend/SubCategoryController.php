@@ -51,7 +51,7 @@ class SubCategoryController extends PrimaryController
      */
     public function store(SubCategoryCreate $request)
     {
-        $subCategory = $this->category->createSubCategory($request->except('_token', '_method'));
+        $subCategory = $this->category->model->create($request->all());
 
         if ($subCategory) {
 

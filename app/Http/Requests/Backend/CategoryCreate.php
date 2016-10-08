@@ -25,8 +25,11 @@ class CategoryCreate extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|unique:categories,name_en',
-            'description'   => 'string'
+            'name_ar' => 'required|unique:categories,name_ar',
+            'name_en' => 'required|unique:categories,name_en',
+            'parent_id' => 'required',
+            'description_ar' => 'string',
+            'description_ar' => 'string'
         ];
     }
 }

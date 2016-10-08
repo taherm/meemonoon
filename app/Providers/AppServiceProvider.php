@@ -7,6 +7,7 @@ use App\Src\Cart\CartInterface;
 use App\Src\Cart\SessionCart;
 use App\Src\Order\Order;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

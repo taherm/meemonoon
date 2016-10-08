@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
+use App\Src\Order\OrderMeta;
 use App\Src\Product\Color;
 use App\Src\Product\ProductAttribute;
 use App\Src\Product\Size;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Src\Product\ProductRepository;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 
 class ProductAttributeController extends PrimaryController
 {
@@ -42,11 +44,11 @@ class ProductAttributeController extends PrimaryController
     public function create()
     {
 
-        $productAttributes = $this->productAttribute->where('product_id',request()->product_id)->get();
+        $productAttributes = $this->productAttribute->where('product_id', request()->product_id)->get();
 
         $product = $this->productRepository->getById(request()->product_id);
 
-        return view('backend.modules.product.attribute.create', compact('product','productAttributes','sizes','colors'));
+        return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
     }
 
     /**
@@ -80,7 +82,7 @@ class ProductAttributeController extends PrimaryController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         $productAttribute = ProductAttribute::whereId($id)->first();
 
@@ -96,9 +98,9 @@ class ProductAttributeController extends PrimaryController
      */
     public function update(Request $request, $id)
     {
-        $productAttribute = ProductAttribute::whereId($id)->update($request->except(['_token','_method']));
+        $productAttribute = ProductAttribute::whereId($id)->update($request->except(['_token', '_method']));
 
-        return redirect()->back()->with(['success' => 'attribute saved','product_id' => request()->product_id]);
+        return redirect()->route('backend.attribute.index', ['product_id' => $request->product_id])->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
     }
 
     /**
@@ -109,8 +111,16 @@ class ProductAttributeController extends PrimaryController
      */
     public function destroy($id)
     {
-//        $this->productAttribute->whereId($id)->first()->delete();
-        \DB::table('product_attributes')->where('id', $id)->delete();
-        return redirect()->back()->with('warning', 'deleted');
+        $productAttribute = $this->productAttribute->where('id', $id)->first();
+
+        $orderMeta = OrderMeta::where('product_attribute_id', $productAttribute->id)->first();
+
+        if (!$orderMeta) {
+
+            $productAttribute->delete();
+
+            return redirect()->back()->with('success', 'deleted');
+        }
+        return redirect()->back()->with('error', 'not deleted - some orders are relying on such attributes - cant be deleted');
     }
 }

@@ -1,0 +1,3 @@
+.no-child:after , .main-menu4 nav ul li a::after {
+    color: transparent !important;
+}

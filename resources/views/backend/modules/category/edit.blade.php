@@ -21,21 +21,34 @@
     @else
         {{ Form::open(['route' => 'backend.category.store','method'=>'POST','class'=>'form-horizontal']) }}
     @endif
+    {{ Form::hidden('parent_id',0) }}
     <div class="form-body">
         <div class="form-group">
-            <label class="col-md-2 control-label">{{ trans('general.name') }}:
-                <span class="required"> * </span>
-            </label>
-            <div class="col-md-3">
-                {!! Form::text('name', (isset($category) ? $category->name_en : old('name')) ,['class' => 'form-control','required']) !!}
+            <div class="col-lg-6">
+                <label class="control-label" for="name_ar">{{ trans('general.name_ar') }}:
+                    <span class="required"> * </span>
+                </label>
+                {!! Form::text('name_ar', (isset($category) ? $category->name_ar : old('name_ar')) ,['class' => 'form-control','required']) !!}
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label" for="name_en">{{ trans('general.name_en') }}:
+                    <span class="required"> * </span>
+                </label>
+                {!! Form::text('name_en', (isset($category) ? $category->name_en : old('name')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2 control-label">{{ trans('general.description') }}:
-                <span class="required"> * </span>
-            </label>
-            <div class="col-md-3">
-                {!! Form::text('description', (isset($category) ? $category->description_en : old('description')) ,['class' => 'form-control','required']) !!}
+            <div class="col-lg-6">
+                <label class="control-label">{{ trans('general.description_ar') }}:
+                    <span class="required"> * </span>
+                </label>
+                {!! Form::text('description_ar', (isset($category) ? $category->description_ar : old('description_ar')) ,['class' => 'form-control','required']) !!}
+            </div>
+            <div class="col-lg-6">
+                <label class="control-label">{{ trans('general.description_en') }}:
+                    <span class="required"> * </span>
+                </label>
+                {!! Form::text('description_en', (isset($category) ? $category->description_en : old('description_en')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
 
