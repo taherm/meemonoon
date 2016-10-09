@@ -1,26 +1,16 @@
-<!-- template start -->
-<table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" style="border-collapse:collapse;margin:0;padding:0;background-color:#dddad9;height:100%!important;width:100%!important">
-    <tbody>
-        <tr>
-            <td align="center" valign="top" style="margin:0;padding:20px;border-top:0;height:100%!important;width:100%!important">
-                <table border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse;border:0">
-                    <tbody>
-                        <tr>
-                            <td align="center" valign="top">
-                                <!-- header section -->
-                                @include('emails.layouts.header')
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" valign="top">
-                                @section('content')
-                                @show
-                                @include('emails.layouts.footer')
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    @include('emails.layouts._style')
+
+    <body bgcolor="#f7f7f7">
+
+        <table align="center" cellpadding="0" cellspacing="0" class="container-for-gmail-android" width="100%">
+            @include('emails.layouts.header')
+            @section('body')
+            @show
+            @include('emails.layouts.footer')
+        </table>
+    </body>
+</html>
+

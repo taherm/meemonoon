@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Backend;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CategoryUpdate extends FormRequest
@@ -25,10 +24,9 @@ class CategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'limited' => 'required',
-            'description_ar' => 'string',
+            'name_en'        => 'required|unique:categories,name_en,'.$this->category,
+            'name_ar'        => 'required|unique:categories,name_ar,'.$this->category,
+            'description_en' => 'string',
             'description_ar' => 'string'
         ];
     }
