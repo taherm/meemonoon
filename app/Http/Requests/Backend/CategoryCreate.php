@@ -28,6 +28,7 @@ class CategoryCreate extends FormRequest
             'name_ar' => 'required|unique:categories,name_ar',
             'name_en' => 'required|unique:categories,name_en',
             'parent_id' => 'required',
+            'limited' => 'required',
             'description_ar' => 'string',
             'description_ar' => 'string'
         ];

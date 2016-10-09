@@ -235,7 +235,8 @@ $factory->define('App\Src\Category\Category', function (Faker\Generator $faker) 
         'name_en' => $faker->name,
         'description_en' => $faker->paragraph(1),
         'description_ar' => $faker->paragraph(1),
-        'avatar' => $faker->imageUrl('200', '200'),
+        'image' => $faker->imageUrl('200', '200'),
+        'limited' => $faker->numberBetween(0,1),
         'parent_id' => Category::where('parent_id', 0)->pluck('id')->shuffle()->first(),
     ];
 });

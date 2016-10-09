@@ -37,7 +37,7 @@ class ProductRepository extends PrimaryRepository
         return DB::table('products')
             ->where('products.active', '=', 1)
             ->join('product_metas', function ($j) {
-                $j->on('products.id', '=', 'product_metas.product_id')->where('product_metas.on_homepage', '=', '1');
+                $j->on('products.id', '=', 'product_metas.product_id');
             })
             ->join('orders', function ($j) {
                 $j->where('orders.status', '=', 'completed');

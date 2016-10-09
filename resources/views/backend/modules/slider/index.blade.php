@@ -4,19 +4,19 @@
     <div class="row">
         @if(!empty($slides))
             @foreach($slides as $slide)
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
+                <div class="col-lg-4" style="max-height: 150px;">
+                    <div class="panel panel-default" style="height:150px; max-height : 150px;">
                         <div class="panel-heading">
                             {{ Form::open(['route' => ['backend.slider.destroy', $slide->id], 'method' => 'DELETE'])  }}
                             <button type="submit" class="btn btn-outline btn-circle pink btn-xs"><i
                                         class="fa fa-remove"></i>
                                 Delete Slide
                             </button>
-                            <span style="float: right;">{{$slide->order}}</span>
+                            {{--<span style="float: right;">{{$slide->order}}</span>--}}
                             {{ Form::close() }}
                         </div>
                         <div class="panel-body">
-                            <img class="img-thumbnail center" src={{ url('img/uploads/thumbnail/'.$slide->image_path) }} />
+                            <img class="img-responsive img-thumbnail center" src="{{ url('img/uploads/thumbnail/'.$slide->image_path) }}" style="max-height:150px;"/>
                             <div class="caption">{{ $slide->caption_en }}</div>
                         </div>
                     </div>

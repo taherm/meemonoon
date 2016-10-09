@@ -13,10 +13,10 @@
                         </div>
                         <div class="price-box">
                             @if($product->product_meta->on_sale)
-                                <span class="old-price">{{ Currency::format($product->product_meta->price,'KWD','') }} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left'] : Currency::getCurrency('KWD')['symbol_right'])}}</span>
-                                <span class="new-price">{{ Currency::format($product->product_meta->sale_price,'KWD','')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left']:Currency::getCurrency('KWD')['symbol_right'])}} </span>
+                                <span class="old-price">{{ Currency::format($product->product_meta->price,null,'') }} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left'] : Currency::getCurrency()['symbol_right'])}}</span>
+                                <span class="new-price">{{ Currency::format($product->product_meta->sale_price,null,'')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>
                             @else
-                                <span class="new-price">{{ Currency::format($product->product_meta->price,'KWD','')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left']:Currency::getCurrency('KWD')['symbol_right'])}} </span>
+                                <span class="new-price">{{ Currency::format($product->product_meta->price,null,'')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>
                             @endif
                         </div>
                     </div>

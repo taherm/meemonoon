@@ -20,7 +20,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name_en');
             $table->string('description_en');
             $table->string('description_ar');
-            $table->string('avatar');
+            $table->string('image');
+            $table->boolean('limited')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -27,6 +27,7 @@ class CategoryUpdate extends FormRequest
         return [
             'name_ar' => 'required',
             'name_en' => 'required',
+            'limited' => 'required',
             'description_ar' => 'string',
             'description_ar' => 'string'
         ];
