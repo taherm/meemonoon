@@ -21,7 +21,7 @@
                         <div class="tab-content">
                             <div id="shop-grid" class="tab-pane active" role="tabpanel">
                                 <div class="row">
-                                    @include('frontend.modules.product.product_thumbnail',[$products,'cols' => 'col-lg-3 col-md-3 col-sm-3'])
+                                    @include('frontend.modules.product.partials.product_thumbnail',[$products,'cols' => 'col-lg-3 col-md-3 col-sm-3'])
                                 </div>
                             </div>
                         </div>

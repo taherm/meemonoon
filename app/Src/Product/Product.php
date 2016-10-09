@@ -221,7 +221,7 @@ class Product extends PrimaryModel
      * Usage : Search Input in the Homepage
      * Description : Search
      */
-    public function getSearchItem($searchTerm)
+    public function searchItem($searchTerm)
     {
         return $this->where(
             'name_ar', 'LIKE', "%$searchTerm%"

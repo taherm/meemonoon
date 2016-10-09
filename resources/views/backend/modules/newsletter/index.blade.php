@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="col-lg-2 pull-right">
-                <button class="btn btn-danger btn-md btn-rounded" href="{{ url('backend/newsletter/campaign') }}">create campaign</button>
+                <a class="btn btn-danger btn-md btn-rounded" href="{{ route('backend.newsletter.campaign') }}">create campaign</a>
             </div>
         </div>
     </div>

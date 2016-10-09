@@ -36,9 +36,9 @@ class HomeController extends PrimaryController
     public function index()
     {
         //@todo : Query From ProductRepo like bstSaleProducts
-        $newArrivals = $this->productRepository->model->orderBy('created_at', 'desc')->take(10)->get();
+        $newArrivals = $this->productRepository->model->orderBy('created_at', 'desc')->take(12)->get();
 
-        $onSaleProducts = $this->productRepository->model->onsale()->take(10)->get();
+        $onSaleProducts = $this->productRepository->model->onsale()->take(12)->get();
 
         $bestSalesProducts = $this->productRepository->bestSalesProducts();
 

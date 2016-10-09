@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="row">
+        <div class="col-lg-12">
+            <a href="{{ route('backend.product.index') }}" class="btn btn-primary btn-large col-lg-2 pull-right">back to products</a>
+        </div>
         @if(isset($gallery))
             @foreach($gallery->images as $image)
                 <div class="col-lg-3">

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
 use App\Core\Services\Email\PrimaryEmailService;
+use App\Mail\sendEmailCampaign;
 use App\Src\Newsletter\Newsletter;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class NewsLetterController extends PrimaryController
 {
@@ -69,15 +71,13 @@ class NewsLetterController extends PrimaryController
 
     }
 
-    public function postCampaign(Requests\NewsletterCampaign $request)
+    public function postCampaign(Requests\Backend\NewsletterCampaign $request)
     {
-        $subscribers = Newsletter::all();
-
-        $campaign = new PrimaryEmailService();
+        $subscribers = Newsletter::where('active', true)->get();
 
         foreach ($subscribers as $subscriber) {
 
-            $campaign->sendNewsLetter($request->title, $request->body, $subscriber->name, $subscriber->email);
+            Mail::to($subscriber->email)->queue(new sendEmailCampaign($subscriber, $request->title, $request->body));
 
         }
 

@@ -80,7 +80,8 @@ class ProductController extends PrimaryController
     public function searchItem(Request $request)
     {
 
-        $products = $this->productRepository->model->getSearchProduct(trim($request->term));
+        $products = $this->productRepository->model->searchItem(trim($request->term));
+
         return view('frontend.modules.product.index', compact('products'));
     }
 

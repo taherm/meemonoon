@@ -53,7 +53,7 @@ class ProductRepository extends PrimaryRepository
 
     public function bestSalesProducts()
     {
-        return $this->model->whereIn('id', $this->bestSalesProductsIds())->take(10)->get();
+        return $this->model->whereIn('id', $this->bestSalesProductsIds())->take(12)->get();
 
     }
 
