@@ -33,7 +33,6 @@
                                         </div>
                                         @if(count($product->gallery->images) > 0)
                                             @foreach($product->gallery->images as $image)
-
                                                 <div class="tab-pane @if($count == 1) active @endif"
                                                      id="{{'p-view-'. $count++}}">
                                                     <div class="simpleLens-big-image-container">
