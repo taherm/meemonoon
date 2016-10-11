@@ -51,7 +51,7 @@ class SubCategoryController extends PrimaryController
      */
     public function store(SubCategoryCreate $request)
     {
-        $subCategory = $this->category->model->create($request->all());
+        $subCategory = $this->category->createSubCategory($request->except('_token', '_method'));
 
         if ($subCategory) {
 
@@ -88,8 +88,13 @@ class SubCategoryController extends PrimaryController
      */
     public function update(SubCategoryUpdate $request, $id)
     {
-        if ($this->category->getById($id)->update(['name_en' => $request->name, 'description_en' => $request->description, 'parent_id' => $request->parentCategory])) {
-
+        if ($this->category->getById($id)->update([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'description_en' => $request->description_en,
+            'description_ar' => $request->description_ar,
+            'parent_id' => $request->parentCategory
+        ])) {
             return redirect()->route('backend.subcategory.index')->with('success', 'subcategory updated!!');
 
         }

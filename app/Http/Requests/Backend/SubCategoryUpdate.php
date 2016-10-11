@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Backend;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SubCategoryUpdate extends FormRequest
@@ -25,11 +24,11 @@ class SubCategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required',
-            'name_en' => 'required',
-            'parent_id' => 'required',
-            'description_ar' => 'string',
-            'description_ar' => 'string',
+            'name_en'           => 'required|alpha_num|unique:categories,name_en,'.$this->subcategory,
+            'name_ar'           => 'required|alpha_num|unique:categories,name_ar,'.$this->subcategory,
+            'description_en'    => 'string',
+            'description_ar'    => 'string',
+            'parentCategory'    => 'required'
         ];
     }
 }

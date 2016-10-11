@@ -1,97 +1,36 @@
-        <!-- header table -->
-        <table border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse;background-color:#dddad9;border-top:0;border-bottom:0">
-            <tbody><tr>
-                <td valign="top" style="padding-top:9px"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
-                        <tbody>
-                        <tr>
-                            <td valign="top">
-
-                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse">
-                                    <tbody><tr>
-
-                                        <td valign="top" style="padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px;color:#ffffff;font-family:Helvetica;font-size:11px;line-height:125%;text-align:center">
-                                        <td valign="top" style="padding-top:9px;padding-right:18px;padding-bottom:9px;padding-left:18px;color:#ffffff;font-family:Helvetica;font-size:11px;line-height:125%;text-align:center">
-
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#dddad9;border-collapse:collapse">
-                        <tbody>
-                        <tr>
-                            <td style="padding:1px 18px">
-                                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
-                                    <tbody><tr>
-                                        <td>
-                                            <span></span>
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table></td>
-            </tr>
-            </tbody></table>
-
-
+<tr>
+    <td align="left" valign="top" width="100%" style="background:repeat-x url(http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg) #ffffff;">
+        <center>
+            <img src="http://s3.amazonaws.com/swu-filepicker/SBb2fQPrQ5ezxmqUTgCr_transparent.png" class="force-width-gmail">
+            <table cellspacing="0" cellpadding="0" width="100%" bgcolor="ffffff" background="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" style="background-color:transparent">
+                <tr>
+                    <td width="100%" height="80" valign="top" style="text-align: center; vertical-align:middle;">
+                        <!--[if gte mso 9]>
+                        <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:80px; v-text-anchor:middle;">
+                            <v:fill type="tile" src="http://s3.amazonaws.com/swu-filepicker/4E687TRe69Ld95IDWyEg_bg_top_02.jpg" color="#ffffff" />
+                            <v:textbox inset="0,0,0,0">
+                        <![endif]-->
+                        <center>
+                            <table cellpadding="0" cellspacing="0" width="600" class="w320">
+                                <tr>
+                                    <td class="pull-left mobile-header-padding-left" style="vertical-align: middle;">
+                                        <a href=""><img width="137" height="47" src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}" alt="logo"></a>
+                                    </td>
+                                    <td class="pull-right mobile-header-padding-right" style="color: #4d4d4d;">
+                                        <a href=""><img width="44" height="47" src="http://s3.amazonaws.com/swu-filepicker/k8D8A7SLRuetZspHxsJk_social_08.gif" alt="twitter" /></a>
+                                        <a href=""><img width="38" height="47" src="http://s3.amazonaws.com/swu-filepicker/LMPMj7JSRoCWypAvzaN3_social_09.gif" alt="facebook" /></a>
+                                        <a href=""><img width="40" height="47" src="http://s3.amazonaws.com/swu-filepicker/hR33ye5FQXuDDarXCGIW_social_10.gif" alt="rss" /></a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
+                        <!--[if gte mso 9]>
+                        </v:textbox>
+                        </v:rect>
+                        <![endif]-->
+                    </td>
+                </tr>
+            </table>
+        </center>
     </td>
 </tr>
-<tr>
-    <td align="center" valign="top">
-
-        <table border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse;background-color:#ffffff;border-top:0;border-bottom:0">
-            <tbody><tr>
-                <td valign="top"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
-                        <tbody>
-                        <tr>
-                            <td valign="top" style="padding:9px">
-                                <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
-                                    <tbody><tr>
-                                        <td valign="top" style="padding-right:9px;padding-left:9px;padding-top:0;padding-bottom:0;text-align:center">
-
-
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#dddad9;border-collapse:collapse">
-                        <tbody>
-                        <tr> <td style="padding:2px 18px 0px"> </td> </tr>
-                    </tbody>
-                    </table>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:collapse">
-                        <tbody>
-                        <tr>
-                            <td valign="top">
-
-                                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse:collapse">
-                                    <tbody><tr>
-
-                                        <td valign="top" style="padding:9px 18px;color:#a9a9a9;font-family:Arial,'Helvetica Neue',Helvetica,sans-serif;font-size:13px;font-weight:bold;text-align:center;line-height:150%">
-
-                                            <table style="width:100%;text-align:center;background-color:white;border-collapse:collapse;border:none;font-weight:bold;font-family:arial;font-size:13px">
-                                                <tbody>
-                                                <tr>
-                                                    <td style="border-right:2px solid #dddad9;height:40px"><a href="{{ url('home') }}" style="display:inline-block;width:100%;text-decoration:none;color:#a9a9a9;word-wrap:break-word;font-weight:normal" title="page" target="_blank">NPL</a></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-
-                                        </td>
-                                    </tr>
-                                    </tbody></table>
-
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table></td>
-            </tr>
-            </tbody></table>
-            <!-- end of header table -->

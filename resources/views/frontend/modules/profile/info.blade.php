@@ -18,7 +18,11 @@
                     </tr>
                     <tr>
                         <td>Address</td>
-                        <td>{{ $user->address }}</td>
+                        @if ($user->country_id != '414')
+                            <td>{{ $user->address .' / '.$user->address2  }}</td>
+                        @else
+                            <td>{{ 'Area: '.$user->area .' - Block:'.$user->block.' - Street:'.$user->street.' - Building:'.$user->building.' - Floor:'.$user->floor.' - Apartment:'.$user->apartment  }}</td>
+                        @endif
                     </tr>
                     <tr>
                         <td>City</td>

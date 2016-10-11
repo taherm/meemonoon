@@ -34,12 +34,17 @@ class ViewComposerService
      * ComposerServiceProvider
      * @param View $view
      */
-    public function getAllCountriesList(View $view)
+    public function getAllCountriesList( View $view )
     {
-
-        $countriesList = new Country();
-
-        $view->with(compact('countriesList'));
+        $countriesList = collect([
+            '414' => 'Kuwait',
+            '512' => 'Oman',
+            '634' => 'Qatar',
+            '682' => 'Saudi Arabia',
+            '48' => 'Bahrain',
+            '784' => 'United Arab Emirates'
+        ]);
+        $view->with( compact( 'countriesList' ) );
     }
 
 
