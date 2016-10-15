@@ -131,22 +131,34 @@
                                     @if($product->product_meta->on_sale)
                                         <span class="old-price">{{Currency::format($product->product_meta->price,'KWD','')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left']:Currency::getCurrency('KWD')['symbol_right'])}}</span>
                                         <span class="new-price">{{Currency::format($product->product_meta->sale_price,'KWD','')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left']:Currency::getCurrency('KWD')['symbol_right'])}}</span>
-                                        @if(Currency::getCurrencyCode() != 'KWD')
+                                        @if(Currency::getCurrency() != 'KWD')
                                             <div>
                                                 <p style="margin: 0px;padding-top: 15px;font-size: 10px;">Approx.</p>
                                                 <span class="old-price"
-                                                      style="font-size: 13px;">{{Currency::format($product->product_meta->price,'','')}} {{currency()->getCurrencySymbol(App::getLocale() == 'ar'?false:true)}}</span>
+                                                      style="font-size: 13px;">
+                                                {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                                </span>
                                                 <span class="new-price"
-                                                      style="font-size: 13px;">{{Currency::format($product->product_meta->sale_price,'','')}} {{currency()->getCurrencySymbol(App::getLocale() == 'ar'?false:true)}}</span>
+                                                      style="font-size: 13px;">
+                                                {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                                </span>
                                             </div>
                                         @endif
                                     @else
-                                        <span class="new-price">{{Currency::format($product->product_meta->price,'KWD','')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency('KWD')['symbol_left']:Currency::getCurrency('KWD')['symbol_right'])}}</span>
-                                        @if(Currency::getCurrencyCode() != 'KWD')
+                                        <span class="new-price">
+                                        {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                        </span>
+                                        @if(currency()->getCurrency() != 'KWD')
                                             <div>
                                                 <p style="margin: 0px;padding-top: 15px;font-size: 10px;">Approx.</p>
                                                 <span class="new-price"
-                                                      style="font-size: 13px;">{{Currency::format($product->product_meta->price,'','')}} {{currency()->getCurrencySymbol(App::getLocale() == 'ar'?false:true)}}</span>
+                                                      style="font-size: 13px;">
+                                                {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                                </span>
                                             </div>
                                         @endif
                                     @endif
@@ -154,10 +166,10 @@
                                 </div>
                                 <p class="availability in-stock">Availability: <span>In stock</span></p>
                                 <p class="availability in-stock">
-                                    @if(currency()->getCurrencyCode() == 'KWD')
+                                    @if(currency()->getCurrency() == 'KWD')
                                         <i class="fa fa-truck" aria-hidden="true"></i>
                                         <strong>{{ trans('general.free_delivery_within_24_hours') }}</strong>
-                                    @elseif(currency()->getCurrencyCode() == 'SAR')
+                                    @elseif(currency()->getCurrency() == 'SAR')
                                         <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
                                         <strong>{{ trans('general.delivery_within_4_days') }}</strong>
                                     @else
@@ -176,7 +188,7 @@
                                             <div>{{ trans('general.size') }}</div>
                                         </div>
                                         <div>
-                                            <select class="input-text qty"
+                                         A   <select class="input-text qty"
                                                     name="size" id="size">
                                                 <option value="none">{{ trans('size_select') }}</option>
                                                 @foreach($product->product_attributes->unique('size') as $attribute)

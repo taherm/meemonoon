@@ -34,15 +34,5 @@ class AppServiceProvider extends ServiceProvider
             App::register('Laracasts\Generators\GeneratorsServiceProvider');
             App::register('Fitztrev\QueryTracer\Providers\QueryTracerServiceProvider');
         }
-//        if (Schema::hasTable('currencies')) {
-//             currencies api
-            App::register('Torann\Currency\CurrencyServiceProvider');
-
-//        }
-
-//        if (Schema::hasTable('countries')) {
-//             countries list with all data
-            App::register('Webpatser\Countries\CountriesServiceProvider');
-//        }
     }
 }

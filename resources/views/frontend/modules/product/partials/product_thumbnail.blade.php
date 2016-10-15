@@ -2,7 +2,8 @@
     <div class="feature-product-4 {{ isset($carousel) ?  'product-carousel derection-key': '' }}">
         <!-- single-product start -->
         @foreach($products as $product)
-            <div class="{{ isset($cols)  ? $cols : 'col-lg-4 col-md-4 col-sm-4' }} col-xs-12" style="height: 500px !important; max-height: 500px !important; margin-bottom: 21px;">
+            <div class="{{ isset($cols)  ? $cols : 'col-lg-4 col-md-4 col-sm-4' }} col-xs-12"
+                 style="height: 500px !important; max-height: 500px !important; margin-bottom: 21px;">
                 <!-- single-product end -->
                 <div class="single-product">
                     <div class="product-details">
@@ -12,11 +13,25 @@
                             </h3>
                         </div>
                         <div class="price-box">
+                            {{--{{ dd(Session::get('currency')) }}--}}
+                            {{--{{ var_dump(app()->getLocale()) }}--}}
+                            {{--{{ var_dump(session()->get('currency')) }}--}}
+                            {{--{{ dd(currency()->getCurrency(session()->get('currency'))['code']) }}--}}
+                            {{--{{ dd(currency(1,'KWD',session()->get('currency'),false))}}--}}
+                            {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left'] : Currency::getCurrency()['symbol_right'])}}--}}
+                            {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}}--}}
                             @if($product->product_meta->on_sale)
-                                <span class="old-price">{{ Currency::format($product->product_meta->price,null,'') }} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left'] : Currency::getCurrency()['symbol_right'])}}</span>
-                                <span class="new-price">{{ Currency::format($product->product_meta->sale_price,null,'')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>
+                                <span class="old-price">{{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                </span>
+                                <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}
+                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                </span>
                             @else
-                                <span class="new-price">{{ Currency::format($product->product_meta->price,null,'')}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>
+                                {{--<span class="new-price">{{ currency($product->product_meta->price)}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>--}}
+                                <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
+                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                </span>
                             @endif
                         </div>
                     </div>
@@ -27,18 +42,21 @@
                             <span class="sale-text new-sale">new</span>
                         @endif
                         <a href="#">
-                            <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt=""
+                            <img class="primary-img"
+                                 src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt=""
                                  style="width: 261px;height: 300px;">
                         </a>
                         <div class="add-action">
                             <ul>
                                 <li>
                                     @if($product->liked())
-                                        <a href="{{ route('wishlist.remove',$product->id) }}" data-toggle="tooltip" title="Remove from Wishlist">
+                                        <a href="{{ route('wishlist.remove',$product->id) }}" data-toggle="tooltip"
+                                           title="Remove from Wishlist">
                                             <i class="fa fa-heart" style="color: red"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('wishlist.add',$product->id) }}" data-toggle="tooltip" title="Add to Wishlist">
+                                        <a href="{{ route('wishlist.add',$product->id) }}" data-toggle="tooltip"
+                                           title="Add to Wishlist">
                                             <i class="fa fa-heart-o"></i>
                                         </a>
                                     @endif
@@ -64,14 +82,14 @@
                         <a href="{{ route('product.show',$product->id)  }}">{{ ucfirst(trans('general.view_product_details')) }}</a>
                     </div>
                     {{--<div class="add-to-cart" style="padding-top: 15px;">--}}
-                        {{--{!! Form::open(['route' => 'cart.add', 'method' => 'post'], ['class'=>'']) !!}--}}
+                    {{--{!! Form::open(['route' => 'cart.add', 'method' => 'post'], ['class'=>'']) !!}--}}
 
-                        {{--{!! Form::hidden('product_id',$product->id) !!}--}}
-                        {{--{!! Form::hidden('quantity',1) !!}--}}
-                        {{--{!! Form::hidden('product_attribute_id',$product->product_attribute->id) !!}--}}
+                    {{--{!! Form::hidden('product_id',$product->id) !!}--}}
+                    {{--{!! Form::hidden('quantity',1) !!}--}}
+                    {{--{!! Form::hidden('product_attribute_id',$product->product_attribute->id) !!}--}}
 
-                        {{--<button type="submit" class="btn custom-button" >Add to Cart</button>--}}
-                        {{--{!! Form::close() !!}--}}
+                    {{--<button type="submit" class="btn custom-button" >Add to Cart</button>--}}
+                    {{--{!! Form::close() !!}--}}
                     {{--</div>--}}
                 </div>
             </div>
