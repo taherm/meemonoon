@@ -158,7 +158,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="payment-history">
                             <ul>
-                                @if(currency()->getCurrencyCode() != 'KWD')
+                                @if(currency()->getCurrency()['code'] != 'KWD')
                                     <li><a href="#"><img src="{{asset('meem/frontend/img/footer/payment.png')}}" alt=""></a></li>
                                 @else
                                     <li><a href="#"><img src="{{asset('meem/frontend/img/footer/k-net-icon.png')}}" alt=""></a><a href="#"><img src="{{asset('meem/frontend/img/footer/cash-icon.png')}}" alt=""></a></li>

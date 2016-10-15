@@ -118,7 +118,7 @@ class ViewComposerService
 
     public function getAllCurrencies(View $view)
     {
-        $currencies = Currency::where('status', 1)->get();
+        $currencies = Currency::all();
 
         $view->with('currencies', $currencies);
 
