@@ -21,7 +21,8 @@
                             {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left'] : Currency::getCurrency()['symbol_right'])}}--}}
                             {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}}--}}
                             @if($product->product_meta->on_sale)
-                                <span class="old-price">{{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                <span class="old-price">
+                                    {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
                                     {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                 </span>
                                 <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}
