@@ -56,7 +56,8 @@ class DatabaseSeeder extends Seeder
             $this->emptyTables($this->tables);
 
             $this->call(CountriesSeeder::class);
-            $this->call(CurrenciesTableSeeder::class);
+            $this->call(CoinsTableSeeder::class);
+            $this->command->info('coins table updated');
             $this->call(AreasTableSeeder::class);
             $this->call(ColorsTableSeeder::class);
             $this->call(SizesTableSeeder::class);

@@ -13,7 +13,7 @@
                             </h3>
                         </div>
                         <div class="price-box">
-                            {{--{{ dd(Session::get('currency')) }}--}}
+                            {{--{{ currency()->setUserCurrency('AED') }}--}}
                             {{--{{ var_dump(app()->getLocale()) }}--}}
                             {{--{{ var_dump(session()->get('currency')) }}--}}
                             {{--{{ dd(currency()->getCurrency(session()->get('currency'))['code']) }}--}}
@@ -22,7 +22,8 @@
                             {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}}--}}
                             @if($product->product_meta->on_sale)
                                 <span class="old-price">
-                                    {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+{{--                                    {{ currency_format($product->product_meta->price) }}--}}
+                                    {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency(),false) }}
                                     {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                 </span>
                                 <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}

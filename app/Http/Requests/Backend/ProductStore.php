@@ -30,6 +30,7 @@ class ProductStore extends FormRequest
         return [
             "name_ar" => "required|max:255|min:2",
             "name_en" => "required|max:255|min:2",
+            'parent_id' => 'required',
             "categories" => 'required|array',
             "tags" => 'required|array',
             "sku" => "required",

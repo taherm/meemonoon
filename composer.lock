@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30483b79f22262a35a7ddd72eaa32207",
-    "content-hash": "2826eb71259df8a325cd76b88d005eef",
+    "hash": "333dfdaf34e1405f3f98e1397a56eb08",
+    "content-hash": "5bd2fee9e1a380d72bc3e8a91c1a949c",
     "packages": [
         {
             "name": "barryvdh/laravel-translation-manager",
@@ -1109,16 +1109,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0"
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/5277094ed527a1c4477177d102fe4c53551953e0",
-                "reference": "5277094ed527a1c4477177d102fe4c53551953e0",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
                 "shasum": ""
             },
             "require": {
@@ -1152,7 +1152,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-09-19 16:02:08"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "psy/psysh",
@@ -2252,16 +2252,16 @@
         },
         {
             "name": "torann/currency",
-            "version": "0.3.4",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Torann/laravel-currency.git",
-                "reference": "b0eeb526ee51861691a16748db7809e5058edecf"
+                "reference": "9cdf84b66016f479d388aeb4ec1f068506cfa688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Torann/laravel-currency/zipball/b0eeb526ee51861691a16748db7809e5058edecf",
-                "reference": "b0eeb526ee51861691a16748db7809e5058edecf",
+                "url": "https://api.github.com/repos/Torann/laravel-currency/zipball/9cdf84b66016f479d388aeb4ec1f068506cfa688",
+                "reference": "9cdf84b66016f479d388aeb4ec1f068506cfa688",
                 "shasum": ""
             },
             "require": {
@@ -2275,15 +2275,15 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.2-dev"
+                    "dev-master": "1.0-dev"
                 }
             },
             "autoload": {
                 "files": [
-                    "src/Torann/Currency/helpers.php"
+                    "src/helpers.php"
                 ],
                 "psr-4": {
-                    "Torann\\Currency\\": "src/Torann/Currency"
+                    "Torann\\Currency\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2306,7 +2306,7 @@
                 "openexchangerates",
                 "yahoo finance"
             ],
-            "time": "2016-10-01 17:00:25"
+            "time": "2016-10-08 18:30:14"
         },
         {
             "name": "vlucas/phpdotenv",
