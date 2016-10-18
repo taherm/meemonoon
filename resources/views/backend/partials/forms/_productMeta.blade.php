@@ -4,7 +4,7 @@
     {{ Form::open(['route' => 'backend.meta.store','method'=>'POST','files' => 'true']) }}
 @endif
 
-{{ Form::text('product_id',request()->product_id, ['class' => 'hidden']) }}
+{{ Form::hidden('product_id',request()->product_id) }}
 <div class="form-body">
     @include('backend.partials.forms._form_group',
     [

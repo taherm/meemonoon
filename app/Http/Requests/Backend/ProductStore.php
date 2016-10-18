@@ -41,8 +41,9 @@ class ProductStore extends FormRequest
     public function persist(ProductRepository $productRepository)
     {
         try {
-            $product = $productRepository->model->create($this->except('categories', 'tags'));
+            $product = $productRepository->model->create($this->except('product_id','parent_id','categories', 'tags'));
             $product->gallery()->create(['description_ar' => $this->input('name_ar'), 'description_en' => $this->input('name_en')]);
+            $product->categories()->sync($this->input('parent_id'));
             $product->categories()->sync($this->input('categories'));
             foreach ($this->tags as $key => $value) {
                 $product->tag($value);

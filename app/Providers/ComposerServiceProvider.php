@@ -64,7 +64,8 @@ class ComposerServiceProvider extends ServiceProvider
             'App\Services\ViewComposerService@getAllCurrencies');
 
         view()->composer(
-            'frontend.partials.footer',
+            ['frontend.partials.footer',
+                'frontend.pages.contact'],
             'App\Services\ViewComposerService@getContactUsData');
 
         view()->composer('frontend.pages.contact',

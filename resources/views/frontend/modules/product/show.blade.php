@@ -37,8 +37,8 @@
                                                      id="{{'p-view-'. $count++}}">
                                                     <div class="simpleLens-big-image-container">
                                                         <a class="simpleLens-lens-image"
-                                                           data-lens-image="{{url('img/uploads/large/'.$image->large_url)}}">
-                                                            <img src="{{url('img/uploads/large/'.$image->large_url)}}"
+                                                           data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
+                                                            <img src="{{asset('img/uploads/large/'.$image->large_url)}}"
                                                                  class="simpleLens-big-image" alt="productd">
                                                         </a>
                                                     </div>
@@ -48,8 +48,8 @@
                                             <div class="tab-pane active" id="{{'p-view-1'}}">
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
-                                                       data-lens-image="{{url('img/uploads/large/'.$product->product_meta->image)}}">
-                                                        <img src="{{url('img/uploads/large/'.$product->product_meta->image)}}"
+                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
+                                                        <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
                                                 </div>
@@ -73,7 +73,7 @@
                                                         <li class="@if($count2 == 1) active @else last-li @endif"><a
                                                                     href="{{'#p-view-'. $count2++}}" role="tab"
                                                                     data-toggle="tab"><img
-                                                                        src="{{url('img/uploads/large/'.$image->large_url)}}"
+                                                                        src="{{asset('img/uploads/large/'.$image->large_url)}}"
                                                                         width="100" height="100" alt="productd"></a>
                                                         </li>
                                                     </ul>
@@ -83,7 +83,7 @@
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li class="active last-li"><a href="{{'#p-view-1'}}" role="tab"
                                                                                   data-toggle="tab"><img
-                                                                    src="{{url('img/uploads/large/'.$product->product_meta->image)}}"
+                                                                    src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
                                                                     width="100" height="100" alt="productd"></a></li>
                                                 </ul>
                                             @endif
@@ -189,102 +189,104 @@
                                 <div class="add-to-cart cart-sin-product">
                                     <div class="add-to-cart cart-sin-product">
                                         <div class="quick-add-to-cart">
-                                            <div
-                                            ">
-                                            <div>{{ trans('general.size') }}</div>
-                                        </div>
-                                        <div>
-                                         A   <select class="input-text qty"
-                                                    name="size" id="size">
-                                                <option value="none">{{ trans('size_select') }}</option>
-                                                @foreach($product->product_attributes->unique('size') as $attribute)
-                                                    <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
-                                                @endforeach
-                                            </select>
-                                            <a href="#" data-toggle="modal" data-target="#imagemodal"
-                                               title="Check Item Sizes!"
-                                               style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
-                                                {{ trans('size_charts') }}</a>
-                                        </div>
-
-                                    </div>
-                                    <div class="quick-add-to-cart">
-                                        <div>
-                                            <div>{{ trans('general.color') }}</div>
-                                        </div>
-                                        <div>
-                                            <select class="input-text qty" name="color"
-                                                    id="color">
-                                                <option value="none">{{ trans('general.select_color') }}</option>
-
-                                                @foreach($product->product_attributes->unique('color') as $attribute)
-                                                    <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="quick-add-to-cart">
-                                        {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
-                                        {{--$product->product_attributes->random()->id--}}
-                                        {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
-                                        {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
-                                        <div class="qty-button">
-                                            <input type="text" class="input-text qty" title="Qty" value="1"
-                                                   maxlength="3" id="quantity" name="quantity"
-                                                   style="height: 42px;">
-                                            <input type="hidden" id="max_qty" value="1"/>
-                                            <div class="box-icon button-plus">
-                                                <input id="increaseQty" type="button" class="qty-increase "
-                                                       value="+"
-                                                       style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
-                                                       disabled>
+                                            <div>
+                                                <div>{{ trans('general.size') }}</div>
                                             </div>
-                                            <div class="box-icon button-minus">
-                                                <input id="decreaseQty" type="button" class="qty-decrease"
-                                                       onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
-                                                       value="-"
-                                                       style="padding-right: 8px;top: -31px;outline: none;"
-                                                       disabled>
+                                            <div>
+                                                <select class="input-text qty"
+                                                        name="size" id="size">
+                                                    <option value="none">{{ trans('size_select') }}</option>
+                                                    @foreach($product->product_attributes->unique('size') as $attribute)
+                                                        <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
+                                                    @endforeach
+                                                </select>
+                                                {{--Size Chart Image Table will only Show if the parent category not limited--}}
+                                                @if(!$product->parent()->limited)
+                                                    <a href="#" data-toggle="modal" data-target="#imagemodal"
+                                                       title="Check Item Sizes!"
+                                                       style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
+                                                        {{ trans('size_charts') }}</a>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                        <div class="quick-add-to-cart">
+                                            <div>
+                                                <div>{{ trans('general.color') }}</div>
+                                            </div>
+                                            <div>
+                                                <select class="input-text qty" name="color"
+                                                        id="color">
+                                                    <option value="none">{{ trans('general.select_color') }}</option>
+
+                                                    @foreach($product->product_attributes->unique('color') as $attribute)
+                                                        <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
 
+                                        <div class="quick-add-to-cart">
+                                            {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
+                                            {{--$product->product_attributes->random()->id--}}
+                                            {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
+                                            {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
+                                            <div class="qty-button">
+                                                <input type="text" class="input-text qty" title="Qty" value="1"
+                                                       maxlength="3" id="quantity" name="quantity"
+                                                       style="height: 42px;">
+                                                <input type="hidden" id="max_qty" value="1"/>
+                                                <div class="box-icon button-plus">
+                                                    <input id="increaseQty" type="button" class="qty-increase "
+                                                           value="+"
+                                                           style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
+                                                           disabled>
+                                                </div>
+                                                <div class="box-icon button-minus">
+                                                    <input id="decreaseQty" type="button" class="qty-decrease"
+                                                           onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
+                                                           value="-"
+                                                           style="padding-right: 8px;top: -31px;outline: none;"
+                                                           disabled>
+                                                </div>
+                                            </div>
 
-                                        <div class="add-to-cart">
-                                            <button id="addToCart" type="submit" class="btn custom-button" disabled>
-                                                {{ trans('general.add_to_cart') }}
-                                            </button>
+
+                                            <div class="add-to-cart">
+                                                <button id="addToCart" type="submit" class="btn custom-button" disabled>
+                                                    {{ trans('general.add_to_cart') }}
+                                                </button>
+                                            </div>
+                                            {!! Form::close() !!}
                                         </div>
-                                        {!! Form::close() !!}
                                     </div>
+                                    <!-- Add to cart end -->
+
+                                    <!-- social-markting end -->
+                                    {{--<div class="social-button-img">--}}
+                                    {{--<a href="#">--}}
+                                    {{--<img src="img/logo/social.png" alt="">--}}
+                                    {{--</a>--}}
+                                    {{--</div>--}}
                                 </div>
-                                <!-- Add to cart end -->
-
-                                <!-- social-markting end -->
-                                {{--<div class="social-button-img">--}}
-                                {{--<a href="#">--}}
-                                {{--<img src="img/logo/social.png" alt="">--}}
-                                {{--</a>--}}
-                                {{--</div>--}}
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Single Product View Area -->
             </div>
-            <!-- End Single Product View Area -->
+            <!-- End Single details Area -->
+
+            <!--product-Description-area start-->
+            @include('frontend.modules.product.partials.productDescription')
+                    <!--product-Description-area end-->
+
+            @if(count($products) > 0)
+                    <!--related-products-area start-->
+            @include('frontend.modules.product.partials.product_carousel',['products'=>$products,'heading'=>'Related Products','backgroundColor'=>'#e7e7e7', 'cols' => 'col-lg-3 col-md-3 col-sm-3'])
+                    <!--related-products-area end-->
+            @endif
         </div>
-        <!-- End Single details Area -->
-
-        <!--product-Description-area start-->
-        @include('frontend.modules.product.partials.productDescription')
-                <!--product-Description-area end-->
-
-        @if(count($products) > 0)
-                <!--related-products-area start-->
-        @include('frontend.modules.product.partials.product_carousel',['products'=>$products,'heading'=>'Related Products','backgroundColor'=>'#e7e7e7', 'cols' => 'col-lg-3 col-md-3 col-sm-3'])
-                <!--related-products-area end-->
-        @endif
-    </div>
     </div>
     <!-- Single Product Area end -->
     <!-- Creates the bootstrap modal where the image will appear -->
@@ -299,7 +301,8 @@
                     <h4 class="modal-title" id="myModalLabel">Size Chart</h4>
                 </div>
                 <div class="modal-body" style="text-align: center;">
-                    <img src="{{ file_exists(public_path('img/uploads/large/'.$product->product_meta->size_chart_image)) ? asset('img/uploads/large/'.$product->product_meta->size_chart_image) : asset('meem/frontend/img/charts.png') }}" id="imagepreview"
+                    <img src="{{ file_exists(public_path('img/uploads/large/'.$product->product_meta->size_chart_image)) ? asset('img/uploads/large/'.$product->product_meta->size_chart_image) : asset('meem/frontend/img/charts.png') }}"
+                         id="imagepreview"
                          style="width: 400px; height: 264px;">
                 </div>
                 <div class="modal-footer">

@@ -25,5 +25,4 @@
         <!--news-letter-area end-->
 
 <!--quick-view end-->
-
 @endsection

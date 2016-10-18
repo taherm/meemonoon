@@ -1,5 +1,1 @@
-.no-child:after , .main-menu4 nav ul li a::after {
-    color: transparent !important;
-}
-
-/*# sourceMappingURL=custom.css.map */
+.main-menu4 nav ul li a::after,.no-child:after{color:transparent!important}.footer-2-service{border-color:#a9a9a9}

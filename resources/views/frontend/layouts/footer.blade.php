@@ -10,7 +10,8 @@
                             <!-- single-footer-service start -->
                             <div class="single-footer-service footer-2-service" style="min-height: 95px;">
                                 <div class="footer-service-icon">
-                                    <img class="box-icon" src="{{asset('meem/frontend/img/icons/ft-img_2.png')}}" alt="">
+                                    {{--<img class="box-icon" src="{{asset('meem/frontend/img/icons/ft-img_2.png')}}" alt="">--}}
+                                    <i class="fa fa-truck fa-fw fa-3x" aria-hidden="true"></i>
                                 </div>
                                 <div class="footer-service-text">
                                     <h2>{{ trans('general.free_shipping_in_kuwait') }}</h2>
@@ -152,17 +153,19 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="footer-copyright">
-                            <address>{{ trans('general.copyright') }} &copy;  <a href="http://ideasowners.net/">IdeasOwners </a>{{ trans('general.all_rights_reserved') }}</address>
+                            <address>{{ trans('general.designed_by') }}  <a href="http://ideasowners.net/">IdeasOwners </a>{{ trans('general.all_rights_reserved') }}</address>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="payment-history">
                             <ul>
-                                @if(currency()->getCurrency()['code'] != 'KWD')
-                                    <li><a href="#"><img src="{{asset('meem/frontend/img/footer/payment.png')}}" alt=""></a></li>
+                                @if(currency()->getCurrency(session()->get('currency'))['code'] === 'KWD')
+                                    <li>
+                                        <a href="#"><img style="width: 35px; height : 23px;" src="{{asset('meem/frontend/img/footer/k-net-icon.png')}}" alt=""></a>
+                                        <a href="#"><img style="width: 70px; height : 23px;" src="{{asset('meem/frontend/img/footer/payment.png')}}" alt=""></a>
+                                        <a href="#"><img style="width: 35px; height : 23px;" src="{{asset('meem/frontend/img/footer/cash-icon.png')}}" alt=""></a></li>
                                 @else
-                                    <li><a href="#"><img src="{{asset('meem/frontend/img/footer/k-net-icon.png')}}" alt=""></a><a href="#"><img src="{{asset('meem/frontend/img/footer/cash-icon.png')}}" alt=""></a></li>
-
+                                    <li><a href="#"><img style="width: 35px; height : auto;" src="{{asset('meem/frontend/img/footer/payment.png')}}" alt=""></a></li>
                                 @endif
                             </ul>
                         </div>

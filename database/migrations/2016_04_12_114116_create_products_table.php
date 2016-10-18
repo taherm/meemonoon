@@ -15,8 +15,8 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->increments('id');
-            $table->integer('sku')->unsigned()->index();
-            $table->boolean('active')->default(0);
+            $table->string('sku');
+            $table->boolean('active')->default(1);
             $table->string('name_ar');
             $table->string('name_en');
 

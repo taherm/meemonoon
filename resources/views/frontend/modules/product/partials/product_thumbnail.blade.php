@@ -22,17 +22,16 @@
                             {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}}--}}
                             @if($product->product_meta->on_sale)
                                 <span class="old-price">
-{{--                                    {{ currency_format($product->product_meta->price) }}--}}
                                     {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency(),false) }}
-                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                                 <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}
-                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                             @else
                                 {{--<span class="new-price">{{ currency($product->product_meta->price)}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>--}}
                                 <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
-                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                             @endif
                         </div>
@@ -45,7 +44,7 @@
                         @endif
                         <a href="#">
                             <img class="primary-img"
-                                 src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt=""
+                                 src="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt=""
                                  style="width: 261px;height: 300px;">
                         </a>
                         <div class="add-action">
@@ -71,7 +70,7 @@
                                        data-saleprice="{{ $product->product_meta->finalPrice  }} KD"
                                        data-price="{{ $product->product_meta->price }} KD"
                                        data-link="{{ route('product.show',$product->id) }}"
-                                       data-image="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }}"
+                                       data-image="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }}"
                                        data-description="{!! $product->product_meta->description !!}"
                                     >
                                         <i class="fa fa-eye"></i>

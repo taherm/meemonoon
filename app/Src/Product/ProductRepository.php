@@ -59,7 +59,7 @@ class ProductRepository extends PrimaryRepository
 
     public function getRelatedProducts($productId)
     {
-        return $this->model->whereId($productId)->first()->parent()->first()->products()->take(5)->get();
+        return $this->model->whereId($productId)->first()->parent()->products()->where('id' ,'!=', $productId)->take(5)->get();
     }
 
 

@@ -30,13 +30,12 @@ class ProductController extends PrimaryController
 
     public function show($productId)
     {
-        $product = $this->productRepository->model->whereId($productId)->with('product_attributes', 'gallery', 'tagged')->first();
+        $product = $this->productRepository->model->whereId($productId)->with('gallery', 'tagged')->first();
 
         // return array of ['size_id', 'color', 'att_id','qty' ] for one product
         $data = $product->data;
 
         $products = $this->productRepository->getRelatedProducts($productId);
-
         /*
          * Rating Percentage for each product loaded.
          * */

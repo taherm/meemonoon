@@ -23,7 +23,7 @@ class ScopeActive implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('active', 1);
+        $builder->where('active', true);
     }
 
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Core\PrimaryController;
 use App\Src\Newsletter\Newsletter;
 use App\Src\User\Aboutus;
-use App\Src\User\Contactus;
 use App\Src\User\Terms;
 use App\Src\User\Privacy;
 use App\Http\Requests;
@@ -36,11 +35,9 @@ class PageController extends PrimaryController
         return view('frontend.pages.about', compact('aboutData'));
     }
 
-    public function getContact(Contactus $contact)
+    public function getContact()
     {
-        $contactData = $contact->where('id',1)->first();
-
-        return view('frontend.pages.contact', compact('contactData'));
+        return view('frontend.pages.contact');
     }
 
     /**

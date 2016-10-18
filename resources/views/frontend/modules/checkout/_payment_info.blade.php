@@ -21,6 +21,13 @@
                     <input type="radio" name="payment" value="cash"/>
                 </div>
             </div>
+            <p>
+                <ol>
+                <li>K-net,Visa,master card (processed by MyFatoorah)</li>
+                <li>Cash on delivery. Other than Kuwait: Visa,master card (Processed by MyFatoorah).</li>
+            </ol>
+
+            </p>
         </div>
     </div>
 </div>

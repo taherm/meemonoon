@@ -11,7 +11,7 @@ class ProductMeta extends PrimaryModel
     protected $table = 'product_metas';
     protected $localeStrings = ['description', 'notes'];
     protected $guarded = [''];
-    protected $dates = ['created_at','updated_at','deleted_at','start_sale','end_sale'];
+//    protected $dates = ['created_at','updated_at','deleted_at','start_sale','end_sale'];
     use SoftDeletes;
 
     /**

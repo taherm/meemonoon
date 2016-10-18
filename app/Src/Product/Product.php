@@ -87,9 +87,9 @@ class Product extends PrimaryModel
      * Usage : within the boot Scope function
      * Description : make sure a product has at least one parent category
      */
-    public function parent()
+    public function scopeParent($q)
     {
-        return $this->categories()->where('parent_id', 0);
+        return $this->categories()->where('parent_id', 0)->first();
     }
 
     public function productParentCount($parentId)
