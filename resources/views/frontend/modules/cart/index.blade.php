@@ -167,7 +167,7 @@
     </div>
 @endsection
 
-@if(Auth::check())
+@if(Auth::user())
 @section('customScripts')
     @parent
     {{--REACT COUPON APP HERE--}}

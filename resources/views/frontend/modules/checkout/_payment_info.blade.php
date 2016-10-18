@@ -22,11 +22,10 @@
                 </div>
             </div>
             <p>
-                <ol>
+            <ol style="direction: ltr;">
                 <li>K-net,Visa,master card (processed by MyFatoorah)</li>
                 <li>Cash on delivery. Other than Kuwait: Visa,master card (Processed by MyFatoorah).</li>
             </ol>
-
             </p>
         </div>
     </div>

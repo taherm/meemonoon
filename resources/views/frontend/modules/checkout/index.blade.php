@@ -4,7 +4,7 @@
     <div class="checkout-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-sm-12">
+                <div class="col-lg-9 col-sm-12" style="color : black;">
                     <!-- Payment Method -->
                     <div class="payment-method">
                         <!-- Panel Gropup -->

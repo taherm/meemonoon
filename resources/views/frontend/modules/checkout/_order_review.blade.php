@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <h4 class="check-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#checkut6">
-                <span class="number">{{ $order }}</span>Order Review</a>
+                <span class="number">{{ $order }}</span>{{ trans('general.order_review') }}</a>
         </h4>
     </div>
     <div id="checkut6" class="panel-collapse collapse in" style="color : black; font-weight: bolder;">
@@ -11,10 +11,10 @@
                 <div class="table-responsive">
                     <table class="tablec">
                         <tr>
-                            <td>Product Name</td>
-                            <td>Price</td>
-                            <td>Qty</td>
-                            <td>Subtotal</td>
+                            <td>{{ trans('general.product_name') }}</td>
+                            <td>{{ trans('general.price') }}</td>
+                            <td>{{ trans('general.qty') }}</td>
+                            <td>{{ trans('general.subtotal') }}</td>
                         </tr>
                         @foreach($cart->items as $product)
                             <tr>
@@ -29,8 +29,8 @@
                                 <p class="tabletext">Total</p>
                                 {!! (isset($coupon) && $coupon->value > 0) ? '<p class="tabletext">Coupon Value :</p>' : null !!}
                                 {!! (isset($coupon) && $coupon->value > 0) ? '<p class="tabletext">After Coupon :</p>' : null !!}
-                                <p class="tabletext">Shipping & Handling Fee :</p>
-                                <p class="tabletext">Grand Total :</p>
+                                <p class="tabletext">{{ trans('general.shipping_and_handling_fees') }}:</p>
+                                <p class="tabletext">{{ trans('general.grand_total') }} :</p>
 
 
                             </td>
@@ -50,7 +50,8 @@
                                     <div class="">
                                         <span class="col-lg-8">
                                             <a href="{{ action('Frontend\CartController@index') }}">
-                                                Forgot an Item? Edit Your Cart</a>
+                                                {{ trans('general.forget_item_edit_here') }}
+                                            </a>
                                             <ul>
                                                 @if(!session()->get('currency') === 'KWD')
                                                     <li>Additional duties and taxes may apply according to your
@@ -61,8 +62,8 @@
                                             </ul>
                                         </span>
                                         <span class="col-lg-4">
-                                            <button type="submit" class="btn right-btn custom-button">Proceed to
-                                                Payment
+                                            <button type="submit" class="btn right-btn custom-button">
+                                                {{ trans('general.proceed_to_payment') }}
                                             </button>
                                         </span>
                                     </div>
