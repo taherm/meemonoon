@@ -16,27 +16,18 @@
                                 </button>
                                 <ul class="dropdown-menu pull-right" role="menu">
                                     <li>
-                                        <a href="{{ route('backend.order.status.change',['id' => $order->id,'status' => 'pending']) }}">
-                                            <i class="icon-bell"></i> pending</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('backend.order.status.change',['id' => $order->id,'status' => 'failed']) }}">
-                                            <i class="icon-bell"></i> failed</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('backend.order.status.change',['id' => $order->id,'status' => 'success']) }}">
-                                            <i class="icon-bell"></i> success</a>
+                                        <a data-toggle="modal" href="#responsive"><i class="icon-bell"></i> Shipped</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('backend.order.status.change',['id' => $order->id,'status' => 'completed']) }}">
-                                            <i class="icon-bell"></i> completed</a>
+                                            <i class="icon-bell"></i> Delivered</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                @if(count($order->order_metas) >= 1))
+                @if(count($order->order_metas) >= 1)
                 <div class="portlet-body">
                     <div class="table-responsive">
                         <table class="table table-hover table-bordered table-striped">
@@ -103,5 +94,52 @@
         </div>
     </div>
 
+    {{--Shipping modal view--}}
+    <div id="responsive" class="modal fade" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title"> Order Ship Tracking ID </h4>
+                </div>
+                {!! Form::open(['route' => 'backend.order.shipped', 'method' => 'post']) !!}
+                <div class="modal-body">
+                    <div class="scroller" style="height:120px" data-always-visible="1" data-rail-visible1="1">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Add Track ID</h4>
+                                <span style="font-size: 11px;color: #afa8a8;">Email will sent automatic for user with ship track id</span>
+                                <p>
+                                    <input type="text" name="trackId" id="trackId" class="col-md-12 form-control">
+                                    <input type="hidden" name="id" value="{{$order->id}}" class="col-md-12 form-control">
+                                </p>
+                                <br />
+                                <label class="mt-checkbox">
+                                    <input id="disableTrack" type="checkbox"> Without track id
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn dark btn-outline">Close</button>
+                    <button type="submit" class="btn green">Save</button>
+                </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+    {{--End shipping modal view--}}
+
+@endsection
+
+@section('customScripts')
+    @parent
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
 @endsection
 

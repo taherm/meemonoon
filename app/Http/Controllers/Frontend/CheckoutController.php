@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
 use Validator;
+use Illuminate\Support\Facades\Input;
+use App\Mail\ConfirmUserOrder;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends PrimaryController
 {
@@ -145,25 +148,17 @@ class CheckoutController extends PrimaryController
             compact('user', 'cart', 'shippingCountry', 'shippingCost', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon'));
     }
 
-    public function checkout(Request $request, OrderRepository $orderRepository)
+    public function reviewOrder(Request $request, OrderRepository $orderRepository)
     {
         $this->validate($request, [
-            'shipping_country' => 'required|numeric|exists:countries,id'
+            'shipping_country' => 'required|numeric|exists:countries,id',
+            'payment'   => 'required|not_in:no',
+            'firstname' => 'required',
+            'lastname'  => 'required',
+            'email'     => 'required',
+            'city'      => 'required',
+            'mobile'  => 'required_without_all:phone',
         ]);
-
-        $user = auth()->user();
-
-        $cartItems = $this->cart->getItems();
-
-        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->keys())->get();
-
-        $cart = $this->cart->make($products);
-
-        $shippingCountry = $this->country->find($request->shipping_country);
-
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
-
-        $orderDetails = session()->get('ORDER');
 
         $address = '';
         //if shipping kuwait
@@ -179,67 +174,158 @@ class CheckoutController extends PrimaryController
             $address .= $request->address2;
         }
 
-        $order = $orderRepository->model->create([
-            'status' => 'pending',
-            'user_id' => $user->id,
-            'country_id' => $request->shipping_country,
-            'coupon_id' => $orderDetails['coupon_id'],
-            'coupon_value' => $orderDetails['couponValue'],
-            'amount' => $cart->subTotal,
-            'shipping_cost' => $shippingCost,
-            'sale_amount' => $orderDetails['sale_amount'],
-            'net_amount' => $orderDetails['net_amount'],
-            'email' => $request->email,
-            'address' => $address,
-            'payment_method' => $request->payment,
-        ]);
+        $cartItems = $this->cart->getItems();
+
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->keys())->get();
+
+        $cart = $this->cart->make($products);
+
+        $shippingCountry = $this->country->find($request->shipping_country);
+
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
+
+        $orderDetails = session()->get('ORDER');
+
+        $payment = $request->payment;
+
+        $userEmail = $request->email;
+        return view('frontend.modules.checkout.invoice_review',
+            compact('cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'address', 'payment', 'userEmail'));
+    }
+
+    public function checkout(Request $request, OrderRepository $orderRepository)
+    {
 
 
-        $cart->items->map(function ($item) use ($order) {
-            $order->order_metas()->create([
-                'product_id' => $item->id,
-                'product_attribute_id' => $item->product_attribute_id,
-                'quantity' => $item->quantity,
-                'price' => $item->price,
-                'sale_price' => $item->sale_price,
+        $user = auth()->user();
+
+        $cartItems = $this->cart->getItems();
+
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->keys())->get();
+
+        $cart = $this->cart->make($products);
+
+        $shippingCountry = $this->country->find($request->shipping_country);
+
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
+
+        $orderDetails = session()->get('ORDER');
+
+
+        if($request->payment === 'cash')
+        {
+            $order = $orderRepository->model->create([
+                'status' => 'pending',
+                'user_id' => $user->id,
+                'country_id' => $request->shipping_country,
+                'coupon_id' => $orderDetails['coupon_id'],
+                'coupon_value' => $orderDetails['couponValue'],
+                'amount' => $cart->subTotal,
+                'shipping_cost' => $shippingCost,
+                'sale_amount' => $orderDetails['sale_amount'],
+                'net_amount' => $orderDetails['net_amount'],
+                'email' => $request->email,
+                'address' => $request->address,
+                'payment_method' => $request->payment,
             ]);
-        });
 
 
-        $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails));
-
-        //cash case
-        if ($request->payment == 'cash') {
+            $cart->items->map(function ($item) use ($order) {
+                $order->order_metas()->create([
+                    'product_id' => $item->id,
+                    'product_attribute_id' => $item->product_attribute_id,
+                    'quantity' => $item->quantity,
+                    'price' => $item->price,
+                    'sale_price' => $item->sale_price,
+                ]);
+            });
 
             $this->cart->flushCart();
 
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
-
         }
-        // my_fatoorah case
+        else
+        {
+            // My fatoorah
+
+            $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
+//            dd($paymentStatus);
+            if ($paymentStatus[0]->responseMessage) {
+
+                $order = $orderRepository->model->create([
+                    'status' => 'temp',
+                    'user_id' => $user->id,
+                    'country_id' => $request->shipping_country,
+                    'coupon_id' => $orderDetails['coupon_id'],
+                    'coupon_value' => $orderDetails['couponValue'],
+                    'amount' => $cart->subTotal,
+                    'shipping_cost' => $shippingCost,
+                    'sale_amount' => $orderDetails['sale_amount'],
+                    'net_amount' => $orderDetails['net_amount'],
+                    'email' => $request->email,
+                    'address' => $request->address,
+                    'payment_method' => $request->payment,
+                    'invoice_id'  => $paymentStatus[0]->referenceId
+                ]);
 
 
+                $cart->items->map(function ($item) use ($order) {
+                    $order->order_metas()->create([
+                        'product_id' => $item->id,
+                        'product_attribute_id' => $item->product_attribute_id,
+                        'quantity' => $item->quantity,
+                        'price' => $item->price,
+                        'sale_price' => $item->sale_price,
+                    ]);
+                });
 
-        // i stopped here
-        dd($paymentStatus);
-        /// whenever the paymend is done .. please do the following == get the response if success do what are mentioned below :::
-        if ($paymentStatus[0]->responseMessage) {
-
-            /*            // please refere to OrderObservers
-                                - coupons consumed if applied
-                           // firing event NewOrder
-                                - emails
-                                - payment
-            */
+                /*            // please refere to OrderObservers
+                                    - coupons consumed if applied
+                               // firing event NewOrder
+                                    - emails
+                                    - payment
+                */
 
 //            - after saving the order + sending emails + consuming the coupon if exists - flush the whole cart session
-            $this->cart->flushCart();
 
-            return redirect()->secure($paymentStatus[0]->paymentURL);
+                return redirect()->secure($paymentStatus[0]->paymentURL);
 
+            }
         }
 
         return redirect('cart')->with('error', 'Not completed');
+    }
+
+    public function paymentSuccess(OrderRepository $orderRepository)
+    {
+        $this->cart->flushCart();
+        $id = Input::get('id');
+
+        $order = $orderRepository->getWhereId($id, 'invoice_id')->first();
+        if ($order->update([
+            'status'            => 'pending',
+            'captured_status'   => 1
+        ]))
+        {
+            $email = new ConfirmUserOrder($order);
+
+            Mail::to(auth()->user()->email)->send($email);
+            Mail::to('info@meemonoon.com')->send($email);
+
+            return redirect()->to('/')->with('success', 'Order payment Success!!');
+        }
+
+        //send Email to user and admin
+
+        return redirect()->to('/')->with('error', trans('System Error!'));
+    }
+
+    public function paymentFail(OrderRepository $orderRepository)
+    {
+        $id = Input::get('id');
+        $orderRepository->getWhereId($id, 'invoice_id')->delete();
+        return redirect()->to('/')->with('error', 'Payment fail, Please check your credit card again!');
+
     }
 
 }

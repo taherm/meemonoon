@@ -12,13 +12,17 @@
             <div class="col-xs-3">
                 <div class="form-group">
                     <label for="payment">{{ trans('general.my_fatorrah') }}</label>
-                    <input type="radio" name="payment" checked="checked" value="my_fatoorah"/>
+                    <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 15%;float: left;"/>
                 </div>
             </div>
             <div class="col-xs-3">
                 <div class="form-group">
                     <label for="payment">{{ trans('general.cash_on_delivery') }}</label>
-                    <input type="radio" name="payment" value="cash"/>
+                    @if($shippingCountry->id == '414')
+                        <input type="radio" name="payment" value="cash" style="width: 15%;float: left;"/>
+                    @else
+                        <input type="radio" name="payment" value="no" style="width: 15%;float: left;" disabled="disabled"/>
+                    @endif
                 </div>
             </div>
         </div>

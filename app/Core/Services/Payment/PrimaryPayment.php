@@ -9,24 +9,39 @@
 namespace App\Core\Services\Payment;
 
 
-class PrimaryPayment
+class PrimaryPayment implements primaryPaymentInterface
 {
     public $products;
     public $orderDetails;
-    public $url = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx';
-    public $userEmail = 'info@ideasowners.net';
-    public $userPass = '123123';
-    public $MerchantCode = '15104385';
-    public $MerchantReferenceID = '12345678910';
-    public $successURL = 'http://meem.app';
-    public $errorURL = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx?op=GetOrderStatusRequest';
-    public $MerchantName = 'Web Pay';
+    public $user;
+
+    //LIVE VARS
+//    public $url = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx';
+//    public $userEmail = 'info@ideasowners.net';
+//    public $userPass = '123123';
+//    public $MerchantCode = '15104385';
+//    public $MerchantReferenceID = '12345678910';
+//    public $successURL = 'http://meem.app';
+//    public $errorURL = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx?op=GetOrderStatusRequest';
+//    public $MerchantName = 'Web Pay';
+
+    //TEST VARS
+    public $MerchantReferenceID = '291454542102';
+    const url = 'https://test.myfatoorah.com/pg/PayGatewayService.asmx';
+    const MerchantCode = '999999';
+    const userEmail = 'testapi@myfatoorah.com';
+    const userPass = 'E55D0';
+    const MerchantName = 'MeemOnoon';
+    const successURL = 'http://meemonoon.dev/success';
+    const errorURL = 'http://meemonoon.dev/error';
 
 
-    public function __construct($products, $orderDetails)
+
+    public function __construct($products, $orderDetails, $user)
     {
         $this->products = $products;
         $this->orderDetails = $orderDetails;
+        $this->user = $user;
     }
 
 
@@ -39,17 +54,17 @@ class PrimaryPayment
     <PaymentRequest xmlns="http://tempuri.org/">
     <req>
     <CustomerDC>
-    <Name>Iron Man</Name>
-    <Email>xyz@gmail.com</Email>
-    <Mobile>"55555555"</Mobile>
+    <Name>'.$this->user->firstname.' '.$this->user->lastname.'</Name>
+    <Email>'.$this->user->email.'</Email>
+    <Mobile>'.$this->user->mobile.'</Mobile>
     </CustomerDC>
     <MerchantDC>
-        <merchant_code>' . $this->MerchantCode . '</merchant_code>
-        <merchant_username>' . $this->userEmail . '</merchant_username>
-        <merchant_password>' . $this->userPass . '</merchant_password>
+        <merchant_code>' . self::MerchantCode . '</merchant_code>
+        <merchant_username>' . self::userEmail . '</merchant_username>
+        <merchant_password>' . self::userPass . '</merchant_password>
         <merchant_ReferenceID>' . $this->MerchantReferenceID . '</merchant_ReferenceID>
-        <ReturnURL>' . $this->successURL . '</ReturnURL>
-        <merchant_error_url>' . $this->errorURL . '</merchant_error_url>
+        <ReturnURL>' . self::successURL . '</ReturnURL>
+        <merchant_error_url>' . self::errorURL . '</merchant_error_url>
     </MerchantDC>
     <lstProductDC>
         ' . $this->createProductsList() . '
@@ -107,7 +122,7 @@ PRODUCTS;
 
         $soap_do = curl_init();
 
-        curl_setopt($soap_do, CURLOPT_URL, $this->url);
+        curl_setopt($soap_do, CURLOPT_URL, self::url);
 
         curl_setopt($soap_do, CURLOPT_CONNECTTIMEOUT, 10);
 
@@ -127,7 +142,7 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_HTTPHEADER, array('Content-Type: text/xml; charset=utf-8', 'Content-Length: ' . strlen($postString)));
 
-        curl_setopt($soap_do, CURLOPT_USERPWD, $this->userEmail . ":" . $this->userPass);
+        curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
 // User Name, Password To be provided by Myfatoorah
 
@@ -143,7 +158,7 @@ PRODUCTS;
 
         $soap_do = curl_init();
 
-        curl_setopt($soap_do, CURLOPT_URL, $this->url);
+        curl_setopt($soap_do, CURLOPT_URL, self::url);
 
         curl_setopt($soap_do, CURLOPT_CONNECTTIMEOUT, 10);
 
@@ -161,7 +176,7 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_HTTPHEADER, array('Content-Type: text/xml; charset=utf-8', 'Content-Length: ' . strlen($postString)));
 
-        curl_setopt($soap_do, CURLOPT_USERPWD, $this->userEmail . ":" . $this->userPass);
+        curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
         $result = curl_exec($soap_do);
 

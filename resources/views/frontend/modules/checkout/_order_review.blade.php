@@ -49,7 +49,7 @@
                                 <div class="button-check">
                                     <div class="">
                                         <span class="left-btn"><a href="{{ action('Frontend\CartController@index') }}">Forgot an Item? Edit Your Cart</a></span>
-                                        <button type="submit" class="btn right-btn custom-button">Proceed to Payment</button>
+                                        <button type="submit" class="btn right-btn custom-button">Continue</button>
                                     </div>
                                 </div>
                             </td>
