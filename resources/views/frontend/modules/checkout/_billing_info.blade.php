@@ -25,7 +25,6 @@
                             </li>
                             <li>
                                 <div class="field fix">
-<<<<<<< HEAD
                                     <label for="address">{{ trans('general.address') }}</label>
                                     </br>
                                     @if($shippingCountry->currency_symbol === 'KWD')
@@ -70,28 +69,18 @@
                                             {{ Form::text('address2',null,['class'=>'border-color', 'placeholder'=>'Address 2']) }}
                                         </div>
                                     @endif
-=======
-                                    <div class="input-box">
-                                        <label class="label" for="email">Email Address <em>*</em></label>
-                                        {{ Form::text('email',(auth()->user() ? auth()->user()->email : null) ,['class'=>'border-color']) }}
-                                    </div>
->>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                 </div>
                             </li>
                             <li>
                                 <div class="field fix">
                                     <div class="input-box">
-<<<<<<< HEAD
                                         <label class="label" for="City">{{ trans('general.city') }} <em>*</em></label>
-=======
-                                        <label class="label" for="City">City <em>*</em></label>
->>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                         {{ Form::text('city',null,['class'=>'border-color']) }}
                                     </div>
                                     <div class="input-box">
                                         <label class="label" for="Country">{{ trans('general.country') }}<em>*</em></label>
                                         <div class="i-box">
-<<<<<<< HEAD
+
                                             {{--<select  id="country_id" name="country_id" class="form-control">--}}
                                             {{--@foreach($countries as $country)--}}
                                             {{--<option value="{{ $country->id }}"--}}
@@ -103,8 +92,6 @@
                                             {{-->{{ $country->name }}</option>--}}
                                             {{--@endforeach--}}
                                             {{--</select>--}}
-=======
->>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                             <div class="i-box">
                                                 {{ $shippingCountry->name }}
                                                 <br>
@@ -112,8 +99,6 @@
                                             </div>
                                         </div>
                                     </div>
-<<<<<<< HEAD
-=======
                                 </div>
                             </li>
                             <li>
@@ -151,7 +136,6 @@
                             </li>
                             <li>
                                 <div class="field fix">
->>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                     <div class="input-box">
                                         <label class="label" for="email">{{ trans('general.email') }} <em>*</em></label>
                                         {{ Form::text('email',(auth()->user() ? auth()->user()->email : null) ,['class'=>'border-color']) }}
