@@ -21,9 +21,9 @@ class NewOrder
      *
      * @return void
      */
-    public function __construct(Cart $cart, $orderDetails)
+    public function __construct(Cart $cart, $orderDetails, $user)
     {
-        $this->payment = new PrimaryPayment($cart, $orderDetails);
+        $this->payment = new PrimaryPayment($cart, $orderDetails, $user);
     }
 
     /**
