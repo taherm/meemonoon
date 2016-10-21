@@ -16,7 +16,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             // pending = submitted // failed // success but not delivered // compleated = success + delievered
-            $table->enum('status',['pending','failed','success','completed']);
+            $table->enum('status', ['temp', 'pending', 'success', 'shipped', 'completed', 'failed']);
             $table->integer('coupon_id')->unsigned()->default(0);
             $table->integer('country_id')->unsigned()->index();
             $table->float('coupon_value')->unsigned();

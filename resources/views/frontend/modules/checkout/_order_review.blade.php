@@ -48,6 +48,7 @@
                             <td colspan="4">
                                 <div class="button-check">
                                     <div class="">
+<<<<<<< HEAD
                                         <span class="col-lg-8">
                                             <a href="{{ action('Frontend\CartController@index') }}">
                                                 {{ trans('general.forget_item_edit_here') }}
@@ -66,6 +67,10 @@
                                                 {{ trans('general.proceed_to_payment') }}
                                             </button>
                                         </span>
+=======
+                                        <span class="left-btn"><a href="{{ action('Frontend\CartController@index') }}">Forgot an Item? Edit Your Cart</a></span>
+                                        <button type="submit" class="btn right-btn custom-button">Continue</button>
+>>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                     </div>
                                 </div>
                             </td>

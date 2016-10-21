@@ -24,7 +24,7 @@ class ScopeOrdersExcludePending implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('status', '!=', 'pending');
+        $builder->where('status', '!=', 'temp');
     }
 
 }

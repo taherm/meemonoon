@@ -25,6 +25,7 @@
                             </li>
                             <li>
                                 <div class="field fix">
+<<<<<<< HEAD
                                     <label for="address">{{ trans('general.address') }}</label>
                                     </br>
                                     @if($shippingCountry->currency_symbol === 'KWD')
@@ -69,17 +70,28 @@
                                             {{ Form::text('address2',null,['class'=>'border-color', 'placeholder'=>'Address 2']) }}
                                         </div>
                                     @endif
+=======
+                                    <div class="input-box">
+                                        <label class="label" for="email">Email Address <em>*</em></label>
+                                        {{ Form::text('email',(auth()->user() ? auth()->user()->email : null) ,['class'=>'border-color']) }}
+                                    </div>
+>>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                 </div>
                             </li>
                             <li>
                                 <div class="field fix">
                                     <div class="input-box">
+<<<<<<< HEAD
                                         <label class="label" for="City">{{ trans('general.city') }} <em>*</em></label>
+=======
+                                        <label class="label" for="City">City <em>*</em></label>
+>>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                         {{ Form::text('city',null,['class'=>'border-color']) }}
                                     </div>
                                     <div class="input-box">
                                         <label class="label" for="Country">{{ trans('general.country') }}<em>*</em></label>
                                         <div class="i-box">
+<<<<<<< HEAD
                                             {{--<select  id="country_id" name="country_id" class="form-control">--}}
                                             {{--@foreach($countries as $country)--}}
                                             {{--<option value="{{ $country->id }}"--}}
@@ -91,6 +103,8 @@
                                             {{-->{{ $country->name }}</option>--}}
                                             {{--@endforeach--}}
                                             {{--</select>--}}
+=======
+>>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                             <div class="i-box">
                                                 {{ $shippingCountry->name }}
                                                 <br>
@@ -98,6 +112,46 @@
                                             </div>
                                         </div>
                                     </div>
+<<<<<<< HEAD
+=======
+                                </div>
+                            </li>
+                            <li>
+                                <label class="label" for="addr">Address <em>*</em></label>
+                                @if($shippingCountry->currency_symbol === 'KWD')
+                                    <div class="field fix">
+                                        <div class="input-box">
+                                            {{ Form::text('area',(Auth::user()->area != '' ? Auth::user()->area: null),['class'=>'border-color', 'placeholder'=>'Area']) }}
+                                        </div>
+                                        <div class="input-box">
+                                            {{ Form::text('block',(Auth::user()->block != '' ? Auth::user()->block: null),['class'=>'border-color', 'placeholder'=>'Block']) }}
+                                        </div>
+                                    </div>
+                                    <div class="field fix">
+                                        <div class="input-box">
+                                            {{ Form::text('street',(Auth::user()->street != '' ? Auth::user()->street: null),['class'=>'border-color', 'placeholder'=>'Street']) }}
+                                        </div>
+                                        <div class="input-box">
+                                            {{ Form::text('building',(Auth::user()->building != '' ? Auth::user()->building: null),['class'=>'border-color', 'placeholder'=>'Building']) }}
+                                        </div>
+                                    </div>
+                                    <div class="field fix">
+                                        <div class="input-box">
+                                            {{ Form::text('floor',(Auth::user()->floor != '' ? Auth::user()->floor: null),['class'=>'border-color', 'placeholder'=>'Floor']) }}
+                                        </div>
+                                        <div class="input-box">
+                                            {{ Form::text('apartment',(Auth::user()->apartment != '' ? Auth::user()->apartment: null),['class'=>'border-color', 'placeholder'=>'Apartment']) }}
+                                        </div>
+                                    </div>
+                                @else
+                                    {{ Form::text('address1',(Auth::user()->address != '' ? Auth::user()->address: null),['class'=>'border-color', 'placeholder'=>'Address 1']) }}
+                                    {{ Form::text('address2',(Auth::user()->address2 != '' ? Auth::user()->address2: null),['class'=>'border-color', 'placeholder'=>'Address 2']) }}
+                                @endif
+
+                            </li>
+                            <li>
+                                <div class="field fix">
+>>>>>>> fe8cfc5bab38b9d3fec4176d79cfacbeb4f6b19f
                                     <div class="input-box">
                                         <label class="label" for="email">{{ trans('general.email') }} <em>*</em></label>
                                         {{ Form::text('email',(auth()->user() ? auth()->user()->email : null) ,['class'=>'border-color']) }}

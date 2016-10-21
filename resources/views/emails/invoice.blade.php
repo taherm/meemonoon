@@ -97,8 +97,8 @@
                         </td>
 
                         <td>
-                            Invoice #: {{ $order['id'] }}<br>
-                            Created: {{ $order['created_at'] }}<br>
+                            Invoice #: {{ $order->id }}<br>
+                            Created: {{ $order->created_at }}<br>
                         </td>
                     </tr>
                 </table>
@@ -110,9 +110,7 @@
                 <table>
                     <tr>
                         <td>
-                            Next Step Webs, Inc.<br>
-                            12345 Sunny Road<br>
-                            Sunnyville, TX 12345
+                            {{ $order->address }}
                         </td>
 
                         <td>

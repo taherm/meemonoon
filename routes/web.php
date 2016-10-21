@@ -10,11 +10,15 @@ Route::get('/logmein', function () {
     Auth::loginUsingId(1);
     return redirect('/');
 });
+
 //Auth::LoginUsingId(1);
 /***************************************************************************************************
  * â–‚ â–ƒ â–… â–† â–ˆ Frontend  â–ˆ â–† â–… â–ƒ â–‚
  ***************************************************************************************************/
 Route::group(['namespace' => 'Frontend'], function () {
+
+    Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
+    Route::get('/error', ['uses' => 'CheckoutController@paymentFail']);
 
     Route::get('/lang/{lang}', 'LanguageController@changeLocale');
     Route::get('/currency/{currencyCode}', ['as' => 'currency', 'uses' => 'CurrencyController@changeCurrency']);
@@ -53,6 +57,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 //    Route::post('cart/checkout', 'CartController@checkout');
     Route::get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
     Route::post('cart/checkout', ['as' => 'cart.checkout', 'uses' => 'CheckoutController@index']);
+    Route::post('checkout/review', ['as' => 'checkout.review', 'uses' => 'CheckoutController@reviewOrder']);
     Route::post('checkout', ['as' => 'checkout.index', 'uses' => 'CheckoutController@checkout']);
 
     /***************************************************************************************************
@@ -129,6 +134,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('slider', 'SliderController');
     Route::resource('order', 'OrderController', ['except' => ['destroy']]);
     Route::get('order/change/{id}/{status}', ['as' => 'order.status.change', 'uses' => 'OrderController@changeStatus']);
+    Route::post('order/ship', ['as' => 'order.shipped', 'uses' => 'OrderController@addOrderTrackId']);
     Route::get('currency', ['as' => 'currency.index', 'uses' => 'CurrencyController@index']);
     Route::get('currency/update', ['as' => 'currency.update', 'uses' => 'CurrencyController@updateRates']);
     Route::get('backup/db', ['as' => 'backup.db', 'uses' => 'DashBoardController@BackupDB']);

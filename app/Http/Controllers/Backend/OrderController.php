@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
+use App\Mail\OrderShipped;
 use App\Src\Order\OrderRepository;
 use App\Src\User\UserRepository;
 use Illuminate\Http\Request;
@@ -31,7 +32,6 @@ class OrderController extends PrimaryController
     public function index()
     {
         $orders = $this->orderRepository->model->with('user', 'order_metas', 'country')->orderBy('created_at','desc')->get();
-
         return view('backend.modules.order.index', compact('orders'));
     }
 
@@ -100,6 +100,21 @@ class OrderController extends PrimaryController
 
         return redirect()->back()->with('success', 'status changed successfully');
 
+    }
+
+    public function addOrderTrackId(Request $request)
+    {
+        $order = $this->orderRepository->model->whereId($request->id)->first();
+
+        $order->update([
+            'status' => 'shipped',
+            'track_id' => $request->trackId
+        ]);
+
+        $email = new OrderShipped($order);
+        Mail::to($order->user->email)->send($email);
+
+        return redirect()->back()->with('success', 'status changed successfully');
     }
 
     /**
