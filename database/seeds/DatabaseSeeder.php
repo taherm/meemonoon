@@ -126,6 +126,19 @@ class DatabaseSeeder extends Seeder
             Model::reguard();
 
 
+        } elseif (app()->environment() === 'production') {
+
+            $this->emptyTables($this->tables);
+
+            Model::unguard();
+
+            $this->call(CountriesSeeder::class);
+            $this->call(CoinsTableSeeder::class);
+            $this->command->info('coins table updated');
+            $this->call(UsersTableSeeder::class);
+            $this->command->info('Seeded the users!');
+            $this->call(ContactusTableSeeder::class);
+            $this->command->info('Seeded the side contactus!');
         }
 //        if (env('APP_ENV') === 'local') {
 //
