@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends PrimaryController
 {
@@ -108,7 +109,7 @@ class OrderController extends PrimaryController
 
         $order->update([
             'status' => 'shipped',
-            'track_id' => $request->trackId
+            'track_id' => ($request->trackId != '' ? $request->trackId : NULL)
         ]);
 
         $email = new OrderShipped($order);
@@ -126,5 +127,11 @@ class OrderController extends PrimaryController
     public function destroy($id)
     {
         //
+    }
+
+    public function testEmail(){
+        $order = $this->orderRepository->model->whereId(10)->first();
+
+        return view('emails.order', compact('order'));
     }
 }

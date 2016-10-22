@@ -95,50 +95,29 @@
                                 </tr>
 
 
-                                <tr>
-                                    <td class="item-col item">
-                                        <table cellspacing="0" cellpadding="0" width="100%">
-                                            <tr>
-                                                <td class="mobile-hide-img">
-                                                    <a href=""><img width="110" height="92" src="http://s3.amazonaws.com/swu-filepicker/RPezUIwPRv8pjatAAH1E_item_images_19.jpg" alt="item1"></a>
-                                                </td>
-                                                <td class="product">
-                                                    <span style="color: #4d4d4d; font-weight:bold;">Golden Earings</span> <br />
-                                                    Hot city looks
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="item-col quantity">
-                                        1
-                                    </td>
-                                    <td class="item-col">
-                                        $3.50
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td class="item-col item">
-                                        <table cellspacing="0" cellpadding="0" width="100%">
-                                            <tr>
-                                                <td class="mobile-hide-img">
-                                                    <a href=""><img width="110" height="92" src="http://s3.amazonaws.com/swu-filepicker/9wRy50HQTg2CTyZA5Ozi_item_images_16.jpg" alt="item2"></a>
-                                                </td>
-                                                <td class="product">
-                                                    <span style="color: #4d4d4d; font-weight: bold;">Pink Shoes</span> <br />
-                                                    Newest styles
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                    <td class="item-col quantity">
-                                        1
-                                    </td>
-                                    <td class="item-col price">
-                                        $10.50
-                                    </td>
-                                </tr>
+                                @foreach($order->order_metas as $item)
+                                    <tr>
+                                        <td class="item-col item">
+                                            <table cellspacing="0" cellpadding="0" width="100%">
+                                                <tr>
+                                                    <td class="mobile-hide-img">
+                                                        <a href=""><img width="110" height="92" src="img/uploads/thumbnail/{{($item->product->product_meta->image != '' ? $item->product->product_meta->image : $item->product->gallery->images->first()->thumb_url)}}" alt="item1"></a>
+                                                    </td>
+                                                    <td class="product">
+                                                        <span style="color: #4d4d4d; font-weight:bold;">{{$item->product->name}}</span> <br />
+                                                        {{$item->product->sku}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="item-col quantity">
+                                            {{$item->quantity}}
+                                        </td>
+                                        <td class="item-col">
+                                            {{$item->price. " KD"}}
+                                        </td>
+                                    </tr>
+                                @endforeach
 
 
                                 <tr>
@@ -153,15 +132,13 @@
                                     </td>
                                     <td class="item-col quantity" style="text-align:right; padding-right: 10px; border-top: 1px solid #cccccc;">
                                         <span class="total-space">Subtotal</span> <br />
-                                        <span class="total-space">Tax</span>  <br />
                                         <span class="total-space">Shipping</span> <br />
                                         <span class="total-space" style="font-weight: bold; color: #4d4d4d">Total</span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space">$13.02</span> <br />
-                                        <span class="total-space">$0.75</span>  <br />
-                                        <span class="total-space">$1.00</span>  <br />
-                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">$15.77</span>
+                                        <span class="total-space">{{$order->amount . ' KD'}}</span> <br />
+                                        <span class="total-space">{{$order->shipping_cost . ' KD'}}</span>  <br />
+                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">{{$order->net_amount . ' KD'}}</span>
                                     </td>
                             </table>
                         </td>

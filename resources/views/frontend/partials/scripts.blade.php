@@ -41,11 +41,6 @@
             $('li.images').removeClass('active');
             $(this).addClass('active');
         });
-
-        $('#disableTrack').on('click', function () {
-            console.log('asdsad');
-            $('input:text').attr('disabled', !this.checked)
-        });
     });
 
 </script>

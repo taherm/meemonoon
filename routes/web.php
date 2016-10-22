@@ -11,6 +11,8 @@ Route::get('/logmein', function () {
     return redirect('/');
 });
 
+
+
 //Auth::LoginUsingId(1);
 /***************************************************************************************************
  * â–‚ â–ƒ â–… â–† â–ˆ Frontend  â–ˆ â–† â–… â–ƒ â–‚
@@ -143,6 +145,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('newsletter', 'NewsLetterController');
     Route::resource('color', 'ColorController', ['except' => 'destroy']);
     Route::resource('size', 'SizeController', ['except' => 'destroy']);
+
+    Route::get('email', ['uses'=>'OrderController@testEmail']);
 
     //Static Pages
     Route::get('pages', ['uses' => 'PageController@getAboutUs']);

@@ -13,14 +13,16 @@ class ConfirmUserOrder extends Mailable
     use Queueable, SerializesModels;
 
     public $order;
+    public $emailToAdmin;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct($order, $emailToAdmin = 0)
     {
         $this->order = $order;
+        $this->emailToAdmin = $emailToAdmin;
     }
 
     /**
