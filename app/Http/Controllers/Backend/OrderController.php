@@ -128,10 +128,4 @@ class OrderController extends PrimaryController
     {
         //
     }
-
-    public function testEmail(){
-        $order = $this->orderRepository->model->whereId(10)->first();
-
-        return view('emails.order', compact('order'));
-    }
 }
