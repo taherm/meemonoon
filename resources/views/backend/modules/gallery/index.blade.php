@@ -19,7 +19,7 @@
                         </div>
                         <div class="panel-body">
                             <img class="img-thumbnail center"
-                                 src={{ url('img/uploads/thumbnail/'.$image->thumb_url) }} />
+                                 src={{ asset('img/uploads/thumbnail/'.$image->thumb_url) }} />
                             <div class="caption">{{ $image->caption }}</div>
                         </div>
                     </div>

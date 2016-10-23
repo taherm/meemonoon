@@ -5,8 +5,10 @@ Create New Product
 @section('content')
     @if(isset($product))
         {{ Form::model($product,['route' => ['backend.product.update',$product->id],'method'=>'PATCH','files' => 'true','class' => 'form-horizontal']) }}
+        {{ Form::hidden('product_id',$product->id) }}
     @else
         {{ Form::open(['route' => 'backend.product.store','method'=>'POST','files' => 'true','class'=>'form-horizontal']) }}
+        {{ Form::hidden('product_id',request()->get('product_id')) }}
     @endif
     <div class="form-body">
         <div class="form-group">

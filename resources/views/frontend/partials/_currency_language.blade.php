@@ -6,9 +6,9 @@
         </ul>
     </li>
     <li class="currency"><span>Country:</span> <img width="20" height="20"
-                                                    src="{{asset('meem/frontend/img/flags/'.strtolower(currency()->getCurrencyCode()).'.png')}}"
+                                                    src="{{asset('meem/frontend/img/flags/'.strtolower(currency()->getCurrency(session()->get('currency'))['code']).'.png')}}"
                                                     style="padding-right: 5px; padding-left: 3px;"/><a
-                href="#">{{currency()->getCurrencyCode()}}</a>
+                href="#">{{currency()->getcurrency(session()->get('currency'))['code']}}</a>
         <ul>
             @foreach($currencies as $currency)
                 <li>

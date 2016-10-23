@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Currency extends Model
 {
+    protected $table = 'currencies';
     /**
      * Country Currency
      * hasOne
@@ -14,6 +15,6 @@ class Currency extends Model
      */
     public function country()
     {
-        return $this->belongsTo('App\Src\Country\Country');
+        return $this->belongsTo('App\Src\Country\Country','code');
     }
 }

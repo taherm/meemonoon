@@ -22,21 +22,17 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<!--header start-->
 @include('frontend.layouts.header')
 
 @include('backend.partials._notification')
-<!--header end-->
-<!--slider start-->
-{{--@yield('slider')--}}
-<!--slider end-->
+
 @section('content')
-    @yield('body')
+@yield('body')
 @show
 
-<!--footer start-->
+        <!--footer start-->
 @include('frontend.layouts.footer')
-<!--footer end-->
+        <!--footer end-->
 
 <!--script for this page-->
 @section('customScripts')

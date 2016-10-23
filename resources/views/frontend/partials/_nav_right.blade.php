@@ -7,7 +7,11 @@
             <div class="top-menu wishlist">
                 <nav>
                     <ul>
-                        <li><a href="#"><img src="{{asset('meem/frontend/img/icons/ac-links.png')}}" alt=""></a>
+                        <li>
+                            <a href="#">
+                                {{--<img src="{{asset('meem/frontend/img/icons/ac-links.png')}}" alt="">--}}
+                                welcome, {{  auth()->user()->firstname }}
+                            </a>
                             <ul>
                                 @if(Auth::id() == 1)
                                     <li><a href="{{ url('/backend') }}">dashboard</a></li>

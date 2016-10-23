@@ -17,19 +17,13 @@ class CurrencyController extends PrimaryController
      */
     public function changeCurrency($currencyCode)
     {
-        if (currency()->hasCurrency(strtoupper($currencyCode))) {
+        !currency()->hasCurrency($currencyCode) ? redirect()->back()->with('error', 'no such currency available') : null;
 
-            currency()->setCurrency(strtoupper($currencyCode));
+        session()->put('currency',$currencyCode);
 
-            return redirect()->back();
+        currency()->setUserCurrency($currencyCode);
 
-        } else {
-
-            currency()->setCurrency('KWT');
-
-            return redirect()->back()->with('error',trans('messages.error.no_currency_available'));
-
-        }
+        return redirect()->back();
 
     }
 

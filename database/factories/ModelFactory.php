@@ -41,6 +41,13 @@ $factory->define('App\Src\User\User', function (Faker\Generator $faker) {
         'lastname' => $faker->lastName,
         'email' => $faker->freeEmail,
         'address' => $faker->address,
+        'address2' => $faker->address,
+        'apartment' => $faker->randomDigit,
+        'floor' => $faker->randomDigit,
+        'building' => $faker->randomDigit,
+        'street' => $faker->randomDigit,
+        'block' => $faker->randomDigit,
+        'area' => $faker->word,
         'city' => $faker->city,
         'zip' => $faker->postcode,
         'mobile' => $faker->phoneNumber,
@@ -81,16 +88,16 @@ $factory->define('App\Src\Currency\Currency', function (Faker\Generator $faker) 
     ];
 });
 
-$factory->define('RoleUserTableSeeder', function (Faker\Generator $faker) {
-
-    for ($i = 1; $i <= 50; $i++) {
-
-        DB::table('role_user')->insert([
-            'user_id' => $i, 'role_id' => $faker->numberBetween(1, 3)
-        ]);
-    }
-
-});
+//$factory->define('RoleUserTableSeeder', function (Faker\Generator $faker) {
+//
+//    for ($i = 1; $i <= 50; $i++) {
+//
+//        DB::table('role_user')->insert([
+//            'user_id' => $i, 'role_id' => $faker->numberBetween(1, 3)
+//        ]);
+//    }
+//
+//});
 
 //$factory->define('App\Src\Company\Company', function (Faker\Generator $faker) {
 //    return [
@@ -180,7 +187,7 @@ $factory->define('App\Src\Product\Product', function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker) {
     return [
-        'product_id' => Product::whereDoesntHave('product_meta')->pluck('id')->shuffle()->first(),
+        'product_id' => Product::withoutGlobalScopes()->withoutGlobalScopes()->whereDoesntHave('product_meta')->pluck('id')->shuffle()->first(),
         'home_delivery_availability' => $faker->randomElement([0, 1]),
         'shipment_availability' => $faker->randomElement([0, 1]),
         'on_sale' => $faker->randomElement([0, 1]),
@@ -217,7 +224,7 @@ $factory->define(Size::class, function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Product\ProductAttribute', function (Faker\Generator $faker) {
     return [
-        'product_id' => Product::has('product_meta')->whereDoesntHave('product_attributes')->pluck('id')->unique()->shuffle()->first(),
+        'product_id' => Product::withoutGlobalScopes()->has('product_meta')->whereDoesntHave('product_attributes')->pluck('id')->unique()->shuffle()->first(),
         'size_id' => Size::all()->random()->id,
         'color_id' => Color::all()->random()->id,
         'qty' => $faker->numberBetween(1, 50),
@@ -265,7 +272,7 @@ $factory->define('App\Src\Order\OrderMeta', function (Faker\Generator $faker) {
     return [
         'order_id' => Order::whereDoesntHave('order_metas')->pluck('id')->shuffle()->first(),
         // product_id of an order
-        'product_id' => Product::all()->random()->id,
+        'product_id' => Product::withoutGlobalScopes()->get()->random()->id,
         'quantity' => $faker->numberBetween(1, 10),
         'product_type' => 'product',
         'product_attribute_id' => $faker->numberBetween(1, 100),
@@ -303,7 +310,7 @@ $factory->define('App\Src\Ad\SideAd', function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Gallery\Gallery', function (Faker\Generator $faker) {
     return [
-        'galleryable_id' => Product::whereDoesntHave('gallery')->pluck('id')->unique()->shuffle()->first(),
+        'galleryable_id' => Product::withoutGlobalScopes()->whereDoesntHave('gallery')->pluck('id')->unique()->shuffle()->first(),
         'galleryable_type' => $faker->randomElement(['App\Src\Product\Product']),
         'description_ar' => $faker->paragraph(2),
         'description_en' => $faker->paragraph(2),
@@ -337,8 +344,8 @@ $factory->define('CategoryProductTableSeeder', function (Faker\Generator $faker)
 
     for ($i = 0; $i <= 40; $i++) {
         DB::table('category_product')->insert([
-            'category_id' => Category::all()->random()->pluck('id')->shuffle()->first(),
-            'product_id' => Product::whereDoesntHave('parent')->get()->pluck('id')->shuffle()->first(),
+            'category_id' => Category::withoutGlobalScopes()->get()->random()->pluck('id')->shuffle()->first(),
+            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('parents')->pluck('id')->shuffle()->first(),
         ]);
     }
     return [];
@@ -414,7 +421,7 @@ $factory->define(Tag::class, function (Faker\Generator $faker) {
 
 
     DB::table('tagging_tagged')->insert([
-        'taggable_id' => Product::doesntHave('tagged')->pluck('id')->shuffle()->first(),
+        'taggable_id' => Product::withoutGlobalScopes()->doesntHave('tagged')->pluck('id')->shuffle()->first(),
         'taggable_type' => 'App\Src\Product\Product',
         'tag_name' => Tag::all()->random()->name,
         'tag_slug' => Tag::all()->random()->name
@@ -447,7 +454,7 @@ $factory->define('App\Src\Newsletter\Newsletter', function (Faker\Generator $fak
 });
 //$factory->define('BranchProductTableSeeder', function (Faker\Generator $faker) {
 //    for ($i = 1; $i <= 100; $i++) {
-//        //$productId = Product::where('company_id', '=', Branch::where('id', '=', $i)->first()->company_id)->first()->id;
+//        //$productId = Product::withoutGlobalScopes()->where('company_id', '=', Branch::where('id', '=', $i)->first()->company_id)->first()->id;
 //        DB::table('branch_product')->insert([
 //            'branch_id' => 1,
 //            'product_id' => $i,

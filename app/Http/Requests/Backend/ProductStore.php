@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Backend;
 
 use App\Http\Requests\Request;
+use App\Src\Category\Category;
 use App\Src\Product\ProductRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class ProductStore extends FormRequest
@@ -30,6 +32,7 @@ class ProductStore extends FormRequest
         return [
             "name_ar" => "required|max:255|min:2",
             "name_en" => "required|max:255|min:2",
+            'parent_id' => 'required',
             "categories" => 'required|array',
             "tags" => 'required|array',
             "sku" => "required",
@@ -40,9 +43,10 @@ class ProductStore extends FormRequest
     public function persist(ProductRepository $productRepository)
     {
         try {
-            $product = $productRepository->model->create($this->except('categories', 'tags'));
+            $product = $productRepository->model->create($this->except('product_id','parent_id','categories', 'tags'));
             $product->gallery()->create(['description_ar' => $this->input('name_ar'), 'description_en' => $this->input('name_en')]);
-            $product->categories()->sync($this->input('categories'));
+            $product->categories()->sync([$this->input('parent_id')]);
+            $product->categories()->syncWithoutDetaching($this->input('categories'));
             foreach ($this->tags as $key => $value) {
                 $product->tag($value);
             }

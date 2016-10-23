@@ -21,7 +21,7 @@ class Product extends PrimaryModel
     /**
      * @var array
      */
-    protected $with = ['product_meta','product_attributes'];
+    protected $with = ['product_meta', 'product_attributes'];
     use Taggable, LikeableTrait, SoftDeletes, ProductHelpers;
 
     /**
@@ -72,6 +72,13 @@ class Product extends PrimaryModel
         return $this->belongsToMany('App\Src\Category\Category', 'category_product');
     }
 
+
+    public function parent()
+    {
+        return $this->categories()->where('parent_id', 0);
+    }
+
+
     /**
      * @return mixed
      * Usage : Product Page - Add To Cart => to filter only parents from all categories
@@ -87,7 +94,7 @@ class Product extends PrimaryModel
      * Usage : within the boot Scope function
      * Description : make sure a product has at least one parent category
      */
-    public function parent()
+    public function scopeParent($q)
     {
         return $this->categories()->where('parent_id', 0);
     }
@@ -308,7 +315,8 @@ class Product extends PrimaryModel
         return $this->product_attributes()->where('color_id', $colorId)->get(['product_id', 'size_id', 'color_id', 'id', 'qty']);
     }
 
-    public function getTotalQty() {
+    public function getTotalQty()
+    {
         return $this->product_attributes()->sum('qty');
     }
 

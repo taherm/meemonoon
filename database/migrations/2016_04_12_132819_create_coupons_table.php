@@ -23,7 +23,7 @@ class CreateCouponsTable extends Migration
             $table->integer('minimum_charge');
 
             $table->foreign('customer_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamp('due_date');
+            $table->timestamp('due_date')->nullable();
             $table->timestamps();
         });
     }

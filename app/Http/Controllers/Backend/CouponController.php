@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Src\Coupon\Coupon;
 use App\Http\Requests;
@@ -49,9 +50,11 @@ class CouponController extends PrimaryController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\Backend\CouponStore $request)
     {
-        $coupon = $this->coupon->create($request->except('_token', '_method'));
+        $request->request->add(['due_date' => Carbon::parse($request->input('due_date'))]);
+
+        $coupon = $this->coupon->create($request->request->all());
 
         if ($coupon) {
 
@@ -93,7 +96,7 @@ class CouponController extends PrimaryController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\Backend\CouponUpdate $request, $id)
     {
         $updated = $this->coupon->whereId($id)->update($request->except('_token', '_method'));
 

@@ -5,7 +5,9 @@
 Homestead.yaml
 Homestead.json
 .env
-.env.example
 .idea/
 /metronic_v4.5.6/
 /public/img/uploads/*
+/public/trumbowyg/*
+/public/meem
+database/migrations/_______currencies_table

@@ -9,8 +9,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="shop-head furniture-head">
                         <ul class="shop-head-menu ">
-                            <li><i class="fa fa-home"></i><a class="home" href="#"><span>Home</span></a></li>
-                            <li>Contact Us</li>
+                            <li><i class="fa fa-home"></i><a class="home" href="#"><span>{{ trans('general.home') }}</span></a></li>
+                            <li>{{ trans('general.contactus') }}</li>
                         </ul>
                     </div>
                     <!--maps-area start-->
@@ -33,15 +33,15 @@
                                 <ul>
                                     <li>
                                         <i class="fa fa-map-marker"></i> <strong>Address</strong>
-                                        {{$contactData->address}}
+                                        {{$contactusInfo->address}}
                                     </li>
                                     <li>
                                         <i class="fa fa-envelope"></i> <strong>Phone</strong>
-                                        {{$contactData->phone}}
+                                        {{$contactusInfo->phone}}
                                     </li>
                                     <li>
                                         <i class="fa fa-mobile"></i> <strong>Email</strong>
-                                        <a href="mailto:{{$contactData->email}}" target="_top">{{$contactData->email}}</a>
+                                        <a href="mailto:{{$contactusInfo->email}}" target="_top">{{$contactusInfo->email}}</a>
                                     </li>
                                 </ul>
                             </div>

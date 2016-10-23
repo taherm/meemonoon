@@ -14,7 +14,7 @@
                         @if($category->parent_id == 0)
                         <li>
                             <label>
-                                {!! Form::checkbox('categories[]',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false) !!}
+                                {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false) !!}
                                 {{ $category->name }}
                             </label>
                             @if(count($category->children) > 0)

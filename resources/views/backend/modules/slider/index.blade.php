@@ -16,7 +16,7 @@
                             {{ Form::close() }}
                         </div>
                         <div class="panel-body">
-                            <img class="img-responsive img-thumbnail center" src="{{ url('img/uploads/thumbnail/'.$slide->image_path) }}" style="max-height:150px;"/>
+                            <img class="img-responsive img-thumbnail center" src="{{ asset('img/uploads/thumbnail/'.$slide->image_path) }}" style="max-height:150px;"/>
                             <div class="caption">{{ $slide->caption_en }}</div>
                         </div>
                     </div>

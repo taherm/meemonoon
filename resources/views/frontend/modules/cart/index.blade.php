@@ -43,8 +43,8 @@
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="#">
-                                                <img src="{{ url('img/uploads/thumbnail/').'/'.$product->image}}"
+                                            <a href="{{ route('product.show',$product->id) }}">
+                                                <img src="{{ asset('img/uploads/thumbnail/').'/'.$product->image}}"
                                                      width="140" height="180" alt=""/>
                                             </a>
                                         </td>
@@ -98,7 +98,7 @@
                             <div class="panel-heading">
                                 <h4 class="check-title">
                                     <a data-toggle="collapse" data-parent="#accordion" href="#checkut5">
-                                        <span class="number"></span>{{ trans('cart.have_a_coupon') }}</a>
+                                        <span class="number"></span>{{ trans('cart.use_coupon') }}</a>
                                 </h4>
                             </div>
                             @if(Auth::user())
@@ -121,19 +121,19 @@
                                 <div class="place-section">
                                     {!! Form::open(['route' => ['cart.checkout'], 'method' => 'POST'], ['class'=>'']) !!}
                                     <div class="place-headline">
-                                        <h4>Estimate Shipping and Tax</h4>
+                                        <h4>{{ trans('cart.estimate_shipping_and_tax') }}</h4>
                                         <P>{{ trans('cart.enter_ur_destination') }}</P>
                                     </div>
                                     <div class="search-categori">
-                                        <h5>Country</h5>
-                                        <div class="categori">
+                                        <h5>{{ trans('general.country') }}</h5>
+                                        <div class="category">
                                             {{ Form::select('shipping_country',$countries,$shippingCountry,['class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
                                         </div>
                                     </div>
                                     <div class="rate-subtotal">
                                         {{--<h4>Subtotal <span>{{ $cart->subTotal }} KD</span></h4>--}}
                                         <h2>{{ trans('general.grand_total') }}
-                                            <span>{{ $cart->grandTotal }} {{ trans('currency.kd') }}</span></h2>
+                                            <span>{{ $cart->grandTotal }} KD</span></h2>
                                         <button type="submit"
                                                 class="col-lg-12 btn custom-button">{{ trans('cart.proceed_to_checkout') }}
                                         </button>
@@ -152,7 +152,7 @@
                                     {!! Form::open(['route' => 'cart.clear', 'method' => 'Post'], ['class'=>'']) !!}
                                     <button type="submit"
                                             class="col-lg-12 btn custom-button">{{ trans('cart.clear_shopping_cart') }}
-                                        clear shopping cart
+                                        {{ trans('cart.clear_shopping_cart') }}
                                     </button>
                                     {!! Form::close() !!}
                                 </div>
@@ -167,7 +167,7 @@
     </div>
 @endsection
 
-@if(Auth::check())
+@if(Auth::user())
 @section('customScripts')
     @parent
     {{--REACT COUPON APP HERE--}}

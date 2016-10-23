@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import couponActions from '../../js/couponApp/src/actions/couponActions';
 import Alert from '../../js/couponApp/components/Alert';
-import { couponURL , grandTotal , access_token } from '../../js/couponApp/Constants'
+import { couponURL , grandTotal } from '../../js/couponApp/Constants'
 
 
 class App extends Component {

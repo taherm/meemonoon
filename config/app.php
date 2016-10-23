@@ -190,6 +190,12 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
 
 
+        // currency
+        \Torann\Currency\CurrencyServiceProvider::class,
+        //
+
+        // countries Service provider
+        'Webpatser\Countries\CountriesServiceProvider',
         // ip Geo
 //        Torann\GeoIP\GeoIPServiceProvider::class,
 
@@ -272,8 +278,8 @@ return [
         'Currency' => Torann\Currency\Facades\Currency::class,
         'Countries' => Webpatser\Countries\CountriesFacade::class,
         // google maps
-        'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
-        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
+//        'GoogleMaps' => GoogleMaps\Facade\GoogleMapsFacade::class,
+//        'Mapper' => Cornford\Googlmapper\Facades\MapperFacade::class,
         'Carbon' => 'Carbon\Carbon'
 
     ],

@@ -35,8 +35,7 @@ class ProductMetaController extends PrimaryController
      */
     public function create()
     {
-        $product_id = request()->product_id;
-        return view('backend.modules.product.meta.create', compact('product_id'))
+        return view('backend.modules.product.meta.create')
             ->with('warning', trans('general.message.warning.product_meta'));
     }
 
@@ -46,7 +45,7 @@ class ProductMetaController extends PrimaryController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\Backend\ProductMetaStore $request)
     {
         try {
             if ($request->hasFile('image')) {
@@ -61,16 +60,17 @@ class ProductMetaController extends PrimaryController
                 $request->request->add(['size_chart_image' => $image]);
             }
 
-            if ($this->productMeta->create($request->request->all())) {
+            $product = $this->productMeta->create($request->request->all());
 
+            if ($product) {
                 return redirect()
-                    ->route('backend.attribute.create', [$request->product_id, 'product_id' => $request->product_id])
+                    ->route('backend.attribute.create', ['product_id' => $request->product_id])
                     ->with('success', 'updated');
             }
 
         } catch (\Exception $e) {
             return redirect()
-                ->route('backend.meta.create', [$request->product_id, 'product_id' => $request->product_id])
+                ->route('backend.meta.create', ['product_id' => $request->product_id])
                 ->with('error', $e->getMessage());
         }
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Webpatser\Countries\Countries;
 
-class CurrenciesTableSeeder extends Seeder
+class CoinsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -155,6 +155,6 @@ class CurrenciesTableSeeder extends Seeder
             ]
         ];
 
-        DB::table('currencies')->insert($currencies);
+        DB::table('coins')->insert($currencies);
     }
 }

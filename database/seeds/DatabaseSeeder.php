@@ -7,7 +7,6 @@ class DatabaseSeeder extends Seeder
 {
     public $tables = [
         'users',
-        'currencies',
         'countries',
         'products',
         'product_metas',
@@ -47,7 +46,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (env('APP_ENV') === 'local') {
+        if (app()->environment() === 'local') {
 
             Model::unguard();
 
@@ -56,7 +55,8 @@ class DatabaseSeeder extends Seeder
             $this->emptyTables($this->tables);
 
             $this->call(CountriesSeeder::class);
-            $this->call(CurrenciesTableSeeder::class);
+            $this->call(CoinsTableSeeder::class);
+            $this->command->info('coins table updated');
             $this->call(AreasTableSeeder::class);
             $this->call(ColorsTableSeeder::class);
             $this->call(SizesTableSeeder::class);
@@ -116,15 +116,29 @@ class DatabaseSeeder extends Seeder
             $this->call(CouponsTableSeeder::class);
             $this->command->info('coupons table seeded');
 
-            $this->call(CategoryProductTableSeeder::class);
-            $this->command->info('Seeded the side categoryProduct!');
-
             $this->call(TagsTableSeeder::class);
             $this->command->info('Seeded the side tags!');
+
+            $this->call(CategoryProductTableSeeder::class);
+            $this->command->info('Seeded the side categoryProduct!');
 
             Model::reguard();
 
 
+        } elseif (app()->environment() === 'production') {
+
+            $this->emptyTables($this->tables);
+
+            Model::unguard();
+
+            $this->call(CountriesSeeder::class);
+            $this->command->info('countries table updated');
+            $this->call(CoinsTableSeeder::class);
+            $this->command->info('coins table updated');
+            $this->call(UsersTableSeeder::class);
+            $this->command->info('Seeded the users!');
+            $this->call(ContactusTableSeeder::class);
+            $this->command->info('Seeded the side contactus!');
         }
 //        if (env('APP_ENV') === 'local') {
 //

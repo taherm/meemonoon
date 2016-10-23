@@ -11,10 +11,10 @@
         "laravelcollective/html": "^5.3",
         "barryvdh/laravel-translation-manager": "^0.2.4",
         "webpatser/laravel-countries": "^1.4",
-        "torann/currency": "^0.3.1",
         "rtconner/laravel-tagging": "^2.2",
         "rtconner/laravel-likeable": "^1.2",
-        "davejamesmiller/laravel-breadcrumbs": "^3.0"
+        "davejamesmiller/laravel-breadcrumbs": "^3.0",
+        "torann/currency": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
