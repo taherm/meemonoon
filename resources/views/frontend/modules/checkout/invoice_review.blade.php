@@ -300,8 +300,8 @@
                                                     <table cellspacing="0" cellpadding="0" width="100%" style="border-collapse:separate !important;">
                                                         <tr>
                                                             <td class="mini-block" style="height: 170px;">
-                                                                <span class="header-sm">Date Shipped</span><br />
-                                                                January 12, 2015 <br />
+                                                                <span class="header-sm">Order Date</span><br />
+                                                                {{Carbon\Carbon::now()->format('F j, Y')}} <br />
                                                                 <br />
                                                                 <span class="header-sm">Coupon</span> <br />
                                                                 No Coupon
@@ -346,7 +346,7 @@
                                             <table cellspacing="0" cellpadding="0" width="100%">
                                                 <tr>
                                                     <td class="mobile-hide-img">
-                                                        <img width="110" height="92" src="{{$item->image}}" alt="item1">
+                                                        <img width="110" height="92" src="{{url('img/uploads/thumbnail/').'/'.$item->image}}" alt="item1">
                                                     </td>
                                                     <td class="product">
                                                         <span style="color: #4d4d4d; font-weight:bold;">{{$item->name}}</span> <br />
@@ -379,9 +379,9 @@
                                         <span class="total-space" style="font-weight: bold; color: #4d4d4d">Total</span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space">$13.02</span> <br />
+                                        <span class="total-space">{{ $cart->grandTotal }} KD</span> <br />
                                         <span class="total-space">{{ $shippingCost }}</span>  <br />
-                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">$15.77</span>
+                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">{{ $finalAmount }} KD</span>
 
                                     </td>
                                 </tr>
@@ -393,7 +393,8 @@
                                         {{Form::hidden('payment',$payment)}}
                                         {{Form::hidden('address',$address)}}
                                         {{Form::hidden('email',$userEmail)}}
-                                        <span class="left-btn"><a href="{{ action('Frontend\CartController@index') }}">Edit Your Cart</a></span>
+
+                                        <span class="left-btn" style="line-height: 50px;"><a href="{{ action('Frontend\CartController@index') }}" style="color: #bb8d51;">Edit Your Cart</a></span>
                                         <button type="submit" class="btn pull-left custom-button">Place your order</button>
                                         {!! Form::close() !!}
                                     </td>

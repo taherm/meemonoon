@@ -24,8 +24,8 @@ class SubCategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name_en'           => 'required|alpha_num|unique:categories,name_en,'.$this->subcategory,
-            'name_ar'           => 'required|alpha_num|unique:categories,name_ar,'.$this->subcategory,
+            'name_en'           => 'required|unique:categories,name_en,'.$this->subcategory,
+            'name_ar'           => 'required|unique:categories,name_ar,'.$this->subcategory,
             'description_en'    => 'string',
             'description_ar'    => 'string',
             'parentCategory'    => 'required'

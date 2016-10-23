@@ -104,7 +104,7 @@
                 </div>
                 {!! Form::open(['route' => 'backend.order.shipped', 'method' => 'post']) !!}
                 <div class="modal-body">
-                    <div class="scroller" style="height:120px" data-always-visible="1" data-rail-visible1="1">
+                    <div class="scroller" style="height:150px" data-always-visible="1" data-rail-visible1="1">
                         <div class="row">
                             <div class="col-md-6">
                                 <h4>Add Track ID</h4>

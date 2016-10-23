@@ -186,11 +186,25 @@ class CheckoutController extends PrimaryController
 
         $orderDetails = session()->get('ORDER');
 
+        if (Cache::has('coupon.' . Auth::id())) {
+
+            $couponCache = Cache::get('coupon.' . Auth::id());
+
+            $coupon = $this->coupon->where(['id' => $couponCache['id'], 'code' => $couponCache['code']])->first();
+
+            $couponDiscountValue = ($coupon->value > 0) ? -(($coupon->value / 100) * $cart->grandTotal) : null;
+
+            $amountAfterCoupon = ($coupon->value > 0) ? $cart->grandTotal + $couponDiscountValue : null;
+
+        }
+
+        $finalAmount = (isset($amountAfterCoupon) && $amountAfterCoupon > 0) ? $amountAfterCoupon + $shippingCost : $cart->grandTotal + $shippingCost;
+
         $payment = $request->payment;
 
         $userEmail = $request->email;
         return view('frontend.modules.checkout.invoice_review',
-            compact('cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'address', 'payment', 'userEmail'));
+            compact('finalAmount', 'cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'address', 'payment', 'userEmail'));
     }
 
     public function checkout(Request $request, OrderRepository $orderRepository)
@@ -241,6 +255,11 @@ class CheckoutController extends PrimaryController
             });
 
             $this->cart->flushCart();
+
+            $email = new ConfirmUserOrder($order);
+
+            Mail::to(auth()->user()->email)->send($email);
+            Mail::to('info@meemonoon.com')->send($email, 1);
 
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
