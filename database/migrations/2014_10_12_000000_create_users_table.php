@@ -30,9 +30,6 @@ class CreateUsersTable extends Migration
             $table->text('api_token');
             $table->integer('country_id')->unsigned()->nullable(false);
             $table->foreign('country_id')->references('id')->on('countries');
-            //$table->foreign('permission_id')->references('id')->on('permissions')
-            //  ->onUpdate('cascade')->onDelete('cascade');
-            //$table->enum('status',['drafted','pending','published','declined']);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
