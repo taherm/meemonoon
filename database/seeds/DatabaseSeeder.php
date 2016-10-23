@@ -7,7 +7,6 @@ class DatabaseSeeder extends Seeder
 {
     public $tables = [
         'users',
-        'currencies',
         'countries',
         'products',
         'product_metas',
