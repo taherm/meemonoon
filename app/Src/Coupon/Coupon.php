@@ -12,10 +12,9 @@ class Coupon extends PrimaryModel
 {
     protected $table = 'coupons';
     protected $dates = ['created_at', 'updated_at','due_date'];
-//    protected $dateFormat = 'U';
     protected $guarded = [''];
 
-    /**اضر
+    /**
      * The "booting" method of the model.
      * applying the scope only in the backend routes.
      *

@@ -63,7 +63,7 @@ $factory->define('App\Src\User\User', function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Country\Area', function (Faker\Generator $faker) {
     return [
-        'country_id' => Currency::all()->random()->country_id,
+        'country_id' => Country::has('currency')->get()->random()->id,
         'name_ar' => $faker->city,
         'name_en' => $faker->city
     ];

@@ -20,7 +20,7 @@
             <tr role="row" class="filter">
                 <td>
                     <div class="input-group input-large date-picker input-daterange"
-                         data-date={!! Carbon::now() !!} data-date-format="yyyy/mm/dd">
+                         data-date={!! Carbon::now() !!} data-date-format="yyyy/mm/dd 00:00:00">
                         {{ Form::date('start_sale',(isset($productMeta)) ? $productMeta->start_sale->format('Y-m-d') : null,['class'=>'form-control']) }}
                         <span class="input-group-addon"> to </span>
                         {{ Form::date('end_sale',(isset($productMeta)) ? $productMeta->end_sale->format('Y-m-d') : null,['class'=>'form-control']) }}

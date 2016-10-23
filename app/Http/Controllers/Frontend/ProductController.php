@@ -35,6 +35,7 @@ class ProductController extends PrimaryController
         // return array of ['size_id', 'color', 'att_id','qty' ] for one product
         $data = $product->data;
 
+
         $products = $this->productRepository->getRelatedProducts($productId);
 
         /*
