@@ -128,12 +128,12 @@ class DatabaseSeeder extends Seeder
 
         } elseif (app()->environment() === 'production') {
 
-            dd('ehere pro');
             $this->emptyTables($this->tables);
 
             Model::unguard();
 
             $this->call(CountriesSeeder::class);
+            $this->command->info('countries table updated');
             $this->call(CoinsTableSeeder::class);
             $this->command->info('coins table updated');
             $this->call(UsersTableSeeder::class);
