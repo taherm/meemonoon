@@ -3,9 +3,11 @@
 namespace App\Http\Requests\Backend;
 
 use App\Http\Requests\Request;
+use App\Src\Category\Category;
 use App\Src\Product\ProductRepository;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 class ProductStore extends FormRequest
@@ -43,8 +45,8 @@ class ProductStore extends FormRequest
         try {
             $product = $productRepository->model->create($this->except('product_id','parent_id','categories', 'tags'));
             $product->gallery()->create(['description_ar' => $this->input('name_ar'), 'description_en' => $this->input('name_en')]);
-            $product->categories()->sync($this->input('parent_id'));
-            $product->categories()->sync($this->input('categories'));
+            $product->categories()->sync([$this->input('parent_id')]);
+            $product->categories()->syncWithoutDetaching($this->input('categories'));
             foreach ($this->tags as $key => $value) {
                 $product->tag($value);
             }

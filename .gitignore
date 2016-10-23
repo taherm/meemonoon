@@ -10,4 +10,4 @@ Homestead.json
 /public/img/uploads/*
 /public/trumbowyg/*
 /public/meem
-database/migrations/__2016_04_01_161501_create_currencies_table.php
+database/migrations/_______currencies_table

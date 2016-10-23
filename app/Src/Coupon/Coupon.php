@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Request;
 class Coupon extends PrimaryModel
 {
     protected $table = 'coupons';
-    protected $dates = ['created_at', 'updated_at', 'due_date', 'deleted_at'];
-    protected $guarded = [];
+    protected $dates = ['created_at', 'updated_at','due_date'];
+//    protected $dateFormat = 'U';
+    protected $guarded = [''];
 
-    /**
+    /**اضر
      * The "booting" method of the model.
      * applying the scope only in the backend routes.
      *

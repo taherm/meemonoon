@@ -34,7 +34,7 @@ class Country extends PrimaryModel
      */
     public function currency()
     {
-        return $this->hasOne('App\Src\Currency\Currency');
+        return $this->hasOne('App\Src\Currency\Currency','code','currency_code');
     }
 
     public function getAllList($key, $value)

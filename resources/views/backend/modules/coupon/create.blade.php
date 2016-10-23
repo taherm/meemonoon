@@ -55,14 +55,17 @@
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
-                {{ Form::date('due_date',(isset($coupon)) ? $coupon->due_date->format('Y-m-d') : null,['class'=>'form-control','required']) }}
+                {{--                {{ Form::date('due_date',(isset($coupon)) ? $coupon->due_date->format('Y-m-d') : null,['class'=>'form-control','required']) }}--}}
+                <div class="input-group input-large date-picker input-daterange"
+                     data-date={!! Carbon::now() !!} data-date-format="yyyy/mm/dd 00:00:00">
+                    {{ Form::date('due_date',(isset($coupon)) ? $coupon->due_date->format('Y-m-d') : null,['class'=>'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-3 col-lg-push-1 pull-right">
+                    {{ Form::submit('submit',['class'=>'btn btn-outline btn-circle btn-primary']) }}
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <div class="col-md-3 col-lg-push-1 pull-right">
-                {{ Form::submit('submit',['class'=>'btn btn-outline btn-circle btn-primary']) }}
-            </div>
-        </div>
-    </div>
     {!! Form::close() !!}
 @endsection

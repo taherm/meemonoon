@@ -36,6 +36,7 @@ class ProductController extends PrimaryController
         $data = $product->data;
 
         $products = $this->productRepository->getRelatedProducts($productId);
+
         /*
          * Rating Percentage for each product loaded.
          * */

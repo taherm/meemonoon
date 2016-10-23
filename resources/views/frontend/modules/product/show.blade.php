@@ -201,7 +201,7 @@
                                                     @endforeach
                                                 </select>
                                                 {{--Size Chart Image Table will only Show if the parent category not limited--}}
-                                                @if(!$product->parent()->limited)
+                                                @if(!$product->parent()->first()->limited)
                                                     <a href="#" data-toggle="modal" data-target="#imagemodal"
                                                        title="Check Item Sizes!"
                                                        style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">

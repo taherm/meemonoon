@@ -44,6 +44,7 @@ class ViewComposerService
             '48' => 'Bahrain',
             '784' => 'United Arab Emirates'
         ]);
+
         $view->with( compact( 'countriesList' ) );
     }
 

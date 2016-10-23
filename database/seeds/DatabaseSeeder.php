@@ -47,7 +47,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (env('APP_ENV') === 'local') {
+        if (app()->environment() === 'local') {
 
             Model::unguard();
 
@@ -117,17 +117,18 @@ class DatabaseSeeder extends Seeder
             $this->call(CouponsTableSeeder::class);
             $this->command->info('coupons table seeded');
 
-            $this->call(CategoryProductTableSeeder::class);
-            $this->command->info('Seeded the side categoryProduct!');
-
             $this->call(TagsTableSeeder::class);
             $this->command->info('Seeded the side tags!');
+
+            $this->call(CategoryProductTableSeeder::class);
+            $this->command->info('Seeded the side categoryProduct!');
 
             Model::reguard();
 
 
         } elseif (app()->environment() === 'production') {
 
+            dd('ehere pro');
             $this->emptyTables($this->tables);
 
             Model::unguard();

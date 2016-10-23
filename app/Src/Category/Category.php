@@ -47,6 +47,7 @@ class Category extends PrimaryModel
         return $this->belongsToMany('App\Src\Product\Product', 'category_product');
     }
 
+
     public function scopeTotalColorQty($q, $colorId)
     {
         return $q->products()->map(function ($item) use ($colorId) {
