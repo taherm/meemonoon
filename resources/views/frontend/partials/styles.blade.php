@@ -51,7 +51,7 @@
 @if (Session::get('locale') == 'ar')
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
     <style type="text/css">
-        /*@import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');*/
+        @import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
 
         body, div, a, span, table, p, form, input, h1, h2, h3, h4 {
             font-family: 'Droid Arabic Kufi', sans-serif !important;
