@@ -36,14 +36,22 @@
                 </td>
 
                 <td>
-                    <label class="mt-checkbox"> on sale
-                        {!! Form::checkbox('on_sale', true,old('on_sale'),['class' => 'form-control form-filter input-sm']) !!}
+                    <label class="mt-radio"> on sale
+                        {!! Form::radio('on_sale', true,old('on_sale'),['class' => 'form-control form-filter input-sm']) !!}
+                        <span></span>
+                    </label>
+                    <label class="mt-radio"> not on sale
+                        {!! Form::radio('on_sale', false,old('on_sale'),['class' => 'form-control form-filter input-sm']) !!}
                         <span></span>
                     </label>
                 </td>
                 <td>
-                    <label class="mt-checkbox"> on sale & on Homepage
-                        {!! Form::checkbox('on_sale_on_homepage', true,old('on_sale_on_homepage'),['class' => 'form-control form-filter input-sm']) !!}
+                    <label class="mt-radio"> on sale & on Homepage
+                        {!! Form::radio('on_sale_on_homepage', true,old('on_sale_on_homepage'),['class' => 'form-control form-filter input-sm']) !!}
+                        <span></span>
+                    </label>
+                    <label class="mt-radio"> not on sale & on Homepage
+                        {!! Form::radio('on_sale_on_homepage', false,old('on_sale_on_homepage'),['class' => 'form-control form-filter input-sm']) !!}
                         <span></span>
                     </label>
                 </td>

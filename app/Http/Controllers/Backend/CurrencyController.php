@@ -15,7 +15,7 @@ class CurrencyController extends PrimaryController
 
         $currencies = Currency::all();
 
-        return view('backend.modules.currency.index',compact('currencies'));
+        return view('backend.modules.currency.index', compact('currencies'));
     }
 
     public function updateRates()

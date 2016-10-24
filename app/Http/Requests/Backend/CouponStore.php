@@ -24,7 +24,8 @@ class CouponStore extends FormRequest
     public function rules()
     {
         return [
-            'customer_id' => 'required',
+            'value' => 'required|integer',
+            'customer_id' => 'required|integer',
             'code' => 'required',
             'active' => 'required|boolean',
             'consumed' => 'required|boolean',
