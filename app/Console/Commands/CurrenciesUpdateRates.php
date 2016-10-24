@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class CurrenciesUpdateRates extends Command
 {
@@ -37,6 +38,6 @@ class CurrenciesUpdateRates extends Command
      */
     public function handle()
     {
-        //
+        Artisan::call('currency:update');
     }
 }

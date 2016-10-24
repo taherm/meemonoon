@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \App\Console\Commands\BackupDB::class
+        \App\Console\Commands\BackupDB::class,
+        \App\Console\Commands\CurrenciesUpdateRates::class
     ];
 
     /**
