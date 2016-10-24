@@ -44,15 +44,18 @@
                             <span class="sale-text new-sale">new</span>
                         @endif
                         <a href="#">
-                            <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
+
+                            <img class="primary-img" src="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
                             @if($product->gallery->images->first()->thumb_url)
-                                <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
+                                <img class="secondary-img" src="{{ asset('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
                             @endif
                         </a>
                         <div class="add-action">
                             <ul>
                                 <li>
-                                    @if($product->liked())
+                                    {{ dd('test') }}
+                                    {{ dd($product->liked()) }}
+                                    @if(!is_null($product->liked()))
                                         <a href="{{ route('wishlist.remove',$product->id) }}" data-toggle="tooltip"
                                            title="Remove from Wishlist">
                                             <i class="fa fa-heart" style="color: red"></i>
