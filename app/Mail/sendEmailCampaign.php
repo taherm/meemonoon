@@ -31,7 +31,7 @@ class sendEmailCampaign extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name')->with([
+        return $this->view('emails.newsletter')->with([
             'title' => $this->title,
             'body' => $this->body
         ]);
