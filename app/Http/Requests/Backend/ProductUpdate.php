@@ -39,8 +39,9 @@ class ProductUpdate extends FormRequest
     public function persist(Product $product)
     {
         try {
-            $product->update($this->except('categories', 'tags'));
-            $product->categories()->sync($this->input('categories'));
+            $product->update($this->except('categories', 'tags','parent_id','product_id'));
+            $product->categories()->sync([$this->input('parent_id')]);
+            $product->categories()->syncWithoutDetaching($this->input('categories'));
             $product->retag($this->tags);
             return true;
 

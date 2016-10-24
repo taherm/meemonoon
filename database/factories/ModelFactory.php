@@ -344,10 +344,11 @@ $factory->define('CategoryProductTableSeeder', function (Faker\Generator $faker)
 
     for ($i = 0; $i <= 40; $i++) {
         DB::table('category_product')->insert([
-            'category_id' => Category::withoutGlobalScopes()->get()->random()->pluck('id')->shuffle()->first(),
-            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('parents')->pluck('id')->shuffle()->first(),
+            'category_id' => Category::withoutGlobalScopes()->whereDoesntHave('products')->get()->random()->pluck('id')->shuffle()->first(),
+            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('categories')->pluck('id')->shuffle()->first(),
         ]);
     }
+    dd('Done ...');
     return [];
 });
 
