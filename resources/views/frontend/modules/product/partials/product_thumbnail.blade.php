@@ -30,7 +30,7 @@
                                 </span>
                             @else
                                 {{--<span class="new-price">{{ currency($product->product_meta->price)}} {{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}} </span>--}}
-                                <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
+                                <span class="new-price">{{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
                                     {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                             @endif

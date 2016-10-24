@@ -48,7 +48,7 @@
                                             <div class="tab-pane active" id="{{'p-view-1'}}">
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
-                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
+                                                       data-lens-image="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}">
                                                         <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
@@ -134,7 +134,7 @@
                                             {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                         </span>
                                         <span class="new-price">
-                                            {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                            {{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
                                             {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                         </span>
                                         @if(Currency::getCurrency(session()->get('currency')) != 'KWD')
@@ -147,7 +147,7 @@
                                                 </span>
                                                 <span class="new-price"
                                                       style="font-size: 13px;">
-                                                {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                                {{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
                                                     {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                                 </span>
                                             </div>
