@@ -375,11 +375,15 @@
                                     </td>
                                     <td class="item-col quantity" style="text-align:right; padding-right: 10px; border-top: 1px solid #cccccc;">
                                         <span class="total-space">Subtotal</span> <br />
+                                        {!! (isset($coupon) && $coupon->value > 0) ? '<span class="total-space">Coupon Value :</span>' : null !!}
+                                        {!! (isset($coupon) && $coupon->value > 0) ? '<span class="total-space">After Coupon :</span>' : null !!}
                                         <span class="total-space">Shipping</span> <br />
                                         <span class="total-space" style="font-weight: bold; color: #4d4d4d">Total</span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
                                         <span class="total-space">{{ $cart->grandTotal }} KD</span> <br />
+                                        {!! (isset($coupon) && $coupon->value > 0) ? '<span class="total-space">'.$couponDiscountValue .'KD</span>' : null !!}
+                                        {!! (isset($coupon) && $coupon->value > 0) ? '<span class="total-space">'.$amountAfterCoupon .'KD</span>' : null !!}
                                         <span class="total-space">{{ $shippingCost }}</span>  <br />
                                         <span class="total-space" style="font-weight:bold; color: #4d4d4d">{{ $finalAmount }} KD</span>
 
