@@ -11,7 +11,7 @@
                 <th> active</th>
                 <th> consumed</th>
                 <th> code</th>
-                <th> m_charge </th>
+                <th> m_charge</th>
                 <th> due_date</th>
                 <th> created at</th>
                 <th> actions</th>
@@ -35,16 +35,16 @@
                                     data-toggle="dropdown" aria-expanded="false"> Actions
                                 <i class="fa fa-angle-down"></i>
                             </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li>
+                            <ul class="dropdown-menu" role="menu" style="min-width: 30px;">
+                                <li >
                                     <a href="{{ route('backend.coupon.edit',$coupon->id) }}"
-                                       class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i>
+                                       class="btn btn-xs dark purple"><i class="fa fa-edit"></i>
                                         Edit
                                     </a>
                                 </li>
-                                <li>
+                                <li >
                                     {{ Form::open(['route' => ['backend.coupon.destroy', $coupon->id] , 'method' => 'DELETE']) }}
-                                    <button type="submit" class="btn btn-outline btn-circle dark btn-sm black"><i
+                                    <button type="submit" class="btn btn-xs btn-circle dark red"><i
                                                 class="fa fa-trash-o"></i>
                                         Delete
                                     </button>

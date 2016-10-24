@@ -25,24 +25,10 @@ class OrderObservers
      */
     public function created(Order $order)
     {
-        if (app()->environment() != 'local') {
-
-            // do some events and job here , ( sending emails + recording some information about the order)
-            // 1- Confirmation Email
-
-            // 2- Invoice Email
-//            $email->sendInvoice($order);
-        }
         // consuming the coupon
         $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
         // removing the cache
         cache()->forget('coupon.' . Auth::id());
-
-//        Mail::to($order->email)
-//            ->queue(new NewsLetterCampaign($order));
-//
-//        Mail::to($order->email)
-//            ->queue(new NewsLetterCampaign($order));
     }
 
     /**

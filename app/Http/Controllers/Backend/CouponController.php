@@ -115,6 +115,10 @@ class CouponController extends PrimaryController
      */
     public function destroy($id)
     {
-        //
+        if($this->coupon->destroy($id)) {
+            return redirect()->route('backend.coupon.index')->with('success', 'coupon deleted');
+        }
+
+        return redirect()->back()->with('error', 'coupon not deleted');
     }
 }
