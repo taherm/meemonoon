@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Core\PrimaryController;
 use App\Core\Services\Image\PrimaryImageService;
 use App\Src\Product\ProductMeta;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 
@@ -47,6 +48,8 @@ class ProductMetaController extends PrimaryController
      */
     public function store(Requests\Backend\ProductMetaStore $request)
     {
+        $request->request->add(['start_sale' => Carbon::parse($request->input('start_sale'))]);
+        $request->request->add(['end_sale' => Carbon::parse($request->input('end_sale'))]);
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();
@@ -113,7 +116,8 @@ class ProductMetaController extends PrimaryController
     {
 
         $productMeta = $this->productMeta->where('product_id', request()->product_id)->first();
-
+        $request->request->add(['start_sale' => Carbon::parse($request->input('start_sale'))]);
+        $request->request->add(['end_sale' => Carbon::parse($request->input('end_sale'))]);
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();

@@ -56,6 +56,7 @@ class DatabaseSeeder extends Seeder
 
             $this->call(CountriesSeeder::class);
             $this->call(CoinsTableSeeder::class);
+            $this->call(CurrenciesTableSeeder::class);
             $this->command->info('coins table updated');
 //            $this->call(AreasTableSeeder::class);
             $this->call(ColorsTableSeeder::class);
@@ -134,7 +135,8 @@ class DatabaseSeeder extends Seeder
             $this->call(CountriesSeeder::class);
             $this->command->info('countries table updated');
             $this->call(CoinsTableSeeder::class);
-            $this->command->info('coins table updated');
+            $this->call(CurrenciesTableSeeder::class);
+            $this->command->info('Currencies Artisans done and coins table updated');
             $this->call(UsersTableSeeder::class);
             $this->command->info('Seeded the users!');
             $this->call(ContactusTableSeeder::class);

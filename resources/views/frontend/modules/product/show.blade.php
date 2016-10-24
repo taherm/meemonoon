@@ -281,7 +281,7 @@
             @include('frontend.modules.product.partials.productDescription')
                     <!--product-Description-area end-->
 
-            @if(count($products) > 0)
+            @if(!is_null($products) && $products->count() > 0)
                     <!--related-products-area start-->
             @include('frontend.modules.product.partials.product_carousel',['products'=>$products,'heading'=>'Related Products','backgroundColor'=>'#e7e7e7', 'cols' => 'col-lg-3 col-md-3 col-sm-3'])
                     <!--related-products-area end-->

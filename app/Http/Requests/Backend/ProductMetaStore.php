@@ -31,6 +31,8 @@ class ProductMetaStore extends FormRequest
             'description_en' => 'required',
             'notes_ar' => 'required',
             'notes_en' => 'required',
+            'start_sale' => 'date|after:today',
+            'end_sale' => 'date|after:tomorrow'
         ];
     }
 }

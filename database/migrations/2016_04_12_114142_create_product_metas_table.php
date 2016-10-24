@@ -38,10 +38,10 @@ class CreateProductMetasTable extends Migration
             // whenever you delete one row from here .. all other rows that relying on will be deleted
 
             $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp('start_sale')->default(Carbon::today());
-            $table->timestamp('end_sale')->default(Carbon::today());
-            $table->softDeletes();
+            $table->timestamp('start_sale')->nullable();
+            $table->timestamp('end_sale')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

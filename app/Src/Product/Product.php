@@ -17,6 +17,7 @@ use Conner\Likeable\LikeableTrait;
 class Product extends PrimaryModel
 {
     protected $table = 'products';
+    protected $dates = ['created_at','updated_at','deleted_at'];
     protected $localeStrings = ['name'];
     /**
      * @var array

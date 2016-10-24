@@ -61,13 +61,13 @@ $factory->define('App\Src\User\User', function (Faker\Generator $faker) {
     ];
 });
 
-//$factory->define('App\Src\Country\Area', function (Faker\Generator $faker) {
-//    return [
-//        'country_id' => Currency::all()->random()->country_id,
-//        'name_ar' => $faker->city,
-//        'name_en' => $faker->city
-//    ];
-//});
+$factory->define('App\Src\Country\Area', function (Faker\Generator $faker) {
+    return [
+        'country_id' => Country::has('currency')->get()->random()->id,
+        'name_ar' => $faker->city,
+        'name_en' => $faker->city
+    ];
+});
 
 $factory->define('App\Src\Country\Country', function (Faker\Generator $faker) {
     $country = $faker->country;
@@ -344,10 +344,11 @@ $factory->define('CategoryProductTableSeeder', function (Faker\Generator $faker)
 
     for ($i = 0; $i <= 40; $i++) {
         DB::table('category_product')->insert([
-            'category_id' => Category::withoutGlobalScopes()->get()->random()->pluck('id')->shuffle()->first(),
-            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('parents')->pluck('id')->shuffle()->first(),
+            'category_id' => Category::withoutGlobalScopes()->whereDoesntHave('products')->get()->random()->pluck('id')->shuffle()->first(),
+            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('categories')->pluck('id')->shuffle()->first(),
         ]);
     }
+    dd('Done ...');
     return [];
 });
 
