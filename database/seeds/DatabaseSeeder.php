@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         'category_product',
         'galleries',
         'images',
-        'areas',
+//        'areas',
         'orders',
         'order_metas',
         'coupons',
@@ -57,7 +57,7 @@ class DatabaseSeeder extends Seeder
             $this->call(CountriesSeeder::class);
             $this->call(CoinsTableSeeder::class);
             $this->command->info('coins table updated');
-            $this->call(AreasTableSeeder::class);
+//            $this->call(AreasTableSeeder::class);
             $this->call(ColorsTableSeeder::class);
             $this->call(SizesTableSeeder::class);
 

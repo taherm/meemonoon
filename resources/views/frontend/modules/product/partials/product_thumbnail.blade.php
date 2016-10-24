@@ -45,7 +45,7 @@
                         @endif
                         <a href="#">
                             <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
-                            @if($product->gallery->images->first()->thumb_url)
+                            @if(isset($product->gallery->images->first()->thumb_url))
                                 <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
                             @endif
                         </a>
