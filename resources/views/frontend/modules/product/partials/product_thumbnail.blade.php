@@ -52,9 +52,7 @@
                         <div class="add-action">
                             <ul>
                                 <li>
-                                    {{ dd('test') }}
-                                    {{ dd($product->liked()) }}
-                                    @if(!is_null($product->liked()))
+                                    @if($product->liked())
                                         <a href="{{ route('wishlist.remove',$product->id) }}" data-toggle="tooltip"
                                            title="Remove from Wishlist">
                                             <i class="fa fa-heart" style="color: red"></i>
