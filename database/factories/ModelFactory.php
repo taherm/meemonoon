@@ -187,7 +187,7 @@ $factory->define('App\Src\Product\Product', function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker) {
     return [
-        'product_id' => Product::withoutGlobalScopes()->withoutGlobalScopes()->whereDoesntHave('product_meta')->pluck('id')->shuffle()->first(),
+        'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('product_meta')->pluck('id')->shuffle()->first(),
         'home_delivery_availability' => $faker->randomElement([0, 1]),
         'shipment_availability' => $faker->randomElement([0, 1]),
         'on_sale' => $faker->randomElement([0, 1]),
