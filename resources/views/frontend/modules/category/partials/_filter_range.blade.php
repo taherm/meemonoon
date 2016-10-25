@@ -34,8 +34,8 @@
                 min = 1;
             }
             if (max_price_original === '') {
-                max = 200;
-            } else if (max_price_original < 200) {
+                max = 1000;
+            } else if (max_price_original < 1000) {
                 max = max_price_original;
             }
 
