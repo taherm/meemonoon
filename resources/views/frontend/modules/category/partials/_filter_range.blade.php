@@ -44,7 +44,7 @@
              ------------------------------ */
             $("#slider-range").slider({
                 range: true,
-                min: 0,
+                min: 1,
                 max: 1000,
                 values: [min, max],
                 slide: function (event, ui) {
