@@ -27,7 +27,7 @@
             var max_price_original = getParameterByName('max').replace('%2C', '');
 
             var min = 1;
-            var max = 200;
+            var max = 1000;
             if (min_price_original > 1) {
                 min = min_price_original;
             } else {
