@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="shop-head">
                     <ul class="shop-head-menu">
-                        <li><i class="fa fa-home"></i><a class="home" href="#"><span>{{ trans('general.home') }}</span></a>
+                        <li><i class="fa fa-home"></i><a class="home" href="{{ url('/') }}"><span>{{ trans('general.home') }}</span></a>
                         </li>
-                        <li>{{ trans('general.single_product') }}</li>
+                        <li>{{ $product->name }}</li>
                     </ul>
                 </div>
                 <!-- shop head end -->
@@ -131,11 +131,11 @@
                                     @if($product->product_meta->on_sale)
                                         <span class="old-price">
                                             {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                         </span>
                                         <span class="new-price">
                                             {{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                         </span>
                                         @if(Currency::getCurrency(session()->get('currency')) != 'KWD')
                                             <div>
@@ -143,27 +143,27 @@
                                                 <span class="old-price"
                                                       style="font-size: 13px;">
                                                 {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                                 </span>
                                                 <span class="new-price"
                                                       style="font-size: 13px;">
                                                 {{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
-                                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                                 </span>
                                             </div>
                                         @endif
                                     @else
                                         <span class="new-price">
                                         {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                         </span>
-                                        @if(currency()->getCurrency(session()->get('currency'))['code'] != 'KWD')
+                                        @if(currency()->getCurrency(session()->get('currency')) != 'KWD')
                                             <div>
                                                 <p style="margin: 0px;padding-top: 15px;font-size: 10px;">Approx.</p>
                                                 <span class="new-price"
                                                       style="font-size: 13px;">
                                                 {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                                    {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                                    {{ currency()->getCurrency(session()->get('currency'))['code'] }}
                                                 </span>
                                             </div>
                                         @endif
@@ -172,10 +172,10 @@
                                 </div>
                                 <p class="availability in-stock">Availability: <span>In stock</span></p>
                                 <p class="availability in-stock">
-                                    @if(currency()->getCurrency(session()->get('currency'))['code'] === 'KWD')
+                                    @if(currency()->getCurrency(session()->get('currency')) == 'KWD')
                                         <i class="fa fa-truck" aria-hidden="true"></i>
                                         <strong>{{ trans('general.free_delivery_within_24_hours') }}</strong>
-                                    @elseif(currency()->getCurrency(session()->get('currency'))['code'] === 'SAR')
+                                    @elseif(currency()->getCurrency(session()->get('currency')) == 'SAR')
                                         <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
                                         <strong>{{ trans('general.delivery_within_4_days') }}</strong>
                                     @else
@@ -314,7 +314,6 @@
 @endsection
 @section('customScripts')
     @parent
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('#increaseQty').click(function () {
