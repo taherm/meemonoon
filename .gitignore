@@ -12,3 +12,4 @@ Homestead.json
 /public/meem
 /public/fonts/cairo
 database/migrations/_______currencies_table
+composer.lock
