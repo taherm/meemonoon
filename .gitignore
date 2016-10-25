@@ -10,4 +10,5 @@ Homestead.json
 /public/img/uploads/*
 /public/trumbowyg/*
 /public/meem
+/public/fonts/cairo
 database/migrations/_______currencies_table
