@@ -38,13 +38,19 @@
                     </div>
 
                     <div class="product-img">
-                        @if($product->product_meta->on_sale)
+                        
+                        @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
                             <span class="sale-text">sale</span>
                         @elseif($product->created_at)
                             <span class="sale-text new-sale">new</span>
                         @endif
                         <a href="#">
-                            <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
+                            @if($product->product_meta->image)
+                                <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
+                            @else
+                                <img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">
+                            @endif
+
                             @if(isset($product->gallery->images->first()->thumb_url))
                                 <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
                             @endif
