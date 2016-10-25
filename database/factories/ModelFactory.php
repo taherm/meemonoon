@@ -195,7 +195,7 @@ $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker
         'on_homepage' => $faker->randomElement([0, 1]),
         'type' => $faker->randomElement(['product']),
         'weight' => $faker->randomFloat(0.1, 2),
-        'price' => $faker->numberBetween(70, 90),
+        'price' => $faker->randomFloat(10.5, 90.500),
         'sale_price' => $faker->numberBetween(50, 70),
         'description_en' => $faker->paragraph(1),
         'description_ar' => $faker->paragraph(1),

@@ -38,7 +38,6 @@
             } else if (max_price_original < 200) {
                 max = max_price_original;
             }
-            console.log('min =>' + min + 'max ==> ' + max);
 
             /*----------------------------
              price-slider active
@@ -50,11 +49,19 @@
                 values: [min, max],
                 slide: function (event, ui) {
                     $("#amount").val("" + ui.values[0] + " - " + ui.values[1]);
+                    var min = ui.values[0];
+                    var max = ui.values[1];
+                    $("#amount").val("" + $("#slider-range").slider("values", 0) +
+                            " - " + $("#slider-range").slider("values", 1));
+                },
+                change: function (event, ui) {
+                    $("#amount").val("" + ui.values[0] + " - " + ui.values[1]);
 
                     var pathurl = '/api/products/price';
                     var min = ui.values[0];
                     var max = ui.values[1];
                     var parent = $("#parentId").val();
+                    console.log('min =>' + min + 'max ==> ' + max + 'parent ===>' + parent);
 
                     $.ajax({
                         type: 'POST',
@@ -76,8 +83,6 @@
             });
             $("#amount").val("" + $("#slider-range").slider("values", 0) +
                     " - " + $("#slider-range").slider("values", 1));
-
-            console.log('this is the max : ' + max);
         });
     </script>
 @endsection
