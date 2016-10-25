@@ -52,14 +52,11 @@
     @if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))
         <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
     @endif
-    <link rel="stylesheet" href="{{ asset('css/custom-arabic.css') }}">
-@else
-    <link rel="stylesheet" href="{{ asset('css/custom-english.css') }}">
 @endif
 <style type="text/css">
     @font-face {
         font-family: cairo;
-        src: url('fonts/cairo/otf/Cairo-SemiBold.otf');
+        src: url('{!! asset('fonts/Cairo-SemiBold.otf') !!}');
     }
 
     body, div, a, span, table, p, form, input, h1, h2, h3, h4 {
