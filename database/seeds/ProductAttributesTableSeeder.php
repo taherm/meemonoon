@@ -11,6 +11,6 @@ class ProductAttributesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Src\Product\ProductAttribute',80)->create();
+        factory('App\Src\Product\ProductAttribute',200)->create();
     }
 }

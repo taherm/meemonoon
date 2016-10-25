@@ -10,10 +10,14 @@ return array(
     | The default group settings for the elFinder routes.
     |
     */
-    'route' => [
-        'prefix' => 'translations',
-        'middleware' => 'auth',
-    ],
+	'route' => [
+		'prefix' => 'backend/translations',
+		'middleware' => [
+			'web',
+			'AdminOnly',
+			'auth',
+		],
+	],
 
 	/**
 	 * Enable deletion of translations

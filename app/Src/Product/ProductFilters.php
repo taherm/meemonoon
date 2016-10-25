@@ -22,14 +22,14 @@ class ProductFilters extends QueryFilter
         $max = $between[1];
         if (!$this->request->has('price')) {
             return $this->builder->whereHas('product_meta', function ($q) use ($min,$max) {
-                $q->whereBetween('product_metas.price',[$min,$max]);
+                $q->where('product_metas.price','>=', number_format($min))->where('product_metas.price','<=',$max);
             });
         }
     }
 
     public function max($max)
     {
-        if (!$this->request->has('price')) {
+        if (!$this->request->has('price') && $this->request->has('max')) {
             return $this->builder->whereHas('product_meta', function ($q) use ($max) {
                 $q->where('price', '<=', $max);
             });
@@ -38,7 +38,7 @@ class ProductFilters extends QueryFilter
 
     public function min($min)
     {
-        if (!$this->request->has('price')) {
+        if (!$this->request->has('price') && $this->request->has('min')) {
             return $this->builder->whereHas('product_meta', function ($q) use ($min) {
                 $q->where('price', '>=', $min);
             });
