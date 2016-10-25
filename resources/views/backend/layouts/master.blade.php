@@ -32,14 +32,11 @@
 
 <div class="page-container">
 
-
     @include('backend.layouts._sidebar')
-
 
     <div class="page-content-wrapper">
 
         <div class="page-content">
-
 
             @include('backend.partials._page_bar')
 

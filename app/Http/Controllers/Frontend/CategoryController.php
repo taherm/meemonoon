@@ -58,8 +58,14 @@ class CategoryController extends PrimaryController
 
         }
 
-        // fetch all the products according to the filter entered that belongs to the ParentCategory
-        $products = $this->categoryRepository->getById($parentId)->products()->filters($filters);
+        if($filters->request->has('child')) {
+            // fetch all the products according to the filter entered that belongs to the ParentCategory
+            $products = $this->categoryRepository->getById($filters->request->get('child'))->first()->products()->filters($filters);
+        } else {
+            // fetch all the products according to the filter entered that belongs to the ParentCategory
+            $products = $this->categoryRepository->getById($parentId)->first()->products()->filters($filters);
+        }
+
 
 //         fetch the number of the sizes according to the products returned
         $sizeCounter = $this->getSizesForProducts(clone $products);
@@ -71,7 +77,7 @@ class CategoryController extends PrimaryController
 
         $queryString = $filters->request->getQueryString();
 
-        return view('frontend.modules.category.index', compact('products', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString','subcategories'));
+        return view('frontend.modules.category.index', compact('products', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories'));
     }
 
     /**

@@ -92,8 +92,8 @@
                         {!! Form::close() !!}
 
 
-                                <!-- Panel Default -->
-                        <!-- Panel Default -->
+                        @if(Auth::user())
+                                <!-- Coupon -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="check-title">
@@ -101,20 +101,22 @@
                                         <span class="number"></span>{{ trans('cart.use_coupon') }}</a>
                                 </h4>
                             </div>
-                            @if(Auth::user())
-                                <div id="checkut5" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <div class="hidden" id="grandTotal"
-                                             value="{!! $cart->grandTotal  !!}">{!! $cart->grandTotal !!}</div>
-                                        <div class="hidden" id="api_token">{!! auth()->user()->api_token !!}</div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12" id="couponApp">
 
-                                        </div>
+                            <div id="checkut5" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="hidden" id="grandTotal"
+                                         value="{!! $cart->grandTotal  !!}">{!! $cart->grandTotal !!}</div>
+                                    <div class="hidden" id="api_token">{!! auth()->user()->api_token !!}</div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12" id="couponApp">
+
                                     </div>
                                 </div>
-                            @endif
-                        </div><!-- End Panel Default -->
-                        <!-- table end -->
+                            </div>
+                        </div>
+                        <!-- End Panel Default -->
+                        @endif
+
+                                <!-- table end -->
                         <!-- place selection start -->
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
@@ -174,3 +176,6 @@
     <script type="text/javascript" src="{{ asset('js/coupon-app.js') }}"></script>
 @endsection
 @endif
+
+
+

@@ -48,16 +48,18 @@
 <link rel="stylesheet" href="{{ asset('css/frontend.css') }}">
 <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-@if (Session::get('locale') == 'ar')
-    <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
-    <style type="text/css">
-        @import url('http://fonts.googleapis.com/earlyaccess/droidarabickufi.css');
-
-        body, div, a, span, table, p, form, input, h1, h2, h3, h4 {
-            font-family: 'Droid Arabic Kufi', sans-serif !important;
-        }
-    </style>
-    <link rel="stylesheet" href="{{ asset('css/custom-arabic.css') }}">
-@else
-    <link rel="stylesheet" href="{{ asset('css/custom-english.css') }}">
+@if (app()->getLocale() === 'ar')
+    @if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))
+        <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
+    @endif
 @endif
+<style type="text/css">
+    @font-face {
+        font-family: cairo;
+        src: url('{!! asset('fonts/Cairo-SemiBold.otf') !!}');
+    }
+
+    body, div, a, span, table, p, form, input, h1, h2, h3, h4 {
+        font-family: 'cairo', sans-serif !important;
+    }
+</style>

@@ -11,6 +11,6 @@ class ProductMetasTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Src\Product\ProductMeta',100)->create();
+        factory('App\Src\Product\ProductMeta',200)->create();
     }
 }

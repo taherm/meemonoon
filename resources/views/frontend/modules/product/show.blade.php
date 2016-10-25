@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="shop-head">
                     <ul class="shop-head-menu">
-                        <li><i class="fa fa-home"></i><a class="home" href="#"><span>{{ trans('general.home') }}</span></a>
+                        <li><i class="fa fa-home"></i><a class="home" href="{{ url('/') }}"><span>{{ trans('general.home') }}</span></a>
                         </li>
-                        <li>{{ trans('general.single_product') }}</li>
+                        <li>{{ $product->name }}</li>
                     </ul>
                 </div>
                 <!-- shop head end -->
@@ -314,7 +314,6 @@
 @endsection
 @section('customScripts')
     @parent
-
     <script type="text/javascript">
         $(document).ready(function () {
             $('#increaseQty').click(function () {

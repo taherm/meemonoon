@@ -23,10 +23,10 @@ class CreateProductMetasTable extends Migration
             $table->boolean('on_sale_on_homepage')->unsigned()->default(0);
             $table->boolean('on_homepage')->unsigned()->default(0);
             $table->enum('type',['product','service'])->default('product');
-            $table->integer('price')->unsigned();
+            $table->decimal('price',6,2)->unsigned();
             $table->float('weight',3,2)->unsigned();
-            $table->integer('sale_price')->unsigned()->default(0);
-            $table->integer('home_delivery_fees')->unsigned()->default(0);
+            $table->decimal('sale_price',6,2)->unsigned();
+            $table->decimal('home_delivery_fees')->unsigned()->default(0);
             $table->string('image');
             $table->string('size_chart_image');
             $table->text('description_en');

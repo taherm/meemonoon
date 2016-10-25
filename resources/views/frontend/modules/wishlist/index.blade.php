@@ -13,10 +13,10 @@
                     </div>
                 </div>
             </div>
-            @include('frontend.modules.product.product_thumbnail',['products'=>$wishlistProducts])
+            @include('frontend.modules.product.partials.product_thumbnail',['products'=>$wishlistProducts])
         </div>
     </div>
 
-    @include('frontend.modules.product.quick-view')
+    @include('frontend.modules.product.partials.quick-view')
 
 @endsection

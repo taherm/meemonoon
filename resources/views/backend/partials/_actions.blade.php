@@ -12,10 +12,10 @@
                 <a href="{{ route('backend.dashboard.index') }}">
                     <i class="fa fa-dashboard"></i> back to dashboard</a>
             </li>
-            <li>
-                <a href="{{ route('backend.currency.update') }}">
-                    <i class="fa fa-money"></i> update rates</a>
-            </li>
+            {{--<li>--}}
+                {{--<a href="{{ route('backend.currency.update') }}">--}}
+                    {{--<i class="fa fa-money"></i> update rates</a>--}}
+            {{--</li>--}}
             <li>
                 <a href="{{ route('backend.backup.db') }}">
                     <i class="fa fa-database"></i> backup db</a>

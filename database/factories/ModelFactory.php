@@ -12,26 +12,15 @@
 */
 
 use App\Src\Product\Color;
-use App\Src\Product\ProductAttribute;
 use App\Src\Product\Size;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Support\Facades\DB;
-use Webpatser\Countries\Countries;
 use App\Src\User\User;
-use App\Src\Branch\Branch;
-use App\Src\Branch\BranchMeta;
-use App\Src\Company\Company;
-use App\Src\Company\CompanyMeta;
 use App\Src\Order\Order;
-use App\Src\Order\OrderMeta;
 use App\Src\Country\Country;
-use App\Src\Country\Area;
 use App\Src\Category\Category;
 use App\Src\Product\Product;
-use App\Src\Product\ProductMeta;
-use App\Src\Currency\Currency;
 use App\Src\Gallery\Gallery;
-use App\Src\Coupon\Coupon;
 
 
 $factory->define('App\Src\User\User', function (Faker\Generator $faker) {
@@ -195,8 +184,8 @@ $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker
         'on_homepage' => $faker->randomElement([0, 1]),
         'type' => $faker->randomElement(['product']),
         'weight' => $faker->randomFloat(0.1, 2),
-        'price' => $faker->numberBetween(70, 90),
-        'sale_price' => $faker->numberBetween(50, 70),
+        'price' => $faker->randomFloat(3, 10,200),
+        'sale_price' => $faker->randomFloat(3, 10,200),
         'description_en' => $faker->paragraph(1),
         'description_ar' => $faker->paragraph(1),
         'notes_ar' => $faker->sentence(1),
@@ -342,10 +331,18 @@ $factory->define('App\Src\Rating\Rating', function (Faker\Generator $faker) {
 
 $factory->define('CategoryProductTableSeeder', function (Faker\Generator $faker) {
 
-    for ($i = 0; $i <= 40; $i++) {
+    for ($i = 0; $i <= 50; $i++) {
+        // parent category
         DB::table('category_product')->insert([
-            'category_id' => Category::withoutGlobalScopes()->whereDoesntHave('products')->get()->random()->pluck('id')->shuffle()->first(),
-            'product_id' => Product::withoutGlobalScopes()->whereDoesntHave('categories')->pluck('id')->shuffle()->first(),
+            'category_id' => Category::where('parent_id','=',0)->get()->random()->id,
+            'product_id' => Product::withoutGlobalScopes()->doesntHave('parent')->first()->id,
+        ]);
+    }
+    // sub category
+    for ($i = 0; $i <= 50; $i++) {
+        DB::table('category_product')->insert([
+            'category_id' => Category::where('parent_id','!=',0)->get()->random()->id,
+            'product_id' => Product::withoutGlobalScopes()->has('parent')->get()->random()->id
         ]);
     }
     dd('Done ...');
