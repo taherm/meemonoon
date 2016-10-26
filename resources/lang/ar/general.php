@@ -156,4 +156,9 @@ return array (
   'zip_code' => 'رمز المنطقة',
   'dashboard' => 'إدارة الموقع',
   'logout' => 'logout',
+  'welcome' => 'هلا',
+  'view_details' => 'مشاهدة التفاصيل',
+  'subscribe_message_paragraph' => 'اشترك معنا ليصلك كل جديد من ميم ونون .. جميع المنتجات الحصرية وما شابه .....',
+  'subscribe_to_our_news_letter' => 'النشرة البريدية اشتراك',
+  'shopping_cart' => 'عربة التسوق',
 );
