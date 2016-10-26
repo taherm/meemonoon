@@ -4,16 +4,14 @@
     <label for="inputEmail1" class="col-lg-4 control-label"></label>
 
     <div class="col-lg-12">
-        <input type="email" name="email" class="form-control" id="inputEmail1"
-               placeholder="{!! trans('general.email') !!}">
+        {!! Form::text('email',['class' => 'form-control', 'placeholder' => trans('general.email'), 'required']) !!}
     </div>
 </div>
 <div class="form-group">
     <label for="text1" class="col-lg-4 control-label"></label>
 
     <div class="col-lg-12">
-        <input type="text" name="name" class="form-control" id="text1"
-               placeholder="{!! trans('general.name') !!}">
+        {!! Form::text('name',['class' => 'form-control', 'placeholder' => trans('general.name'), 'required']) !!}
     </div>
 </div>
 <div class="form-group">
