@@ -23,14 +23,14 @@
     @endif
     <div class="form-body">
         <div class="form-group">
-            <label class="col-md-2 control-label">{{ trans('general.name.en') }}:
+            <label class="col-md-2 control-label">{{ trans('general.name') }}:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
                 {!! Form::text('name_en', (isset($category) ? $category->name_en : old('name_en')) ,['class' => 'form-control','required']) !!}
             </div>
 
-            <label class="col-md-2 control-label">{{ trans('general.name.ar') }}:
+            <label class="col-md-2 control-label">{{ trans('general.name') }}:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
@@ -38,14 +38,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-2 control-label">{{ trans('general.description.en') }}:
+            <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
                 {!! Form::text('description_en', (isset($category) ? $category->description_en : old('description_en')) ,['class' => 'form-control','required']) !!}
             </div>
 
-            <label class="col-md-2 control-label">{{ trans('general.description.ar') }}:
+            <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
