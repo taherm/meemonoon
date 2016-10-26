@@ -1,6 +1,5 @@
 <!--news-letter-area start -->
-{!! Form::open(['route' => ['newsletter.store'], 'method' =>
-            'POST','class'=>'form-horizontal','role'=>'form']) !!}
+{!! Form::open(['route' => 'newsletter.store', 'method' => 'POST','class'=>'form-horizontal','role'=>'form']) !!}
 <div class="news-letter-area news-letter-2 news-letter-4">
     <div class="container">
         <div class="row">
