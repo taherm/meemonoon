@@ -49,10 +49,15 @@
 <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 @if (app()->getLocale() === 'ar')
-    @if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))
+    {{--@if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))--}}
+    @if(!str_contains('home',request()->route()->getName()))
         <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
     @endif
+    <link rel="stylesheet" href="{{ asset('css/custom-arabic.css') }}">
+@else
+    <link rel="stylesheet" href="{{ asset('css/custom-english.css') }}">
 @endif
+
 <style type="text/css">
     @font-face {
         font-family: cairo;
