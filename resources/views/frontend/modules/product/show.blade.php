@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="product-name">
-                                    <h3 style="font-size: 15px;">{{ tras('general.sku') }} : ({{$product->sku}})</h3>
+                                    <h3 style="font-size: 15px;">{{ trans('general.sku') }} : ({{$product->sku}})</h3>
                                 </div>
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
