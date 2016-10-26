@@ -10,6 +10,7 @@ use App\Src\Cart\Cart;
 use App\Src\Cart\ShippingManager;
 use App\Src\Country\Country;
 use App\Src\Coupon\Coupon;
+use App\Src\Order\Order;
 use App\Src\Order\OrderRepository;
 use App\Src\Product\ProductRepository;
 use Illuminate\Http\Request;
@@ -262,6 +263,11 @@ class CheckoutController extends PrimaryController
             Mail::to(auth()->user()->email)->send($email);
             Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
+            // consuming the coupon
+            $coupon = Coupon::whereId($getOrder->coupon_id)->update(['consumed' => true]);
+            // removing the cache
+            cache()->forget('coupon.' . Auth::id());
+
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
         else
@@ -316,28 +322,33 @@ class CheckoutController extends PrimaryController
         return redirect('cart')->with('error', 'Not completed');
     }
 
-    public function paymentSuccess(OrderRepository $orderRepository)
+    public function paymentSuccess(Order $order)
     {
         $this->cart->flushCart();
         $id = Input::get('id');
 
-        $order = $orderRepository->getWhereId($id, 'invoice_id')->first();
-        if ($order->update([
+        $getOrder = $order->where('invoice_id', $id)->first();
+        if ($getOrder->update([
             'status'            => 'pending',
             'captured_status'   => 1
         ]))
         {
-            $email = new ConfirmUserOrder($order);
-            $emailToAdmin = new ConfirmUserOrder($order, 1);
+            $email = new ConfirmUserOrder($getOrder);
+            $emailToAdmin = new ConfirmUserOrder($getOrder, 1);
 
             Mail::to(auth()->user()->email)->send($email);
             Mail::to('info@meemonoon.com')->send($emailToAdmin);
+
+            // consuming the coupon
+            $coupon = Coupon::whereId($getOrder->coupon_id)->update(['consumed' => true]);
+            // removing the cache
+            cache()->forget('coupon.' . Auth::id());
 
             return redirect()->to('/')->with('success', 'Order payment Success!!');
         }
 
         // consuming the coupon
-        $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
+        $coupon = Coupon::whereId($getOrder->coupon_id)->update(['consumed' => true]);
         // removing the cache
         cache()->forget('coupon.' . Auth::id());
 
