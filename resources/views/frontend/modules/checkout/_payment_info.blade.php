@@ -11,8 +11,10 @@
         <div class="panel-body">
             <div class="col-xs-3">
                 <div class="form-group">
-                    <label for="payment">{{ trans('general.my_fatorrah') }}</label>
                     <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 15%;float: left;"/>
+                    <label for="payment"><img src="{{asset('img/payment.png')}}" alt=""></label>
+                    <div>Processed by My Fatorrah</div>
+
                 </div>
             </div>
             <div class="col-xs-3">
@@ -26,10 +28,10 @@
                 </div>
             </div>
             <p>
-            <ol style="direction: ltr;">
-                <li>K-net,Visa,master card (processed by MyFatoorah)</li>
-                <li>Cash on delivery. Other than Kuwait: Visa,master card (Processed by MyFatoorah).</li>
-            </ol>
+            {{--<ol style="direction: ltr;">--}}
+                {{--<li>K-net,Visa,master card (processed by MyFatoorah)</li>--}}
+                {{--<li>Cash on delivery. Other than Kuwait: Visa,master card (Processed by MyFatoorah).</li>--}}
+            {{--</ol>--}}
             </p>
         </div>
     </div>

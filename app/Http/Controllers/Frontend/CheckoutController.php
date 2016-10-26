@@ -204,7 +204,7 @@ class CheckoutController extends PrimaryController
 
         $userEmail = $request->email;
         return view('frontend.modules.checkout.invoice_review',
-            compact('finalAmount', 'cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'address', 'payment', 'userEmail'));
+            compact('finalAmount', 'cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'address', 'payment', 'userEmail', 'coupon', 'couponDiscountValue', 'amountAfterCoupon'));
     }
 
     public function checkout(Request $request, OrderRepository $orderRepository)
@@ -257,9 +257,10 @@ class CheckoutController extends PrimaryController
             $this->cart->flushCart();
 
             $email = new ConfirmUserOrder($order);
+            $emailToAdmin = new ConfirmUserOrder($order, 1);
 
             Mail::to(auth()->user()->email)->send($email);
-            Mail::to('info@meemonoon.com')->send($email, 1);
+            Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
@@ -327,12 +328,18 @@ class CheckoutController extends PrimaryController
         ]))
         {
             $email = new ConfirmUserOrder($order);
+            $emailToAdmin = new ConfirmUserOrder($order, 1);
 
             Mail::to(auth()->user()->email)->send($email);
-            Mail::to('info@meemonoon.com')->send($email);
+            Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
             return redirect()->to('/')->with('success', 'Order payment Success!!');
         }
+
+        // consuming the coupon
+        $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
+        // removing the cache
+        cache()->forget('coupon.' . Auth::id());
 
         //send Email to user and admin
 

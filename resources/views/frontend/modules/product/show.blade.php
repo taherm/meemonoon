@@ -38,7 +38,7 @@
                                                     <div class="simpleLens-big-image-container">
                                                         <a class="simpleLens-lens-image"
                                                            data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
-                                                            <img src="{{asset('img/uploads/large/'.$image->large_url)}}"
+                                                            <img src="{{asset('img/uploads/thumbnail/'.$image->large_url)}}"
                                                                  class="simpleLens-big-image" alt="productd">
                                                         </a>
                                                     </div>
@@ -48,8 +48,8 @@
                                             <div class="tab-pane active" id="{{'p-view-1'}}">
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
-                                                       data-lens-image="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}">
-                                                        <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
+                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
+                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
                                                 </div>
@@ -381,35 +381,36 @@
                 if ($('#color').val() != 'none') {
                     //request colors related to selected size
                     $.get("/product-color/" + $('#productId').val() + "/" + $('#color').val())
-                            .done(function (data) {
-                                //disable all size options
-                                $("#size option").attr('disabled', 'disabled');
-                                //check if already selected size available in sizes returned from Ajax based on selected color otherwise set size to default
-                                $(data).each(function (index, item) {
-                                    $("#size option[value=" + item.size_id + "]").removeAttr('disabled');
+                    .done(function (data) {
+                        //disable all size options
+                        $("#size option").attr('disabled', 'disabled');
+                        //check if already selected size available in sizes returned from Ajax based on selected color otherwise set size to default
+                        $(data).each(function (index, item) {
+                            $("#size option[value=" + item.size_id + "]").removeAttr('disabled');
 
-                                    //if size and color selected set attribute id & enable add to cart button with quantity
-                                    if (item.size_id == size) {
-                                        attributeId = item.id;
-                                        checkAttribute = true;
-                                        $('#max_qty').val(item.qty);
-                                    }
+                            //if size and color selected set attribute id & enable add to cart button with quantity
+                            if (item.size_id == size) {
+                                attributeId = item.id;
+                                checkAttribute = true;
+                                $('#max_qty').val(item.qty);
+                            }
 
-                                });
+                        });
 
-                                if (!checkAttribute) {
-                                    $('#size').val('none');
-                                    enableCart = false;
-                                    disableCartActions();
-                                } else {
-                                    $('#productAttributeId').val(attributeId);
-                                }
+                        if (!checkAttribute) {
+                            $('#size').val('none');
+                            enableCart = false;
+                            disableCartActions();
+                        } else {
+                            $('#productAttributeId').val(attributeId);
+                        }
 
-                            });
+                    }).done(function(){
+                            if (enableCart) {
+                                enableCartActions();
+                            }
+                    });
 
-                    if (enableCart) {
-                        enableCartActions();
-                    }
                 }
             });
         });

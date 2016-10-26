@@ -93,7 +93,7 @@
                                     <td class="title-dark" width="163">
                                         Qty
                                     </td>
-                                    <td class="title-dark" width="97">
+                                    <td class="title-dark" width="150">
                                         Total
                                     </td>
                                 </tr>
@@ -117,7 +117,7 @@
                                             {{$item->quantity}}
                                         </td>
                                         <td class="item-col">
-                                            {{$item->price. " KD"}}
+                                            {{$item->sale_price. " KD"}}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -131,14 +131,18 @@
                                     <td class="item-col item">
                                     </td>
                                     <td class="item-col quantity" style="text-align:right; padding-right: 10px; border-top: 1px solid #cccccc;">
-                                        <span class="total-space">Subtotal</span> <br />
-                                        <span class="total-space">Shipping</span> <br />
-                                        <span class="total-space" style="font-weight: bold; color: #4d4d4d">Total</span>
+                                        <span class="total-space" style="width: 150px;">Subtotal</span> <br />
+                                        {!! (isset($order) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">Coupon Value :</span>' : null !!}
+                                        {!! (isset($coupon) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">After Coupon :</span>' : null !!}
+                                        <span class="total-space" style="width: 150px;">Shipping</span> <br />
+                                        <span class="total-space" style="font-weight: bold; color: #4d4d4d; width: 150px;">Total</span>
                                     </td>
                                     <td class="item-col price" style="text-align: left; border-top: 1px solid #cccccc;">
-                                        <span class="total-space">{{$order->amount . ' KD'}}</span> <br />
-                                        <span class="total-space">{{$order->shipping_cost . ' KD'}}</span>  <br />
-                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d">{{$order->net_amount . ' KD'}}</span>
+                                        <span class="total-space" style="width: 150px;">{{$order->sale_amount . ' KD'}}</span> <br />
+                                        {!! (isset($order) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space"> - '.$order->coupon_value.'</span>' : null !!}
+                                        {!! (isset($coupon) && $order->coupon_value > 0) ? '<span style="width: 150px;" class="total-space">'.($order->net_amount + $order->shipping_cost).'</span>' : null !!}
+                                        <span class="total-space" style="width: 150px;">{{$order->shipping_cost . ' KD'}}</span>  <br />
+                                        <span class="total-space" style="font-weight:bold; color: #4d4d4d; width: 150px;">{{$order->net_amount . ' KD'}}</span>
                                     </td>
                             </table>
                         </td>

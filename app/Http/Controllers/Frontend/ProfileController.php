@@ -44,15 +44,14 @@ class ProfileController extends PrimaryController
     {
 
         $user = auth()->user();
-        $orders = $this->orderRepository->model->has('order_metas')->with(['order_metas','products'])->where('user_id',$user->id);
+        $orders = $this->orderRepository->model->has('order_metas')->with(['order_metas','products'])->where('user_id',$user->id)->where('status','!=','temp');
         
         if($request->has('status')) {
             $status = $request->get('status');
             switch($status) {
                 case 'pending': $orders->ofStatus('pending'); break;
                 case 'completed': $orders->ofStatus('completed'); break;
-                case 'failed': $orders->ofStatus('failed'); break;
-                case 'success': $orders->ofStatus('success'); break;
+                case 'shipped': $orders->ofStatus('shipped'); break;
             }
         }
 
