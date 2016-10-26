@@ -12,7 +12,7 @@
                                 {{--<img src="{{asset('meem/frontend/img/icons/ac-links.png')}}" alt="">--}}
                                 welcome, {{  auth()->user()->firstname }}
                             </a>
-                            <ul>
+                            <ul style="left: 0px;">
                                 @if(Auth::id() == 1)
                                     <li><a href="{{ url('/backend') }}">dashboard</a></li>
                                 @endif
