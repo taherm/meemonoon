@@ -43,18 +43,18 @@
                             <span class="sale-text new-sale">{{ trans('general.new') }}</span>
                         @endif
                         <a href="#">
-                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
+{{--                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))--}}
                                 <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
-                            @else
-                                <img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">
-                            @endif
+                            {{--@else--}}
+                                {{--<img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
+                            {{--@endif--}}
 
                             @if(isset($product->gallery->images->first()->thumb_url))
-                                @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))
+{{--                                @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))--}}
                                     <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
-                                @else
-                                        <img class="secondary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">
-                                @endif
+                                {{--@else--}}
+                                        {{--<img class="secondary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
+                                {{--@endif--}}
                             @endif
                         </a>
                         <div class="add-action">

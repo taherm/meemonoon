@@ -262,6 +262,11 @@ class CheckoutController extends PrimaryController
             Mail::to(auth()->user()->email)->send($email);
             Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
+            // consuming the coupon
+            $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
+            // removing the cache
+            cache()->forget('coupon.' . Auth::id());
+            
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
         else
@@ -332,6 +337,11 @@ class CheckoutController extends PrimaryController
 
             Mail::to(auth()->user()->email)->send($email);
             Mail::to('info@meemonoon.com')->send($emailToAdmin);
+
+            // consuming the coupon
+            $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
+            // removing the cache
+            cache()->forget('coupon.' . Auth::id());
 
             return redirect()->to('/')->with('success', 'Order payment Success!!');
         }
