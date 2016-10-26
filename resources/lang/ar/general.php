@@ -42,11 +42,6 @@ return array (
   'customer_support' => 'خدمة العملاء',
   'delivery_within_3_days' => 'التوصيل خلال 3 أيام',
   'delivery_within_4_days' => 'التوصيل خلال 4 أيام',
-  'description' => 
-  array (
-    'ar' => 'الوصف باللغة العربية',
-    'en' => 'الوصف باللغة الإنجليزية',
-  ),
   'designed_by' => 'تم التصميم عن طريق',
   'edit' => 'تعديل',
   'email' => 'البريد الإلكتروني',
@@ -103,11 +98,7 @@ return array (
   'money_back_after_return' => 'استرجاع المبلغ بعد استرجاع المنتج',
   'my_account' => 'حسابي',
   'my_fatorrah' => 'ماي فاتورة',
-  'name' => 
-  array (
-    'ar' => 'الأسم باللغة العربية',
-    'en' => 'الأسم باللغة الإنجليزية',
-  ),
+  'name' => 'الأسم',
   'newsletter' => 'القائمة البريدية',
   'not_active' => 'غير مفعل',
   'on_sale' => 'شامل الخصم',
