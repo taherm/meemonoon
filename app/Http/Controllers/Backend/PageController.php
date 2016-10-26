@@ -43,7 +43,7 @@ class PageController extends PrimaryController
         {
             //add record id for static page
             $request->request->add(['id' => 1]);
-            $aboutData = $this->aboutUs->create($request->except('_token', '_method'));
+            $aboutData = $aboutUs->create($request->except('_token', '_method'));
 
             if ($aboutData)
             {
