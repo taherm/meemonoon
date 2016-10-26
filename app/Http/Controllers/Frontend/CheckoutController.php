@@ -266,7 +266,7 @@ class CheckoutController extends PrimaryController
             $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
             // removing the cache
             cache()->forget('coupon.' . Auth::id());
-            
+
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
         else
