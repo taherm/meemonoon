@@ -10,21 +10,21 @@
                         <li>
                             <a href="#">
                                 {{--<img src="{{asset('meem/frontend/img/icons/ac-links.png')}}" alt="">--}}
-                                welcome, {{  auth()->user()->firstname }}
+                                {{ trans('general.welcome') }}, {{  auth()->user()->firstname }}
                             </a>
                             <ul>
                                 @if(Auth::id() == 1)
-                                    <li><a href="{{ url('/backend') }}">dashboard</a></li>
+                                    <li><a href="{{ url('/backend') }}">{{ trans('general.dashboard') }}</a></li>
                                 @endif
-                                <li><a href="{{ route('profile') }}">MyAccount</a></li>
-                                <li><a href="/wishlist">MyWishlist</a></li>
-                                <li><a href="/cart">MyCart</a></li>
-                                <li><a href="/checkout">Checkout</a></li>
+                                <li><a href="{{ route('profile') }}">{{ trans('general.my_account') }}</a></li>
+                                <li><a href="/wishlist">{{ trans('general.my_wishlist') }}</a></li>
+                                <li><a href="/cart">{{ trans('general.shopping_cart') }}</a></li>
+                                <li><a href="/checkout">{{ trans('general.checkout') }}</a></li>
                                 <li>
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        Logout
+                                        {{ trans('general.logout') }}
                                     </a>
                                     <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                           style="display: none;">

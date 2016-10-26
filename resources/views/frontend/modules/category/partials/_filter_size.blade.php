@@ -1,6 +1,6 @@
 <div class="single-layout">
     <div class="layout-title">
-        <h4>size</h4>
+        <h4>{{ trans('general.size') }}</h4>
     </div>
     <div class="layout-list">
         <ul>
