@@ -27,7 +27,7 @@
                     </div>
                 </td>
                 <td>
-                    <input type="number" class="form-control form-filter input-sm"
+                    <input type="text" class="form-control form-filter input-sm"
                            name="sale_price" value="{{ (isset($productMeta)) ? $productMeta->sale_price : null }}" placeholder="000.000"/>
                 </td>
                 <td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Core\PrimaryController;
 use App\Src\Newsletter\Newsletter;
 use App\Src\User\Aboutus;
+use App\Src\User\Contactus;
 use App\Src\User\Terms;
 use App\Src\User\Privacy;
 use App\Http\Requests;
@@ -30,7 +31,7 @@ class PageController extends PrimaryController
 
     public function getAboutus(Aboutus $aboutUs)
     {
-        $aboutData = $aboutUs->where('id',1)->first();
+        $aboutData = $aboutUs->where('id', 1)->first();
 
         return view('frontend.pages.about', compact('aboutData'));
     }
@@ -46,23 +47,19 @@ class PageController extends PrimaryController
      */
     public function postContact(Request $request)
     {
-        $this->validate($request, [
-            'name'  => 'required',
-            'email' => 'required|email',
-            'body'  => 'required'
-        ]);
-
-        $job = (new SendContactMail($request));
+        $email = Contactus::first()->email;
 
         try {
-            $this->dispatch($job);
+
+            mail()->to($email)->cc($request->email)->queue(new SendContactus($request));
+
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->with('info', 'Sorry Couldnt Send you Mail this time. Please try again later');
+
+            return redirect()->back()->with('info', $e->getMessage());
         }
 
-        return redirect('home')->with('success', trans('word.mail_sent'));
+        return redirect('home')->with('success', trans('general.mail_sent'));
     }
 
 
@@ -75,7 +72,7 @@ class PageController extends PrimaryController
 
     public function getPrivacy(Privacy $privacy)
     {
-        $privacyData = $privacy->where('id',1)->first();
+        $privacyData = $privacy->where('id', 1)->first();
 
         return view('frontend.pages.privacy', compact('privacyData'));
     }
@@ -89,7 +86,7 @@ class PageController extends PrimaryController
 
     public function getTerms(Terms $terms)
     {
-        $termsData = $terms->where('id',1)->first();
+        $termsData = $terms->where('id', 1)->first();
 
         return view('frontend.pages.terms', compact('termsData'));
     }
@@ -100,7 +97,7 @@ class PageController extends PrimaryController
 
         return view('frontend.pages.shipping-orders', compact('QAs'));
     }
-    
+
 
     public function postNewsLetter(Requests\PostNewsLetter $request)
     {
@@ -111,13 +108,13 @@ class PageController extends PrimaryController
 
         if ($element) {
 
-            return redirect()->back()->with('error' , 'messages.error.newsletter');
+            return redirect()->back()->with('error', 'messages.error.newsletter');
 
         }
 
         $newsLetter->create($request->except('_token'));
 
-        return redirect()->back()->with('success' , 'messages.success.newsletter');
+        return redirect()->back()->with('success', 'messages.success.newsletter');
 
     }
 
