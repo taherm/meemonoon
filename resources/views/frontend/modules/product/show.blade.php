@@ -125,7 +125,7 @@
                                     </div>
                                 </div>
                                 <div class="product-name">
-                                    <h3 style="font-size: 15px;">SKU ({{$product->sku}})</h3>
+                                    <h3 style="font-size: 15px;">{{ tras('general.sku') }} : ({{$product->sku}})</h3>
                                 </div>
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
@@ -195,7 +195,7 @@
                                             <div>
                                                 <select class="input-text qty"
                                                         name="size" id="size">
-                                                    <option value="none">{{ trans('size_select') }}</option>
+                                                    <option value="none">{{ trans('general.size_select') }}</option>
                                                     @foreach($product->product_attributes->unique('size') as $attribute)
                                                         <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
                                                     @endforeach
@@ -205,7 +205,7 @@
                                                     <a href="#" data-toggle="modal" data-target="#imagemodal"
                                                        title="Check Item Sizes!"
                                                        style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
-                                                        {{ trans('size_charts') }}</a>
+                                                        {{ trans('general.size_charts') }}</a>
                                                 @endif
                                             </div>
 
