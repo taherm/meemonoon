@@ -19,14 +19,8 @@
 
 @include('frontend.modules.product.partials.product_carousel',['products'=>$bestSalesProducts,'heading'=>trans('general.best_sale_products'),'backgroundColor'=>'#e7e7e7','cols' => 'col-lg-3 col-md-3 col-sm-3'])
 
-<!--slider-area start-->
+        <!--news letter-->
 @include('frontend.partials.newsletter')
-<!--slider-area end-->
+        <!--slider-area end-->
 
-        <!--news-product-area end-->
-<!--news-letter-area start-->
-{{--@include('frontend.modules.home.partials.newsletter')--}}
-        <!--news-letter-area end-->
-
-<!--quick-view end-->
 @endsection
