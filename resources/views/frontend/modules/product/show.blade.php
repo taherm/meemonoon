@@ -38,7 +38,7 @@
                                                     <div class="simpleLens-big-image-container">
                                                         <a class="simpleLens-lens-image"
                                                            data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
-                                                            <img src="{{asset('img/uploads/large/'.$image->large_url)}}"
+                                                            <img src="{{asset('img/uploads/thumbnail/'.$image->large_url)}}"
                                                                  class="simpleLens-big-image" alt="productd">
                                                         </a>
                                                     </div>
@@ -48,8 +48,8 @@
                                             <div class="tab-pane active" id="{{'p-view-1'}}">
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
-                                                       data-lens-image="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}">
-                                                        <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
+                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
+                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
                                                 </div>

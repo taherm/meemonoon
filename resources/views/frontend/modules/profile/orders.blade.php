@@ -44,24 +44,17 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('orders',['status'=>'failed']) }}" >
+                                    <a href="{{ route('orders',['status'=>'shipped']) }}" >
                                         <i class="fa fa-calendar icon_9"></i>
-                                        Failed
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('orders',['status'=>'success']) }}" >
-                                        <i class="fa fa-download icon_9"></i>
-                                        Success
+                                        Shipped
                                     </a>
                                 </li>
                                 <li>
                                     <a href="{{ route('orders',['status'=>'completed']) }}" >
-                                        <i class="fa fa-download eicon_9"></i>
-                                        Completed
+                                        <i class="fa fa-download icon_9"></i>
+                                        Delivered
                                     </a>
                                 </li>
-
                             </ul>
                         </div>
 
@@ -69,20 +62,37 @@
                             <table class="table table-bordered text-center">
                                 <thead>
                                 <tr class="c-head">
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
+                                    <th>id</th>
+                                    <th>status</th>
+                                    <th>payment_method</th>
+                                    <th>coupon_value</th>
+                                    <th>country_id</th>
+                                    <th>shipping_cost</th>
+                                    <th>amount</th>
+                                    <th>sale_amount</th>
+                                    <th>net_amount</th>
+                                    <th>address</th>
                                     <th>Date</th>
+                                    {{--<th>details</th>--}}
                                 </tr>
                                 </thead>
                                 @foreach($orders as $order)
                                     <tr>
-                                        <td class="c-img">
-                                            <a href="#"><img src="{{ $order->product->product_meta->image }}" alt=""></a>
-                                        </td>
-                                        <td class="c-qty"><span>{{ $order->quantity }}</span></td>
-                                        <td class="c-price"> {{ $order->net_amount }}</td>
-                                        <td class="c-price"> {{ $order->created_at->format('d-m-Y') }}</td>
+                                        <td>{{ $order->id}}</td>
+                                        <td>{{ $order->status}}</td>
+                                        <td>{{ $order->payment_method}}</td>
+                                        <td>{!! ($order->coupon_value <= 1) ? '<span class="label label-sm label-warning">N/A</span>' : $order->coupon_value !!}</td>
+                                        <td>{{ $order->country->name}}</td>
+                                        <td>{{ $order->shipping_cost}}</td>
+                                        <td>{{ $order->amount}}</td>
+                                        <td>{{ $order->sale_amount}}</td>
+                                        <td>{{ $order->net_amount}}</td>
+                                        <td>{{ $order->address}}</td>
+                                        <td>{{ $order->created_at->diffForHumans()}}</td>
+                                        {{--<td>--}}
+                                        {{--<a href="{{ route('order.show',$order->id) }}" class="btn btn-outline btn-circle dark btn-xs green"><i--}}
+                                        {{--class="fa fa-info-circle"></i></a>--}}
+                                        {{--</td>--}}
 
                                     </tr>
                                 @endforeach

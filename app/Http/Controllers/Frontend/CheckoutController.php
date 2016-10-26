@@ -257,9 +257,10 @@ class CheckoutController extends PrimaryController
             $this->cart->flushCart();
 
             $email = new ConfirmUserOrder($order);
+            $emailToAdmin = new ConfirmUserOrder($order, 1);
 
             Mail::to(auth()->user()->email)->send($email);
-            Mail::to('info@meemonoon.com')->send($email, 1);
+            Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
             return redirect()->to('/')->with('success', trans('general.message.order_created'));
         }
@@ -327,9 +328,10 @@ class CheckoutController extends PrimaryController
         ]))
         {
             $email = new ConfirmUserOrder($order);
+            $emailToAdmin = new ConfirmUserOrder($order, 1);
 
             Mail::to(auth()->user()->email)->send($email);
-            Mail::to('info@meemonoon.com')->send($email);
+            Mail::to('info@meemonoon.com')->send($emailToAdmin);
 
             return redirect()->to('/')->with('success', 'Order payment Success!!');
         }

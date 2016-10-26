@@ -22,7 +22,7 @@
                             {{--{{(App::getLocale() == 'ar' ? Currency::getCurrency()['symbol_left']:Currency::getCurrency()['symbol_right'])}}--}}
                             @if($product->product_meta->on_sale)
                                 <span class="old-price">
-                                    {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
+                                    {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency(),false) }}
                                     {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                                 <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}
@@ -36,23 +36,25 @@
                             @endif
                         </div>
                     </div>
-
                     <div class="product-img">
-                        
-                        @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
+                        @if($product->product_meta->on_sale)
                             <span class="sale-text">sale</span>
                         @elseif($product->created_at)
                             <span class="sale-text new-sale">new</span>
                         @endif
                         <a href="#">
-                            @if($product->product_meta->image)
+                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
                                 <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
                             @else
                                 <img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">
                             @endif
 
                             @if(isset($product->gallery->images->first()->thumb_url))
-                                <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
+                                @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))
+                                    <img class="secondary-img" src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} " alt="" style="width: 261px;height: 300px;">
+                                @else
+                                        <img class="secondary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">
+                                @endif
                             @endif
                         </a>
                         <div class="add-action">
