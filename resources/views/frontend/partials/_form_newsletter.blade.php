@@ -5,7 +5,7 @@
 
     <div class="col-lg-12">
         <input type="email" name="email" class="form-control" id="inputEmail1"
-               placeholder="{{ trans('general.email') }}">
+               placeholder="{!! trans('general.email') !!}">
     </div>
 </div>
 <div class="form-group">
@@ -13,13 +13,13 @@
 
     <div class="col-lg-12">
         <input type="text" name="name" class="form-control" id="text1"
-               placeholder="{{ trans('general.name') }}">
+               placeholder="{!! trans('general.name') !!}">
     </div>
 </div>
 <div class="form-group">
     <div class="col-lg-6 col-lg-push-3 text-center">
         <button type="submit"
-                class="btn btn-success text-center">{{ trans('general.subscribe') }}</button>
+                class="btn btn-success text-center">{!! trans('general.subscribe')  !!}</button>
     </div>
 </div>
 {!! Form::close() !!}
