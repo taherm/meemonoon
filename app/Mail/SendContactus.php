@@ -11,13 +11,14 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class SendContactus extends Mailable
 {
     use Queueable, SerializesModels;
-    public $request;
+    protected $request;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Request $request)
+    public function __construct($request)
     {
         $this->request = $request;
     }
@@ -30,10 +31,11 @@ class SendContactus extends Mailable
     public function build()
     {
         return $this->view('emails.newsletter')->with([
-            'title' => $this->title,
-            'body' => $this->body,
-            'name' => $this->subscriber->name,
-            'email' => $this->subscriber->email
+            'name' => $this->request['name'],
+            'email' => $this->request['email'],
+            'subject' => $this->request['subject'],
+            'query_type' => $this->request['query_type'],
+            'message' => $this->request['message'],
         ]);
     }
 }

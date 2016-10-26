@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Core\PrimaryController;
+use App\Mail\SendContactus;
 use App\Src\Newsletter\Newsletter;
 use App\Src\User\Aboutus;
 use App\Src\User\Contactus;
@@ -12,6 +13,7 @@ use App\Http\Requests;
 use App\Jobs\SendContactMail;
 use Illuminate\Http\Request;
 use App\Src\PagesQuestions\StaticPagesQuestionsRepository;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends PrimaryController
 {
@@ -51,7 +53,7 @@ class PageController extends PrimaryController
 
         try {
 
-            mail()->to($email)->cc($request->email)->queue(new SendContactus($request));
+            Mail::to($email)->cc($request->email)->queue(new SendContactus($request->request->all()));
 
 
         } catch (\Exception $e) {

@@ -1,6 +1,6 @@
 <!--news-letter-area start -->
 {!! Form::open(['route' => ['newsletter.store'], 'method' =>
-            'POST'],['class'=>'form-horizontal','role'=>'form']) !!}
+            'POST','class'=>'form-horizontal','role'=>'form']) !!}
 <div class="news-letter-area news-letter-2 news-letter-4">
     <div class="container">
         <div class="row">
@@ -12,8 +12,10 @@
                     </div>
                     <form action="#">
                         <div class="subscribe-box">
-                            <input type="text" name="name" class="form-control" id="text1" placeholder="{{ trans('general.name') }}" style="width: 30%;">
-                            <input type="email" name="email" class="form-control" id="inputEmail1" placeholder="{{ trans('general.email') }}" style="width: 30%;">
+                            <input type="text" name="name" class="form-control" id="text1"
+                                   placeholder="{{ trans('general.name') }}" style="width: 30%;">
+                            <input type="email" name="email" class="form-control" id="inputEmail1"
+                                   placeholder="{{ trans('general.email') }}" style="width: 30%;">
                             <button type="submit">{{ trans('general.subscribe') }}</button>
                         </div>
                     </form>
@@ -23,4 +25,4 @@
     </div>
 </div>
 {!! Form::close() !!}
-<!--news-letter-area end -->
+        <!--news-letter-area end -->
