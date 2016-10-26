@@ -67,9 +67,23 @@ elixir(mix => {
         .styles('custom-english.css', 'public/css/custom-english.css')
 
         //::::: javascripts :::::
-        .webpack('app.js')
+        .webpack('app.js', {
+                plugins: {
+                    'process.env': {
+                        'NODE_ENV': JSON.stringify('production')
+                    }
+                },
+                devtool: 'cheap-module-source-map',
+            }
+        )
         .webpack('couponApp.js'
             , {
+                plugins: {
+                    'process.env': {
+                        'NODE_ENV': JSON.stringify('production')
+                    }
+                },
+                devtool: 'cheap-module-source-map',
                 module: {
                     loaders: [
                         {

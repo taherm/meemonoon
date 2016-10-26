@@ -1,6 +1,6 @@
 @if($tags->count() >0)
     <div class="layout-title bottom-tag">
-        <h4>Popular Tags</h4>
+        <h4>{{ trans('general.tags') }}</h4>
         <div class="shop-layout">
             <div class="popular-tag">
                 <div class="tag-list">

@@ -3,15 +3,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>MeemOnoon</title>
-    <meta name="IdeasOwners" content="Web Development">
+    <title>{{ config('app.name') }}</title>
+    <meta name="{{ config('app.name') }}" content="E-commerce">
+    <meta name="country" content="kuwait">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/img/icons/favicon.ico">
-
-    @section('styles')
+    <link rel="shortcut icon" href="{{ asset('img/icon.ico') }}" type="image/x-icon" />
+@section('styles')
         @include('frontend.partials.styles')
     @show
 </head>

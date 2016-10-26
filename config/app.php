@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'MeemoNoon',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://meemonoon.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -272,7 +272,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         // ip location
-        'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
+//        'GeoIP' => Torann\GeoIP\GeoIPFacade::class,
         // shopping cart
 //        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'Currency' => Torann\Currency\Facades\Currency::class,

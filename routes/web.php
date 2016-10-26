@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Frontend'], function () {
      * â–‚ â–ƒ â–… â–† â–ˆ COMPANY ROUTES  â–ˆ â–† â–… â–ƒ â–‚
      ***************************************************************************************************/
     // return all the products for a specific company and all branches related to the current company
-    Route::get('/', ['uses' => 'HomeController@index']);// DONE
+    Route::get('/', ['uses' => 'HomeController@index'])->name('home');// DONE
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);// DONE
 
     /***************************************************************************************************

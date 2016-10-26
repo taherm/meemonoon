@@ -1,1 +1,1 @@
-{"version":3,"sources":["custom-arabic.css"],"names":[],"mappings":"AAAA","file":"custom-arabic.css","sourcesContent":[""],"sourceRoot":"/source/"}
+{"version":3,"sources":["custom-arabic.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"custom-arabic.css","sourcesContent":["\nfooter {\n    text-align: right;\n}\n\n.middle-footer-text2 .footer-address ul li, .middle-footer-text2 .footer-menu ul li a, .middle-footer-text2 > p {\n    text-align : right;\n}"],"sourceRoot":"/source/"}

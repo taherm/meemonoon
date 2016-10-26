@@ -38,9 +38,9 @@
                     </div>
                     <div class="product-img">
                         @if($product->product_meta->on_sale)
-                            <span class="sale-text">sale</span>
+                            <span class="sale-text">{{ trans('gneral.sale') }}</span>
                         @elseif($product->created_at)
-                            <span class="sale-text new-sale">new</span>
+                            <span class="sale-text new-sale">{{ trans('general.new') }}</span>
                         @endif
                         <a href="#">
                             @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
