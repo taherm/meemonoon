@@ -80,6 +80,7 @@ Route::group(['namespace' => 'Frontend'], function () {
      ***************************************************************************************************/
     Route::group(['middleware' => 'auth'], function () {
         Route::get('orders', ['as' => 'orders', 'uses' => 'ProfileController@getOrders']);
+        Route::get('orders/{id}', ['as' => 'order.show', 'uses' => 'ProfileController@getOrderDetails']);
         Route::get('profile', ['as' => 'profile', 'uses' => 'ProfileController@index']);
         Route::get('profile/edit', ['as' => 'profile.edit', 'uses' => 'ProfileController@editProfile']);
         Route::post('profile/update', ['as' => 'profile.update', 'uses' => 'ProfileController@updateProfile']);

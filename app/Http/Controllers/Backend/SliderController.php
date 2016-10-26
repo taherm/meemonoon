@@ -54,7 +54,7 @@ class SliderController extends PrimaryController
         if ($image) {
             \DB::table('sliders')->insert([
                 'image_path' => $image,
-                'url' => $image,
+                'url' => $request->url,
                 'order' => $request->order,
                 'caption_en' => $request->caption_en,
                 'active'    => 1

@@ -36,12 +36,12 @@ class NewsLetterController extends PrimaryController
 
         if ($element) {
 
-            return redirect()->back()->with(['error' => 'already exists']);
+            return redirect()->back()->with(['success' => 'Thanks, you already registered!']);
 
         }
 
         $this->newsLetter->create($request->except('_token'));
 
-        return redirect()->back()->with(['success' => 'email saved']);
+        return redirect()->back()->with(['success' => 'You are subscribed!']);
     }
 }

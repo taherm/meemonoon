@@ -25,10 +25,10 @@ class OrderObservers
      */
     public function created(Order $order)
     {
-        // consuming the coupon
-        $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
-        // removing the cache
-        cache()->forget('coupon.' . Auth::id());
+//        // consuming the coupon
+//        $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
+//        // removing the cache
+//        cache()->forget('coupon.' . Auth::id());
     }
 
     /**

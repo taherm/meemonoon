@@ -1,5 +1,5 @@
 <!-- slider-area start -->
-<div class="slider-area" style="max-height: 600px; height: 600px; overflow: hidden;">
+<div class="slider-area" style="max-height: 565px; height: 565px; overflow: hidden;">
     <!-- slider start -->
     <div class="slider">
         <div id="topSlider" class="nivoSlider nevo-slider">
