@@ -53,7 +53,7 @@ class ProductMetaController extends PrimaryController
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('image'), ['261', '261'], ['1200', '1200']);
                 $request->request->add(['image' => $image]);
             }
 
@@ -121,7 +121,7 @@ class ProductMetaController extends PrimaryController
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('image'), ['261', '261'], ['1200', '1200']);
                 $request->request->add(['image' => $image]);
             }
 
