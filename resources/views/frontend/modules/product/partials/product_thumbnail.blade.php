@@ -38,7 +38,7 @@
                     </div>
                     <div class="product-img">
                         @if($product->product_meta->on_sale)
-                            <span class="sale-text">{{ trans('gneral.sale') }}</span>
+                            <span class="sale-text">{{ trans('general.sale') }}</span>
                         @elseif($product->created_at)
                             <span class="sale-text new-sale">{{ trans('general.new') }}</span>
                         @endif
