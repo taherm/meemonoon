@@ -32,8 +32,8 @@ class PrimaryPayment implements primaryPaymentInterface
     const userEmail = 'testapi@myfatoorah.com';
     const userPass = 'E55D0';
     const MerchantName = 'MeemOnoon';
-    const successURL = 'http://meemonoon.dev/success';
-    const errorURL = 'http://meemonoon.dev/error';
+    const successURL = 'http://meemonoon.com/success';
+    const errorURL = 'http://meemonoon.com/error';
 
 
 
