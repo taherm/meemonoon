@@ -1,6 +1,6 @@
 <ul>
     <li><span>{{ trans('general.language') }}</span>
-        <ul>
+        <ul style="left: 0px; width: 80px;">
             <li><a href="{{ url('/lang/ar') }}">{{ trans('general.arabic') }}</a></li>
             <li><a href="{{ url('/lang/en') }}">{{ trans('general.english') }}</a></li>
         </ul>
@@ -9,7 +9,7 @@
                                                     src="{{asset('meem/frontend/img/flags/'.strtolower(currency()->getCurrency(session()->get('currency'))['code']).'.png')}}"
                                                     style="padding-right: 5px; padding-left: 3px;"/><a
                 href="#">{{currency()->getcurrency(session()->get('currency'))['code']}}</a>
-        <ul>
+        <ul style="left: 5px;">
             @foreach($currencies as $currency)
                 <li>
                     <img width="20" height="20"
