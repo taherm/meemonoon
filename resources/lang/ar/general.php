@@ -42,10 +42,7 @@ return array (
   'customer_support' => 'خدمة العملاء',
   'delivery_within_3_days' => 'التوصيل خلال 3 أيام',
   'delivery_within_4_days' => 'التوصيل خلال 4 أيام',
-<<<<<<< HEAD
-=======
   'description' => 'الوصف باللغة العربية',
->>>>>>> 3a28621d818313414fa1c7a671608366d6cff0ba
   'designed_by' => 'تم التصميم عن طريق',
   'edit' => 'تعديل',
   'email' => 'البريد الإلكتروني',
