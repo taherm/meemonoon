@@ -57,7 +57,10 @@ return array (
   'availability' => 'Availability',
   'parentCategory' => 'parent Category',
   'name' => 'Name',
+<<<<<<< HEAD
+=======
   'description' => 'Description English',
+>>>>>>> 3a28621d818313414fa1c7a671608366d6cff0ba
   'firstname' => 'First Name',
   'lastname' => 'Last Name',
   'password' => 'Password',
@@ -153,4 +156,5 @@ return array (
   'subscribe_to_our_news_letter' => 'newsletter subscription',
   'subscribe_message_paragraph' => 'subscribe with us for more details more exclusive products ...',
   'view_details' => 'view details',
+  'size_select' => 'select size',
 );
