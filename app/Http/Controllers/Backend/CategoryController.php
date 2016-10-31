@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
+use App\Core\Services\Image\PrimaryImageService;
 use App\Src\Category\CategoryRepository;
 use App\Http\Requests\Backend\CategoryUpdate;
 use App\Http\Requests\Backend\CategoryCreate;
@@ -37,7 +38,7 @@ class CategoryController extends PrimaryController
      */
     public function create()
     {
-        return view('backend.modules.category.edit');
+        return view('backend.modules.category.create');
     }
 
     /**
@@ -48,7 +49,13 @@ class CategoryController extends PrimaryController
      */
     public function store(CategoryCreate $request)
     {
-        $category = $this->category->create($request->except('_token', '_method'));
+        if ($request->hasFile('image')) {
+            $image = new PrimaryImageService();
+            $image = $image->CreateImage($request->file('image'));
+            $request->request->add(['image' => $image]);
+        }
+
+        $category = $this->category->create($request->request->all());
 
         if ($category) {
 
@@ -82,14 +89,21 @@ class CategoryController extends PrimaryController
      */
     public function update(CategoryUpdate $request, $id)
     {
-        if ($this->category->getById($id)->update([
-            'name_en'        => $request->name_en,
-            'name_ar'        => $request->name_ar,
-            'description_en' => $request->description_en,
-            'description_ar' => $request->description_ar
-        ])) {
-            return redirect()->route('backend.category.index')->with('success', 'category updated!!');
+        if ($request->hasFile('image')) {
+            $image = new PrimaryImageService();
+            $image = $image->CreateImage($request->file('image'),['1','1'],['1','1'],['1000','250']);
+            $this->category->getById($id)->update(['image' => $image]);
+        }
 
+        if ($this->category->getById($id)->update([
+            'name_en' => $request->name_en,
+            'name_ar' => $request->name_ar,
+            'description_en' => $request->description_en,
+            'description_ar' => $request->description_ar,
+            'limited' => $request->limited
+        ])
+        ) {
+            return redirect()->route('backend.category.index')->with('success', 'category updated!!');
         }
 
         return redirect()->back()->with('error', 'not saved !!');
@@ -105,13 +119,11 @@ class CategoryController extends PrimaryController
     public function destroy($id)
     {
         //check if category not assigned to any of products
-        if($this->category->getById($id)->products->count() > 0)
-        {
+        if ($this->category->getById($id)->products->count() > 0) {
             return redirect()->back()->with('error', 'Category Assigned to Product!!');
         }
         //check if category has subcategories
-        if($this->category->getById($id)->children->count() > 0)
-        {
+        if ($this->category->getById($id)->children->count() > 0) {
             return redirect()->back()->with('error', 'Category Already has been Assigned To SubCategory!!');
         }
 

@@ -57,11 +57,7 @@ return array (
   'availability' => 'Availability',
   'parentCategory' => 'parent Category',
   'name' => 'Name',
-  'description' => 
-  array (
-    'en' => 'Description English',
-    'ar' => 'Description Arabic',
-  ),
+  'description' => 'Description English',
   'firstname' => 'First Name',
   'lastname' => 'Last Name',
   'password' => 'Password',
