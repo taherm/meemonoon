@@ -27,7 +27,9 @@ class CategoryCreate extends FormRequest
             'name_en'        => 'required|unique:categories,name_en',
             'name_ar'        => 'required|unique:categories,name_ar',
             'description_en' => 'string',
-            'description_ar' => 'string'
+            'description_ar' => 'string',
+            'image' => 'required|mimes:jpeg,bmp,png',
+            'limited' => 'boolean|required'
         ];
     }
 }

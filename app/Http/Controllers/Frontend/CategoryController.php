@@ -22,7 +22,7 @@ class CategoryController extends PrimaryController
     protected $productRepository;
     protected $userRepository;
     protected $companyRepository;
-    const limit = 9;
+    const limit = 6;
 
 
     public function __construct(
@@ -58,12 +58,14 @@ class CategoryController extends PrimaryController
 
         }
 
-        if($filters->request->has('child')) {
+        if ($filters->request->has('child')) {
+            $category = $this->categoryRepository->getById($filters->request->get('child'));
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $this->categoryRepository->getById($filters->request->get('child'))->first()->products()->filters($filters);
+            $products = $category->first()->products()->filters($filters);
         } else {
+            $category = $this->categoryRepository->getById($parentId);
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $this->categoryRepository->getById($parentId)->first()->products()->filters($filters);
+            $products = $category->first()->products()->filters($filters);
         }
 
 
@@ -73,11 +75,20 @@ class CategoryController extends PrimaryController
         // get all products' colors for the current category or sub category
         $colorCounter = $this->getColorsForProducts(clone $products);
 
-        $products = $this->getOrder($products, $filters->request->request->get('order'));
+//        $products = $this->getOrder($products, $filters->request->request->get('order'));
+
+        $products = $products->get();
+
+
+        $productsCounter = $products->count();
+
+        $perPage = self::limit;
+
+        $products = $this->paginateCollection($products, self::limit);
 
         $queryString = $filters->request->getQueryString();
 
-        return view('frontend.modules.category.index', compact('products', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories'));
+        return view('frontend.modules.category.index', compact('category', 'products', 'productsCounter', 'perPage', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories'));
     }
 
     /**
@@ -133,15 +144,19 @@ class CategoryController extends PrimaryController
 
     public function getOrder($element, $order)
     {
-        if ($order == 'desc') {
-            $products = $element->get()->sortByDesc('product_meta.price');
-            $products = new Paginator($products, self::limit);
+        if ($order === 'desc') {
 
-        } elseif ($order == 'asc') {
+            $products = $element->get()->sortByDesc('product_meta.price');
+
+        } elseif ($order === 'asc') {
+
             $products = $element->get()->sortBy('product_meta.price');
-            $products = new Paginator($products, self::limit);
+
+//            $products = new Paginator($products, self::limit);
+
         } else {
-            $products = new Paginator($element->get(), self::limit);
+
+            $products = $element->get();
         }
         return $products;
     }

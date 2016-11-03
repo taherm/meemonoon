@@ -57,6 +57,10 @@ return array (
   'availability' => 'Availability',
   'parentCategory' => 'parent Category',
   'name' => 'Name',
+<<<<<<< HEAD
+=======
+  'description' => 'Description English',
+>>>>>>> 3a28621d818313414fa1c7a671608366d6cff0ba
   'firstname' => 'First Name',
   'lastname' => 'Last Name',
   'password' => 'Password',

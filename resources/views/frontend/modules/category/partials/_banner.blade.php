@@ -1,7 +1,7 @@
 <div class="shop-page-banner">
     <div class="single-banner">
         <a href="#">
-            <img src="img/banner/banner-gird.png" alt="">
+            <img src="{{ asset('img/uploads/large/'.$category->image) }}" alt="" class="img-responsive">
         </a>
     </div>
 </div>
