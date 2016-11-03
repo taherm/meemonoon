@@ -152,4 +152,5 @@ return array (
   'subscribe_message_paragraph' => 'اشترك معنا ليصلك كل جديد من ميم ونون .. جميع المنتجات الحصرية وما شابه .....',
   'subscribe_to_our_news_letter' => 'النشرة البريدية اشتراك',
   'shopping_cart' => 'عربة التسوق',
+  'size_select' => 'القياس',
 );
