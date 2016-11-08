@@ -60,9 +60,9 @@
                                     <!-- Simple Lence Thumbnail -->
                                     <div class="simpleLens-thumbnails-container text-center">
                                         <div id="single-product" class="owl-carousel custom-carousel">
-                                            {{--<ul class="nav nav-tabs" role="tablist">--}}
-                                            {{--<li class="active"><a href="#p-view-1" role="tab" data-toggle="tab"><img src="{{$product->product_meta->image}}" width="100" height="100" alt="productd"></a></li>--}}
-                                            {{--</ul>--}}
+                                            <ul class="nav nav-tabs" role="tablist">
+                                            <li class="active"><a href="#p-view-1" role="tab" data-toggle="tab"><img src="{{$product->product_meta->image}}" width="100" height="100" alt="productd"></a></li>
+                                            </ul>
                                             <div style="display: none;">
                                                 {{$count2 = 1}}
                                             </div>
@@ -81,10 +81,11 @@
                                                 @endforeach
                                             @else
                                                 <ul class="nav nav-tabs" role="tablist">
-                                                    <li class="active last-li"><a href="{{'#p-view-1'}}" role="tab"
-                                                                                  data-toggle="tab"><img
-                                                                    src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
-                                                                    width="100" height="100" alt="productd"></a></li>
+                                                    <li class="active last-li">
+                                                        <a href="{{'#p-view-1'}}" role="tab" data-toggle="tab">
+                                                            <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}" width="100" height="100" alt="productd">
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             @endif
 
@@ -125,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="product-name">
-                                    <h3 style="font-size: 15px;">SKU ({{$product->sku}})</h3>
+                                    <h3 style="font-size: 15px;">ID ({{$product->sku}})</h3>
                                 </div>
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
@@ -139,7 +140,7 @@
                                         </span>
                                         @if(Currency::getCurrency(session()->get('currency')) != 'KWD')
                                             <div>
-                                                <p style="margin: 0px;padding-top: 15px;font-size: 10px;">Approx.</p>
+                                                <p style="margin: 0px;padding-top: 15px;font-size: 10px;">{{trans('general.approximately')}}</p>
                                                 <span class="old-price"
                                                       style="font-size: 13px;">
                                                 {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
@@ -170,7 +171,11 @@
                                     @endif
 
                                 </div>
-                                <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                @if($product->totalQty > 0)
+                                    <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                @else
+                                    <p class="availability in-stock">Availability: <span style="color: #ff0000;">Out stock</span></p>
+                                @endif
                                 <p class="availability in-stock">
                                     @if(currency()->getCurrency(session()->get('currency')) == 'KWD')
                                         <i class="fa fa-truck" aria-hidden="true"></i>
@@ -186,89 +191,101 @@
                                 <div class="product-review">
                                     <p>{!! $product->product_meta->description !!}</p>
                                 </div>
-                                <div class="add-to-cart cart-sin-product">
+                                @if($product->totalQty > 0)
                                     <div class="add-to-cart cart-sin-product">
-                                        <div class="quick-add-to-cart">
-                                            <div>
-                                                <div>{{ trans('general.size') }}</div>
-                                            </div>
-                                            <div>
-                                                <select class="input-text qty"
-                                                        name="size" id="size">
-                                                    <option value="none">{{ trans('size_select') }}</option>
-                                                    @foreach($product->product_attributes->unique('size') as $attribute)
-                                                        <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
-                                                    @endforeach
-                                                </select>
-                                                {{--Size Chart Image Table will only Show if the parent category not limited--}}
-                                                @if(!$product->parent()->first()->limited)
-                                                    <a href="#" data-toggle="modal" data-target="#imagemodal"
-                                                       title="Check Item Sizes!"
-                                                       style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
-                                                        {{ trans('size_charts') }}</a>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                        <div class="quick-add-to-cart">
-                                            <div>
-                                                <div>{{ trans('general.color') }}</div>
-                                            </div>
-                                            <div>
-                                                <select class="input-text qty" name="color"
-                                                        id="color">
-                                                    <option value="none">{{ trans('general.select_color') }}</option>
-
-                                                    @foreach($product->product_attributes->unique('color') as $attribute)
-                                                        <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="quick-add-to-cart">
-                                            {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
-                                            {{--$product->product_attributes->random()->id--}}
-                                            {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
-                                            {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
-                                            <div class="qty-button">
-                                                <input type="text" class="input-text qty" title="Qty" value="1"
-                                                       maxlength="3" id="quantity" name="quantity"
-                                                       style="height: 42px;">
-                                                <input type="hidden" id="max_qty" value="1"/>
-                                                <div class="box-icon button-plus">
-                                                    <input id="increaseQty" type="button" class="qty-increase "
-                                                           value="+"
-                                                           style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
-                                                           disabled>
+                                        <div class="add-to-cart cart-sin-product">
+                                            @if($product->product_attributes->unique('size')->contains(function ($value, $key) {
+                                                    return ($value->size->size != 'none' AND $value->qty > 0);
+                                                }))
+                                                <div class="quick-add-to-cart">
+                                                    <div>
+                                                        <div>{{ trans('general.size') }}</div>
+                                                    </div>
+                                                    <div>
+                                                        <select class="input-text qty"
+                                                                name="size" id="size">
+                                                            <option value="none">{{ trans('size_select') }}</option>
+                                                            @foreach($product->product_attributes->unique('size') as $attribute)
+                                                                @if($attribute->qty > 0)
+                                                                    <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                        {{--Size Chart Image Table will only Show if the parent category not limited--}}
+                                                        @if(!$product->parent()->first()->limited)
+                                                            <a href="#" data-toggle="modal" data-target="#imagemodal"
+                                                               title="Check Item Sizes!"
+                                                               style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
+                                                                {{ trans('size_charts') }}</a>
+                                                        @endif
+                                                    </div>
                                                 </div>
-                                                <div class="box-icon button-minus">
-                                                    <input id="decreaseQty" type="button" class="qty-decrease"
-                                                           onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
-                                                           value="-"
-                                                           style="padding-right: 8px;top: -31px;outline: none;"
-                                                           disabled>
+                                                <input id="size_attribute" value="found" style="display: none;">
+                                            @else
+                                                <input id="size_attribute" value="not-found" style="display: none;">
+                                            @endif
+                                            @if($product->product_attributes->unique('color')->contains(function ($value, $key) {
+                                                    return ($value->color->color != 'none' AND $value->qty > 0);
+                                                }))
+                                                <div class="quick-add-to-cart">
+                                                    <div>
+                                                        <div>{{ trans('general.color') }}</div>
+                                                    </div>
+                                                    <div>
+                                                        <select class="input-text qty" name="color"
+                                                                id="color">
+                                                            <option value="none">{{ trans('general.select_color') }}</option>
+
+                                                            @foreach($product->product_attributes->unique('color') as $attribute)
+                                                                @if($attribute->qty > 0)
+                                                                    <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                                <input id="color_attribute" value="found" style="display: none;">
+                                            @else
+                                                <input id="color_attribute" value="not-found" style="display: none;">
+                                            @endif
+
+                                            <div class="quick-add-to-cart">
+                                                {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
+                                                {{--$product->product_attributes->random()->id--}}
+                                                {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
+                                                {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
+                                                <div class="qty-button">
+                                                    <input type="text" class="input-text qty" title="Qty" value="1"
+                                                           maxlength="3" id="quantity" name="quantity"
+                                                           style="height: 42px;">
+                                                    <input type="hidden" id="max_qty" value="1"/>
+                                                    <div class="box-icon button-plus">
+                                                        <input id="increaseQty" type="button" class="qty-increase "
+                                                               value="+"
+                                                               style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
+                                                               disabled>
+                                                    </div>
+                                                    <div class="box-icon button-minus">
+                                                        <input id="decreaseQty" type="button" class="qty-decrease"
+                                                               onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
+                                                               value="-"
+                                                               style="padding-right: 8px;top: -31px;outline: none;"
+                                                               disabled>
+                                                    </div>
+                                                </div>
 
 
-                                            <div class="add-to-cart">
-                                                <button id="addToCart" type="submit" class="btn custom-button" disabled>
-                                                    {{ trans('general.add_to_cart') }}
-                                                </button>
+                                                <div class="add-to-cart">
+                                                    <button id="addToCart" type="submit" class="btn custom-button" disabled>
+                                                        {{ trans('general.add_to_cart') }}
+                                                    </button>
+                                                </div>
+                                                {!! Form::close() !!}
                                             </div>
-                                            {!! Form::close() !!}
                                         </div>
+                                        <!-- Add to cart end -->
                                     </div>
-                                    <!-- Add to cart end -->
-
-                                    <!-- social-markting end -->
-                                    {{--<div class="social-button-img">--}}
-                                    {{--<a href="#">--}}
-                                    {{--<img src="img/logo/social.png" alt="">--}}
-                                    {{--</a>--}}
-                                    {{--</div>--}}
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -312,6 +329,7 @@
         </div>
     </div>
 @endsection
+
 @section('customScripts')
     @parent
     <script type="text/javascript">
@@ -331,7 +349,7 @@
                 var attributeId = $('#productAttributeId').val();
                 var checkAttribute = false;
                 var enableCart = true;
-
+                var checkColorFound = $('#color_attribute').val();
                 //Get selected color value
                 var color = $('#color').val();
                 if ($('#size').val() != 'none') {
@@ -339,88 +357,113 @@
                     $.get("/product/" + $('#productId').val() + "/" + $('#size').val())
                             .done(function (data) {
                                 //disable all color options
-                                $("#color option").attr('disabled', 'disabled');
+//                                $("#color option").attr('disabled', 'disabled');
                                 //check if already selected color available in colors returned from Ajax based on selected size otherwise set color to default
                                 $(data).each(function (index, item) {
-                                    $("#color option[value=" + item.color_id + "]").removeAttr('disabled');
-
+//                                    $("#color option[value=" + item.color_id + "]").removeAttr('disabled');
                                     //if size and color selected set attribute id & enable add to cart button with quantity
-                                    if (item.color_id == color) {
+                                    if (item.color_id == color || checkColorFound === 'not-found') {
                                         attributeId = item.id;
                                         checkAttribute = true;
                                         $('#max_qty').val(item.qty);
                                     }
-
                                 });
 
                                 if (!checkAttribute) {
-                                    $('#color').val('none');
+                                    if(color !== 'none'){
+                                        toastr.warning('Sorry Please Select Another Color', 'Please Select Another Color',
+                                                {
+                                                    "closeButton": true,
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-full-width",
+                                                    "onclick": null,
+                                                    "showDuration": "1000",
+                                                    "hideDuration": "1000",
+                                                    "timeOut": "5000",
+                                                    "extendedTimeOut": "1000",
+                                                    "showEasing": "swing",
+                                                    "hideEasing": "linear",
+                                                    "showMethod": "fadeIn",
+                                                    "hideMethod": "fadeOut"
+                                                });
+
+                                        $('#color').val('none');
+                                    }
                                     enableCart = false;
                                     disableCartActions();
                                 } else {
                                     $('#productAttributeId').val(attributeId);
                                 }
-
                             });
-
                     if (enableCart) {
                         enableCartActions();
                     }
                 }
             });
-
             //if color changed
             $('#color').change(function () {
                 $('#productAttributeId').val('');
                 var attributeId = $('#productAttributeId').val();
                 var checkAttribute = false;
                 var enableCart = true;
-
+                var checkSizeFound = $('#size_attribute').val();
                 //Get selected size value
                 var size = $('#size').val();
                 if ($('#color').val() != 'none') {
                     //request colors related to selected size
                     $.get("/product-color/" + $('#productId').val() + "/" + $('#color').val())
-                    .done(function (data) {
-                        //disable all size options
-                        $("#size option").attr('disabled', 'disabled');
-                        //check if already selected size available in sizes returned from Ajax based on selected color otherwise set size to default
-                        $(data).each(function (index, item) {
-                            $("#size option[value=" + item.size_id + "]").removeAttr('disabled');
+                            .done(function (data) {
+                                //disable all size options
+//                                $("#size option").attr('disabled', 'disabled');
+                                //check if already selected size available in sizes returned from Ajax based on selected color otherwise set size to default
+                                $(data).each(function (index, item) {
+//                                    $("#size option[value=" + item.size_id + "]").removeAttr('disabled');
+                                    //if size and color selected set attribute id & enable add to cart button with quantity
+                                    if (item.size_id == size || checkSizeFound === 'not-found') {
+                                        attributeId = item.id;
+                                        checkAttribute = true;
+                                        $('#max_qty').val(item.qty);
+                                    }
+                                });
+                                if (!checkAttribute) {
+                                    if(size !== 'none'){
+                                        toastr.warning('Sorry Please Select Another Size', 'Please Select Another Size',
+                                                {
+                                                    "closeButton": true,
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-full-width",
+                                                    "onclick": null,
+                                                    "showDuration": "1000",
+                                                    "hideDuration": "1000",
+                                                    "timeOut": "5000",
+                                                    "extendedTimeOut": "1000",
+                                                    "showEasing": "swing",
+                                                    "hideEasing": "linear",
+                                                    "showMethod": "fadeIn",
+                                                    "hideMethod": "fadeOut"
+                                                });
 
-                            //if size and color selected set attribute id & enable add to cart button with quantity
-                            if (item.size_id == size) {
-                                attributeId = item.id;
-                                checkAttribute = true;
-                                $('#max_qty').val(item.qty);
-                            }
+                                        $('#size').val('none');
+                                    }
 
-                        });
-
-                        if (!checkAttribute) {
-                            $('#size').val('none');
-                            enableCart = false;
-                            disableCartActions();
-                        } else {
-                            $('#productAttributeId').val(attributeId);
+                                    enableCart = false;
+                                    disableCartActions();
+                                } else {
+                                    $('#productAttributeId').val(attributeId);
+                                }
+                            }).done(function(){
+                        if (enableCart) {
+                            enableCartActions();
                         }
-
-                    }).done(function(){
-                            if (enableCart) {
-                                enableCartActions();
-                            }
                     });
-
                 }
             });
         });
-
         function enableCartActions() {
             $('#increaseQty').removeAttr('disabled');
             $('#decreaseQty').removeAttr('disabled');
             $('#addToCart').removeAttr('disabled');
         }
-
         function disableCartActions() {
             $('#increaseQty').attr('disabled', 'disabled');
             $('#decreaseQty').attr('disabled', 'disabled');

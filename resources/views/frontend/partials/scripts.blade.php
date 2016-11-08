@@ -27,6 +27,9 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/frontend.js') }}"></script>
 
+<!-- Toaster js Notifications -->
+<script src="{{asset('meem/frontend/plugins/bootstrap-toastr/toastr.min.js')}}"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         console.log('jquery loaded');

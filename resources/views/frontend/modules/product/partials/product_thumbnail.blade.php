@@ -42,7 +42,7 @@
                         @elseif($product->created_at)
                             <span class="sale-text new-sale">{{ trans('general.new') }}</span>
                         @endif
-                        <a href="#">
+                        <a href="{{ route('product.show',$product->id) }}">
 {{--                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))--}}
                                 <img class="primary-img" src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="" style="width: 261px;height: 300px;">
                             {{--@else--}}

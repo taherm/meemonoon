@@ -267,7 +267,7 @@ class CheckoutController extends PrimaryController
             // removing the cache
             cache()->forget('coupon.' . Auth::id());
 
-            return redirect()->to('/')->with('success', trans('general.message.order_created'));
+            return redirect()->to('/invoice/'. $order->id)->with('success', trans('general.message.order_created'));
         }
         else
         {
@@ -319,6 +319,14 @@ class CheckoutController extends PrimaryController
         }
 
         return redirect('cart')->with('error', 'Not completed');
+    }
+
+    public function orderInvoice($orderId, OrderRepository $orderRepository)
+    {
+        $order = $orderRepository->getById($orderId);
+
+        return view('frontend.modules.checkout.final_order_invoice',
+            compact('order'));
     }
 
     public function paymentSuccess(OrderRepository $orderRepository)

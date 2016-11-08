@@ -40,10 +40,11 @@
             <a href="{{URL('login')}}">{{ trans('general.login') }}</a>
         @endif
     </div>
+
     <div class="header-right-link">
         {!!   Form::open(['route' => 'search','method' => 'get']) !!}
-        <div class="search-option">
-            <input type="text" name="term" placeholder="{{ trans('general.search') }}">
+        <div class="search-option" style="left: 0px;bottom: -27px;">
+            <input type="text" name="term" placeholder="{{ trans('general.search') }}" style="margin-bottom: 0px;height: 30px;border: none;">
             <button class="button" type="submit"><i class="fa fa-search"></i></button>
         </div>
         <a class="search-img" href="#"><img src="{{asset('meem/frontend/img/icons/seach.png')}}" alt=""></a>

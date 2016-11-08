@@ -181,7 +181,7 @@ body {
     font-size: 15px;
 }
 .top-menu nav ul li a:hover {
-    color:#F3652A;
+    color:#b0d8b1;
 }
 .top-menu nav ul li:hover ul {
     visibility: visible;
@@ -190,7 +190,7 @@ body {
 }
 .top-menu nav ul li ul {
     background: #fff none repeat scroll 0 0;
-    border-top: 2px solid #C38749;
+    border-top: 2px solid #b0d8b1;
     left:50px;
     opacity: 0;
     position: absolute;
@@ -219,7 +219,7 @@ body {
 }
 .top-menu nav ul li ul li a:hover {
     background: #E5E5E5;
-    color:#F3652A;
+    color:#b0d8b1;
 }
 .top-menu nav ul li ul li {
     display: block;
@@ -321,7 +321,7 @@ body {
 .cart-item-title:hover .cart-content{opacity: 1;visibility: visible;transform: scaleY(1);}
 .cart-content {
     background: #fff none repeat scroll 0 0;
-    border-top: 2px solid #C38749;
+    border-top: 2px solid #b0d8b1;
     opacity: 0;
     padding: 0 20px 20px;
     position: absolute;
@@ -749,10 +749,10 @@ body {
 .feature-product-area{
     background: hsla(0, 0%, 95%, 0.98) none repeat scroll 0 0;
     box-shadow: 0 12px 18px -22px rgba(31, 31, 31, 1) inset, 0 -23px 21px -33px rgba(31, 31, 31, 1) inset;
-    padding: 55px 0px 70px;
+    padding: 20px 0px 0px;
 }
 .section-heading h2 {
-    background: rgba(0, 0, 0, 0) url("../../frontend/img/background/bck-title.png") no-repeat scroll center bottom;
+    background: rgba(0, 0, 0, 0) url("../../meem/frontend/img/background/bck-title.png") no-repeat scroll center bottom;
     color: #323334;
     display: inline-block;
     font-family: "Raleway",sans-serif;
@@ -1069,7 +1069,7 @@ body {
 /* 8. News Letter Araa
 /*----------------------------------------*/
 .news-letter-area {
-    background: rgba(0, 0, 0, 0) url("img/background/bg-newlest.png") no-repeat scroll 100% center;
+    background: rgba(0, 0, 0, 0) url("../img/background/newlest.png") no-repeat scroll 100% center;
     display: block;
     overflow: hidden;
     text-align: center;
@@ -1437,7 +1437,7 @@ body {
 }
 .top-link-icon nav ul li ul {
     background: #fff none repeat scroll 0 0;
-    border-top: 2px solid #C38749;
+    border-top: 2px solid #b0d8b1;
     padding: 10px 15px;
     position: absolute;
     right: -9px;
@@ -1524,7 +1524,7 @@ body {
     background: #D1ABCE
 }
 .news-letter-2{
-    background: rgba(0, 0, 0, 0) url("img/background/bg2-newlest.png") no-repeat scroll 100% center;
+    background: rgba(0, 0, 0, 0) url("../../meem/frontend/img/background/newlest.png") no-repeat scroll 100% center;
 }
 .footer-2-area {
     background: #434343 none repeat scroll 0 0;
@@ -1545,7 +1545,7 @@ body {
     color:#fff;
 }
 .footer-bottom2-area {
-    border-top:1px solid #464646;
+    border-top:1px solid #b0d8b1;
 }
 /*----------------------------------------*/
 /* 12. Home Page-3 area
@@ -1593,7 +1593,7 @@ body {
     border-left: 2px solid #ccc;
 }
 .header-4-area .header-top {
-    border-bottom: 2px solid #4e4c4c;
+    border-bottom: 2px solid #b0d8b1;
 }
 .main-menu4 nav ul li a {
     color: #fff;
@@ -3020,7 +3020,7 @@ span.email-notes{color: #42414f;
     position: relative;
 }
 .product-description-tab.custom-tab ul.nav-tabs li a:hover::after,.product-description-tab.custom-tab ul.nav-tabs li.active a::after  {
-    background: #F3652A none repeat scroll 0 0;
+    background: #b0d8b1 none repeat scroll 0 0;
     content: "";
     position: absolute;
     left: 0;
@@ -3029,7 +3029,7 @@ span.email-notes{color: #42414f;
     height: 2px;
 }
 .product-description-tab.custom-tab ul.nav-tabs li.active a {
-    color: #F3652A;
+    color: #b0d8b1;
     position: relative;
 }
 #product-des > p {
@@ -3055,7 +3055,7 @@ span.email-notes{color: #42414f;
     padding-right: 15px;
 }
 .product-description-tab .product-ratting td i {
-    color: #F3652A;
+    color: #b0d8b1;
 }
 .product-description-tab .product-ratting td i:last-child{
     color:#C3C5C9;
@@ -3127,7 +3127,7 @@ button.custom-button {
     float: right;
 }
 button.custom-button:hover {
-    color: #F3652A;
+    color: #b0d8b1;
 }
 .porduct-rev-right-form .form-group-button{
     border-top: 1px solid #e5e5e5;
@@ -3200,7 +3200,7 @@ table.table-bordered td.c-name {
 table.table-bordered td.c-img {
     width: 20%;
 }
-table.table-bordered td.c-name a:hover {color: #F3652A;}
+table.table-bordered td.c-name a:hover {color: #b0d8b1;}
 table.table-bordered td.c-name a {
     color: #363636;
     display: block;
@@ -3212,7 +3212,7 @@ table.table-bordered tr.c-head th {
     text-align: center;
     text-transform: uppercase;
 }
-table.table-bordered td.c-wish a.c_button:hover {color: #F3652A;border:2px solid #F3652A;}
+table.table-bordered td.c-wish a.c_button:hover {color: #b0d8b1;border:2px solid #b0d8b1;}
 table.table-bordered td.c-wish a.c_button {
     border: 2px solid #444;
     color: #444;
@@ -3228,7 +3228,7 @@ table.table-bordered td.c-wish {
 table.table-bordered td.c-price {
     width: 10%;
 }
-.trash-btn a.btn-remove i:hover {color: #F3652A;}
+.trash-btn a.btn-remove i:hover {color: #b0d8b1;}
 .trash-btn a.btn-remove i {
     color: #444;
 }
