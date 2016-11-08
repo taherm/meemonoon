@@ -16,11 +16,7 @@
     category.index
 @stop
 @section('content')
-    @if(isset($category))
-        {{ Form::model($category,['route' => ['backend.category.update',$category->id],'method'=>'PATCH','files' => 'true','class' => 'form-horizontal']) }}
-    @else
-        {{ Form::open(['route' => 'backend.category.store','method'=>'POST','class'=>'form-horizontal']) }}
-    @endif
+    {{ Form::model($category,['route' => ['backend.category.update',$category->id],'method'=>'PATCH','files' => 'true','class' => 'form-horizontal']) }}
     <div class="form-body">
         <div class="form-group">
             <label class="col-md-2 control-label">{{ trans('general.name') }}:
@@ -50,6 +46,22 @@
             </label>
             <div class="col-md-3">
                 {!! Form::text('description_ar', (isset($category) ? $category->description_ar : old('description_ar')) ,['class' => 'form-control','required']) !!}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label class="label" for="image" style="color: black;"> image
+                    <small>1000*250</small>
+                </label>
+                {!! Form::file('image',['class' => 'form-control','required' => true ]) !!}
+            </div>
+            <div class="col-md-1">
+                <label for="limited">limited</label>
+                {{ Form::radio('limited',1, $category->limited , ['class' => 'form-control']) }}
+            </div>
+            <div class="col-md-1">
+                <label for="limited"><small>not limited</small></label>
+                {{ Form::radio('limited',0, $category->limited , ['class' => 'form-control']) }}
             </div>
         </div>
 

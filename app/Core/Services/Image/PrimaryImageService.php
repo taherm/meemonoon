@@ -14,7 +14,7 @@ use App\Core\Services\Image\PrimaryImageServiceInterface;
 class PrimaryImageService implements PrimaryImageServiceInterface
 {
 
-    public function CreateImage($currentImage, $thumbResize, $largeResize)
+    public function CreateImage($currentImage, $thumbResize = ['261','261'], $mediumResize = ['457','604'], $largeResize = ['1200','1200'])
     {
         try {
             $fileName = $currentImage->getClientOriginalName();
@@ -28,6 +28,10 @@ class PrimaryImageService implements PrimaryImageServiceInterface
             \Image::make($realPath)->resize($thumbResize[0],
 
                 $thumbResize[1])->save(public_path('img/uploads/thumbnail/' . $fileName));
+
+            \Image::make($realPath)->resize($mediumResize[0],
+
+                $mediumResize[1])->save(public_path('img/uploads/medium/' . $fileName));
 
             \Image::make($realPath)->resize($largeResize[0],
                 $largeResize[1])->save(public_path('img/uploads/large/' . $fileName));

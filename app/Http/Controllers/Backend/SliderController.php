@@ -49,7 +49,7 @@ class SliderController extends PrimaryController
      */
     public function store(Request $request)
     {
-        $image = $this->image->CreateImage($request->file('image'), ['578', '231'], ['1905', '753']);
+        $image = $this->image->CreateImage($request->file('image'), '',['578', '231'], ['1905', '753']);
 
         if ($image) {
             \DB::table('sliders')->insert([

@@ -27,7 +27,9 @@ class CategoryUpdate extends FormRequest
             'name_en'        => 'required|unique:categories,name_en,'.$this->category,
             'name_ar'        => 'required|unique:categories,name_ar,'.$this->category,
             'description_en' => 'string',
-            'description_ar' => 'string'
+            'description_ar' => 'string',
+            'image' => 'mimes:jpeg,bmp,png',
+            'limited' => 'boolean|required'
         ];
     }
 }

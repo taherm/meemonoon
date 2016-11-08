@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                                 <div class="product-name">
-                                    <h3 style="font-size: 15px;">ID ({{$product->sku}})</h3>
+                                    <h3 style="font-size: 15px;">{{ trans('general.sku') }} : ({{$product->sku}})</h3>
                                 </div>
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
@@ -193,61 +193,60 @@
                                 </div>
                                 @if($product->totalQty > 0)
                                     <div class="add-to-cart cart-sin-product">
-                                        <div class="add-to-cart cart-sin-product">
-                                            @if($product->product_attributes->unique('size')->contains(function ($value, $key) {
+                                        @if($product->product_attributes->unique('size')->contains(function ($value, $key) {
                                                     return ($value->size->size != 'none' AND $value->qty > 0);
                                                 }))
-                                                <div class="quick-add-to-cart">
-                                                    <div>
-                                                        <div>{{ trans('general.size') }}</div>
-                                                    </div>
-                                                    <div>
-                                                        <select class="input-text qty"
-                                                                name="size" id="size">
-                                                            <option value="none">{{ trans('size_select') }}</option>
-                                                            @foreach($product->product_attributes->unique('size') as $attribute)
-                                                                @if($attribute->qty > 0)
-                                                                    <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
-                                                                @endif
-                                                            @endforeach
-                                                        </select>
-                                                        {{--Size Chart Image Table will only Show if the parent category not limited--}}
-                                                        @if(!$product->parent()->first()->limited)
-                                                            <a href="#" data-toggle="modal" data-target="#imagemodal"
-                                                               title="Check Item Sizes!"
-                                                               style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
-                                                                {{ trans('size_charts') }}</a>
-                                                        @endif
-                                                    </div>
+                                            <div class="quick-add-to-cart">
+                                                <div>
+                                                    <div>{{ trans('general.size') }}</div>
                                                 </div>
+                                                <div>
+                                                    <select class="input-text qty"
+                                                            name="size" id="size">
+                                                        <option value="none">{{ trans('general.size_select') }}</option>
+                                                        @foreach($product->product_attributes->unique('size') as $attribute)
+                                                            @if($attribute->qty > 0)
+                                                                <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                    {{--Size Chart Image Table will only Show if the parent category not limited--}}
+                                                    @if(!$product->parent()->first()->limited)
+                                                        <a href="#" data-toggle="modal" data-target="#imagemodal"
+                                                           title="Check Item Sizes!"
+                                                           style="text-decoration: none;border: navajowhite;color: #b2dab7;font-size: 12px;">
+                                                            {{ trans('general.size_charts') }}</a>
+                                                    @endif
+                                                </div>
+                                            </div>
                                                 <input id="size_attribute" value="found" style="display: none;">
-                                            @else
-                                                <input id="size_attribute" value="not-found" style="display: none;">
-                                            @endif
-                                            @if($product->product_attributes->unique('color')->contains(function ($value, $key) {
-                                                    return ($value->color->color != 'none' AND $value->qty > 0);
-                                                }))
-                                                <div class="quick-add-to-cart">
-                                                    <div>
-                                                        <div>{{ trans('general.color') }}</div>
-                                                    </div>
-                                                    <div>
-                                                        <select class="input-text qty" name="color"
-                                                                id="color">
-                                                            <option value="none">{{ trans('general.select_color') }}</option>
-
-                                                            @foreach($product->product_attributes->unique('color') as $attribute)
-                                                                @if($attribute->qty > 0)
-                                                                    <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
-                                                                @endif
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
+                                        @else
+                                            <input id="size_attribute" value="not-found" style="display: none;">
+                                        @endif
+                                        @if($product->product_attributes->unique('color')->contains(function ($value, $key) {
+                                                return ($value->color->color != 'none' AND $value->qty > 0);
+                                            }))
+                                            <div class="quick-add-to-cart">
+                                                <div>
+                                                    <div>{{ trans('general.color') }}</div>
                                                 </div>
-                                                <input id="color_attribute" value="found" style="display: none;">
-                                            @else
-                                                <input id="color_attribute" value="not-found" style="display: none;">
-                                            @endif
+                                                <div>
+                                                    <select class="input-text qty" name="color"
+                                                            id="color">
+                                                        <option value="none">{{ trans('general.select_color') }}</option>
+
+                                                        @foreach($product->product_attributes->unique('color') as $attribute)
+                                                            @if($attribute->qty > 0)
+                                                                <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
+                                                            @endif
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <input id="color_attribute" value="found" style="display: none;">
+                                        @else
+                                            <input id="color_attribute" value="not-found" style="display: none;">
+                                        @endif
 
                                             <div class="quick-add-to-cart">
                                                 {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
@@ -264,25 +263,25 @@
                                                                value="+"
                                                                style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
                                                                disabled>
-                                                    </div>
-                                                    <div class="box-icon button-minus">
-                                                        <input id="decreaseQty" type="button" class="qty-decrease"
-                                                               onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
-                                                               value="-"
-                                                               style="padding-right: 8px;top: -31px;outline: none;"
-                                                               disabled>
-                                                    </div>
                                                 </div>
-
-
-                                                <div class="add-to-cart">
-                                                    <button id="addToCart" type="submit" class="btn custom-button" disabled>
-                                                        {{ trans('general.add_to_cart') }}
-                                                    </button>
+                                                <div class="box-icon button-minus">
+                                                    <input id="decreaseQty" type="button" class="qty-decrease"
+                                                           onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
+                                                           value="-"
+                                                           style="padding-right: 8px;top: -31px;outline: none;"
+                                                           disabled>
                                                 </div>
-                                                {!! Form::close() !!}
                                             </div>
+
+
+                                            <div class="add-to-cart">
+                                                <button id="addToCart" type="submit" class="btn custom-button" disabled>
+                                                    {{ trans('general.add_to_cart') }}
+                                                </button>
+                                            </div>
+                                            {!! Form::close() !!}
                                         </div>
+                                    </div>
                                         <!-- Add to cart end -->
                                     </div>
                                 @endif

@@ -55,7 +55,7 @@ class GalleryController extends PrimaryController
     {
         $product = $this->productRepository->getById($request->product_id);
 
-        $image = $this->image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+        $image = $this->image->CreateImage($request->file('image'));
 
         if ($image) {
             \DB::table('images')->insert([
@@ -104,7 +104,7 @@ class GalleryController extends PrimaryController
     {
         $product = $this->productRepository->getById($request->product_id);
 
-        $image = $this->image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+        $image = $this->image->CreateImage($request->file('image'));
 
         if ($image) {
             \DB::table('images')->insert([

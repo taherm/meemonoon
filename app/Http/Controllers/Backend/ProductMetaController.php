@@ -53,13 +53,13 @@ class ProductMetaController extends PrimaryController
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('image'));
                 $request->request->add(['image' => $image]);
             }
 
             if ($request->hasFile('size_chart_image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('size_chart_image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('size_chart_image'));
                 $request->request->add(['size_chart_image' => $image]);
             }
 
@@ -121,13 +121,13 @@ class ProductMetaController extends PrimaryController
         try {
             if ($request->hasFile('image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('image'));
                 $request->request->add(['image' => $image]);
             }
 
             if ($request->hasFile('size_chart_image')) {
                 $image = new PrimaryImageService();
-                $image = $image->CreateImage($request->file('size_chart_image'), ['261', '300'], ['485', '550']);
+                $image = $image->CreateImage($request->file('size_chart_image'));
                 $request->request->add(['size_chart_image' => $image]);
             }
 

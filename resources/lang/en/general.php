@@ -57,11 +57,7 @@ return array (
   'availability' => 'Availability',
   'parentCategory' => 'parent Category',
   'name' => 'Name',
-  'description' => 
-  array (
-    'en' => 'Description English',
-    'ar' => 'Description Arabic',
-  ),
+  'description' => 'Description English',
   'firstname' => 'First Name',
   'lastname' => 'Last Name',
   'password' => 'Password',
@@ -157,4 +153,5 @@ return array (
   'subscribe_to_our_news_letter' => 'newsletter subscription',
   'subscribe_message_paragraph' => 'subscribe with us for more details more exclusive products ...',
   'view_details' => 'view details',
+  'size_select' => 'select size',
 );

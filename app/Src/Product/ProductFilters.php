@@ -17,12 +17,12 @@ class ProductFilters extends QueryFilter
 
     public function between($range)
     {
-        $between = explode('-',$range);
+        $between = explode('-', $range);
         $min = $between[0];
         $max = $between[1];
         if (!$this->request->has('price')) {
-            return $this->builder->whereHas('product_meta', function ($q) use ($min,$max) {
-                $q->where('product_metas.price','>=', number_format($min))->where('product_metas.price','<=',$max);
+            return $this->builder->whereHas('product_meta', function ($q) use ($min, $max) {
+                $q->where('product_metas.price', '>=', number_format($min))->where('product_metas.price', '<=', $max);
             });
         }
     }
@@ -81,6 +81,38 @@ class ProductFilters extends QueryFilter
         return $this->builder->whereHas('categories', function ($q) use ($child) {
             $q->where('category_id', $child);
         });
+    }
+
+    public function name($name)
+    {
+        if (!$this->request->has('name')) {
+            return $this->builder->whereHas('product_meta', function ($q) use ($name) {
+                $q->where('name', 'LIKE', "%{$name}%");
+            });
+        }
+    }
+
+    /**
+     * @return mixed
+     * ?type=price&sort=desc
+     */
+    public function type()
+    {
+        $sort = $this->request->has('sort') ? $this->request->sort : 'asc';
+
+        switch ($this->request->type) {
+            case 'name' :
+                return $this->builder->orderBy('products.name_' . app()->getLocale(), $sort);
+
+            case 'price' :
+
+                return $this->builder->whereHas('product_meta', function ($q) use ($sort) {
+                    $q->orderBy('price', $sort);
+                });
+
+            default :
+                return $this->builder->orderBy('products.name_' . app()->getLocale(), $sort);
+        }
     }
 
 }
