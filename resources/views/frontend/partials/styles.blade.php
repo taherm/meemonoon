@@ -48,6 +48,8 @@
 <link rel="stylesheet" href="{{ asset('css/frontend.css') }}">
 <link rel="stylesheet" href="{{ asset('css/lightbox.css') }}">
 <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+<!-- Toaster css Notifications -->
+<link rel="stylesheet" href="{{asset('meem/frontend/plugins/bootstrap-toastr/toastr.min.css')}}">
 @if (app()->getLocale() === 'ar')
     {{--@if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))--}}
     @if(!str_contains('home',request()->route()->getName()))

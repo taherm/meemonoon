@@ -20,6 +20,8 @@ Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
     Route::get('/error', ['uses' => 'CheckoutController@paymentFail']);
 
+    Route::get('/invoice/{order}', ['uses' => 'CheckoutController@orderInvoice']);
+
     Route::get('/lang/{lang}', 'LanguageController@changeLocale');
     Route::get('/currency/{currencyCode}', ['as' => 'currency', 'uses' => 'CurrencyController@changeCurrency']);
     /***************************************************************************************************

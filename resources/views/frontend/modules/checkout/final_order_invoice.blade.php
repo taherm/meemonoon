@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>A simple, clean, and responsive HTML invoice template</title>
+    <title>Order Invoice</title>
 
     <style>
         .invoice-box{
@@ -97,7 +97,7 @@
                         </td>
 
                         <td>
-                            Invoice #: {{ $order->id }}<br>
+                            Order #: {{ $order->id }}<br>
                             Created: {{ $order->created_at }}<br>
                         </td>
                     </tr>
@@ -112,11 +112,9 @@
                         <td>
                             {{ $order->address }}
                         </td>
-
+                        <td></td>
                         <td>
-                            Acme Corp.<br>
-                            John Doe<br>
-                            john@example.com
+                            {{$order->user->firstname . ' ' . $order->user->lastname}}<br>
                         </td>
                     </tr>
                 </table>
@@ -128,18 +126,22 @@
                 Payment Method
             </td>
 
+            <td></td>
+
             <td>
-                Check #
+                {{$order->payment_method}}
             </td>
         </tr>
 
         <tr class="details">
             <td>
-                Check
+                {{$order->payment_method}}
             </td>
 
+            <td></td>
+
             <td>
-                1000
+                {{$order->net_amount}}
             </td>
         </tr>
 
@@ -149,48 +151,79 @@
             </td>
 
             <td>
+                Qty
+            </td>
+
+            <td>
                 Price
             </td>
         </tr>
 
-        <tr class="item">
-            <td>
-                Website design
-            </td>
+        @foreach($order->order_metas as $item)
+            <tr class="item">
+                <td>
+                    {{$item->product->name}} <br />
+                    <span style="font-size: 10px;color: #a5a5a5;">ID: {{$item->product->sku}}</span>
+                </td>
+                <td>
+                    {{$item->quantity}}
+                </td>
+                <td>
+                    {{$item->sale_price. " KD"}}
+                </td>
+            </tr>
+        @endforeach
+
+        <tr class="total">
+            <td></td>
+            <td></td>
 
             <td>
-                $300.00
+                Subtotal: {{$order->sale_amount . ' KD'}}
             </td>
         </tr>
+        @if(isset($order) && $order->coupon_value > 0)
+            <tr class="total">
+                <td></td>
+                <td></td>
 
-        <tr class="item">
-            <td>
-                Hosting (3 months)
-            </td>
+                <td>
+                    Coupon Value: -{{$order->coupon_value.' KD'}}
+                </td>
+            </tr>
+
+            <tr class="total">
+                <td></td>
+                <td></td>
+
+                <td>
+                    After Coupon: {{($order->net_amount + $order->shipping_cost).' KD'}}
+                </td>
+            </tr>
+        @endif
+
+        <tr class="total">
+            <td></td>
+            <td></td>
 
             <td>
-                $75.00
-            </td>
-        </tr>
-
-        <tr class="item last">
-            <td>
-                Domain name (1 year)
-            </td>
-
-            <td>
-                $10.00
+                Shipping: {{$order->shipping_cost . ' KD'}}
             </td>
         </tr>
 
         <tr class="total">
             <td></td>
+            <td></td>
 
             <td>
-                Total: $385.00
+                Total: {{$order->net_amount . ' KD'}}
             </td>
         </tr>
+
     </table>
+    <form method="GET" action="{{URL('home/')}}">
+        <button type="submit" style="padding: 10px;">Back To Home</button>
+    </form>
 </div>
 </body>
 </html>
