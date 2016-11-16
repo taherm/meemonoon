@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Src\Ad\Ad;
 use Illuminate\Http\Request;
 use App\Core\PrimaryController;
-use App\Src\Slider\Slider;
 use App\Core\Services\Image\PrimaryImageService;
 
 use App\Http\Requests;
 
-class SliderController extends PrimaryController
+class AdController extends PrimaryController
 {
-    public $slider;
+    public $ad;
     public $image;
 
-    public function __construct(Slider $slider, PrimaryImageService $image)
+    public function __construct(Ad $ad, PrimaryImageService $image)
     {
-        $this->slider = $slider;
+        $this->ad = $ad;
         $this->image = $image;
     }
 
@@ -27,8 +27,8 @@ class SliderController extends PrimaryController
      */
     public function index()
     {
-        $slides = $this->slider->all();
-        return view('backend.modules.slider.index', compact('slides'));
+        $ads = $this->ad->all();
+        return view('backend.modules.ad.index', compact('ads'));
     }
 
     /**
@@ -49,19 +49,23 @@ class SliderController extends PrimaryController
      */
     public function store(Request $request)
     {
-        $image = $this->image->CreateImage($request->file('image'), ['1','1'],['578', '231'], ['1905', '753']);
+        if ($request->file('image')) {
+
+            $image = $this->image->CreateImage($request->file('image'), ['300','300'], ['578', '231'], ['1905', '753']);
+
+        }
+
 
         if ($image) {
-            \DB::table('sliders')->insert([
+            \DB::table('side_ads')->insert([
                 'image_path' => $image,
                 'url' => $request->url,
-                'order' => $request->order,
                 'caption_en' => $request->caption_en,
-                'active'    => 1
+                'caption_ar' => $request->caption_ar,
             ]);
-            return redirect()->back()->with('success','Slide saved');
+            return redirect()->back()->with('success', 'Ad saved');
         }
-        return redirect()->back()->with('error','Slide not saved')->withInputs();
+        return redirect()->back()->with('error', 'Ad not saved')->withInputs();
     }
 
     /**
@@ -106,14 +110,14 @@ class SliderController extends PrimaryController
      */
     public function destroy($id)
     {
-        if ($this->slider->find($id)->delete()) {
+        if ($this->ad->find($id)->delete()) {
 
-            return redirect()->route('backend.slider.index')->with('success', 'Slide Deleted Successfully!');
+            return redirect()->route('backend.ad.index')->with('success', 'ad Deleted Successfully!');
 
         }
         return redirect()->back()->with('error', 'System Error!!');
 
-//        \DB::table('sliders')->where('id', '=', request()->id)->delete();
+//        \DB::table('ads')->where('id', '=', request()->id)->delete();
 //        return redirect()->back()->with('success', 'Slide deleted');
     }
 }

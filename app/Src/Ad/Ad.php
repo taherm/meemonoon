@@ -4,7 +4,7 @@ namespace App\Src\Ad;
 
 use App\Core\PrimaryModel;
 
-class SideAd extends PrimaryModel
+class Ad extends PrimaryModel
 {
 
     protected $table = 'side_ads';
