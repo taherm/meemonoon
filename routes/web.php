@@ -135,6 +135,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('category', 'CategoryController');
     Route::resource('subcategory', 'SubCategoryController');
     Route::resource('slider', 'SliderController');
+    Route::resource('ad', 'AdController');
     Route::resource('order', 'OrderController', ['except' => ['destroy']]);
     Route::get('order/change/{id}/{status}', ['as' => 'order.status.change', 'uses' => 'OrderController@changeStatus']);
     Route::post('order/ship', ['as' => 'order.shipped', 'uses' => 'OrderController@addOrderTrackId']);
