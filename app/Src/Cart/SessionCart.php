@@ -66,8 +66,9 @@ class SessionCart implements CartInterface {
         if($collection->has($key)) {
             $collection->forget($key);
         }
-        $items = $collection->values()->all();
+        $items = $collection->all();
         Session::put(self::CART_KEY,$items);
+
     }
 
     private function setItem($item)

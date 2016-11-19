@@ -11,6 +11,7 @@ use App\Src\Cart\ShippingManager;
 use App\Src\Country\Country;
 use App\Src\Coupon\Coupon;
 use App\Src\Order\OrderRepository;
+use App\Src\Product\ProductAttribute;
 use App\Src\Product\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,7 +90,12 @@ class CheckoutController extends PrimaryController
         $shippingCountry = Session::get('SHIPPING_COUNTRY');
 
         // @todo : use actual logged in user
-        $user = auth()->check() ? auth()->user() : auth()->loginUsingId(1);
+        if ( !auth()->check() )
+        {
+            return redirect()->to('login')->with('error', trans('Please Login Or Sign up Before Continue To Checkout!'));
+        }
+
+        $user = auth()->user();
 
         $cartItems = $this->cart->getItems();
 
@@ -228,6 +234,15 @@ class CheckoutController extends PrimaryController
 
         if($request->payment === 'cash')
         {
+            //reduce item quantity after successful order
+            foreach ($cartItems as $item)
+            {
+                $itemAttribute = ProductAttribute::where('id', $item['product_attribute_id'])->first();
+                $itemAttribute->update([
+                    'qty' => $itemAttribute->qty-$item['quantity']
+                ]);
+            }
+
             $order = $orderRepository->model->create([
                 'status' => 'pending',
                 'user_id' => $user->id,
@@ -276,6 +291,15 @@ class CheckoutController extends PrimaryController
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
 //            dd($paymentStatus);
             if ($paymentStatus[0]->responseMessage) {
+
+                //reduce item quantity after successful order
+                foreach ($cartItems as $item)
+                {
+                    $itemAttribute = ProductAttribute::where('id', $item['product_attribute_id'])->first();
+                    $itemAttribute->update([
+                        'qty' => $itemAttribute->qty-$item['quantity']
+                    ]);
+                }
 
                 $order = $orderRepository->model->create([
                     'status' => 'temp',

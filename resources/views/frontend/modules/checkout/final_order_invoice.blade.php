@@ -89,7 +89,7 @@
 <div class="invoice-box">
     <table cellpadding="0" cellspacing="0">
         <tr class="top">
-            <td colspan="2">
+            <td colspan="3">
                 <table>
                     <tr>
                         <td class="title">
@@ -126,7 +126,7 @@
                 Payment Method
             </td>
 
-            <td></td>
+            <td style="text-align: left;"></td>
 
             <td>
                 {{$order->payment_method}}
@@ -138,7 +138,7 @@
                 {{$order->payment_method}}
             </td>
 
-            <td></td>
+            <td style="text-align: left;"></td>
 
             <td>
                 {{$order->net_amount}}
@@ -146,11 +146,11 @@
         </tr>
 
         <tr class="heading">
-            <td>
+            <td style="">
                 Item
             </td>
 
-            <td>
+            <td style="text-align: left;">
                 Qty
             </td>
 
@@ -165,7 +165,7 @@
                     {{$item->product->name}} <br />
                     <span style="font-size: 10px;color: #a5a5a5;">ID: {{$item->product->sku}}</span>
                 </td>
-                <td>
+                <td style="text-align: left;">
                     {{$item->quantity}}
                 </td>
                 <td>
@@ -176,7 +176,7 @@
 
         <tr class="total">
             <td></td>
-            <td></td>
+            <td style="border: none;"></td>
 
             <td>
                 Subtotal: {{$order->sale_amount . ' KD'}}
@@ -185,7 +185,7 @@
         @if(isset($order) && $order->coupon_value > 0)
             <tr class="total">
                 <td></td>
-                <td></td>
+                <td style="border: none;"></td>
 
                 <td>
                     Coupon Value: -{{$order->coupon_value.' KD'}}
@@ -194,7 +194,7 @@
 
             <tr class="total">
                 <td></td>
-                <td></td>
+                <td style="border: none;"></td>
 
                 <td>
                     After Coupon: {{($order->net_amount + $order->shipping_cost).' KD'}}
@@ -204,7 +204,7 @@
 
         <tr class="total">
             <td></td>
-            <td></td>
+            <td style="border: none;"></td>
 
             <td>
                 Shipping: {{$order->shipping_cost . ' KD'}}
@@ -213,7 +213,7 @@
 
         <tr class="total">
             <td></td>
-            <td></td>
+            <td style="border: none;"></td>
 
             <td>
                 Total: {{$order->net_amount . ' KD'}}

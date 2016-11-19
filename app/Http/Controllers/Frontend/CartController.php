@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Src\Cart\Cart;
 use App\Src\Country\Country;
 use App\Src\Product\Product;
+use App\Src\Product\ProductAttribute;
 use App\Src\Product\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -83,16 +84,26 @@ class CartController extends PrimaryController
 
                 // strip product ID from quanitity_{product_id} i.e => quantity_10 => 10
                 $productID = substr($key, 9);
-//                dd($productID);
                 try {
-                    $this->cart->addItem(['id' => $productID, 'quantity' => (int)$value]);
+                    $updatedItem = $this->cart->getItemByKey($productID);
+                    $productStock = ProductAttribute::where('id', $updatedItem['product_attribute_id'])->first();
+
+                    if($productStock->qty >= $value)
+                    {
+                        $updatedItem['quantity'] = (int)$value;
+                        $this->cart->addItem($updatedItem);
+                    }
+                    else
+                    {
+                        return redirect()->back()->with('error', 'Sorry this item has only '. $productStock->qty . ' left in stock!');
+                    }
+
                 } catch (\Exception $e) {
-                    //@todo : Remove dd
-                    dd($e->getMessage());
                     return redirect()->back()->with('error', $e->getMessage());
                 }
             }
         }
+
         return redirect()->back()->with('success', 'Cart Updated');
     }
 

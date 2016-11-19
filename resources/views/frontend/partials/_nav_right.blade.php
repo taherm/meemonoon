@@ -56,33 +56,30 @@
                 <a href="{{ route('cart.index') }}"><img src="{{asset('meem/frontend/img/icons/card.png')}}" alt="">
                     <span class="total-cart">{{ $cartItemsCount }}</span>
                 </a>
-                {{--<div class="cart-content">--}}
-                    {{--<div class="product-items-cart">--}}
-                    {{--<div class="cart-img">--}}
-                    {{--<a href="#"><img src="{{asset('meem/frontend/img/cart/12_2.jpg')}}" alt="" /></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="cart-text-2">--}}
-                    {{--<a class="btn-remove" title="Remove This Item" href="#"><span class="pencil"><i class="fa fa-pencil"></i></span><i class="fa fa-times"></i></a>--}}
-                    {{--<p class="product-name"><a href="#">Pellentesque habitant</a></p>--}}
-                    {{--<p><strong>1</strong> x<span class="price">$100.00</span> </p>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="product-items-cart">--}}
-                    {{--<div class="cart-img">--}}
-                    {{--<a href="#"><img src="{{asset('meem/frontend/img/cart/12_8.jpg')}}" alt="" /></a>--}}
-                    {{--</div>--}}
-                    {{--<div class="cart-text-2">--}}
-                    {{--<a class="btn-remove" title="Remove This Item" href="#"><span class="pencil"><i class="fa fa-pencil"></i></span><i class="fa fa-times"></i></a>--}}
-                    {{--<p class="product-name"><a href="#">Fusce</a></p>--}}
-                    {{--<p><strong>1</strong> x<span class="price">$105.00</span>  </p>--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="top-subtotal">Subtotal: <span class="price">$205.00</span></div>--}}
-                    {{--<div class="cart-btn-3">--}}
-                        {{--<a class="button" href="#">view cart</a>--}}
-                        {{--<a class="button check-btn" href="#">checkout</a>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                @if(count($cartHeaderItems->items) > 0)
+                    <div class="cart-content">
+                        <div style="display: none;">{{$itemCount = 1}}</div>
+                        @foreach($cartHeaderItems->items as $product)
+                            @if($itemCount <= 2)
+                            <div class="product-items-cart">
+                                <div class="cart-img">
+                                    <a href="{{ route('product.show',$product->id) }}"><img width="50" height="60" src="{{ asset('img/uploads/thumbnail/').'/'.$product->image}}" alt="" /></a>
+                                </div>
+                                <div class="cart-text-2">
+                                    <a class="btn-remove" title="Remove This Item" href="{{ route('cart.remove',$product->id) }}"><i class="fa fa-times"></i></a>
+                                    <p class="product-name"><a href="{{ route('product.show',$product->id) }}">{{ $product->name }}</a></p>
+                                    <p><strong>{{ $product->quantity }}</strong> x<span class="price">{{ $product->sale_price }} KD</span> </p>
+                                </div>
+                            </div>
+                            <div style="display: none;">{{$itemCount++}}</div>
+                            @endif
+                        @endforeach
+
+                        <div class="cart-btn-3">
+                            <a class="button" href="{{ route('cart.index') }}" style="margin-left: 10%;">{{trans('general.view_all_items')}}</a>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
         <!-- cart item end -->
