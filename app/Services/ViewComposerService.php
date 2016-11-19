@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Src\Ad\Ad;
 use App\Src\Cart\Cart;
 use App\Src\Currency\Currency;
 use App\Src\Product\Color;
@@ -35,7 +36,7 @@ class ViewComposerService
      * ComposerServiceProvider
      * @param View $view
      */
-    public function getAllCountriesList( View $view )
+    public function getAllCountriesList(View $view)
     {
         $countriesList = collect([
             '414' => 'Kuwait',
@@ -46,7 +47,7 @@ class ViewComposerService
             '784' => 'United Arab Emirates'
         ]);
 
-        $view->with( compact( 'countriesList' ) );
+        $view->with(compact('countriesList'));
     }
 
 
@@ -154,7 +155,7 @@ class ViewComposerService
         $cart = app()->make(Cart::class);
         $cartItemsCount = $cart->getItemsCount();
 
-        $cartItems      = $cart->getItems();
+        $cartItems = $cart->getItems();
         $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('id'))->get();
         $cartHeaderItems = $cart->make($products);
 
@@ -168,4 +169,10 @@ class ViewComposerService
         $view->with('contact', $contactData);
     }
 
+    public function getAds(View $view)
+    {
+        $ads = Ad::orderBy('order')->take(3)->get();
+
+        $view->with('ads', $ads);
+    }
 }

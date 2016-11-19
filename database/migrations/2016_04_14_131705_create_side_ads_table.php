@@ -18,6 +18,7 @@ class CreateSideAdsTable extends Migration
             $table->string('url');
             $table->string('caption_en');
             $table->string('caption_ar');
+            $table->integer('order');
             $table->timestamps();
             $table->softDeletes();
         });

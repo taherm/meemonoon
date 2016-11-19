@@ -6,6 +6,8 @@
         <!--slider-area start-->
 @include('frontend.partials.slider')
         <!--slider-area end-->
+
+@include('frontend.modules.ad.show')
 @show
 
         <!--feature-product-area start-->

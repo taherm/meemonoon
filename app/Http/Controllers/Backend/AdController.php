@@ -51,7 +51,7 @@ class AdController extends PrimaryController
     {
         if ($request->file('image')) {
 
-            $image = $this->image->CreateImage($request->file('image'), ['300','300'], ['578', '231'], ['1905', '753']);
+            $image = $this->image->CreateImage($request->file('image'), ['100','140'], ['370', '550'], ['370', '550']);
 
         }
 
@@ -62,6 +62,7 @@ class AdController extends PrimaryController
                 'url' => $request->url,
                 'caption_en' => $request->caption_en,
                 'caption_ar' => $request->caption_ar,
+                'order' => $request->order,
             ]);
             return redirect()->back()->with('success', 'Ad saved');
         }

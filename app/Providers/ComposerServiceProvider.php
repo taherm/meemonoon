@@ -17,6 +17,9 @@ class ComposerServiceProvider extends ServiceProvider
         //breadCrumbs
         view()->composer('backend.partials.breadcrumbs', 'App\Services\ViewComposerService@getBreadCrumbs');
 
+        // Ad
+        view()->composer('frontend.modules.ad.show', 'App\Services\ViewComposerService@getAds');
+
         // cart item count
         view()->composer('frontend.partials._nav_right', 'App\Services\ViewComposerService@getCartItemsCount');
 

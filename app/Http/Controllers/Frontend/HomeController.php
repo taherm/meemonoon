@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Core\PrimaryController;
+use App\Src\Ad\Ad;
 use App\Src\Company\CompanyRepository;
 use App\Http\Requests;
 use App\Src\Product\ProductRepository;
