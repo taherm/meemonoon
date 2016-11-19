@@ -27,7 +27,7 @@
                                 <div class="field fix">
                                     <div class="input-box">
                                         <label class="label" for="City">{{ trans('general.city') }} <em>*</em></label>
-                                        {{ Form::text('city',null,['class'=>'border-color']) }}
+                                        {{ Form::text('city',null,['class'=>'border-color', 'required']) }}
                                     </div>
                                     <div class="input-box">
                                         <label class="label" for="Country">{{ trans('general.country') }}<em>*</em></label>
@@ -105,7 +105,7 @@
                                 <div class="field fix">
                                     <div class="input-box">
                                         <label class="label" for="Zip">{{ trans('general.zip_code') }} <em>*</em></label>
-                                        {{ Form::text('zip',null,['class'=>'border-color']) }}
+                                        {{ Form::text('zip',null,['class'=>'border-color', 'required']) }}
                                     </div>
                                     <div class="input-box">
                                         <label class="label" for="Mobile">{{ trans('general.contact_number') }}<em>*</em></label>

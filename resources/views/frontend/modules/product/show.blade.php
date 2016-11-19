@@ -38,7 +38,7 @@
                                                     <div class="simpleLens-big-image-container">
                                                         <a class="simpleLens-lens-image"
                                                            data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
-                                                            <img src="{{asset('img/uploads/thumbnail/'.$image->large_url)}}"
+                                                            <img src="{{asset('img/uploads/medium/'.$image->large_url)}}"
                                                                  class="simpleLens-big-image" alt="productd">
                                                         </a>
                                                     </div>
@@ -49,7 +49,7 @@
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
                                                        data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
-                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
+                                                        <img src="{{asset('img/uploads/medium/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
                                                 </div>
@@ -61,7 +61,9 @@
                                     <div class="simpleLens-thumbnails-container text-center">
                                         <div id="single-product" class="owl-carousel custom-carousel">
                                             <ul class="nav nav-tabs" role="tablist">
-                                            <li class="active"><a href="#p-view-1" role="tab" data-toggle="tab"><img src="{{$product->product_meta->image}}" width="100" height="100" alt="productd"></a></li>
+                                                <li class="active"><a href="#p-view-1" role="tab" data-toggle="tab">
+                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}" width="100" height="100" alt="productd"></a>
+                                                </li>
                                             </ul>
                                             <div style="display: none;">
                                                 {{$count2 = 1}}
@@ -71,7 +73,7 @@
 
                                                     <ul class="nav nav-tabs" role="tablist">
                                                         <li class="@if($count2 == 1) active @else last-li @endif"><a
-                                                                    href="{{'#p-view-'. $count2++}}" role="tab"
+                                                                    href="{{'#p-view-'. ++$count2}}" role="tab"
                                                                     data-toggle="tab"><img
                                                                         src="{{asset('img/uploads/large/'.$image->large_url)}}"
                                                                         width="100" height="100" alt="productd"></a>

@@ -13,6 +13,7 @@ use App\Src\Category\CategoryRepository;
 use App\Src\Product\ProductRepository;
 use Conner\Tagging\Model\Tag;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 use App\Src\User\Contactus;
 use App\Src\Slider\Slider;
@@ -151,8 +152,13 @@ class ViewComposerService
     public function getCartItemsCount(View $view)
     {
         $cart = app()->make(Cart::class);
+        $cartItemsCount = $cart->getItemsCount();
 
-        $view->with('cartItemsCount', $cart->getItemsCount());
+        $cartItems      = $cart->getItems();
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('id'))->get();
+        $cartHeaderItems = $cart->make($products);
+
+        $view->with(compact('cartItemsCount', 'cartHeaderItems'));
     }
 
     public function getContactUs(View $view)

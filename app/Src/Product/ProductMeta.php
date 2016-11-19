@@ -40,5 +40,10 @@ class ProductMeta extends PrimaryModel
         return $this->on_sale ? $this->sale_price : $this->price;
     }
 
+    public function getProductAttributeCount($id)
+    {
+
+    }
+
 
 }
