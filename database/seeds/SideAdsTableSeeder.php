@@ -11,6 +11,6 @@ class SideAdsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Src\Ad\SideAd',3)->create();
+        factory('App\Src\Ad\Ad',10)->create();
     }
 }

@@ -12,15 +12,17 @@
                                         class="fa fa-remove"></i>
                                 Delete Ad
                             </button>
-                            {{--<span style="float: right;">{{$ad->order}}</span>--}}
                             {{ Form::close() }}
                         </div>
                         <div class="panel-body">
-                            <img class="img-responsive img-thumbnail center" src="{{ asset('img/uploads/thumbnail/'.$ad->image_path) }}" style="max-height:150px;max-width: 150px;"/>
-                            <br />
+                            <img class="img-responsive img-thumbnail center"
+                                 src="{{ asset('img/uploads/thumbnail/'.$ad->image_path) }}"
+                                 style="max-height:150px;max-width: 150px;"/>
+                            <br/>
                             <div class="caption">
-                                {{ $ad->caption_en }} <br />
-                                {{ $ad->url }}
+                                <b>caption :</b> {{ $ad->caption_en }} <br/>
+                                <b>url :</b> {{ $ad->url }} </br>
+                                <b>order : </b>{{ $ad->order }}
                             </div>
                         </div>
                     </div>
@@ -28,7 +30,7 @@
             @endforeach
         @endif
     </div>
-    <br /><br />
+    <br/><br/>
     {{ Form::open(['route'=>['backend.ad.store'],'method'=>'POST','files' => 'true','class' => 'form-horizontal','enctype' =>"multipart/form-data"]) }}
 
     {{ Form::hidden('MAX_FILE_SIZE','20971520') }}
@@ -44,7 +46,7 @@
                 <input name="image" type="file" required/>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <label class="mt-checkbox"> caption en</label>
             {!! Form::text('caption_en',null,['class' =>'form-control','required']) !!}
         </div>
@@ -52,14 +54,18 @@
             <label class="mt-checkbox"> caption ar</label>
             {!! Form::text('caption_ar',null,['class' =>'form-control','required']) !!}
         </div>
+        <div class="col-lg-1">
+            <label class="mt-checkbox" for="order">order</label>
+            {!! Form::select('order',['1' => '1', '2' => '2','3' => '3'],['class' =>'form-control','required']) !!}
+        </div>
         <div class="col-lg-2">
             <label class="mt-checkbox"> URL </label>
             {!! Form::text('url',null,['class' =>'form-control','required']) !!}
         </div>
 
         {{--<div class="col-lg-2">--}}
-            {{--<label class="mt-checkbox"> order </label>--}}
-            {{--{!! Form::text('order',null,['class' =>'form-control','required']) !!}--}}
+        {{--<label class="mt-checkbox"> order </label>--}}
+        {{--{!! Form::text('order',null,['class' =>'form-control','required']) !!}--}}
         {{--</div>--}}
     </div>
 

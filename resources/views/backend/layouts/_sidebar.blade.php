@@ -168,7 +168,7 @@
             </li>
             <li class="nav-item open {{ (str_contains(Request::route()->getName(),'ad') ? 'active' : '' ) }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-sliders"></i>
+                    <i class="fa fa-image"></i>
                     <span class="title">Ads</span>
                     <span class="selected"></span>
                     <span class="arrow"></span>

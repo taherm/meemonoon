@@ -272,20 +272,7 @@ $factory->define('App\Src\Order\OrderMeta', function (Faker\Generator $faker) {
 });
 
 
-$factory->define('App\Src\Ad\SliderAd', function (Faker\Generator $faker) {
-    return [
-        'logo' => $faker->imageUrl(50, 50),
-        'image_path' => $faker->imageUrl(400, 100),
-        'url' => $faker->url,
-        'caption_en' => $faker->paragraph(1),
-        'caption_ar' => $faker->paragraph(1),
-
-    ];
-
-});
-
-
-$factory->define('App\Src\Ad\SideAd', function (Faker\Generator $faker) {
+$factory->define('App\Src\Ad\Ad', function (Faker\Generator $faker) {
 
     return [
 
@@ -293,6 +280,7 @@ $factory->define('App\Src\Ad\SideAd', function (Faker\Generator $faker) {
         'url' => $faker->url,
         'caption_en' => $faker->paragraph(),
         'caption_ar' => $faker->paragraph(),
+        'order' => $faker->numberBetween(1,5),
     ];
 
 });
