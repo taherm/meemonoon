@@ -76,7 +76,7 @@
                             <!-- middle-footer-text start-->
                             <div class="middle-footer-text middle-footer-text4">
                                 <div class="footer-logo">
-                                    <a href="#"><img src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}" alt=""></a>
+                                    <a href="#"><img src="{{asset('meem/frontend/img/logo/footerlogo.jpeg')}}" alt=""></a>
                                 </div>
                                 <div class="middle-text">
                                     <p>{{ trans('general.online_shopping_in_gulf') }}</p>
