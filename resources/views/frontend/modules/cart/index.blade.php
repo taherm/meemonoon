@@ -72,12 +72,12 @@
                             </table>
                             <div class="cart-s-btn">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-4 col-xs-12">
+                                    <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
                                         <div class="buttons-cart">
                                             <a href="{{ route('home') }}">{{ trans('cart.continue_shopping') }}</a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+                                    <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12 col-md-push-2">
                                         <div class="buttons-cart button-cart-right">
                                         <span class="shopping-btn">
                                             <button type="submit"
@@ -86,10 +86,20 @@
                                         </span>
                                         </div>
                                     </div>
+                                    {!! Form::close() !!}
+                                    <div class="col-lg-3 col-md-3 col-sm-8 col-xs-12 col-md-push-2">
+                                        <div class="place-section" style="padding: 0px;">
+                                            {!! Form::open(['route' => 'cart.clear', 'method' => 'Post'], ['class'=>'']) !!}
+                                            <button type="submit"
+                                                    class="col-lg-12 btn custom-button">{{ trans('cart.clear_cart') }}
+                                            </button>
+                                            {!! Form::close() !!}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        {!! Form::close() !!}
+
 
 
                         @if(Auth::user())
@@ -145,19 +155,6 @@
 
                                 </div>
 
-                            </div>
-                        </div>
-
-                        <div class="row" style="margin-top: 30px">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
-                                <div class="place-section">
-                                    {!! Form::open(['route' => 'cart.clear', 'method' => 'Post'], ['class'=>'']) !!}
-                                    <button type="submit"
-                                            class="col-lg-12 btn custom-button">{{ trans('cart.clear_shopping_cart') }}
-                                        {{ trans('cart.clear_shopping_cart') }}
-                                    </button>
-                                    {!! Form::close() !!}
-                                </div>
                             </div>
                         </div>
 
