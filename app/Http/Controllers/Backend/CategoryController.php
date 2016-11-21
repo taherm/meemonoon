@@ -51,7 +51,7 @@ class CategoryController extends PrimaryController
     {
         if ($request->hasFile('image')) {
             $image = new PrimaryImageService();
-            $image = $image->CreateImage($request->file('image'));
+            $image = $image->CreateImage($request->file('image'),['1','1'],['1','1'],['1000','250']);
             $request->request->add(['image' => $image]);
         }
 
@@ -87,7 +87,7 @@ class CategoryController extends PrimaryController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryUpdate $request, $id)
+    public function update(CategxoryUpdate $request, $id)
     {
         if ($request->hasFile('image')) {
             $image = new PrimaryImageService();

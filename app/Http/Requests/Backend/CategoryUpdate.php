@@ -28,7 +28,7 @@ class CategoryUpdate extends FormRequest
             'name_ar'        => 'required|unique:categories,name_ar,'.$this->category,
             'description_en' => 'string',
             'description_ar' => 'string',
-            'image' => 'mimes:jpeg,bmp,png',
+            'image' => 'mimes:jpeg,jpg,png,gif,bmp',
             'limited' => 'boolean|required'
         ];
     }
