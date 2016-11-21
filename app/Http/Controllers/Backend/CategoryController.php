@@ -87,7 +87,7 @@ class CategoryController extends PrimaryController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategxoryUpdate $request, $id)
+    public function update(CategoryUpdate $request, $id)
     {
         if ($request->hasFile('image')) {
             $image = new PrimaryImageService();
