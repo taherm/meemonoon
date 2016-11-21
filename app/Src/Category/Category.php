@@ -13,6 +13,7 @@ class Category extends PrimaryModel
 
     protected $table = 'categories';
     public $localeStrings = ['name', 'description'];
+    protected $guarded = [''];
     use SoftDeletes;
 
     /**
