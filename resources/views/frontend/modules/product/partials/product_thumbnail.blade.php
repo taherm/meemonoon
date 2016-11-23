@@ -75,8 +75,8 @@
                                    data-price="{{ $product->product_meta->price }} KD"
                                    data-link="{{ route('product.show',$product->id) }}"
                                    data-image="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }}"
-                                   data-description="{!! $product->product_meta->description !!}"
-                                >
+                                   data-description="{{ $product->product_meta->description }}">
+
                                     <i class="fa fa-eye"></i>
                                 </a>
                             </li>
