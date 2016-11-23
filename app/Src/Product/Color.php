@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Color extends PrimaryModel
 {
+    protected $localeStrings = ['name'];
 
     /**
      * ManyToMay Relation
@@ -25,7 +26,7 @@ class Color extends PrimaryModel
      */
     public function scopeColorsList($query)
     {
-        return $query->pluck('color')->unique();
+        return $query->pluck('name')->unique();
     }
 
     /**

@@ -184,8 +184,8 @@ $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker
         'on_homepage' => $faker->randomElement([0, 1]),
         'type' => $faker->randomElement(['product']),
         'weight' => $faker->randomFloat(0.1, 2),
-        'price' => $faker->randomFloat(3, 10,200),
-        'sale_price' => $faker->randomFloat(3, 10,200),
+        'price' => $faker->randomFloat(3, 10, 200),
+        'sale_price' => $faker->randomFloat(3, 10, 200),
         'description_en' => $faker->paragraph(1),
         'description_ar' => $faker->paragraph(1),
         'notes_ar' => $faker->sentence(1),
@@ -201,13 +201,19 @@ $factory->define('App\Src\Product\ProductMeta', function (Faker\Generator $faker
 
 $factory->define(Color::class, function (Faker\Generator $faker) {
     return [
-        'color' => $faker->unique()->randomElement(['red', 'white', 'orange', 'green','none'])
+        'name_en' => $faker->unique()->randomElement(['red', 'white', 'orange', 'green', 'none']),
+        'name_ar' => function ($array) {
+            return $array['name_en'];
+        }
     ];
 });
 
 $factory->define(Size::class, function (Faker\Generator $faker) {
     return [
-        'size' => $faker->unique()->randomElement(['small', 'x-small', 'xx-small', 'large', 'x-large', 'xx-large', 'xxx-large', 'medium','none'])
+        'name_en' => $faker->unique()->randomElement(['small', 'x-small', 'xx-small', 'large', 'x-large', 'xx-large', 'xxx-large', 'medium', 'none']),
+        'name_ar' => function ($array) {
+            return $array['name_en'];
+        }
     ];
 });
 
@@ -232,7 +238,7 @@ $factory->define('App\Src\Category\Category', function (Faker\Generator $faker) 
         'description_en' => $faker->paragraph(1),
         'description_ar' => $faker->paragraph(1),
         'image' => $faker->imageUrl('200', '200'),
-        'limited' => $faker->numberBetween(0,1),
+        'limited' => $faker->numberBetween(0, 1),
         'parent_id' => Category::where('parent_id', 0)->pluck('id')->shuffle()->first(),
     ];
 });
@@ -244,7 +250,7 @@ $factory->define('App\Src\Order\Order', function (Faker\Generator $faker) {
         'status' => $faker->randomElement(['pending', 'failed', 'success', 'completed']),
         'coupon_id' => $faker->shuffleString('23kjkjerwe'),
         'country_id' => Country::has('currency')->get()->random()->id,
-        'coupon_value' => $faker->randomFloat(2,1, 10),
+        'coupon_value' => $faker->randomFloat(2, 1, 10),
         'amount' => $faker->numberBetween(100, 500),
         'shipping_cost' => $faker->numberBetween(2, 15),
         'sale_amount' => $faker->numberBetween(100, 500),
@@ -280,7 +286,7 @@ $factory->define('App\Src\Ad\Ad', function (Faker\Generator $faker) {
         'url' => $faker->url,
         'caption_en' => $faker->paragraph(),
         'caption_ar' => $faker->paragraph(),
-        'order' => $faker->numberBetween(1,5),
+        'order' => $faker->numberBetween(1, 5),
     ];
 
 });
@@ -322,14 +328,14 @@ $factory->define('CategoryProductTableSeeder', function (Faker\Generator $faker)
     for ($i = 0; $i <= 50; $i++) {
         // parent category
         DB::table('category_product')->insert([
-            'category_id' => Category::where('parent_id','=',0)->get()->random()->id,
+            'category_id' => Category::where('parent_id', '=', 0)->get()->random()->id,
             'product_id' => Product::withoutGlobalScopes()->doesntHave('parent')->first()->id,
         ]);
     }
     // sub category
     for ($i = 0; $i <= 50; $i++) {
         DB::table('category_product')->insert([
-            'category_id' => Category::where('parent_id','!=',0)->get()->random()->id,
+            'category_id' => Category::where('parent_id', '!=', 0)->get()->random()->id,
             'product_id' => Product::withoutGlobalScopes()->has('parent')->get()->random()->id
         ]);
     }
@@ -422,7 +428,7 @@ $factory->define(Tag::class, function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Coupon\Coupon', function (Faker\Generator $faker) {
     return [
-        'value' => $faker->randomFloat(2,1, 10),
+        'value' => $faker->randomFloat(2, 1, 10),
         'customer_id' => User::all()->pluck('id')->shuffle()->first(),
         'active' => $faker->randomElement([0, 1]),
         'consumed' => $faker->randomElement([0, 1]),

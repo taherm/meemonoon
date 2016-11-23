@@ -9,7 +9,7 @@ class ProductAttribute extends PrimaryModel
 {
     protected $table = 'product_attributes';
     protected $localeStrings = ['notes'];
-    protected $fillable = ['product_id','qty','notes_en','notes_ar','size_id','color_id'];
+    protected $fillable = ['product_id', 'qty', 'notes_en', 'notes_ar', 'size_id', 'color_id'];
 
 
     /**
@@ -51,12 +51,12 @@ class ProductAttribute extends PrimaryModel
 
     public function getColorNameAttribute()
     {
-        return $this->color->color;
+        return $this->color->name;
     }
 
     public function getSizeNameAttribute()
     {
-        return $this->size->size;
+        return $this->size->name;
     }
 
 }

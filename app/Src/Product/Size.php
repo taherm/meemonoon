@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Size extends PrimaryModel
 {
+    protected $localeStrings = ['name'];
+
     /**
      * ManytoMany relation
      * Product Size
@@ -15,12 +17,12 @@ class Size extends PrimaryModel
      */
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_attributes','size_id','product_id');
+        return $this->belongsToMany(Product::class, 'product_attributes', 'size_id', 'product_id');
     }
 
     public function scopeSizesList($query)
     {
-        return $query->pluck('color')->unique();
+        return $query->pluck('name')->unique();
     }
 
     /**
@@ -30,6 +32,6 @@ class Size extends PrimaryModel
      */
     public function product_attributes()
     {
-        return $this->hasOne(ProductAttribute::class,'size_id');
+        return $this->hasOne(ProductAttribute::class, 'size_id');
     }
 }

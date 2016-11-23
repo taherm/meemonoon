@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Backend;
 
-use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ColorStore extends FormRequest
+class SizeStore extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,8 @@ class ColorStore extends FormRequest
     public function rules()
     {
         return [
-            'name_ar' => 'required|min:2|unique:colors,name_ar',
-            'name_en' => 'required|min:2|unique:colors,name_en'
+            'name_ar' => 'required|min:2|unique:sizes,name_ar',
+            'name_en' => 'required|min:2|unique:sizes,name_en'
         ];
     }
 }

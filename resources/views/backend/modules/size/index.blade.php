@@ -6,7 +6,8 @@
             <thead>
             <tr>
                 <th> id</th>
-                <th>name</th>
+                <th>name_ar</th>
+                <th>name_en</th>
                 <th>edit</th>
             </tr>
             </thead>
@@ -14,7 +15,8 @@
             @foreach($sizes as $size)
                 <tr>
                     <td> {{$size->id}}</td>
-                    <td> {{$size->size}} </td>
+                    <td> {{$size->name_ar}} </td>
+                    <td> {{$size->name_en}} </td>
                     <td>
                         <a href="{{ route('backend.size.edit',$size->id) }}"
                            class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i> Edit

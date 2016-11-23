@@ -74,7 +74,7 @@ class ColorController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\Backend\ColorStore $request, $id)
+    public function update(Request $request, $id)
     {
         $color = Color::find($id)->update($request->request->all());
 
