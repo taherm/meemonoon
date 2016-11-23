@@ -141,8 +141,6 @@ class DatabaseSeeder extends Seeder
             $this->command->info('Seeded the users!');
             $this->call(ContactusTableSeeder::class);
             $this->command->info('Seeded the side contactus!');
-            $this->call(TagsTableSeeder::class);
-            $this->command->info('tags seeded!');
             $this->command->info('Seeded the side tags!');
             $this->call(ColorsTableSeeder::class);
             $this->call(SizesTableSeeder::class);
