@@ -154,4 +154,8 @@ return array (
   'subscribe_to_our_news_letter' => 'النشرة البريدية اشتراك',
   'shopping_cart' => 'عربة التسوق',
   'size_select' => 'القياس',
+  'approximately' => 'approximately',
+  'checkout' => 'checkout',
+  'mail_sent' => 'Mail Sent',
+  'sale' => 'خصم',
 );

@@ -208,7 +208,7 @@
                                                         <option value="none">{{ trans('general.size_select') }}</option>
                                                         @foreach($product->product_attributes->unique('size') as $attribute)
                                                             @if($attribute->qty > 0)
-                                                                <option value="{{$attribute->size->id}}">{{$attribute->size->size}}</option>
+                                                                <option value="{{$attribute->size->id}}">{{$attribute->size->name}}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>
@@ -226,7 +226,7 @@
                                             <input id="size_attribute" value="not-found" style="display: none;">
                                         @endif
                                         @if($product->product_attributes->unique('color')->contains(function ($value, $key) {
-                                                return ($value->color->color != 'none' AND $value->qty > 0);
+                                                return ($value->color->name != 'none' AND $value->qty > 0);
                                             }))
                                             <div class="quick-add-to-cart">
                                                 <div>
@@ -239,7 +239,7 @@
 
                                                         @foreach($product->product_attributes->unique('color') as $attribute)
                                                             @if($attribute->qty > 0)
-                                                                <option value="{{$attribute->color->id}}">{{$attribute->color->color}}</option>
+                                                                <option value="{{$attribute->color->id}}">{{$attribute->color->name}}</option>
                                                             @endif
                                                         @endforeach
                                                     </select>

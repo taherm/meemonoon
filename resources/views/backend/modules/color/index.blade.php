@@ -6,7 +6,8 @@
             <thead>
             <tr>
                 <th> id</th>
-                <th>name</th>
+                <th>name_ar</th>
+                <th>name_en</th>
                 <th>edit</th>
             </tr>
             </thead>
@@ -14,7 +15,8 @@
             @foreach($colors as $color)
                 <tr>
                     <td> {{$color->id}}</td>
-                    <td> {{$color->color}} </td>
+                    <td> {{$color->name_ar }} </td>
+                    <td> {{$color->name_en }} </td>
                     <td>
                         <a href="{{ route('backend.color.edit',$color->id) }}"
                            class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i> Edit

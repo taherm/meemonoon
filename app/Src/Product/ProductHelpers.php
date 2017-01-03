@@ -59,8 +59,7 @@ trait ProductHelpers
     public function getSizesAttribute()
     {
         return $this->product_attributes->map(function ($item) {
-//            dd($item);
-            return $item->size;
+            return $item->name;
         });
     }
 
@@ -71,7 +70,7 @@ trait ProductHelpers
     public function getColorsAttribute()
     {
         return $this->product_attributes->map(function ($item) {
-            return $item->color;
+            return $item->name;
         });
     }
 }

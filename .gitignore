@@ -10,7 +10,6 @@ Homestead.json
 /metronic_v4.5.6/
 /public/img/uploads/*
 /public/trumbowyg/*
-
 /public/fonts/cairo/*
 database/migrations/_______currencies_table
 composer.lock

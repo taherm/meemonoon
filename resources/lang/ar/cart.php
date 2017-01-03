@@ -18,4 +18,5 @@ return array (
   'update_shopping_cart' => 'تحديث عربة التسوق',
   'updated' => 'تم التحديث',
   'use_coupon' => 'استخدم كوبون',
+  'clear_cart' => 'الغاء عربة التسوق',
 );

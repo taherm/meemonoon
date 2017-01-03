@@ -55,14 +55,14 @@
                 <td>
                     <select name="size_id" class="form-control">
                         @foreach($sizes as $size)
-                            <option value="{{ $size->id }}" {{ (isset($productAttribute) && $productAttribute->size_id === $size->id) ? 'selected' : null }}>{{ $size->size }}</option>
+                            <option value="{{ $size->id }}" {{ (isset($productAttribute) && $productAttribute->size_id === $size->id) ? 'selected' : null }}>{{ $size->name }}</option>
                         @endforeach
                     </select>
                 </td>
                 <td>
                     <select name="color_id" class="form-control">
                         @foreach($colors as $color)
-                            <option value="{{ $color->id }}" {{ (isset($productAttribute) &&$productAttribute->color_id === $color->id) ? 'selected' : null }}>{{ $color->color }}</option>
+                            <option value="{{ $color->id }}" {{ (isset($productAttribute) &&$productAttribute->color_id === $color->id) ? 'selected' : null }}>{{ $color->name }}</option>
                         @endforeach
                     </select>
                 </td>

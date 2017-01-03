@@ -37,7 +37,7 @@ class SizeController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Requests\Backend\SizeStore $request)
     {
         Size::create($request->request->all());
         return redirect()->route('backend.size.index')->with('success', 'size created');
