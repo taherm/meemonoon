@@ -16,7 +16,6 @@
                 <th>amount</th>
                 <th>sale_amount</th>
                 <th>net_amount</th>
-                <th>address</th>
                 <th>created_at</th>
                 <th>details</th>
             </tr>
@@ -35,7 +34,6 @@
                     <td>{{ $order->amount}}</td>
                     <td>{{ $order->sale_amount}}</td>
                     <td>{{ $order->net_amount}}</td>
-                    <td>{{ $order->address}}</td>
                     <td>{{ $order->created_at->diffForHumans()}}</td>
                     <td>
                         <a href="{{ route('backend.order.show',$order->id) }}" class="btn btn-outline btn-circle dark btn-xs green"><i

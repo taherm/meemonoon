@@ -5,7 +5,7 @@
         <!-- BEGIN LOGO -->
         <div class="page-logo">
             <a href="{{url('backend')}}">
-                <img src="{{asset('meem/backend/img/meem-logo3.png')}}" alt="logo" class="logo-default" /> </a>
+                <img src="{{asset('meem/frontend/img/logo/footerlogo.jpeg')}}" width="100" alt="logo" class="logo-default" style="margin: 5px;padding-left: 15px;margin-left: 25px;" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>

@@ -14,15 +14,15 @@
                     <div class="price-box">
                         @if($product->product_meta->on_sale)
                             <span class="old-price">
-                                    {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency(),false) }}
-                                {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                                    {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency('KWD'),false) }}
+                                {{ currency()->getCurrency('KWD')[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
-                            <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false)}}
-                                {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                            <span class="new-price">{{ currency($product->product_meta->sale_price,'KWD',currency()->getUserCurrency('KWD'),false)}}
+                                {{ currency()->getCurrency('KWD')[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                         @else
-                            <span class="new-price">{{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                {{ currency()->getCurrency(session()->get('currency'))[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
+                            <span class="new-price">{{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency('KWD'),false) }}
+                                {{ currency()->getCurrency('KWD')[ app()->getLocale() === 'ar' ? 'symbol' : 'code'] }}
                                 </span>
                         @endif
                     </div>
