@@ -133,12 +133,12 @@
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
                                         <span class="old-price">
-                                            {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                            {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency('KWD'),false) }}
+                                            {{ currency()->getCurrency('KWD')['code'] }}
                                         </span>
                                         <span class="new-price">
-                                            {{ currency($product->product_meta->sale_price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                            {{ currency($product->product_meta->sale_price,'KWD',currency()->getUserCurrency('KWD'),false) }}
+                                            {{ currency()->getCurrency('KWD')['code'] }}
                                         </span>
                                         @if(Currency::getCurrency(session()->get('currency')) != 'KWD')
                                             <div>
@@ -157,8 +157,8 @@
                                         @endif
                                     @else
                                         <span class="new-price">
-                                        {{ currency($product->product_meta->price,'KWD',session()->get('currency'),false) }}
-                                            {{ currency()->getCurrency(session()->get('currency'))['code'] }}
+                                        {{ currency($product->product_meta->price,'KWD',currency()->getUserCurrency('KWD'),false) }}
+                                            {{ currency()->getCurrency('KWD')['code'] }}
                                         </span>
                                         @if(currency()->getCurrency(session()->get('currency')) != 'KWD')
                                             <div>
