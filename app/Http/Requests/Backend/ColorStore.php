@@ -26,7 +26,8 @@ class ColorStore extends FormRequest
     {
         return [
             'name_ar' => 'required|min:2|unique:colors,name_ar',
-            'name_en' => 'required|min:2|unique:colors,name_en'
+            'name_en' => 'required|min:2|unique:colors,name_en',
+//            'code' => 'required|string|unique:colors,code'
         ];
     }
 }

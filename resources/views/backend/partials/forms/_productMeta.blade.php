@@ -79,11 +79,11 @@
 
     @include('backend.partials.forms._productSale')
 
-    <div class="row">
-        <div class="col-lg-12 col-lg-push-10">
-            {{ Form::submit('submit',['class' => 'btn btn-outlined btn-primary btn-circle']) }}
-        </div>
+
+    <div class="col-lg-12 col-lg-push-10">
+        {{ Form::submit('submit',['class' => 'btn btn-outlined btn-primary btn-circle']) }}
     </div>
+
 
 </div>
 

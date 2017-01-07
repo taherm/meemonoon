@@ -131,7 +131,8 @@ class CategoryController extends PrimaryController
 
             array_push($colorCounter,
                 [
-                    'color' => $color->color,
+                    'name' => $color->name,
+                    'code' => $color->code,
                     'color_id' => $color->id,
                     'color_counter' => count($products->colorcounter($color->id))
                 ]

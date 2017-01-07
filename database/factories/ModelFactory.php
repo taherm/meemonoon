@@ -204,7 +204,8 @@ $factory->define(Color::class, function (Faker\Generator $faker) {
         'name_en' => $faker->unique()->randomElement(['red', 'white', 'orange', 'green', 'none']),
         'name_ar' => function ($array) {
             return $array['name_en'];
-        }
+        },
+        'code' => $faker->hexColor
     ];
 });
 

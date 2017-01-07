@@ -7,9 +7,9 @@
 @section('panel-title','ProductMeta')
 
 @section('content')
-
-    @include('backend.partials.forms._productMeta')
-
+    <div class="col-lg-12">
+        @include('backend.partials.forms._productMeta')
+    </div>
 @endsection
 
 @section('scripts')

@@ -22,7 +22,7 @@
             @foreach($products as $product)
                 <tr>
                     <td> {{ $product->id }} </td>
-                    <td> {{ $product->sku }} </td>
+                    <td> {{ str_limit($product->sku,10) }} </td>
                     <td> {{$product->name}} </td>
                     <td> {{$product->product_meta->price}} </td>
                     <td> {{$product->product_meta->sale_price}} </td>
