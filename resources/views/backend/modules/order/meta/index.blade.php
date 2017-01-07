@@ -71,6 +71,10 @@
         <div class="col-md-6">
             <div class="well">
                 <div class="row static-info align-reverse">
+                    <div class="col-md-8 name"> Shipping Address :</div>
+                    <div class="col-md-3 value"> {{ $order->address or 'No Address' }} </div>
+                </div>
+                <div class="row static-info align-reverse">
                     <div class="col-md-8 name"> Status :</div>
                     <div class="col-md-3 value"> {{ $order->status }} </div>
                 </div>
