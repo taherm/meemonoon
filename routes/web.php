@@ -138,6 +138,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('ad', 'AdController');
     Route::resource('order', 'OrderController', ['except' => ['destroy']]);
     Route::get('order/change/{id}/{status}', ['as' => 'order.status.change', 'uses' => 'OrderController@changeStatus']);
+    Route::post('order/search', ['as' => 'order.search', 'uses' => 'OrderController@ordersBetweenDates']);
     Route::post('order/ship', ['as' => 'order.shipped', 'uses' => 'OrderController@addOrderTrackId']);
     Route::get('currency', ['as' => 'currency.index', 'uses' => 'CurrencyController@index']);
     Route::get('currency/update', ['as' => 'currency.update', 'uses' => 'CurrencyController@updateRates']);

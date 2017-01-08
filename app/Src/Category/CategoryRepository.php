@@ -31,6 +31,11 @@ class CategoryRepository extends PrimaryRepository
         return $this->model->where('parent_id', '!=', 0)->with('parent')->get();
     }
 
+    public function getOnlyChildrenCategories($id)
+    {
+        return $this->model->where('parent_id', $id)->count();
+    }
+
     /**
      * Add New Category
      *

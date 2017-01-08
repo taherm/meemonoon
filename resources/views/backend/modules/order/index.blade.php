@@ -1,6 +1,19 @@
 @extends('backend.layouts.master')
 
 @section('content')
+    <div class="form-group" style="padding-bottom: 50px;">
+        {!! Form::open(['route' => 'backend.order.search','method'=>'POST']) !!}
+            <label class="control-label col-md-1">Select date</label>
+            <div class="col-md-4">
+                <div class="input-group input-large date-picker input-daterange" data-date="10/11/2012" data-date-format="mm/dd/yyyy" style="float: left;padding-right: 10px;">
+                    <input type="text" class="form-control" name="from">
+                    <span class="input-group-addon"> to </span>
+                    <input type="text" class="form-control" name="to">
+                </div>
+                <input type="submit" value="Update" class="form-control" style="width:20%;">
+            </div>
+        {!! Form::close() !!}
+    </div>
     <div class="table-container">
         <table class="table table-striped table-bordered table-hover" id="currencies">
             <thead>

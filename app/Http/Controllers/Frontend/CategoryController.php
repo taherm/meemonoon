@@ -88,7 +88,9 @@ class CategoryController extends PrimaryController
 
         $queryString = $filters->request->getQueryString();
 
-        return view('frontend.modules.category.index', compact('category', 'products', 'productsCounter', 'perPage', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories'));
+        $childrenCategoryFlag = $this->categoryRepository->getOnlyChildrenCategories($parentId);
+
+        return view('frontend.modules.category.index', compact('category', 'products', 'productsCounter', 'perPage', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories', 'childrenCategoryFlag'));
     }
 
     /**

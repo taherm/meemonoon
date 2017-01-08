@@ -184,7 +184,7 @@
                                                          src="{{asset('meem/frontend/img/footer/cash-icon.png')}}"
                                                          alt=""></a></li>
                                 @else
-                                    <li><a href="#"><img style="width: 35px; height : auto;"
+                                    <li><a href="#"><img style="width: 80px; height : auto;"
                                                          src="{{asset('meem/frontend/img/footer/payment.png')}}" alt=""></a>
                                     </li>
                                 @endif
