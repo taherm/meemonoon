@@ -278,6 +278,12 @@
                             <span class="title">add size</span>
                         </a>
                     </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('backend.chart.index') }}" class="nav-link ">
+                            <i class="icon-plus"></i>
+                            <span class="title">size charts</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="heading">

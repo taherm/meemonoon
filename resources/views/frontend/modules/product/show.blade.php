@@ -6,7 +6,8 @@
             <div class="row">
                 <div class="shop-head">
                     <ul class="shop-head-menu">
-                        <li><i class="fa fa-home"></i><a class="home" href="{{ url('/') }}"><span>{{ trans('general.home') }}</span></a>
+                        <li><i class="fa fa-home"></i><a class="home"
+                                                         href="{{ url('/') }}"><span>{{ trans('general.home') }}</span></a>
                         </li>
                         <li>{{ $product->name }}</li>
                     </ul>
@@ -62,7 +63,8 @@
                                         <div id="single-product" class="owl-carousel custom-carousel">
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="active"><a href="#p-view-1" role="tab" data-toggle="tab">
-                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}" width="100" height="100" alt="productd"></a>
+                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
+                                                             width="100" height="100" alt="productd"></a>
                                                 </li>
                                             </ul>
                                             <div style="display: none;">
@@ -85,7 +87,8 @@
                                                 <ul class="nav nav-tabs" role="tablist">
                                                     <li class="active last-li">
                                                         <a href="{{'#p-view-1'}}" role="tab" data-toggle="tab">
-                                                            <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}" width="100" height="100" alt="productd">
+                                                            <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
+                                                                 width="100" height="100" alt="productd">
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -176,7 +179,8 @@
                                 @if($product->totalQty > 0)
                                     <p class="availability in-stock">Availability: <span>In stock</span></p>
                                 @else
-                                    <p class="availability in-stock">Availability: <span style="color: #ff0000;">Out stock</span></p>
+                                    <p class="availability in-stock">Availability: <span style="color: #ff0000;">Out stock</span>
+                                    </p>
                                 @endif
                                 <p class="availability in-stock">
                                     @if(currency()->getCurrency(session()->get('currency')) == 'KWD')
@@ -199,19 +203,22 @@
                                                     return ($value->size->size != 'none' AND $value->qty > 0);
                                                 }))
                                             <div class="quick-add-to-cart">
-                                                <div>
+                                                <div class="col-lg-6">
                                                     <div>{{ trans('general.size') }}</div>
                                                 </div>
-                                                <div>
-                                                    <select class="input-text qty"
-                                                            name="size" id="size">
-                                                        <option value="none">{{ trans('general.size_select') }}</option>
-                                                        @foreach($product->product_attributes->unique('size') as $attribute)
-                                                            @if($attribute->qty > 0)
-                                                                <option value="{{$attribute->size->id}}">{{$attribute->size->name}}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6">
+
+                                                        <select class="input-text qty"
+                                                                name="size" id="size">
+                                                            <option value="none">{{ trans('general.size_select') }}</option>
+                                                            @foreach($product->product_attributes->unique('size') as $attribute)
+                                                                @if($attribute->qty > 0)
+                                                                    <option value="{{$attribute->size->id}}">{{$attribute->size->name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                     {{--Size Chart Image Table will only Show if the parent category not limited--}}
                                                     @if(!$product->parent()->first()->limited)
                                                         <a href="#" data-toggle="modal" data-target="#imagemodal"
@@ -221,7 +228,7 @@
                                                     @endif
                                                 </div>
                                             </div>
-                                                <input id="size_attribute" value="found" style="display: none;">
+                                            <input id="size_attribute" value="found" style="display: none;">
                                         @else
                                             <input id="size_attribute" value="not-found" style="display: none;">
                                         @endif
@@ -229,20 +236,26 @@
                                                 return ($value->color->name != 'none' AND $value->qty > 0);
                                             }))
                                             <div class="quick-add-to-cart">
-                                                <div>
-                                                    <div>{{ trans('general.color') }}</div>
-                                                </div>
-                                                <div>
-                                                    <select class="input-text qty" name="color"
-                                                            id="color">
-                                                        <option value="none">{{ trans('general.select_color') }}</option>
+                                                <div class="col-lg-6">{{ trans('general.color') }}</div>
+                                                <div class="col-lg-12">
+                                                    <div class="col-lg-6">
+                                                        <select class="input-text qty" name="color"
+                                                                id="color">
+                                                            <option value="none">{{ trans('general.select_color') }}</option>
 
+                                                            @foreach($product->product_attributes->unique('color') as $attribute)
+                                                                @if($attribute->qty > 0)
+                                                                    <option value="{{$attribute->color->id}}">{{$attribute->color->name}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-6">
                                                         @foreach($product->product_attributes->unique('color') as $attribute)
-                                                            @if($attribute->qty > 0)
-                                                                <option value="{{$attribute->color->id}}">{{$attribute->color->name}}</option>
-                                                            @endif
+                                                            <div class="col-lg-1"
+                                                                 style="border: 1px solid lightgrey; min-height : 30px; margin: 3px; background-color : {!! $attribute->color->code !!}"></div>
                                                         @endforeach
-                                                    </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <input id="color_attribute" value="found" style="display: none;">
@@ -250,21 +263,21 @@
                                             <input id="color_attribute" value="not-found" style="display: none;">
                                         @endif
 
-                                            <div class="quick-add-to-cart">
-                                                {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
-                                                {{--$product->product_attributes->random()->id--}}
-                                                {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
-                                                {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
-                                                <div class="qty-button">
-                                                    <input type="text" class="input-text qty" title="Qty" value="1"
-                                                           maxlength="3" id="quantity" name="quantity"
-                                                           style="height: 42px;">
-                                                    <input type="hidden" id="max_qty" value="1"/>
-                                                    <div class="box-icon button-plus">
-                                                        <input id="increaseQty" type="button" class="qty-increase "
-                                                               value="+"
-                                                               style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
-                                                               disabled>
+                                        <div class="quick-add-to-cart">
+                                            {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
+                                            {{--$product->product_attributes->random()->id--}}
+                                            {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
+                                            {!! Form::hidden('product_attribute_id','', ['id' => 'productAttributeId']) !!}
+                                            <div class="qty-button">
+                                                <input type="text" class="input-text qty" title="Qty" value="1"
+                                                       maxlength="3" id="quantity" name="quantity"
+                                                       style="height: 42px;">
+                                                <input type="hidden" id="max_qty" value="1"/>
+                                                <div class="box-icon button-plus">
+                                                    <input id="increaseQty" type="button" class="qty-increase "
+                                                           value="+"
+                                                           style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
+                                                           disabled>
                                                 </div>
                                                 <div class="box-icon button-minus">
                                                     <input id="decreaseQty" type="button" class="qty-decrease"
@@ -284,27 +297,27 @@
                                             {!! Form::close() !!}
                                         </div>
                                     </div>
-                                        <!-- Add to cart end -->
-                                    </div>
-                                @endif
+                                    <!-- Add to cart end -->
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <!-- End Single Product View Area -->
             </div>
-            <!-- End Single details Area -->
-
-            <!--product-Description-area start-->
-            @include('frontend.modules.product.partials.productDescription')
-                    <!--product-Description-area end-->
-
-            @if(!is_null($products) && $products->count() > 0)
-                    <!--related-products-area start-->
-            @include('frontend.modules.product.partials.product_carousel',['products'=>$products,'heading'=>'Related Products','backgroundColor'=>'#e7e7e7', 'cols' => 'col-lg-3 col-md-3 col-sm-3'])
-                    <!--related-products-area end-->
-            @endif
+            <!-- End Single Product View Area -->
         </div>
+        <!-- End Single details Area -->
+
+        <!--product-Description-area start-->
+        @include('frontend.modules.product.partials.productDescription')
+                <!--product-Description-area end-->
+
+        @if(!is_null($products) && $products->count() > 0)
+                <!--related-products-area start-->
+        @include('frontend.modules.product.partials.product_carousel',['products'=>$products,'heading'=>'Related Products','backgroundColor'=>'#e7e7e7', 'cols' => 'col-lg-3 col-md-3 col-sm-3'])
+                <!--related-products-area end-->
+        @endif
+    </div>
     </div>
     <!-- Single Product Area end -->
     <!-- Creates the bootstrap modal where the image will appear -->
@@ -371,7 +384,7 @@
                                 });
 
                                 if (!checkAttribute) {
-                                    if(color !== 'none'){
+                                    if (color !== 'none') {
                                         toastr.warning('Sorry Please Select Another Color', 'Please Select Another Color',
                                                 {
                                                     "closeButton": true,
@@ -427,7 +440,7 @@
                                     }
                                 });
                                 if (!checkAttribute) {
-                                    if(size !== 'none'){
+                                    if (size !== 'none') {
                                         toastr.warning('Sorry Please Select Another Size', 'Please Select Another Size',
                                                 {
                                                     "closeButton": true,
@@ -452,7 +465,7 @@
                                 } else {
                                     $('#productAttributeId').val(attributeId);
                                 }
-                            }).done(function(){
+                            }).done(function () {
                         if (enableCart) {
                             enableCartActions();
                         }

@@ -8,6 +8,7 @@
                 <th> id</th>
                 <th>name_ar</th>
                 <th>name_en</th>
+                <th>color</th>
                 <th>edit</th>
             </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <td> {{$color->id}}</td>
                     <td> {{$color->name_ar }} </td>
                     <td> {{$color->name_en }} </td>
+                    <td> <button style="background-color: {!! $color->code !!}" class="btn-sm"></button></td>
                     <td>
                         <a href="{{ route('backend.color.edit',$color->id) }}"
                            class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i> Edit

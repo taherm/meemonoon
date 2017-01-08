@@ -8,7 +8,8 @@
                 @foreach($colorCounter as $color)
                     <li class="{{ ($color['color_counter'] >= 1) ? 'hidden' : ''}}"><a
                                 href="?{{ $queryString }}&color={{ $color['color_id'] }}">
-                            {{ $color['color'] }}<span> ({{ count($color['color_counter']) }})</span>
+                            <button disabled style="background-color: {!! $color['code'] !!}; border: none; border-radius: 0" class="btn-sm"></button>
+                            {{ $color['name'] }} <span> ({{ count($color['color_counter']) }})</span>
                         </a></li>
                 @endforeach
                 @else
