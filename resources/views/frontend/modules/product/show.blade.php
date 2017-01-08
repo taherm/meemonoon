@@ -253,7 +253,7 @@
                                                     <div class="col-lg-6">
                                                         @foreach($product->product_attributes->unique('color') as $attribute)
                                                             <div class="col-lg-1"
-                                                                 style="min-height : 30px; margin: 3px; background-color : {!! $attribute->color->code !!}"></div>
+                                                                 style="border: 1px solid lightgrey; min-height : 30px; margin: 3px; background-color : {!! $attribute->color->code !!}"></div>
                                                         @endforeach
                                                     </div>
                                                 </div>
