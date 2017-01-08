@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
 use App\Core\Services\Image\PrimaryImageService;
+use App\Src\Gallery\Gallery;
 use App\Src\Product\ProductMeta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -36,7 +37,9 @@ class ProductMetaController extends PrimaryController
      */
     public function create()
     {
-        return view('backend.modules.product.meta.create')
+        $sizeCharts = Gallery::where(['galleryable_type' => 'size_chart'])->has('images')->get();
+
+        return view('backend.modules.product.meta.create', compact('sizeCharts'))
             ->with('warning', trans('general.message.warning.product_meta'));
     }
 
@@ -61,7 +64,10 @@ class ProductMetaController extends PrimaryController
                 $image = new PrimaryImageService();
                 $image = $image->CreateImage($request->file('size_chart_image'));
                 $request->request->add(['size_chart_image' => $image]);
+            } elseif ($request->has('size_chart')) {
+                $request->request->add(['size_chart_image' => $request->size_chart]);
             }
+            $request->request->remove('size_chart');
 
             $product = $this->productMeta->create($request->request->all());
 
@@ -99,8 +105,10 @@ class ProductMetaController extends PrimaryController
     {
         $productMeta = $this->productMeta->where('product_id', request()->product_id)->first();
 
+        $sizeCharts = Gallery::where(['galleryable_type' => 'size_chart'])->has('images')->get();
+
         if ($productMeta) {
-            return view('backend.modules.product.meta.create', compact('productMeta'));
+            return view('backend.modules.product.meta.create', compact('productMeta', 'sizeCharts'));
         }
         return redirect()->route('backend.meta.create', ['id' => $id])->with('warning', trans('general.messsage.warning.create_new'));
     }
@@ -129,7 +137,11 @@ class ProductMetaController extends PrimaryController
                 $image = new PrimaryImageService();
                 $image = $image->CreateImage($request->file('size_chart_image'));
                 $request->request->add(['size_chart_image' => $image]);
+            } else  {
+                $request->request->add(['size_chart_image' => $request->size_chart]);
             }
+
+            $request->request->remove('size_chart');
 
             $productMeta->update($request->request->all());
 

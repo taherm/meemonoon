@@ -147,6 +147,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('newsletter', 'NewsLetterController');
     Route::resource('color', 'ColorController', ['except' => 'destroy']);
     Route::resource('size', 'SizeController', ['except' => 'destroy']);
+    Route::resource('chart','SizeChartController');
 
     //Static Pages
     Route::get('pages', ['uses' => 'PageController@getAboutUs']);
