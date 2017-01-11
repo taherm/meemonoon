@@ -12,7 +12,7 @@
                                 {{--<img src="{{asset('meem/frontend/img/icons/ac-links.png')}}" alt="">--}}
                                 {{ trans('general.welcome') }}, {{  auth()->user()->firstname }}
                             </a>
-                            <ul style="left: 0px;">
+                            <ul style="left: 0px;" id="profile-list">
                                 @if(Auth::id() == 1)
                                     <li><a href="{{ url('/backend') }}">{{ trans('general.dashboard') }}</a></li>
                                 @endif

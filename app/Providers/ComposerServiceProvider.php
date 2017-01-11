@@ -31,6 +31,10 @@ class ComposerServiceProvider extends ServiceProvider
         view()->composer('auth.register',
             'App\Services\ViewComposerService@getAllCountriesList');
 
+        // getAllCountriesList for edit profile
+        view()->composer('frontend.modules.profile.edit',
+            'App\Services\ViewComposerService@getAllCountriesList');
+
         // slider
         view()->composer('frontend.partials.slider',
             'App\Services\ViewComposerService@getSliderItems');

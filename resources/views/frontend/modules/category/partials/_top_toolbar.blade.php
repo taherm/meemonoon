@@ -9,7 +9,7 @@
         <div class="sorter">
             <div class="sort-by">
                 <label>Sort By</label>
-                <select id="sort">
+                <select id="sort" style="height: auto;">
                     <option value="position">{{ trans('general.position') }}</option>
                     <option value="name">{{ trans('general.name') }}</option>
                     <option value="price">{{ trans('general.price') }}</option>
