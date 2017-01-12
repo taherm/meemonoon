@@ -18,7 +18,9 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <!-- Map area -->
                             <div class="map-area">
-                                <div id="googleMap" style="width:100%;height:410px;"></div>
+                                <div id="googleMap" style="width:100%;height:410px;">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.905730381179!2d47.99046772717284!3d29.373049321027096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf84a33dcae099%3A0x165185f48b750c50!2s86+St%2C+Kuwait+City%2C+Kuwait!5e0!3m2!1sen!2s!4v1484007617887" width="1150" height="410" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                </div>
                             </div><!-- End Map area -->
                         </div>
                     </div>
@@ -84,29 +86,29 @@
 @section('customScripts')
     @parent
     <!-- Google Map js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuU_0_uLMnFM-2oWod_fzC0atPZj7dHlU"></script>
-    <script>
-        function initialize() {
-            var mapOptions = {
-                zoom: 15,
-                scrollwheel: false,
-                center: new google.maps.LatLng(23.81033, 90.41252)
-            };
+    {{--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBuU_0_uLMnFM-2oWod_fzC0atPZj7dHlU"></script>--}}
+    {{--<script>--}}
+        {{--function initialize() {--}}
+            {{--var mapOptions = {--}}
+                {{--zoom: 15,--}}
+                {{--scrollwheel: false,--}}
+                {{--center: new google.maps.LatLng(29.3730493,47.9904677)--}}
+            {{--};--}}
 
-            var map = new google.maps.Map(document.getElementById('googleMap'),
-                    mapOptions);
+            {{--var map = new google.maps.Map(document.getElementById('googleMap'),--}}
+                    {{--mapOptions);--}}
 
 
-            var marker = new google.maps.Marker({
-                position: map.getCenter(),
-                animation:google.maps.Animation.BOUNCE,
-                icon: '/img/logo/map-marker.png',
-                map: map
-            });
+            {{--var marker = new google.maps.Marker({--}}
+                {{--position: map.getCenter(),--}}
+                {{--animation:google.maps.Animation.BOUNCE,--}}
+                {{--icon: '/img/logo/map-marker.png',--}}
+                {{--map: map--}}
+            {{--});--}}
 
-        }
+        {{--}--}}
 
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+        {{--google.maps.event.addDomListener(window, 'load', initialize);--}}
+    {{--</script>--}}
 
 @endsection

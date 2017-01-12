@@ -6,6 +6,7 @@ use App\Core\PrimaryController;
 use App\Mail\OrderShipped;
 use App\Src\Order\OrderRepository;
 use App\Src\User\UserRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -116,6 +117,13 @@ class OrderController extends PrimaryController
         Mail::to($order->user->email)->send($email);
 
         return redirect()->back()->with('success', 'status changed successfully');
+    }
+
+    public function ordersBetweenDates(Request $request)
+    {
+        $orders = $this->orderRepository->model->with('user', 'order_metas', 'country')->whereBetween('created_at', array(Carbon::createFromFormat('m/d/Y', $request->from)->toDateString(), Carbon::createFromFormat('m/d/Y', $request->to)->toDateString()))->orderBy('created_at','desc')->get();
+
+        return view('backend.modules.order.index', compact('orders'));
     }
 
     /**

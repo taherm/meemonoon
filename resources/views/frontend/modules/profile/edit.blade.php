@@ -64,6 +64,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                            <div class="col-md-12 col-sm-12">
+                                <label class="control-label pull-left">Country</label>
+
+                                {!! Form::select('country_id', $countriesList, null, array('class' => 'form-control')) !!}
+
+                                @if ($errors->has('country'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('country') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                             <div class="col-md-12 col-sm-12">
                                 <label class="control-label pull-left">City</label>

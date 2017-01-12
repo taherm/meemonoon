@@ -1,3 +1,4 @@
+@if($childrenCategoryFlag)
 <div class="single-layout">
     <div class="layout-title">
         <h4>{{ trans('general.subcategories') }}</h4>
@@ -23,7 +24,7 @@
         </ul>
     </div>
 </div>
-
+@endif
 
 {{--@if(count($category->children) > 0)--}}
 {{--<ul>--}}
