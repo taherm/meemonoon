@@ -38,14 +38,14 @@
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
-                {!! Form::text('description_en', (isset($category) ? $category->description_en : old('description_en')) ,['class' => 'form-control','required']) !!}
+                {!! Form::hidden('description_en', (isset($category) ? $category->description_en : old('description_en')) ,['class' => 'form-control','required']) !!}
             </div>
 
             <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
-                {!! Form::text('description_ar', (isset($category) ? $category->description_ar : old('description_ar')) ,['class' => 'form-control','required']) !!}
+                {!! Form::hidden('description_ar', (isset($category) ? $category->description_ar : old('description_ar')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
         <div class="form-group">
@@ -62,6 +62,10 @@
             <div class="col-md-1">
                 <label for="limited"><small>not limited</small></label>
                 {{ Form::radio('limited',0, $category->limited , ['class' => 'form-control']) }}
+            </div>
+            <div class="col-lg-5">
+                <p>Limited : when a category is limited , any order shipment that includes products related to such
+                    category will be limited only with 2 products (perfume category)</p>
             </div>
         </div>
 

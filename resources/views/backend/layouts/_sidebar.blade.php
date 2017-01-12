@@ -103,6 +103,8 @@
                             <i class="icon-tag"></i>
                             <span class="title">All tags</span>
                         </a>
+                    </li>
+                    <li class="nav-item  ">
                         <a href="{{ route('backend.tag.create') }}" class="nav-link ">
                             <i class="fa fa-plus-circle"></i>
                             <span class="title">create tag</span>
@@ -123,6 +125,8 @@
                             <i class="fa fa-th-list"></i>
                             <span class="title">All Categories</span>
                         </a>
+                    </li>
+                    <li class="nav-item  ">
                         <a href="{{ route('backend.category.create') }}" class="nav-link ">
                             <i class="fa fa-plus-circle"></i>
                             <span class="title">create category</span>
@@ -143,6 +147,8 @@
                             <i class="fa fa-th-list"></i>
                             <span class="title">All SubCategories</span>
                         </a>
+                    </li>
+                    <li class="nav-item  ">
                         <a href="{{ route('backend.subcategory.create') }}" class="nav-link ">
                             <i class="fa fa-plus-circle"></i>
                             <span class="title">create SubCategory</span>

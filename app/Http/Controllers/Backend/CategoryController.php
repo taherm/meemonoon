@@ -12,11 +12,13 @@ use Illuminate\Support\Facades\Cache;
 class CategoryController extends PrimaryController
 {
     protected $category;
+    protected $imageService;
 
 
-    public function __construct(CategoryRepository $category)
+    public function __construct(CategoryRepository $category, PrimaryImageService $imageService)
     {
         $this->category = $category;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -49,22 +51,24 @@ class CategoryController extends PrimaryController
      */
     public function store(CategoryCreate $request)
     {
-        if ($request->hasFile('image')) {
-            $image = new PrimaryImageService();
-            $image = $image->CreateImage($request->file('image'),['1','1'],['1','1'],['1000','250']);
+        try {
+            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+
             $request->request->add(['image' => $image]);
+
+            $category = $this->category->model->create($request->request->all());
+
+            if ($category) {
+
+                return redirect()->route('backend.category.index')->with('success', 'successfully created');
+
+            }
+
+            return redirect()->back()->with('error', 'not created !!')->withInputs();
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
         }
-
-        $category = $this->category->create($request->request->all());
-
-        if ($category) {
-
-            return redirect()->route('backend.category.index')->with('success', 'successfully created');
-
-        }
-
-        return redirect()->back()->with('error', 'not created !!');
-
     }
 
     /**
@@ -91,18 +95,19 @@ class CategoryController extends PrimaryController
     {
         if ($request->hasFile('image')) {
             $image = new PrimaryImageService();
-            $image = $image->CreateImage($request->file('image'),['1','1'],['1','1'],['1000','250']);
+            $image = $image->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
             $this->category->getById($id)->update(['image' => $image]);
         }
 
-        if ($this->category->getById($id)->update([
+        $category = $this->category->getById($id)->update([
             'name_en' => $request->name_en,
             'name_ar' => $request->name_ar,
             'description_en' => $request->description_en,
             'description_ar' => $request->description_ar,
             'limited' => $request->limited
-        ])
-        ) {
+        ]);
+
+        if ($category) {
             return redirect()->route('backend.category.index')->with('success', 'category updated!!');
         }
 

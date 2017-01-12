@@ -28,7 +28,7 @@ class CategoryCreate extends FormRequest
             'name_ar'        => 'required|unique:categories,name_ar',
             'description_en' => 'string',
             'description_ar' => 'string',
-            'image' => 'mimes:jpeg,jpg,png,gif,bmp',
+            'image' => 'required|mimes:jpeg,jpg,png,gif,bmp',
             'limited' => 'boolean|required'
         ];
     }
