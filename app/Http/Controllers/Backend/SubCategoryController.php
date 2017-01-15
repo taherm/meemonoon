@@ -40,7 +40,7 @@ class SubCategoryController extends PrimaryController
         $parentCategoriesOnly   = $this->category->getParentCategoriesOnly();
         $parentCategories       = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
 
-        return view('backend.modules.subcategory.edit', compact('parentCategories'));
+        return view('backend.modules.subcategory.create', compact('parentCategories'));
     }
 
     /**

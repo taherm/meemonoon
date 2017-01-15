@@ -30,7 +30,7 @@
                 {!! Form::text('name_en', null ,['class' => 'form-control','required']) !!}
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
             <label class="col-md-2 control-label">description english :
                 <span class="required">  </span>
             </label>

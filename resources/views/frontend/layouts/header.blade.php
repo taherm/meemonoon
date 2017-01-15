@@ -6,11 +6,10 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.partials._nav_left')
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                        <div class="logo">
-                            <a href="{{URL('/')}}" style="margin-top: -27%;"><img
-                                        src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}" alt=""
-                                        style="width: 83%;"></a>
+                    <div class="col-lg-4 col-md-4 col-sm-4" style="max-height: 73px;">
+                        <div class="logo" >
+                            <a href="{{URL('/')}}"><img style="width : 70%;"
+                                        src="{{asset('meem/frontend/img/logo/logomain.png')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">

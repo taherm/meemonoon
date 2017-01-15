@@ -6,8 +6,8 @@
             <thead>
             <tr>
                 <th> id</th>
-                <th> name</th>
-                <th> description</th>
+                <th> name ar</th>
+                <th> name en</th>
                 <th> edit</th>
                 <th> delete</th>
             </tr>
@@ -16,8 +16,8 @@
             @foreach($categories as $category)
                 <tr>
                     <td> {{$category->id}}</td>
+                    <td> {{$category->name_ar}} </td>
                     <td> {{$category->name_en}} </td>
-                    <td> {{$category->description_en}} </td>
                     <td>
                         <a href="{{ route('backend.category.edit',$category->id) }}"
                            class="btn btn-outline btn-circle green btn-sm purple"><i class="fa fa-edit"></i> Edit

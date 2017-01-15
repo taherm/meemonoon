@@ -19,21 +19,21 @@
     {{ Form::model($category,['route' => ['backend.category.update',$category->id],'method'=>'PATCH','files' => 'true','class' => 'form-horizontal']) }}
     <div class="form-body">
         <div class="form-group">
-            <label class="col-md-2 control-label">{{ trans('general.name') }}:
+            <label class="col-md-2 control-label"> name en:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
                 {!! Form::text('name_en', (isset($category) ? $category->name_en : old('name_en')) ,['class' => 'form-control','required']) !!}
             </div>
 
-            <label class="col-md-2 control-label">{{ trans('general.name') }}:
+            <label class="col-md-2 control-label"> name ar:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
                 {!! Form::text('name_ar', (isset($category) ? $category->name_ar : old('name_ar')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group hidden">
             <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>
             </label>
@@ -53,7 +53,7 @@
                 <label class="label" for="image" style="color: black;"> image
                     <small>1000*250</small>
                 </label>
-                {!! Form::file('image',['class' => 'form-control','required' => true ]) !!}
+                {!! Form::file('image',['class' => 'form-control' ]) !!}
             </div>
             <div class="col-md-1">
                 <label for="limited">limited</label>

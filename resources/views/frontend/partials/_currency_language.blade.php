@@ -5,7 +5,7 @@
             <li><a href="{{ url('/lang/en') }}">{{ trans('general.english') }}</a></li>
         </ul>
     </li>
-    <li class="currency"><span>{{trans('general.currencyCountry')}}</span> <img width="20" height="20"
+    <li class="currency"><span>{{trans('general.currency')}}</span> <img width="20" height="20"
                                                     src="{{asset('meem/frontend/img/flags/'.strtolower(currency()->getCurrency(session()->get('currency'))['code']).'.png')}}"
                                                     style="padding-right: 5px; padding-left: 3px;" id="main-currency-image"/><a
                 href="#" id="main-currency-code">{{currency()->getcurrency(session()->get('currency'))['code']}}</a>
