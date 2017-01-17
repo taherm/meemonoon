@@ -177,9 +177,9 @@
 
                                 </div>
                                 @if($product->totalQty > 0)
-                                    <p class="availability in-stock">Availability: <span>In stock</span></p>
+                                    <p class="availability in-stock">{{ trans('general.availability') }}: <span>In stock</span></p>
                                 @else
-                                    <p class="availability in-stock">Availability: <span style="color: #ff0000;">Out stock</span>
+                                    <p class="availability in-stock">{{ trans('general.availability') }} : <span style="color: #ff0000;">Out stock</span>
                                     </p>
                                 @endif
                                 <p class="availability in-stock">

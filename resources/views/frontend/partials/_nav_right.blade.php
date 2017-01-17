@@ -20,7 +20,7 @@
                                 <li><a href="/wishlist">{{ trans('general.my_wishlist') }}</a></li>
                                 <li><a href="/cart">{{ trans('general.shopping_cart') }}</a></li>
                                 <li><a href="/checkout">{{ trans('general.checkout') }}</a></li>
-                                <li>
+                                <li style="display: block;">
                                     <a href="{{ url('/logout') }}"
                                        onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
