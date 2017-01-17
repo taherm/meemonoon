@@ -19,6 +19,7 @@
             <thead>
             <tr>
                 <th>id</th>
+                <th>created_at</th>
                 <th>user_id</th>
                 <th>status</th>
                 <th>payment_method</th>
@@ -29,7 +30,6 @@
                 <th>amount</th>
                 <th>sale_amount</th>
                 <th>net_amount</th>
-                <th>created_at</th>
                 <th>details</th>
             </tr>
             </thead>
@@ -37,6 +37,7 @@
             @foreach($orders as $order)
                 <tr>
                     <td>{{ $order->id}}</td>
+                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
                     <td>{{ $order->user->fullName}}</td>
                     <td>{{ $order->status}}</td>
                     <td>{{ $order->payment_method}}</td>
@@ -47,7 +48,6 @@
                     <td>{{ $order->amount}}</td>
                     <td>{{ $order->sale_amount}}</td>
                     <td>{{ $order->net_amount}}</td>
-                    <td>{{ $order->created_at->diffForHumans()}}</td>
                     <td>
                         <a href="{{ route('backend.order.show',$order->id) }}" class="btn btn-outline btn-circle dark btn-xs green"><i
                                     class="fa fa-info-circle"></i></a>

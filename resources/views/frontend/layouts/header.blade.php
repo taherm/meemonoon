@@ -8,8 +8,8 @@
                     @include('frontend.partials._nav_left')
                     <div class="col-lg-4 col-md-4 col-sm-4" style="max-height: 73px;">
                         <div class="logo" >
-                            <a href="{{URL('/')}}"><img style="width : 70%;"
-                                        src="{{asset('meem/frontend/img/logo/logomain.png')}}" alt=""></a>
+                            <a href="{{URL('/')}}"><img class="img-responsive" style="width : 100%; height : auto;"
+                                        src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
