@@ -3,7 +3,7 @@
 return array (
   'clear_shopping_cart' => 'الغاء عربة التسوق',
   'continue_shopping' => 'استمرار التسوق',
-  'empty' => 'ازالة',
+  'empty' => 'لا يحتوي على أية منتجات',
   'enter_ur_destination' => 'اضف جهة الاستلام',
   'estimate_shipping_and_tax' => 'قيمة تقديرية للشحن والضريبة',
   'image' => 'صورة',
