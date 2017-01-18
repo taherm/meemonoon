@@ -26,6 +26,7 @@ class TagStore extends FormRequest
     {
         return [
             'name' => 'required|unique:tagging_tags,name|min:3|max:255|alpha_dash',
+            'name_en' => 'required|unique:tagging_tags,name|min:3|max:255|alpha_dash',
         ];
     }
 }

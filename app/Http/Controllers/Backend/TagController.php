@@ -23,7 +23,7 @@ class TagController extends PrimaryController
      */
     public function index()
     {
-        $tags = $this->tag->orderBy('id','desc')->get();
+        $tags = $this->tag->orderBy('id', 'desc')->get();
 
         return view('backend.modules.tag.index', compact('tags'));
     }
@@ -35,7 +35,7 @@ class TagController extends PrimaryController
      */
     public function create()
     {
-        return view('backend.modules.tag.edit');
+        return view('backend.modules.tag.create');
     }
 
     /**
@@ -48,7 +48,15 @@ class TagController extends PrimaryController
     {
         Cache::forget('tags');
 
-        $tag = $this->tag->create($request->except('_token', '_method'));
+        $tag = $this->tag->create([
+            'name' => $request->name,
+        ]);
+
+        if ($request->has('name_en')) {
+            $tag = $this->tag->create([
+                'name' => $request->name_en,
+            ]);
+        }
 
         if ($tag) {
 

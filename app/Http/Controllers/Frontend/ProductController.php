@@ -93,7 +93,7 @@ class ProductController extends PrimaryController
             $q->where('tag_name', '=', $tagName);
         })->paginate(9);
 
-        return view('frontend.modules.product.index', compact('products'));
+        return view('frontend.modules.tag.index', compact('products'));
     }
 
 

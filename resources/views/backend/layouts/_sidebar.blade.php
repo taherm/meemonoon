@@ -52,25 +52,12 @@
                             <span class="title">create product</span>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a href="{{ route('backend.product.index',['trashed'=>'1']) }}" class="nav-link ">
-                            <i class="fa fa-trash"></i>
-                            <span class="title">trashed products</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        <a href="{{route('backend.product.create')}}" class="nav-link ">
-                            <i class="icon-plus"></i>
-                            <span class="title">create product</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item  ">
-                        {{--<a href="ecommerce_orders_view.html" class="nav-link ">--}}
-                        {{--<i class="icon-basket"></i>--}}
-                        {{--<span class="title">Edit Product</span>--}}
+                    {{--<li class="nav-item ">--}}
+                        {{--<a href="{{ route('backend.product.index',['trashed'=>'1']) }}" class="nav-link ">--}}
+                            {{--<i class="fa fa-trash"></i>--}}
+                            {{--<span class="title">trashed products</span>--}}
                         {{--</a>--}}
-                    </li>
+                    {{--</li>--}}
 
                 </ul>
             </li>
