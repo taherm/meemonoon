@@ -6,33 +6,38 @@
     </label>
     <div class="col-md-10">
         <div class="form-control height-auto">
-            <div class="scroller" style="height:275px;"
+            <div class="scroller" style="min-height:300px;"
                  data-always-visible="1">
                 @foreach($categories as $category)
-                <div class="col-lg-4">
-                    <ul class="list-unstyled ">
-                        @if($category->parent_id == 0)
-                        <li>
-                            <label>
-                                {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false) !!}
-                                {{ $category->name }}
-                            </label>
-                            @if(count($category->children) > 0)
-                            <ul class="list-unstyled">
-                                @foreach($category->children as $child)
+                    <div class="col-lg-4">
+                        <ul class="list-unstyled ">
+                            @if($category->parent_id == 0)
                                 <li>
                                     <label>
-                                        {!! Form::checkbox('categories[]',$child->id,(in_array($child->id,$categoriesList,true)) ? true : false) !!}
-                                        {{ $child->name }}
+                                        {!! Form::radio('parent_id',$category->id, (in_array($category->id,$categoriesList,true)) ? true : false) !!}
+                                        {{ $category->name }}
                                     </label>
+                                    @if(count($category->children) > 0)
+                                        <ul class="list-unstyled">
+                                            @foreach($category->children as $child)
+                                                <li>
+                                                    <label>
+                                                        {!! Form::checkbox('categories[]',$child->id,(in_array($child->id,$categoriesList,true)) ? true : false) !!}
+                                                        {{ $child->name }}
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </li>
-                                @endforeach
-                            </ul>
                             @endif
-                        </li>
-                        @endif
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                    @if(in_array($loop->index,[2,5,8,12]))
+                    <div class="col-lg-12">
+                        <hr>
+                    </div>
+                    @endif
                 @endforeach
 
             </div>
