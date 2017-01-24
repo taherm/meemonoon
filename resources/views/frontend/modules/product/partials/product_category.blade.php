@@ -14,11 +14,6 @@
                         <!-- single-product end -->
                         <div class="single-product">
                             <div class="product-details">
-                                <div class="product-name">
-                                    <h3>
-                                        <a href="{{ route('product.show',$product->id) }}">{{  str_limit($product->name, 20) }}</a>
-                                    </h3>
-                                </div>
                                 <div class="price-box">
                                     @if($product->product_meta->on_sale)
                                         <span class="old-price">
@@ -91,6 +86,13 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-name">
+                                    <h3>
+                                        <a href="{{ route('product.show',$product->id) }}">{{  str_limit($product->name, 20) }}</a>
+                                    </h3>
                                 </div>
                             </div>
                             <div class="add-to-cart" style="padding-top: 15px;">
