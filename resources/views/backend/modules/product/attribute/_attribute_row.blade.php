@@ -3,7 +3,7 @@
     <td>{{ $productAttribute->sizeName }}</td>
     <td>{{ $productAttribute->colorName }}</td>
     <td>{{ $productAttribute->qty }}</td>
-    <td>{{ $productAttribute->notes_en }}</td>
+    <td>{{ $productAttribute->notes_ar }}</td>
     <td>{{ $productAttribute->notes_en }}</td>
     <td>{{ Form::open(['route' => ['backend.attribute.edit',$productAttribute->id],'method' => 'GET']) }}
         {{ Form::hidden('product_id',$productAttribute->product_id) }}

@@ -98,7 +98,6 @@ class ProductAttributeController extends PrimaryController
      */
     public function update(Request $request, $id)
     {
-//        dd(request()->product_id);
         $productAttribute = ProductAttribute::whereId($id)->update($request->except(['_token', '_method']));
 
         $productAttributes = $this->productAttribute->where('product_id', request()->product_id)->get();
