@@ -98,15 +98,16 @@ class ProductAttributeController extends PrimaryController
      */
     public function update(Request $request, $id)
     {
+//        dd(request()->product_id);
         $productAttribute = ProductAttribute::whereId($id)->update($request->except(['_token', '_method']));
 
         $productAttributes = $this->productAttribute->where('product_id', request()->product_id)->get();
 
-        $product = $this->productRepository->model->whereId(request()->product_id)->first();
+//        $product = $this->productRepository->model->whereId(request()->product_id)->first();
 
 //        return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
 
-        return redirect()->route('backend.attribute.index')->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
+        return redirect()->route('backend.attribute.index',['product_id' => request()->product_id])->with('success' , 'attribute saved');
     }
 
     /**
