@@ -4,6 +4,7 @@
                id="datatable_sales">
             <thead>
             <tr role="row" class="heading">
+                <th>id</th>
                 <th>size</th>
                 <th>color</th>
                 <th>quantity</th>
@@ -13,6 +14,7 @@
             </tr>
             @foreach($productAttributes as $productAttribute)
                 <tr role="row" class="filter">
+                    <td>{{ $productAttribute->id }}</td>
                     <td>{{ $productAttribute->sizeName }}</td>
                     <td>{{ $productAttribute->colorName }}</td>
                     <td>{{ $productAttribute->qty }}</td>

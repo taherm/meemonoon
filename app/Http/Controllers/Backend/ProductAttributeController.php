@@ -62,7 +62,7 @@ class ProductAttributeController extends PrimaryController
 
         ProductAttribute::create($request->except(['_token', '_method']));
 
-        return redirect()->to('/backend/products')->with(['success' => 'product completely saved']);
+        return redirect()->to('backend/product')->with(['success' => 'product completely saved']);
     }
 
     /**
@@ -100,7 +100,13 @@ class ProductAttributeController extends PrimaryController
     {
         $productAttribute = ProductAttribute::whereId($id)->update($request->except(['_token', '_method']));
 
-        return redirect()->route('backend.attribute.index', ['product_id' => $request->product_id])->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
+        $productAttributes = $this->productAttribute->where('product_id', request()->product_id)->get();
+
+        $product = $this->productRepository->getById(request()->product_id);
+
+        return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
+
+//        return redirect()->route('backend.attribute.index')->with(['product_id' => $request->product_id])->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
     }
 
     /**
