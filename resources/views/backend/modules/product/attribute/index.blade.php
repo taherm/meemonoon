@@ -15,6 +15,7 @@
                id="datatable_history">
             <thead>
             <tr role="row" class="heading">
+                <th width="10%"> id</th>
                 <th width="10%"> Size</th>
                 <th width="10%"> Color</th>
                 <th width="10%"> Quantity</th>

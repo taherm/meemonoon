@@ -1,4 +1,5 @@
 <tr role="row" class="filter">
+    <td>{{ $productAttribute->id }}</td>
     <td>{{ $productAttribute->sizeName }}</td>
     <td>{{ $productAttribute->colorName }}</td>
     <td>{{ $productAttribute->qty }}</td>

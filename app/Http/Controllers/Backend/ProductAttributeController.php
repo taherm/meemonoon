@@ -46,7 +46,7 @@ class ProductAttributeController extends PrimaryController
 
         $productAttributes = $this->productAttribute->where('product_id', request()->product_id)->get();
 
-        $product = $this->productRepository->getById(request()->product_id);
+        $product = $this->productRepository->model->whereId(request()->product_id)->first();
 
         return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
     }
@@ -104,9 +104,9 @@ class ProductAttributeController extends PrimaryController
 
         $product = $this->productRepository->getById(request()->product_id);
 
-        return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
+//        return view('backend.modules.product.attribute.create', compact('product', 'productAttributes', 'sizes', 'colors'));
 
-//        return redirect()->route('backend.attribute.index')->with(['product_id' => $request->product_id])->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
+        return redirect()->route('backend.attribute.index')->with(['product_id' => $request->product_id])->with(['success' => 'attribute saved', 'product_id' => request()->product_id]);
     }
 
     /**
