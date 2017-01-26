@@ -28,7 +28,7 @@ class CategoryController extends PrimaryController
      */
     public function index()
     {
-        $categories = $this->category->getParentCategoriesWithChildren();
+        $categories = $this->category->model->where('parent_id', 0)->get();
 
         return view('backend.modules.category.index', compact('categories'));
     }

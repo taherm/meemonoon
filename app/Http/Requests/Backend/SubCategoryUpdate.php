@@ -24,11 +24,12 @@ class SubCategoryUpdate extends FormRequest
     public function rules()
     {
         return [
-            'name_en'           => 'required|unique:categories,name_en,'.$this->subcategory,
-            'name_ar'           => 'required|unique:categories,name_ar,'.$this->subcategory,
+            'name_en'           => 'required',
+            'name_ar'           => 'required',
             'description_en'    => 'string',
             'description_ar'    => 'string',
-            'parentCategory'    => 'required'
+            'parent_id'    => 'required',
+            'image' => 'mimes:jpeg,bmp,png',
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
+use App\Core\Services\Image\PrimaryImageService;
 use App\Src\Category\CategoryRepository;
 use App\Http\Requests\Backend\SubCategoryUpdate;
 use App\Http\Requests\Backend\SubCategoryCreate;
@@ -11,11 +12,12 @@ use Illuminate\Support\Facades\Cache;
 class SubCategoryController extends PrimaryController
 {
     protected $category;
+    protected $imageService;
 
-
-    public function __construct(CategoryRepository $category)
+    public function __construct(CategoryRepository $category, PrimaryImageService $imageService)
     {
         $this->category = $category;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -37,8 +39,8 @@ class SubCategoryController extends PrimaryController
      */
     public function create()
     {
-        $parentCategoriesOnly   = $this->category->getParentCategoriesOnly();
-        $parentCategories       = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
+        $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
+        $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
 
         return view('backend.modules.subcategory.create', compact('parentCategories'));
     }
@@ -51,15 +53,26 @@ class SubCategoryController extends PrimaryController
      */
     public function store(SubCategoryCreate $request)
     {
-        $subCategory = $this->category->createSubCategory($request->except('_token', '_method'));
 
-        if ($subCategory) {
+        try {
+            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
 
-            return redirect()->route('backend.subcategory.index')->with('success', 'successfully created');
+            $request->request->add(['image' => $image]);
 
+            $subCategory = $this->category->model->create($request->request->all());
+
+            if ($subCategory) {
+
+                return redirect()->route('backend.subcategory.index')->with('success', 'successfully created');
+
+            }
+
+            return redirect()->back()->with('error', 'not created !!');
+
+        } catch (\Exception $e) {
+
+            dd($e->getMessage());
         }
-
-        return redirect()->back()->with('error', 'not created !!');
 
     }
 
@@ -71,10 +84,10 @@ class SubCategoryController extends PrimaryController
      */
     public function edit($id)
     {
-        $subcategory            = $this->category->getById($id);
-        $parentCategoriesOnly   = $this->category->getParentCategoriesOnly();
+        $subcategory = $this->category->getById($id);
+        $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
 
-        $parentCategories       = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
+        $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
 
         return view('backend.modules.subcategory.edit', compact('subcategory', 'parentCategories'));
     }
@@ -88,18 +101,36 @@ class SubCategoryController extends PrimaryController
      */
     public function update(SubCategoryUpdate $request, $id)
     {
-        if ($this->category->getById($id)->update([
-            'name_en' => $request->name_en,
-            'name_ar' => $request->name_ar,
-            'description_en' => $request->description_en,
-            'description_ar' => $request->description_ar,
-            'parent_id' => $request->parentCategory
-        ])) {
-            return redirect()->route('backend.subcategory.index')->with('success', 'subcategory updated!!');
+        $subcategory = $this->category->model->whereId($id)->first();
 
+//        dd($subcategory);
+
+        try {
+
+            if ($request->hasFile('image')) {
+
+                $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+
+//                dd($image);
+
+                $subcategory->update(['image' => $image]);
+
+            }
+
+
+            $subcategory->update($request->except('_method', '_token', 'image'));
+
+
+            if ($subcategory) {
+
+                return redirect()->route('backend.subcategory.index')->with('success', 'subcategory updated!!');
+
+            }
+            return redirect()->back()->with('error', 'sub category not saved');
+
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
-
-        return redirect()->back()->with('error', 'not saved !!');
 
     }
 
@@ -112,8 +143,7 @@ class SubCategoryController extends PrimaryController
     public function destroy($id)
     {
         //check if category not assigned to any of products
-        if($this->category->getById($id)->products->count() > 0)
-        {
+        if ($this->category->getById($id)->products->count() > 0) {
             return redirect()->back()->with('error', 'SubCategory Assigned to Product!!');
         }
 

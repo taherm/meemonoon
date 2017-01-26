@@ -1,7 +1,7 @@
 @extends('backend.layouts.master')
 
 @section('content')
-        {{ Form::open(['route' => 'backend.subcategory.store','method'=>'POST','class'=>'form-horizontal']) }}
+    {{ Form::open(['route' => 'backend.subcategory.store','method'=>'POST','class'=>'form-horizontal','files' => true ]) }}
     <div class="form-body">
 
         <div class="form-group">
@@ -9,7 +9,7 @@
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
-                {!! Form::select('parentCategory', $parentCategories , (isset($subcategory->parent) ? $subcategory->parent['id'] : old('parentCategory')) ,['class' => 'form-control','required']) !!}
+                {!! Form::select('parent_id', $parentCategories , (isset($subcategory->parent) ? $subcategory->parent['id'] : old('parent_id')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
 
@@ -26,6 +26,15 @@
             </label>
             <div class="col-md-3">
                 {!! Form::text('name_ar', (isset($subcategory) ? $subcategory->name_ar : old('name_ar')) ,['class' => 'form-control','required']) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label class="label" for="image" style="color: black;"> image*
+                    <small>1000*250</small>
+                </label>
+                {!! Form::file('image',['class' => 'form-control','required' => true ]) !!}
             </div>
         </div>
 

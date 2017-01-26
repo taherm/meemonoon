@@ -33,6 +33,11 @@
                 {!! Form::text('name_ar', (isset($category) ? $category->name_ar : old('name_ar')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
+        <div class="form-group">
+            <div class="col-lg-3 pull-right">
+                <img src="{{ asset('img/uploads/large/'.$category->image) }}" alt="" class="img-responsive">
+            </div>
+        </div>
         <div class="form-group hidden">
             <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>

@@ -28,7 +28,8 @@ class SubCategoryCreate extends FormRequest
             'name_ar'           => 'required|unique:categories,name_ar',
             'description_en'    => 'string',
             'description_ar'    => 'string',
-            'parentCategory'    => 'required'
+            'parent_id'    => 'required',
+            'image' => 'required|mimes:jpeg,bmp,png,jpg',
         ];
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     @if(isset($subcategory))
-        {{ Form::model($subcategory,['route' => ['backend.subcategory.update',$subcategory->id],'method'=>'PATCH','files' => 'true','class' => 'form-horizontal']) }}
+        {{ Form::model($subcategory,['route' => ['backend.subcategory.update',$subcategory->id],'method'=>'PATCH','files' => true,'class' => 'form-horizontal']) }}
     @else
         {{ Form::open(['route' => 'backend.subcategory.store','method'=>'POST','class'=>'form-horizontal']) }}
     @endif
@@ -13,7 +13,7 @@
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
-                {!! Form::select('parentCategory', $parentCategories , (isset($subcategory->parent) ? $subcategory->parent['id'] : old('parentCategory')) ,['class' => 'form-control','required']) !!}
+                {!! Form::select('parent_id', $parentCategories , (isset($subcategory->parent) ? $subcategory->parent['id'] : old('parent_id')) ,['class' => 'form-control','required']) !!}
             </div>
         </div>
 
@@ -33,6 +33,19 @@
             </div>
         </div>
 
+        <div class="form-group">
+            <div class="col-lg-3 pull-right">
+                <img src="{{ asset('img/uploads/large/'.$subcategory->image) }}" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label class="label" for="image" style="color: black;"> image
+                    <small>1000*250</small>
+                </label>
+                {!! Form::file('image',['class' => 'form-control' ]) !!}
+            </div>
+        </div>
         <div class="form-group hidden">
             <label class="col-md-2 control-label">{{ trans('general.description') }}:
                 <span class="required"> * </span>
