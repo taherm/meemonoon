@@ -34,8 +34,9 @@
     {{ Form::hidden('MAX_FILE_SIZE','20971520') }}
     <div class="form-group" style="padding-top: 20px;">
         <div class="col-lg-12">
-            <div class="alert alert-danger">
-                <strong>Very Important!</strong> Image Size Must be 1920X759 .
+            <div class="alert alert-info">
+                <strong>Image Size Must be 1920X759.</strong></br>
+                <strong>URL must has the full path (with http://).</strong></br>
             </div>
         </div>
         <div class="col-lg-4">

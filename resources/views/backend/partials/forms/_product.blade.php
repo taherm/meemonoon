@@ -12,14 +12,14 @@ Create New Product
     @endif
     <div class="form-body">
         <div class="form-group">
-            <label class="col-md-2 control-label">name_ar:
+            <label class="col-md-2 control-label">name arabic:
                 <span class="required"> * </span>
             </label>
             <div class="col-md-3">
                 {!! Form::text('name_ar', old('name_ar') ,['class' => 'form-control','required']) !!}
             </div>
             <div class="form-group">
-                <label class="col-md-2 control-label">name_en:
+                <label class="col-md-2 control-label">name english:
                     <span class="required"> * </span>
                 </label>
                 <div class="col-md-3">

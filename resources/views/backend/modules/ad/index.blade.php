@@ -36,8 +36,8 @@
     {{ Form::hidden('MAX_FILE_SIZE','20971520') }}
     <div class="form-group" style="padding-top: 20px;">
         <div class="col-lg-12">
-            <div class="alert alert-danger">
-                <strong>Very Important!</strong> Image will be resized accordingly .
+            <div class="alert alert-info">
+                <strong>best fit 370*'550</strong>
             </div>
         </div>
         <div class="col-lg-4">

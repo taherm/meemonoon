@@ -263,7 +263,7 @@
                                             <input id="color_attribute" value="not-found" style="display: none;">
                                         @endif
 
-                                        <div class="quick-add-to-cart">
+                                        <div class="quick-add-to-cart col-lg-12">
                                             {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
                                             {{--$product->product_attributes->random()->id--}}
                                             {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}

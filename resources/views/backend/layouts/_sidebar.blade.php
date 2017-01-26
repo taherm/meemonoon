@@ -175,22 +175,22 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item  open {{ (str_contains(Request::route()->getName(),'currency') ? 'active' : '' ) }}">
-                <a href="javascript:;" class="nav-link nav-toggle">
-                    <i class="fa fa-money"></i>
-                    <span class="title">Currencies</span>
-                    <span class="selected"></span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="{{ route('backend.currency.index') }}" class="nav-link ">
-                            <i class="fa fa-money"></i>
-                            <span class="title">currencies</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
+            {{--<li class="nav-item  open {{ (str_contains(Request::route()->getName(),'currency') ? 'active' : '' ) }}">--}}
+                {{--<a href="javascript:;" class="nav-link nav-toggle">--}}
+                    {{--<i class="fa fa-money"></i>--}}
+                    {{--<span class="title">Currencies</span>--}}
+                    {{--<span class="selected"></span>--}}
+                    {{--<span class="arrow"></span>--}}
+                {{--</a>--}}
+                {{--<ul class="sub-menu">--}}
+                    {{--<li class="nav-item  ">--}}
+                        {{--<a href="{{ route('backend.currency.index') }}" class="nav-link ">--}}
+                            {{--<i class="fa fa-money"></i>--}}
+                            {{--<span class="title">currencies</span>--}}
+                        {{--</a>--}}
+                    {{--</li>--}}
+                {{--</ul>--}}
+            {{--</li>--}}
             <li class="nav-item open {{ (str_contains(Request::route()->getName(),'order') ? 'active' : '' ) }}">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="fa fa-newspaper-o"></i>
