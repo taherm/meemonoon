@@ -62,7 +62,7 @@ class ProductAttributeController extends PrimaryController
 
         ProductAttribute::create($request->except(['_token', '_method']));
 
-        return redirect()->back()->with(['success' => 'saved', 'product_id' => $request->product_id]);
+        return redirect()->to('/backend/products')->with(['success' => 'product completely saved']);
     }
 
     /**
