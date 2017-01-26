@@ -19,7 +19,7 @@
                             <img class="img-responsive img-thumbnail center" src="{{ asset('img/uploads/thumbnail/'.$slide->image_path) }}" style="max-height:150px;max-width: 150px;"/>
                             <br />
                             <div class="caption">
-                                {{ $slide->caption_en }} <br />
+                                {{--{{ $slide->caption_en }} <br />--}}
                                 {{ $slide->url }}
                             </div>
                         </div>
@@ -45,9 +45,9 @@
                 <input name="image" type="file" required/>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 hidden">
             <label class="mt-checkbox"> caption </label>
-            {!! Form::text('caption_en',null,['class' =>'form-control','required']) !!}
+            {!! Form::text('caption_en','default',['class' =>'form-control','required']) !!}
         </div>
         <div class="col-lg-2">
             <label class="mt-checkbox"> URL </label>

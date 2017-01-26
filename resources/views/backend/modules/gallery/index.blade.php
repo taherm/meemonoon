@@ -34,7 +34,7 @@
     {{ Form::hidden('MAX_FILE_SIZE','20971520') }}
     <div class="form-group">
         <div class="col-lg-2">
-            <label class="mt-checkbox"> first Image</label>
+            <label class="mt-checkbox"> add Image</label>
             <div class="form-control">
                 <input name="image" type="file" required/>
             </div>

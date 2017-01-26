@@ -1,11 +1,4 @@
-@if(isset($productAttribute))
-    {{ Form::model($productAttribute,['route' => ['backend.attribute.update',$productAttribute->id],'method' => 'PATCH','class' => 'form-horizontal']) }}
-    {{ Form::hidden('product_id',$productAttribute->product_id) }}
-@else
-    {{ Form::open(['route' => ['backend.attribute.store'],'method' => 'POST','class' => 'form-horizontal']) }}
-    {{ Form::hidden('product_id',$product->id) }}
-@endif
-@if(isset($productAttributes) && count($productAttributes) > 0)
+@if(isset($productAttributes) && count($productAttributes) >= 1)
     <div class="table-container">
         <table class="table table-striped table-bordered table-hover"
                id="datatable_sales">
@@ -35,6 +28,13 @@
             </thead>
         </table>
     </div>
+@endif
+@if(isset($productAttribute))
+    {{ Form::model($productAttribute,['route' => ['backend.attribute.update',$productAttribute->id],'method' => 'PATCH','class' => 'form-horizontal']) }}
+    {{ Form::hidden('product_id',$productAttribute->product_id) }}
+@else
+    {{ Form::open(['route' => ['backend.attribute.store'],'method' => 'POST','class' => 'form-horizontal']) }}
+    {{ Form::hidden('product_id',$product->id) }}
 @endif
 <div class="form-group">
     <h4>Add New Product Attribute</h4>
