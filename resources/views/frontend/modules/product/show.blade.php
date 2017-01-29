@@ -32,6 +32,21 @@
                                         <div style="display: none;">
                                             {{$count = 1}}
                                         </div>
+                                        @if(isset($product->product_meta->image))
+                                            <div class="tab-pane active" id="{{'p-view-1'}}">
+                                                <div class="simpleLens-big-image-container">
+                                                    <a class="simpleLens-lens-image"
+                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
+                                                        <img src="{{asset('img/uploads/medium/'.$product->product_meta->image)}}"
+                                                             class="simpleLens-big-image" alt="productd">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div style="display: none;">
+                                                {{$count++}}
+                                            </div>
+                                        @endif
+
                                         @if(count($product->gallery->images) > 0)
                                             @foreach($product->gallery->images as $image)
                                                 <div class="tab-pane @if($count == 1) active @endif"
@@ -45,37 +60,35 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        @else
-                                            <div class="tab-pane active" id="{{'p-view-1'}}">
-                                                <div class="simpleLens-big-image-container">
-                                                    <a class="simpleLens-lens-image"
-                                                       data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
-                                                        <img src="{{asset('img/uploads/medium/'.$product->product_meta->image)}}"
-                                                             class="simpleLens-big-image" alt="productd">
-                                                    </a>
-                                                </div>
-                                            </div>
                                         @endif
 
                                     </div>
                                     <!-- Simple Lence Thumbnail -->
                                     <div class="simpleLens-thumbnails-container text-center">
                                         <div id="single-product" class="owl-carousel custom-carousel">
-                                            <ul class="nav nav-tabs" role="tablist">
-                                                <li class="active"><a href="#p-view-1" role="tab" data-toggle="tab">
-                                                        <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
-                                                             width="100" height="100" alt="productd"></a>
-                                                </li>
-                                            </ul>
+                                            @if(isset($product->product_meta->image))
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li class="active"><a href="/#p-view-1" role="tab" data-toggle="tab">
+                                                            <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
+                                                                 width="100" height="100" alt="productd"></a>
+                                                    </li>
+                                                </ul>
+                                            @endif
                                             <div style="display: none;">
-                                                {{$count2 = 1}}
+
+                                                @if(isset($product->product_meta->image))
+                                                    {{$count2 = 2}}
+                                                @else
+                                                    {{$count2 = 1}}
+                                                @endif
+
                                             </div>
                                             @if(count($product->gallery->images) > 0)
                                                 @foreach($product->gallery->images as $image)
 
                                                     <ul class="nav nav-tabs" role="tablist">
                                                         <li class="@if($count2 == 1) active @else last-li @endif"><a
-                                                                    href="{{'#p-view-'. ++$count2}}" role="tab"
+                                                                    href="{{'/#p-view-'. $count2++}}" role="tab"
                                                                     data-toggle="tab"><img
                                                                         src="{{asset('img/uploads/large/'.$image->large_url)}}"
                                                                         width="100" height="100" alt="productd"></a>
@@ -83,15 +96,6 @@
                                                     </ul>
 
                                                 @endforeach
-                                            @else
-                                                <ul class="nav nav-tabs" role="tablist">
-                                                    <li class="active last-li">
-                                                        <a href="{{'#p-view-1'}}" role="tab" data-toggle="tab">
-                                                            <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
-                                                                 width="100" height="100" alt="productd">
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             @endif
 
                                         </div>
@@ -101,8 +105,8 @@
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 single-product-details">
                             <div class="product-details shop-review ">
-                                <div class="col-lg-12">
-                                    <div class="col-lg-10">
+                                <div class="col-lg-12" style="padding-left: 0px;">
+                                    <div class="col-lg-10" style="padding-left: 0px;">
                                         <div class="product-name">
                                             <h3>{{$product->name}}</h3>
                                         </div>
@@ -206,7 +210,7 @@
                                                 <div class="col-lg-6">
                                                     <div>{{ trans('general.size') }}</div>
                                                 </div>
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12" style="padding-left: 0px;">
                                                     <div class="col-lg-6">
 
                                                         <select class="input-text qty"
@@ -237,7 +241,7 @@
                                             }))
                                             <div class="quick-add-to-cart">
                                                 <div class="col-lg-6">{{ trans('general.color') }}</div>
-                                                <div class="col-lg-12">
+                                                <div class="col-lg-12" style="padding-left: 0px;">
                                                     <div class="col-lg-6">
                                                         <select class="input-text qty" name="color"
                                                                 id="color">
