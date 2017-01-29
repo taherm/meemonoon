@@ -6,8 +6,11 @@
                 <div class="tag-list">
                     <ul>
                         @foreach($tags as $tag)
+                            {{--<li><a href="{{ route('product.tags',[$tag->name]) }}"--}}
+                                   {{--style="font-size: {!!rand(6,20)!!}px !important;">{{ $tag->name }}</a></li>--}}
+
                             <li><a href="{{ route('product.tags',[$tag->name]) }}"
-                                   style="font-size: {!!rand(6,20)!!}px !important;">{{ $tag->name }}</a></li>
+                                   style="">{{ $tag->name }}</a></li>
                         @endforeach
                     </ul>
                 </div>

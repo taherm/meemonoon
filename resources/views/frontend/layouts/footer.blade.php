@@ -81,8 +81,8 @@
                                 <div class="middle-text">
                                     <p>{{ trans('general.online_shopping_in_gulf') }}</p>
                                     <ul class="footer-icon">
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="https://www.instagram.com/meemonoon/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="https://www.twitter.com/meemonoonmarket/" target="_blank"><i class="fa fa-twitter"></i></a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -40,9 +40,10 @@
         });
 
         //Fix Carousal click
-        $('.images img').on('click', function(){
-            $('li.images').removeClass('active');
+        $('.owl-item img').on('click', function(){
+            $('.owl-item li').removeClass('active');
             $(this).addClass('active');
+            console.log('asds');
         });
     });
 
