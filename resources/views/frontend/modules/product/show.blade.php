@@ -105,8 +105,8 @@
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 single-product-details">
                             <div class="product-details shop-review ">
-                                <div class="col-lg-12" style="padding-left: 0px;">
-                                    <div class="col-lg-10" style="padding-left: 0px;">
+                                <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
+                                    <div class="col-lg-10" style="padding-left: 0px;padding-right: 0px;">
                                         <div class="product-name">
                                             <h3>{{$product->name}}</h3>
                                         </div>
@@ -210,7 +210,7 @@
                                                 <div class="col-lg-6">
                                                     <div>{{ trans('general.size') }}</div>
                                                 </div>
-                                                <div class="col-lg-12" style="padding-left: 0px;">
+                                                <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                                     <div class="col-lg-6">
 
                                                         <select class="input-text qty"
@@ -241,7 +241,7 @@
                                             }))
                                             <div class="quick-add-to-cart">
                                                 <div class="col-lg-6">{{ trans('general.color') }}</div>
-                                                <div class="col-lg-12" style="padding-left: 0px;">
+                                                <div class="col-lg-12" style="padding-left: 0px;padding-right: 0px;">
                                                     <div class="col-lg-6">
                                                         <select class="input-text qty" name="color"
                                                                 id="color">
@@ -267,7 +267,7 @@
                                             <input id="color_attribute" value="not-found" style="display: none;">
                                         @endif
 
-                                        <div class="quick-add-to-cart col-lg-12">
+                                        <div class="quick-add-to-cart col-lg-12" style="padding-top: 3%;">
                                             {!! Form::open(['route' => 'cart.add', 'method' => 'POST'], ['class'=>'cart']) !!}
                                             {{--$product->product_attributes->random()->id--}}
                                             {!! Form::hidden('product_id',$product->id, ['id' => 'productId']) !!}
@@ -280,14 +280,14 @@
                                                 <div class="box-icon button-plus">
                                                     <input id="increaseQty" type="button" class="qty-increase "
                                                            value="+"
-                                                           style="{{ App::getLocale() == 'ar' ?  'right: -36px; !important;padding-right: 10px;' :  null }} padding-right: 10px; top: -25px;outline: none;"
+                                                           style="{{ App::getLocale() == 'ar' ?  'margin-right: -90px; margin-top: -8px; width:20px;' :  'padding-right: 20px; top: -27px;' }} outline: none;"
                                                            disabled>
                                                 </div>
                                                 <div class="box-icon button-minus">
                                                     <input id="decreaseQty" type="button" class="qty-decrease"
-                                                           onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 0 ) qty_el.value--;return false;"
+                                                           onclick="var qty_el = document.getElementById('quantity'); var qty = qty_el.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) qty_el.value--;return false;"
                                                            value="-"
-                                                           style="padding-right: 8px;top: -31px;outline: none;"
+                                                           style="{{ App::getLocale() == 'ar' ?  'top: -31px; margin-right: -111px; width:20px;' :  'padding-right: 8px;top: -31px;' }} outline: none;"
                                                            disabled>
                                                 </div>
                                             </div>
@@ -356,6 +356,7 @@
                 var qty = $('#quantity').val();
                 var max_limit = $('#max_qty').val();
                 qty++;
+
                 if (!isNaN(qty) && (qty <= max_limit)) {
                     $('#quantity').val(qty);
                 }
