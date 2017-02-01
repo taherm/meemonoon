@@ -57,6 +57,51 @@
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
     {{--@endif--}}
     <link rel="stylesheet" href="{{ asset('css/custom-arabic.css') }}">
+    <style type="text/css">
+        .owl-carousel, .owl-carousel .owl-wrapper {
+            position: initial;
+
+        }
+        .owl-carousel .owl-item {
+            float: right;
+
+        }
+        .owl-wrapper-outer{
+            z-index: 99;
+        }
+        .owl-buttons{
+            margin-top: -33%;
+            position: relative;
+            padding-bottom: 33%;
+            z-index: 0;
+
+        }
+        .owl-prev{
+            right: 98% !important;
+            top: 22% !important;
+        }
+        .owl-next{
+            right: -12% !important;
+            top: 22% !important;
+        }
+
+        .single-procuct-view .simpleLens-big-image-container, .single-procuct-view .simpleLens-lens-image{
+            direction: ltr;
+        }
+        div.simpleLens-lens-element {
+            left: -112%;
+        }
+        .add-action ul li {
+            left: 10%;
+            float: left;
+        }
+        div.add-action ul {
+            width: 115%;
+        }
+        #size{
+            margin-bottom: 8%;
+        }
+    </style>
 @else
     <link rel="stylesheet" href="{{ asset('css/custom-english.css') }}">
 @endif
