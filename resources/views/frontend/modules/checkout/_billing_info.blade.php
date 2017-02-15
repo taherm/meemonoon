@@ -71,8 +71,8 @@
                                             {{ Form::text('street',(Auth::user()->street != '' ? Auth::user()->street: null),['class'=>'border-color', 'placeholder'=>'Street', 'required']) }}
                                         </div>
                                         <div class="input-box">
-                                            <label class="label" for="building">{{ trans('general.building') }}<em>*</em></label>
-                                            {{ Form::text('building',(Auth::user()->building != '' ? Auth::user()->building: null),['class'=>'border-color', 'placeholder'=>'Building', 'required']) }}
+                                            <label class="label" for="building">{{ trans('general.building') }}</label>
+                                            {{ Form::text('building',(Auth::user()->building != '' ? Auth::user()->building: null),['class'=>'border-color', 'placeholder'=>'Building']) }}
                                         </div>
                                     </div>
                                     <div class="field fix">
@@ -81,8 +81,8 @@
                                             {{ Form::text('floor',(Auth::user()->floor != '' ? Auth::user()->floor: null),['class'=>'border-color', 'placeholder'=>'Floor', 'required']) }}
                                         </div>
                                         <div class="input-box">
-                                            <label class="label" for="apartment">{{ trans('general.apartment') }}<em>*</em></label>
-                                            {{ Form::text('apartment',(Auth::user()->apartment != '' ? Auth::user()->apartment: null),['class'=>'border-color', 'placeholder'=>'Apartment', 'required']) }}
+                                            <label class="label" for="apartment">{{ trans('general.apartment') }}</label>
+                                            {{ Form::text('apartment',(Auth::user()->apartment != '' ? Auth::user()->apartment: null),['class'=>'border-color', 'placeholder'=>'Apartment']) }}
                                         </div>
                                     </div>
                                 @else

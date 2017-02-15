@@ -109,12 +109,14 @@
             <td colspan="2">
                 <table>
                     <tr>
-                        <td>
-                            {{ $order->address }}
+                        <td style="padding-bottom: 10px;">
+                            <P style="font-size: 20px;font-weight: bold;">Thank you for your order</P>
+                            {{trans('group.name').': '. $order->user->firstname}}
                         </td>
-                        <td></td>
+                    </tr>
+                    <tr>
                         <td>
-                            {{$order->user->firstname . ' ' . $order->user->lastname}}<br>
+                            {{trans('group.address').': '. $order->address }}<br>
                         </td>
                     </tr>
                 </table>
