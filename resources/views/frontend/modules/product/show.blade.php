@@ -66,36 +66,38 @@
                                     <!-- Simple Lence Thumbnail -->
                                     <div class="simpleLens-thumbnails-container text-center">
                                         <div id="single-product" class="owl-carousel custom-carousel">
-                                            @if(isset($product->product_meta->image))
-                                                <ul class="nav nav-tabs" role="tablist">
-                                                    <li class="active"><a href="/#p-view-1" role="tab" data-toggle="tab">
-                                                            <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
-                                                                 width="100" height="100" alt="productd"></a>
-                                                    </li>
-                                                </ul>
-                                            @endif
-                                            <div style="display: none;">
-
+                                            @if(isset($product->product_meta->image) && count($product->gallery->images) > 0)
                                                 @if(isset($product->product_meta->image))
-                                                    {{$count2 = 2}}
-                                                @else
-                                                    {{$count2 = 1}}
-                                                @endif
-
-                                            </div>
-                                            @if(count($product->gallery->images) > 0)
-                                                @foreach($product->gallery->images as $image)
-
                                                     <ul class="nav nav-tabs" role="tablist">
-                                                        <li class="@if($count2 == 1) active @else last-li @endif"><a
-                                                                    href="{{'/#p-view-'. $count2++}}" role="tab"
-                                                                    data-toggle="tab"><img
-                                                                        src="{{asset('img/uploads/large/'.$image->large_url)}}"
-                                                                        width="100" height="100" alt="productd"></a>
+                                                        <li class="active"><a href="/#p-view-1" role="tab" data-toggle="tab">
+                                                                <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
+                                                                     width="100" height="100" alt="productd"></a>
                                                         </li>
                                                     </ul>
+                                                @endif
+                                                <div style="display: none;">
 
-                                                @endforeach
+                                                    @if(isset($product->product_meta->image))
+                                                        {{$count2 = 2}}
+                                                    @else
+                                                        {{$count2 = 1}}
+                                                    @endif
+
+                                                </div>
+                                                @if(count($product->gallery->images) > 0)
+                                                    @foreach($product->gallery->images as $image)
+
+                                                        <ul class="nav nav-tabs" role="tablist">
+                                                            <li class="@if($count2 == 1) active @else last-li @endif"><a
+                                                                        href="{{'/#p-view-'. $count2++}}" role="tab"
+                                                                        data-toggle="tab"><img
+                                                                            src="{{asset('img/uploads/large/'.$image->large_url)}}"
+                                                                            width="100" height="100" alt="productd"></a>
+                                                            </li>
+                                                        </ul>
+
+                                                    @endforeach
+                                                    @endif
                                             @endif
 
                                         </div>
