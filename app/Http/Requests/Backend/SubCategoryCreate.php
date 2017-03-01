@@ -24,8 +24,10 @@ class SubCategoryCreate extends FormRequest
     public function rules()
     {
         return [
-            'name_en'           => 'required|unique:categories,name_en',
-            'name_ar'           => 'required|unique:categories,name_ar',
+//            'name_en'           => 'required|unique:categories,name_en',
+            'name_en'           => 'required',
+//            'name_ar'           => 'required|unique:categories,name_ar',
+            'name_ar'           => 'required',
             'description_en'    => 'string',
             'description_ar'    => 'string',
             'parent_id'    => 'required',
