@@ -208,7 +208,7 @@ PRODUCTS;
 
             $paymentDetails = (object)[
                 'paymentURL' => $paymentURL,
-                'responseMessage' => ($responseMessage === 'Success') ? true : false,
+                'responseMessage' => ($responseMessage == 'SUCCESS') ? true : false,
                 'referenceId' => $referenceId
             ];
 
