@@ -16,24 +16,24 @@ class PrimaryPayment implements primaryPaymentInterface
     public $user;
 
     //LIVE VARS
-//    public $url = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx';
-//    public $userEmail = 'info@ideasowners.net';
-//    public $userPass = '123123';
-//    public $MerchantCode = '15104385';
-//    public $MerchantReferenceID = '12345678910';
-//    public $successURL = 'http://meem.app';
-//    public $errorURL = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx?op=GetOrderStatusRequest';
-//    public $MerchantName = 'Web Pay';
-
-    //TEST VARS
-    public $MerchantReferenceID = '291454542102';
-    const url = 'https://test.myfatoorah.com/pg/PayGatewayService.asmx';
-    const MerchantCode = '999999';
-    const userEmail = 'testapi@myfatoorah.com';
-    const userPass = 'E55D0';
-    const MerchantName = 'MeemOnoon';
+    const url = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx';
+    const userEmail = 'info@ideasowners.net';
+    const userPass = '123123';
+    const MerchantCode = '15104385';
+    public $MerchantReferenceID = '12345678910';
     const successURL = 'http://meemonoon.com/success';
     const errorURL = 'http://meemonoon.com/error';
+    const MerchantName = 'MeemOnoon';
+
+    //TEST VARS
+//    public $MerchantReferenceID = '291454542102';
+//    const url = 'https://test.myfatoorah.com/pg/PayGatewayService.asmx';
+//    const MerchantCode = '999999';
+//    const userEmail = 'testapi@myfatoorah.com';
+//    const userPass = 'E55D0';
+//    const MerchantName = 'MeemOnoon';
+//    const successURL = 'http://meemonoon.com/success';
+//    const errorURL = 'http://meemonoon.com/error';
 
 
 
