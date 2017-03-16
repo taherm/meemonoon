@@ -30,10 +30,8 @@ class CreateUsersTable extends Migration
             $table->text('api_token');
             $table->integer('country_id')->unsigned()->nullable(false);
             $table->foreign('country_id')->references('id')->on('countries');
-            $table->text('api_token');
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -42,7 +42,7 @@ abstract class QueryFilter
 
     public function filters()
     {
-        return $this->request->all();
+        return array_collapse($this->request->all());
     }
 
     public function filterRequest()

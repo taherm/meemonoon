@@ -5,7 +5,7 @@
     </div>
     <div class="left-layout">
         @include('frontend.modules.category.partials._filter_range')
-        @include('frontend.modules.category.partials._filter_color')
+        {{--@include('frontend.modules.category.partials._filter_color')--}}
         @include('frontend.modules.category.partials._filter_size')
         @include('frontend.modules.category.partials._filter_subcategories')
     </div>
