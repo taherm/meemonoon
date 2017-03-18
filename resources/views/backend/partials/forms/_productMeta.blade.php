@@ -25,9 +25,9 @@
 
     @include('backend.partials.forms._form_group',
     ['labelOne' => 'notes_ar*',
-    'elementOne' => Form::textarea('notes_ar',old('notes_ar'),['class' => 'form-control', 'data-provide' => 'markdown','required' => 'required']),
+    'elementOne' => Form::textarea('notes_ar',old('notes_ar'),['class' => 'form-control', 'data-provide' => 'markdown']),
     'labelTow' => 'notes_en*' ,
-     'elementTow' => Form::textarea('notes_en',old('notes_en'),['class' => 'form-control','required'])
+     'elementTow' => Form::textarea('notes_en',old('notes_en'),['class' => 'form-control'])
     ])
 
     <div class="col-lg-12">
