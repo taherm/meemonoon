@@ -30,8 +30,8 @@ class ProductMetaUpdate extends FormRequest
             'weight' => 'required',
             'description_ar' => 'required',
             'description_en' => 'required',
-            'notes_ar' => 'required',
-            'notes_en' => 'required',
+            'notes_ar' => '',
+            'notes_en' => '',
         ];
     }
 }

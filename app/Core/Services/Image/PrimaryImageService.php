@@ -14,7 +14,7 @@ use App\Core\Services\Image\PrimaryImageServiceInterface;
 class PrimaryImageService implements PrimaryImageServiceInterface
 {
 
-    public function CreateImage($currentImage, $thumbResize = ['261','261'], $mediumResize = ['457','604'], $largeResize = ['1200','1200'])
+    public function CreateImage($currentImage, $thumbResize = ['261','261'], $mediumResize = ['450','450'], $largeResize = ['1200','1200'])
     {
         try {
             $fileName = $currentImage->getClientOriginalName();
