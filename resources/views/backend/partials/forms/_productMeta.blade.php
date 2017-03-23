@@ -18,16 +18,16 @@
     @include('backend.partials.forms._form_group',
     [
     'labelOne' => 'description_ar*',
-    'elementOne' => Form::textarea('description_ar',old('description_ar') ,['class' => 'form-control','required']),
+    'elementOne' => Form::textarea('description_ar',old('description_ar') ,['class' => 'form-control']),
     'labelTow' => 'description_en*' ,
-    'elementTow' => Form::textarea('description_en',old('description_en'),['class' => 'form-control','required'])
+    'elementTow' => Form::textarea('description_en',old('description_en'),['class' => 'form-control'])
     ])
 
     @include('backend.partials.forms._form_group',
     ['labelOne' => 'notes_ar*',
-    'elementOne' => Form::textarea('notes_ar',old('notes_ar'),['class' => 'form-control', 'data-provide' => 'markdown','required' => 'required']),
+    'elementOne' => Form::textarea('notes_ar',old('notes_ar'),['class' => 'form-control', 'data-provide' => 'markdown']),
     'labelTow' => 'notes_en*' ,
-     'elementTow' => Form::textarea('notes_en',old('notes_en'),['class' => 'form-control','required'])
+     'elementTow' => Form::textarea('notes_en',old('notes_en'),['class' => 'form-control'])
     ])
 
     <div class="col-lg-12">

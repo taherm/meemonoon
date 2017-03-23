@@ -30,8 +30,8 @@ class ProductMetaStore extends FormRequest
             'weight' => 'required',
             'description_ar' => 'required',
             'description_en' => 'required',
-            'notes_ar' => 'required',
-            'notes_en' => 'required',
+            'notes_ar' => '',
+            'notes_en' => '',
             'start_sale' => 'date|after:today',
             'end_sale' => 'date|after:tomorrow'
         ];

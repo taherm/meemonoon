@@ -87,7 +87,7 @@ return array (
   'orders_and_shopping' => 'orders and shopping',
   'my_account' => 'My Account',
   'order_history' => 'order history',
-  'wlist' => 'Wlist',
+  'wlist' => 'Wishlist',
   'designed_by' => 'designed by',
   'all_rights_reserved' => 'All Rights Reserved	',
   'home' => 'Home',
