@@ -13,7 +13,7 @@ class ProductMeta extends PrimaryModel
     protected $guarded = [''];
     protected $dates = ['created_at','updated_at','deleted_at','start_sale','end_sale'];
     use SoftDeletes;
-
+    
     /**
      * Product ProductMeta
      * hasOne

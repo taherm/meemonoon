@@ -24,7 +24,9 @@ class ScopeProductHasProductMetaAndProductAttribute implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->has('categories')->has('parent')->has('product_meta')->has('product_attributes')->has('gallery');
+        $builder->has('categories')->has('parent')->whereHas('product_meta', function ($q) {
+            $q->where('on_homepage',true);
+        })->has('product_attributes')->has('gallery');
 
     }
 

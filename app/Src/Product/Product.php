@@ -35,7 +35,7 @@ class Product extends PrimaryModel
     {
         parent::boot();
 
-        if (!Request::is('backend/*')) {
+        if (!in_array('backend',Request::segments(),true)) {
 
             static::addGlobalScope(new ScopeActive());
             static::addGlobalScope(new ScopeProductHasProductMetaAndProductAttribute());
@@ -57,7 +57,7 @@ class Product extends PrimaryModel
     public function scopeOnSale()
     {
         return $this->whereHas('product_meta', function ($q) {
-            $q->where(['on_sale' => 1, 'on_homepage' => 1, 'on_sale_on_homepage' => 1]);
+            $q->where(['on_sale' => true, 'on_homepage' => true, 'on_sale_on_homepage' => true]);
         });
     }
 
