@@ -68,7 +68,7 @@
                 <div class="col-lg-2">
                     <div class="form-group">
                         <label class="label" for="image" style="color: black;"> image* best fit 1200*1200</label>
-                        {!! Form::file('image',['class' => 'form-control', 'required']) !!}
+                        {!! Form::file('image',['class' => 'form-control']) !!}
                     </div>
                 </div>
                 <div class="col-lg-2">
