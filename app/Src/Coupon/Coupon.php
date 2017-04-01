@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Request;
 
 class Coupon extends PrimaryModel
 {
-    protected $table = 'coupons';
     protected $dates = ['created_at', 'updated_at','due_date'];
     protected $guarded = [''];
 

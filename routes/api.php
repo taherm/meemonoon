@@ -21,5 +21,6 @@ Route::get('/user', function (Request $request) {
 Route::group(['namespace' => 'Frontend'], function () {
     Route::post("products/price", 'CategoryController@filterProductsByRange');
     Route::get('product/{productId}/{sizeId}', 'ProductController@getDataFromSize');
-    Route::post('coupon/{code}', 'CouponController@getCoupon')->middleware('auth:api');
+    Route::post('coupon/{code}', 'CouponController@getCoupon');
+//        ->middleware('auth:api');
 });

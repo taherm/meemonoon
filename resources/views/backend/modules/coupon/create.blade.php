@@ -21,7 +21,8 @@
             <div class="col-md-3">
                 {{--                {{ Form::date('due_date',(isset($coupon)) ? $coupon->due_date->format('Y-m-d') : null,['class'=>'form-control','required']) }}--}}
                 <div class="input-group input-large date-picker input-daterange"
-                     data-date={!! Carbon::now() !!} data-date-format="yyyy/mm/dd 00:00:00">
+                     data-date={!! Carbon::now() !!} data-date-format="yyyy/mm/dd 00:00:00
+                ">
                 {{ Form::text('due_date',(isset($coupon)) ? $coupon->due_date->format('Y-m-d') : null,['class'=>'form-control']) }}
             </div>
         </div>
@@ -56,6 +57,16 @@
         </label>
         <div class="col-md-3">
             {{ Form::text('minimum_charge',old('minimum_charge'),['class' => 'form-control', 'required','number']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">is_precentage :
+            <span class="required"> *</span>
+        </label>
+        <div class="col-md-3">
+            <input type="checkbox" name="is_precentage"
+                   value="1" {{ (isset($coupon) && $coupon->is_percetage) ? 'checked' : null }}/>
+            <span class="required">by default percetage is disabled</span>
         </div>
     </div>
     <div class="form-group">

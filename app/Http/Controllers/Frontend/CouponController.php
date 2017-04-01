@@ -24,11 +24,11 @@ class CouponController extends PrimaryController
 
         $authId = Auth::guard('api')->user()->id;
 
-        $coupon = $this->coupon->where('code',$code)->first();
+        $coupon = $this->coupon->where('code', $code)->first();
 
         if ($coupon) {
 
-            $couponCode = Cache::put('coupon.'.$authId, ['id' => $coupon->id, 'code' => $coupon->code],5);
+            $couponCode = Cache::put('coupon.' . $authId, ['id' => $coupon->id, 'code' => $coupon->code, 'is_precentage' => $coupon->is_precentage], 5);
 
             return Response::json($coupon);
 

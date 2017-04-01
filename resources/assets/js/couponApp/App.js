@@ -10,7 +10,7 @@ class App extends Component {
 
     constructor(props, content) {
         super(props, content);
-        this.state = ({code: null, couponValue : ''});
+        this.state = ({code: null, couponValue: '', is_precentage: ''});
     }
 
     handleChange(e) {
@@ -20,8 +20,13 @@ class App extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.couponActions.getFetchCoupon(this.state.code, grandTotal).then( () => {
-            this.setState({ couponValue : this.props.coupon.value });
+        this.props.couponActions.getFetchCoupon(this.state.code, grandTotal).then(() => {
+            if (this.props.coupon.is_precentage) {
+                var finalVal = (this.props.coupon.value / 100) * grandTotal
+                this.setState({couponValue: finalVal});
+            } else {
+                this.setState({couponValue: this.props.coupon.value});
+            }
         });
     }
 
@@ -29,7 +34,7 @@ class App extends Component {
         return (
             <div className="row">
                 <div id="couponValue" className="hidden">{this.state.couponValue}</div>
-                <Alert coupon={this.props.coupon} />
+                <Alert coupon={this.props.coupon}/>
                 <form method="POST" action={couponURL} className="form-virtical"
                       onSubmit={this.handleSubmit.bind(this)}>
                     <div className="flatrate">

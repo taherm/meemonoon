@@ -15,6 +15,7 @@ class CreateCouponsTable extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('value')->unsigned();
+            $table->boolean('is_precentage')->default(0);
             $table->integer('customer_id')->unsigned()->index();
             $table->boolean('active')->default(0);
             $table->boolean('consumed')->default(0);

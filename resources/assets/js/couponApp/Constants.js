@@ -6,6 +6,7 @@ export const initialState = {
     coupon: {
         id: '',
         value: '',
+        is_percentage : false,
         customer_id: '',
         active: '',
         status: '',
