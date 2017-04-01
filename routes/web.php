@@ -115,7 +115,7 @@ Route::group(['namespace' => 'Frontend'], function () {
  * â–‚ â–ƒ â–… â–† â–ˆ BACKEND ROUTES â–ˆ â–† â–… â–ƒ â–‚
  ***************************************************************************************************/
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.','middleware' => ['auth', 'AdminOnly']], function () {
+Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'AdminOnly']], function () {
 
     /***************************************************************************************************
      * â–‚ â–ƒ â–… â–† â–ˆ BACKEND ROUTES â–ˆ â–† â–… â–ƒ â–‚             ADMIN       OWNER       ASSISTANT
@@ -148,7 +148,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend','as' => 'backend.'
     Route::resource('newsletter', 'NewsLetterController');
     Route::resource('color', 'ColorController', ['except' => 'destroy']);
     Route::resource('size', 'SizeController', ['except' => 'destroy']);
-    Route::resource('chart','SizeChartController');
+    Route::resource('chart', 'SizeChartController');
 
     //Static Pages
     Route::get('pages', ['uses' => 'PageController@getAboutUs']);

@@ -36,6 +36,9 @@ class HomeController extends PrimaryController
      */
     public function index()
     {
+        if(!auth()->check()) {
+            return abort(501,'site is under construction .. coming soon !!');
+        }
         //@todo : Query From ProductRepo like bstSaleProducts
         $newArrivals = $this->productRepository->model->orderBy('created_at', 'desc')->take(12)->get();
 
