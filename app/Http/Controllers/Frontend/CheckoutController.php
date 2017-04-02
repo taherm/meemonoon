@@ -129,7 +129,10 @@ class CheckoutController extends PrimaryController
 
             $coupon = $this->coupon->where(['id' => $couponCache['id'], 'code' => $couponCache['code']])->first();
 
-            $couponDiscountValue = ($coupon->value > 0) ? -(($coupon->value / 100) * $cart->grandTotal) : null;
+//            $couponDiscountValue = ($coupon->value > 0) ? - (($coupon->value / 100) * $cart->grandTotal) : null;
+            // i commented this line because coupon  maybe a percentage or a value
+
+            $couponDiscountValue = ($coupon->value > 0) ? - $coupon->value  : null;
 
             $amountAfterCoupon = ($coupon->value > 0) ? $cart->grandTotal + $couponDiscountValue : null;
 

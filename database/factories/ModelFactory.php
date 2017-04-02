@@ -431,12 +431,12 @@ $factory->define('App\Src\Coupon\Coupon', function (Faker\Generator $faker) {
     return [
         'value' => $faker->randomFloat(2, 1, 10),
         'customer_id' => User::all()->pluck('id')->shuffle()->first(),
-        'active' => $faker->boolean(),
+        'active' => true,
         'is_percentage' => $faker->boolean(),
         'consumed' => $faker->randomElement([0, 1]),
         'code' => $faker->numerify('meem#####&#######noon'),
         'minimum_charge' => $faker->numberBetween(20, 300),
-        'due_date' => $faker->dateTimeThisYear
+        'due_date' => $faker->dateTimeBetween('now','10 years')
     ];
 });
 
