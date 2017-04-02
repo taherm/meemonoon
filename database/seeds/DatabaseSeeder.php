@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        if (app()->environment() === 'local') {
+//        if (app()->environment() === 'local') {
 
             Model::unguard();
 
@@ -126,55 +126,26 @@ class DatabaseSeeder extends Seeder
             Model::reguard();
 
 
-        } elseif (app()->environment() === 'production') {
-
-            $this->emptyTables($this->tables);
-
-            Model::unguard();
-
-            $this->call(CountriesSeeder::class);
-            $this->command->info('countries table updated');
-            $this->call(CoinsTableSeeder::class);
-            $this->call(CurrenciesTableSeeder::class);
-            $this->command->info('Currencies Artisans done and coins table updated');
-            $this->call(UsersTableSeeder::class);
-            $this->command->info('Seeded the users!');
-            $this->call(ContactusTableSeeder::class);
-            $this->command->info('Seeded the side contactus!');
-            $this->command->info('Seeded the side tags!');
-            $this->call(ColorsTableSeeder::class);
-            $this->call(SizesTableSeeder::class);
-            $this->command->info('colors and sizes tables seeded !');
-        }
-//        if (env('APP_ENV') === 'local') {
+//        } elseif (app()->environment() === 'production') {
+//
+//            $this->emptyTables($this->tables);
 //
 //            Model::unguard();
 //
-//            $this->command->info('Local Env');
-//
-//            $this->emptyTables($this->tablesTesting);
-//
 //            $this->call(CountriesSeeder::class);
+//            $this->command->info('countries table updated');
+//            $this->call(CoinsTableSeeder::class);
 //            $this->call(CurrenciesTableSeeder::class);
-//            $this->call(AreasTableSeeder::class);
-//
-//            $this->command->info('Seeded the areas + currencies! + countries');
-//
-//
+//            $this->command->info('Currencies Artisans done and coins table updated');
 //            $this->call(UsersTableSeeder::class);
 //            $this->command->info('Seeded the users!');
-//
-//            $this->call(EntrustTableSeeder::class);
-//            $this->command->info('Seeded the entrust!');
-//
-//            $this->call(PermissionRoleTableSeeder::class);
-//            $this->command->info('Seeded the permission_role!');
-//
-//
-//            Model::reguard();
-//
+//            $this->call(ContactusTableSeeder::class);
+//            $this->command->info('Seeded the side contactus!');
+//            $this->command->info('Seeded the side tags!');
+//            $this->call(ColorsTableSeeder::class);
+//            $this->call(SizesTableSeeder::class);
+//            $this->command->info('colors and sizes tables seeded !');
 //        }
-
 
     }
 
