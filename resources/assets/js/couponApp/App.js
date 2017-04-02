@@ -22,9 +22,11 @@ class App extends Component {
         e.preventDefault();
         this.props.couponActions.getFetchCoupon(this.state.code, grandTotal).then(() => {
             if (this.props.coupon.is_percentage) {
+                console.log('from the percentage status');
                 var couponVal = (this.props.coupon.value / 100) * grandTotal
-                this.setState({couponValue: couponVal });
+                this.setState({couponValue: couponVal});
             } else {
+                console.log('from the value coupon status');
                 this.setState({couponValue: this.props.coupon.value});
             }
         });
@@ -34,7 +36,7 @@ class App extends Component {
         return (
             <div className="row">
                 <div id="couponValue" className="hidden">{this.state.couponValue}</div>
-                <Alert coupon={this.props.coupon}/>
+                <Alert value={this.state.couponValue} percentage={this.props.coupon.is_percentage}/>
                 <form method="POST" action={couponURL} className="form-virtical"
                       onSubmit={this.handleSubmit.bind(this)}>
                     <div className="flatrate">
