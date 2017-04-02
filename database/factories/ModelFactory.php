@@ -432,7 +432,7 @@ $factory->define('App\Src\Coupon\Coupon', function (Faker\Generator $faker) {
         'value' => $faker->randomFloat(2, 1, 10),
         'customer_id' => User::all()->pluck('id')->shuffle()->first(),
         'active' => $faker->boolean(),
-        'is_precentage' => $faker->boolean(),
+        'is_percentage' => $faker->boolean(),
         'consumed' => $faker->randomElement([0, 1]),
         'code' => $faker->numerify('meem#####&#######noon'),
         'minimum_charge' => $faker->numberBetween(20, 300),
