@@ -90,8 +90,7 @@ class CheckoutController extends PrimaryController
         $shippingCountry = Session::get('SHIPPING_COUNTRY');
 
         // @todo : use actual logged in user
-        if ( !auth()->check() )
-        {
+        if (!auth()->check()) {
             return redirect()->to('login')->with('error', trans('Please Login Or Sign up Before Continue To Checkout!'));
         }
 
@@ -129,11 +128,16 @@ class CheckoutController extends PrimaryController
 
             $coupon = $this->coupon->where(['id' => $couponCache['id'], 'code' => $couponCache['code']])->first();
 
-//            $couponDiscountValue = ($coupon->value > 0) ? - (($coupon->value / 100) * $cart->grandTotal) : null;
-            // i commented this line because coupon  maybe a percentage or a value
+            if ($coupon->is_percentage) {
 
-            $couponDiscountValue = ($coupon->value > 0) ? - $coupon->value  : null;
+                $couponDiscountValue = ($coupon->value > 0) ? -(($coupon->value / 100) * $cart->grandTotal) : null;
 
+            } else {
+
+                $couponDiscountValue = ($coupon->value > 0) ? -$coupon->value : null;
+
+            }
+            
             $amountAfterCoupon = ($coupon->value > 0) ? $cart->grandTotal + $couponDiscountValue : null;
 
         }
@@ -161,12 +165,12 @@ class CheckoutController extends PrimaryController
     {
         $this->validate($request, [
             'shipping_country' => 'required|numeric|exists:countries,id',
-            'payment'   => 'required|not_in:no',
+            'payment' => 'required|not_in:no',
             'firstname' => 'required',
-            'lastname'  => 'required',
-            'email'     => 'required',
-            'city'      => 'required',
-            'mobile'  => 'required_without_all:phone',
+            'lastname' => 'required',
+            'email' => 'required',
+            'city' => 'required',
+            'mobile' => 'required_without_all:phone',
         ]);
 
         $address = '';
@@ -235,14 +239,12 @@ class CheckoutController extends PrimaryController
         $orderDetails = session()->get('ORDER');
 
 
-        if($request->payment === 'cash')
-        {
+        if ($request->payment === 'cash') {
             //reduce item quantity after successful order
-            foreach ($cartItems as $item)
-            {
+            foreach ($cartItems as $item) {
                 $itemAttribute = ProductAttribute::where('id', $item['product_attribute_id'])->first();
                 $itemAttribute->update([
-                    'qty' => $itemAttribute->qty-$item['quantity']
+                    'qty' => $itemAttribute->qty - $item['quantity']
                 ]);
             }
 
@@ -285,10 +287,8 @@ class CheckoutController extends PrimaryController
             // removing the cache
             cache()->forget('coupon.' . Auth::id());
 
-            return redirect()->to('/invoice/'. $order->id)->with('success', trans('general.message.order_created'));
-        }
-        else
-        {
+            return redirect()->to('/invoice/' . $order->id)->with('success', trans('general.message.order_created'));
+        } else {
             // My fatoorah
 
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
@@ -296,11 +296,10 @@ class CheckoutController extends PrimaryController
             if ($paymentStatus[0]->responseMessage) {
 
                 //reduce item quantity after successful order
-                foreach ($cartItems as $item)
-                {
+                foreach ($cartItems as $item) {
                     $itemAttribute = ProductAttribute::where('id', $item['product_attribute_id'])->first();
                     $itemAttribute->update([
-                        'qty' => $itemAttribute->qty-$item['quantity']
+                        'qty' => $itemAttribute->qty - $item['quantity']
                     ]);
                 }
 
@@ -317,7 +316,7 @@ class CheckoutController extends PrimaryController
                     'email' => $request->email,
                     'address' => $request->address,
                     'payment_method' => $request->payment,
-                    'invoice_id'  => $paymentStatus[0]->referenceId
+                    'invoice_id' => $paymentStatus[0]->referenceId
                 ]);
 
 
@@ -363,10 +362,10 @@ class CheckoutController extends PrimaryController
 
         $order = $orderRepository->getWhereId($id, 'invoice_id')->first();
         if ($order->update([
-            'status'            => 'pending',
-            'captured_status'   => 1
-        ]))
-        {
+            'status' => 'pending',
+            'captured_status' => 1
+        ])
+        ) {
             $email = new ConfirmUserOrder($order);
             $emailToAdmin = new ConfirmUserOrder($order, 1);
 
