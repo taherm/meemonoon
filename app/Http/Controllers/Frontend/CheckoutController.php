@@ -137,7 +137,7 @@ class CheckoutController extends PrimaryController
                 $couponDiscountValue = ($coupon->value > 0) ? -$coupon->value : null;
 
             }
-            
+
             $amountAfterCoupon = ($coupon->value > 0) ? $cart->grandTotal + $couponDiscountValue : null;
 
         }
