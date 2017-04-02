@@ -10,7 +10,7 @@ class App extends Component {
 
     constructor(props, content) {
         super(props, content);
-        this.state = ({code: null, couponValue: '', is_precentage: ''});
+        this.state = ({code: null, couponFinalVal: '', is_precentage: ''});
     }
 
     handleChange(e) {
@@ -23,11 +23,11 @@ class App extends Component {
         this.props.couponActions.getFetchCoupon(this.state.code, grandTotal).then(() => {
             if (this.props.coupon.is_percentage) {
                 console.log('from the percentage status');
-                var couponVal = (this.props.coupon.value / 100) * grandTotal
-                this.setState({couponValue: couponVal});
+                var couponFinalVal = (this.props.coupon.value / 100) * grandTotal
+                this.setState({couponFinalVal: couponFinalVal});
             } else {
                 console.log('from the value coupon status');
-                this.setState({couponValue: this.props.coupon.value});
+                this.setState({couponFinalVal: this.props.coupon.value});
             }
         });
     }
@@ -35,8 +35,8 @@ class App extends Component {
     render() {
         return (
             <div className="row">
-                <div id="couponValue" className="hidden">{this.state.couponValue}</div>
-                <Alert id={this.props.coupon.id} value={this.state.couponValue} percentage={this.props.coupon.is_percentage}/>
+                <div id="couponValue" className="hidden">{this.state.couponFinalVal}</div>
+                <Alert coupon={this.props.coupon} couponFinalVal={this.state.couponFinalVal}/>
                 <form method="POST" action={couponURL} className="form-virtical"
                       onSubmit={this.handleSubmit.bind(this)}>
                     <div className="flatrate">

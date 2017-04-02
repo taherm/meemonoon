@@ -13,7 +13,7 @@ export default class Alert extends Component {
         super(props, content);
     }
 
-    getAlert(coupon) {
+    getAlert(coupon,couponFinalVal) {
 
         if (coupon.id === 0) {
 
@@ -25,7 +25,7 @@ export default class Alert extends Component {
 
         } else {
 
-            return <AlertMessageSuccess message={messages.messageSuccess} couponValue={coupon.value} percentage={coupon.percentage}/>
+            return <AlertMessageSuccess message={messages.messageSuccess} couponValue={couponFinalVal}/>
 
         }
     }
@@ -35,7 +35,7 @@ export default class Alert extends Component {
             <div className={(this.props.coupon.id === '') ? 'hidden' : 'row'}>
                 <div className="row col-lg-8 col-lg-push-2">
                     {
-                        this.getAlert(this.props)
+                        this.getAlert(this.props.coupon,this.props.couponFinalVal)
                     }
                 </div>
             </div>
