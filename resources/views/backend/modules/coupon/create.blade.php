@@ -64,7 +64,7 @@
             <span class="required"> *</span>
         </label>
         <div class="col-md-3">
-            <input type="checkbox" name="is_precentage"
+            <input type="checkbox" name="is_percentage"
                    value="1" {{ (isset($coupon) && $coupon->is_percetage) ? 'checked' : null }}/>
             <span class="required">by default percetage is disabled</span>
         </div>

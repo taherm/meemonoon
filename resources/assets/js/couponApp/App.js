@@ -21,7 +21,7 @@ class App extends Component {
     handleSubmit(e) {
         e.preventDefault();
         this.props.couponActions.getFetchCoupon(this.state.code, grandTotal).then(() => {
-            if (this.props.coupon.is_precentage) {
+            if (this.props.coupon.is_percentage) {
                 var finalVal = (this.props.coupon.value / 100) * grandTotal
                 this.setState({couponValue: finalVal});
             } else {

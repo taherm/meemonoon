@@ -13,7 +13,7 @@ export default class AlertMessageSuccess extends Component {
     render() {
         return (
             <div className="alert alert-success alert-dismissible" role="alert">
-                <strong>Success !! congratulations .. you received Discount :  {this.props.couponValue} % </strong>
+                <strong>Success !! congratulations .. you received Discount :  {this.props.couponValue} { this.props.percentage ? '%' : null } </strong>
                 <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
                  {this.props.message}
             </div>

@@ -25,7 +25,7 @@ export default class Alert extends Component {
 
         } else {
 
-            return <AlertMessageSuccess message={messages.messageSuccess} couponValue={coupon.value}/>
+            return <AlertMessageSuccess message={messages.messageSuccess} couponValue={coupon.value} percentage={coupon.is_percentage}/>
 
         }
     }
