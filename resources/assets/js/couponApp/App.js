@@ -36,7 +36,7 @@ class App extends Component {
         return (
             <div className="row">
                 <div id="couponValue" className="hidden">{this.state.couponValue}</div>
-                <Alert value={this.state.couponValue} percentage={this.props.coupon.is_percentage}/>
+                <Alert id={this.props.coupon.id} value={this.state.couponValue} percentage={this.props.coupon.is_percentage}/>
                 <form method="POST" action={couponURL} className="form-virtical"
                       onSubmit={this.handleSubmit.bind(this)}>
                     <div className="flatrate">
