@@ -12,6 +12,7 @@
                 <th> consumed</th>
                 <th> code</th>
                 <th> m_charge</th>
+                <th> is_percentage </th>
                 <th> due_date</th>
                 <th> created at</th>
                 <th> actions</th>
@@ -27,6 +28,7 @@
                     <td> {!! (!$coupon->counsumed) ? '<span class="label label-sm label-success"> available </span>' : '<span class="label label-sm label-danger"> expired </span>' !!} </td>
                     <td> {{$coupon->code}} </td>
                     <td> {{$coupon->minimum_charge}} </td>
+                    <td> <span class="label {{ $coupon->is_percentage ? 'label-success' : 'label-danger' }}">percentage</span></td>
                     <td> {{$coupon->due_date->format('d-m-Y') }} </td>
                     <td> {{$coupon->created_at->format('d-m-Y')}} </td>
                     <td>
