@@ -121,10 +121,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.
      * â–‚ â–ƒ â–… â–† â–ˆ BACKEND ROUTES â–ˆ â–† â–… â–ƒ â–‚             ADMIN       OWNER       ASSISTANT
      ***************************************************************************************************/
     Route::get('/', ['as' => 'dashboard.index', 'uses' => 'DashBoardController@index']);
-//    Route::get('home', 'CompanyController@index');
     Route::post('user/status/{id}', ['as' => 'user.suspend', 'uses' => 'UserController@suspendStatus']);
     Route::resource('user', 'UserController');
-////    Route::resource('company', 'CompanyController');
     Route::resource('product', 'ProductController');
     Route::resource('coupon', 'CouponController');
     Route::resource('meta', 'ProductMetaController');
