@@ -20,6 +20,10 @@
                 <a href="{{ route('backend.backup.db') }}">
                     <i class="fa fa-database"></i> backup db</a>
             </li>
+            <li>
+                <a href="{{ route('backend.currency.update') }}">
+                    <i class="fa fa-money"></i> update currency</a>
+            </li>
         </ul>
     </div>
 </div>

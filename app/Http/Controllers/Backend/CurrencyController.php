@@ -22,6 +22,6 @@ class CurrencyController extends PrimaryController
     {
         Artisan::call('currency:update');
 
-        return redirect()->route('backend.currency.index')->with('success', 'success');
+        return redirect()->route('backend.currency.index')->with('success', 'currencies updated');
     }
 }

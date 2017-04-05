@@ -19,4 +19,11 @@ class DashBoardController extends PrimaryController
 
         return back()->with('success', 'db packed successfully');
     }
+
+    public function currencyUpdate()
+    {
+        Artisan::call('currency:update');
+
+        return redirect()->back()->with('success', 'currency updated');
+    }
 }
