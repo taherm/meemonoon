@@ -7,14 +7,13 @@
             <tr>
                 <th> id</th>
                 <th> value</th>
-                <th> customer_id</th>
+                {{--<th> customer_id</th>--}}
                 <th> active</th>
                 <th> consumed</th>
                 <th> code</th>
                 <th> m_charge</th>
                 <th> is_percentage </th>
                 <th> due_date</th>
-                <th> created at</th>
                 <th> actions</th>
             </tr>
             </thead>
@@ -23,14 +22,13 @@
                 <tr>
                     <td> {{$coupon->id}}</td>
                     <td> {{$coupon->value}} </td>
-                    <td> {{$coupon->customer_id}} </td>
+                    {{--<td> {{$coupon->customer_id}} </td>--}}
                     <td> {!! ($coupon->active) ? '<span class="label label-sm label-success"> active </span>' : '<span class="label label-sm label-warning"> not active </span>' !!} </td>
                     <td> {!! (!$coupon->counsumed) ? '<span class="label label-sm label-success"> available </span>' : '<span class="label label-sm label-danger"> expired </span>' !!} </td>
                     <td> {{$coupon->code}} </td>
                     <td> {{$coupon->minimum_charge}} </td>
                     <td> <span class="label {{ $coupon->is_percentage ? 'label-success' : 'label-danger' }}">percentage</span></td>
                     <td> {{$coupon->due_date->format('d-m-Y') }} </td>
-                    <td> {{$coupon->created_at->format('d-m-Y')}} </td>
                     <td>
                         <div class="btn-group">
                             <button class="btn btn-xs green dropdown-toggle" type="button"
