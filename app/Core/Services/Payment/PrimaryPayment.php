@@ -17,12 +17,12 @@ class PrimaryPayment implements primaryPaymentInterface
 
     //LIVE VARS For Ideas Account
     const url = 'https://www.myfatoorah.com/pg/PayGatewayService.asmx';
-//    const userEmail = 'info@ideasowners.net';
-//    const userPass = '123123';
-//    const MerchantCode = '15104385';
-    const userEmail = 'info@meemonoon.com';
-    const userPass = '123456';
+    const userEmail = 'api@meemonoon.com';
+    const userPass = 'h6v95713807';
     const MerchantCode = '68891013807';
+//    const userEmail = 'info@meemonoon.com';
+//    const userPass = '123456';
+//    const MerchantCode = '68891013807';
     public $MerchantReferenceID = '12345678910';
     const successURL = 'http://meemonoon.com/success';
     const errorURL = 'http://meemonoon.com/error';
