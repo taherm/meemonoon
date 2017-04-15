@@ -29,7 +29,7 @@ abstract class QueryFilter
 
         $this->builder = $builder;
 
-        foreach ($this->filters() as $name => $value) {
+        foreach ($this->filterRequest() as $name => $value) {
 
             if (method_exists($this, $name)) {
 
@@ -47,7 +47,7 @@ abstract class QueryFilter
 
     public function filterRequest()
     {
-        return $this->request();
+        return $this->request->all();
     }
 
 

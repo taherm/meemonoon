@@ -31,7 +31,7 @@ class ProductFilters extends QueryFilter
     {
         if (!$this->request->has('price') && $this->request->has('max')) {
             return $this->builder->whereHas('product_meta', function ($q) use ($max) {
-                $q->where('price', '<=', $max);
+                $q->where('price', '<=', $max)->where('price', '>=', $this->request->min);
             });
         }
     }
@@ -40,7 +40,7 @@ class ProductFilters extends QueryFilter
     {
         if (!$this->request->has('price') && $this->request->has('min')) {
             return $this->builder->whereHas('product_meta', function ($q) use ($min) {
-                $q->where('price', '>=', $min);
+                $q->where('price', '>=', $min)->where('price', '<=', $this->request->max);
             });
         }
     }

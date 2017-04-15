@@ -15,7 +15,7 @@
 @section('customScripts')
     @parent
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             function getParameterByName(name) {
                 name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
                 var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -47,40 +47,63 @@
                 min: 1,
                 max: 1000,
                 values: [min, max],
-                slide: function (event, ui) {
+                slide: function(event, ui) {
                     $("#amount").val("" + ui.values[0] + " - " + ui.values[1]);
                     var min = ui.values[0];
                     var max = ui.values[1];
                     $("#amount").val("" + $("#slider-range").slider("values", 0) +
                             " - " + $("#slider-range").slider("values", 1));
                 },
-                change: function (event, ui) {
+                change: function(event, ui) {
                     $("#amount").val("" + ui.values[0] + " - " + ui.values[1]);
 
-                    var pathurl = '/api/products/price';
+//                    var pathurl = '/api/products/price';
                     var min = ui.values[0];
                     var max = ui.values[1];
                     var parent = $("#parentId").val();
-                    console.log('min =>' + min + 'max ==> ' + max + 'parent ===>' + parent);
-
-                    $.ajax({
-                        type: 'POST',
-                        url: '{{ url('api/products/price') }}',
-                        data: {'min': ui.values[0], 'max': ui.values[1], 'parent': parent},
-                        dataType: 'JSON',
-                        beforeSend: function (data) {
-                        },
-                        success: function (response) {
-                            console.log(response.url);
-                            window.location.replace(response.url);
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.log('error : ' + jqXHR + textStatus + errorThrown);
-                        }
-
-                    });
+                    var url =  '/category/'+ parent + '?min=' + min + '&max=' + max;
+                    window.location.replace(url);
                 }
             });
+            {{--$("#slider-range").slider({--}}
+                {{--range: true,--}}
+                {{--min: 1,--}}
+                {{--max: 1000,--}}
+                {{--values: [min, max],--}}
+                {{--slide: function (event, ui) {--}}
+                    {{--$("#amount").val("" + ui.values[0] + " - " + ui.values[1]);--}}
+                    {{--var min = ui.values[0];--}}
+                    {{--var max = ui.values[1];--}}
+                    {{--$("#amount").val("" + $("#slider-range").slider("values", 0) +--}}
+                            {{--" - " + $("#slider-range").slider("values", 1));--}}
+                {{--},--}}
+                {{--change: function (event, ui) {--}}
+                    {{--$("#amount").val("" + ui.values[0] + " - " + ui.values[1]);--}}
+
+                    {{--var pathurl = '/api/products/price';--}}
+                    {{--var min = ui.values[0];--}}
+                    {{--var max = ui.values[1];--}}
+                    {{--var parent = $("#parentId").val();--}}
+                    {{--console.log('min =>' + min + 'max ==> ' + max + 'parent ===>' + parent);--}}
+
+                    {{--$.ajax({--}}
+                        {{--type: 'POST',--}}
+                        {{--url: '{{ url('api/products/price') }}',--}}
+                        {{--data: {'min': ui.values[0], 'max': ui.values[1], 'parent': parent},--}}
+                        {{--dataType: 'JSON',--}}
+                        {{--beforeSend: function (data) {--}}
+                        {{--},--}}
+                        {{--success: function (response) {--}}
+                            {{--console.log(response.url);--}}
+                            {{--window.location.replace(response.url);--}}
+                        {{--},--}}
+                        {{--error: function (jqXHR, textStatus, errorThrown) {--}}
+                            {{--console.log('error : ' + jqXHR + textStatus + errorThrown);--}}
+                        {{--}--}}
+
+                    {{--});--}}
+                {{--}--}}
+            {{--});--}}
             $("#amount").val("" + $("#slider-range").slider("values", 0) +
                     " - " + $("#slider-range").slider("values", 1));
         });
