@@ -74,7 +74,7 @@ class ShippingManager
                 'Reference4' => '004',
                 'Reference5' => '005'
             ],
-            'Code' => $destinationCountry->iso_3166_3,
+            'Code' => $destinationCountry->iso_3166_2,
         ];
         try {
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
