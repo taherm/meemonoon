@@ -14,31 +14,34 @@ class ShippingManager
         return $deliveryCost;
     }
 
-    private function roundUp($weight)
-    {
-        return round(($weight + .5 / 2) / .5) * .5;
-    }
-
     public function calcRateAramex($destinationCountry, $cartWeight)
     {
         $params = array(
-            'ClientInfo' => array(
-                "AccountCountryCode" => "JO",
-                "AccountEntity" => "AMM",
-                "AccountNumber" => "20016",
-                "AccountPin" => "331421",
-                "UserName" => "testingapi@aramex.com",
-                "Password" => 'R123456789$r',
+            'ClientInfo' => [
+                "AccountCountryCode" => env('ARAMEX_ACCOUNT_COUNTRY_CODE'),
+                "AccountEntity" => env('ARAMEX_ACCOUNT_ENTITY'),
+                "AccountNumber" => env('ARAMEX_ACCOUNT_NUMBER'),
+                "AccountPin" => env('ARAMEX_ACCOUNT_PIN'),
+                "UserName" => env('ARAMEX_USERNAME'),
+                "Password" => env('ARAMEX_PASSWORD'),
                 "Version" => "v2.0",
-            ),
+                'Source' => NULL
+            ],
+//            'ClientInfo' => [
+//                'AccountCountryCode' => 'JO',
+//                'AccountEntity' => 'BOM',
+//                'AccountNumber' => '36669982',
+//                'AccountPin' => '331431',
+//                'UserName' => 'testingapi@aramex.com',
+//                'Password' => 'R123456789$r',
+//                'Version' => 'v1.0',
+//            ],
             'Transaction' => array(
                 'Reference1' => '001'
             ),
-            'Code' => $destinationCountry->iso_3166_2,
-            'State' => NULL,
             'OriginAddress' => array(
-                "City" => "Amman",
-                "CountryCode" => "JO"
+                "City" => env('ORIGINAL_CITY'),
+                "CountryCode" => env('ORIGINAL_COUNTRY')
             ),
             'DestinationAddress' => array(
                 "City" => $destinationCountry->capital,
@@ -53,9 +56,29 @@ class ShippingManager
                 'NumberOfPieces' => 1
             )
         );
-        $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
+        $country = [
+            'ClientInfo' => [
+                "AccountCountryCode" => env('ARAMEX_ACCOUNT_COUNTRY_CODE'),
+                "AccountEntity" => env('ARAMEX_ACCOUNT_ENTITY'),
+                "AccountNumber" => env('ARAMEX_ACCOUNT_NUMBER'),
+                "AccountPin" => env('ARAMEX_ACCOUNT_PIN'),
+                "UserName" => env('ARAMEX_USERNAME'),
+                "Password" => env('ARAMEX_PASSWORD'),
+                "Version" => "v2.0",
+                'Source' => NULL
+            ],
+            'Transaction' => [
+                'Reference1' => '001',
+                'Reference2' => '002',
+                'Reference3' => '003',
+                'Reference4' => '004',
+                'Reference5' => '005'
+            ],
+            'Code' => $destinationCountry->iso_3166_2,
+        ];
         try {
-            $country = $countriesSoapClient->FetchCountry($params);
+            $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
+            $country = $countriesSoapClient->FetchCountry($country);
             if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
@@ -67,7 +90,12 @@ class ShippingManager
 //        dd($results->Transaction->Reference1);
 //        dd($results->TotalAmount->Value);
     }
+}
 
+//    private function roundUp($weight)
+//    {
+//        return round(($weight + .5 / 2) / .5) * .5;
+//    }
 
 //    private function calculateShippingCost($country, $weight)
 //    {
@@ -97,5 +125,4 @@ class ShippingManager
 //        return $shippingCost + $shippingCost * 16 / 100;
 //    }
 
-}
 
