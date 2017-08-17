@@ -79,6 +79,9 @@ class ShippingManager
         try {
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
+            ob_start();
+            phpinfo();
+            $info = ob_end_clean();
             dd($country);
             if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
