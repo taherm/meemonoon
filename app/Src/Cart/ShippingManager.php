@@ -74,16 +74,17 @@ class ShippingManager
                 'Reference4' => '004',
                 'Reference5' => '005'
             ],
-            'Code' => $destinationCountry->iso_3166_2,
+            'Code' => $destinationCountry->iso_3166_3,
         ];
         try {
-//            $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
-//            $country = $countriesSoapClient->FetchCountry($country);
-//            if (!is_null($country->Country->Name)) {
+            $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
+            $country = $countriesSoapClient->FetchCountry($country);
+            dd($country);
+            if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
                 return $results->TotalAmount->Value;
-//            }
+            }
         } catch (SoapFault $fault) {
             throw new \Exception("Shipping to {$destinationCountry->name} is not available");
         }
