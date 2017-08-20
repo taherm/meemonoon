@@ -134,11 +134,16 @@
                                     {!! Form::open(['route' => ['cart.checkout'], 'method' => 'POST'], ['class'=>'']) !!}
                                     <div class="place-headline">
                                         <h4>{{ trans('cart.estimate_shipping_and_tax') }}</h4>
-                                        <P>{{ trans('cart.enter_ur_destination') }}
+                                        <p>
+                                            <span>{{ trans('cart.enter_ur_destination') }}</span></br>
+                                            <span class="pull-left">
+                                                {{ trans('general.delivery_within_4_days') }}
+                                            </span>
                                         <span class="pull-right">
                                             <img src="http://meemonoon.dev/meem/frontend/img/aramex.png" alt="" class="img-responsive" style="max-width: 60px;">
                                         </span>
-                                        </P>
+                                            </br>
+                                        </p>
                                     </div>
                                     <div class="search-categori">
                                         <h5>{{ trans('general.country') }}</h5>

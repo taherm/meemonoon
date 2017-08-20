@@ -194,7 +194,6 @@
                                         <strong>{{ trans('general.free_delivery_within_24_hours') }}</strong>
                                     @elseif(currency()->getCurrency(session()->get('currency')) == 'SAR')
                                         <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
-                                        <strong>{{ trans('general.delivery_within_4_days') }}</strong>
                                     @else
                                         <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
                                         <strong>{{ trans('general.delivery_within_3_days') }}</strong>
