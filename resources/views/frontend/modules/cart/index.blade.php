@@ -137,13 +137,16 @@
                                         <p>
                                             <span>{{ trans('cart.enter_ur_destination') }}</span></br>
                                             <span class="pull-left">
-                                                {{ trans('general.delivery_within_4_days') }}
+                                                {{ trans('general.delivery_within_4_days') }}</br>
+                                                {{ trans('general.kuwait_fixed_rate') }}</br>
                                             </span>
                                         <span class="pull-right">
-                                            <img src="http://meemonoon.dev/meem/frontend/img/aramex.png" alt="" class="img-responsive" style="max-width: 60px;">
+                                            <img src="http://meemonoon.dev/meem/frontend/img/aramex.png" alt=""
+                                                 class="img-responsive" style="max-width: 60px;">
                                         </span>
-                                            </br>
                                         </p>
+                                        </br>
+                                        </br>
                                     </div>
                                     <div class="search-categori">
                                         <h5>{{ trans('general.country') }}</h5>

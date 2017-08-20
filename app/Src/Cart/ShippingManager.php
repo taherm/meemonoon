@@ -10,8 +10,12 @@ class ShippingManager
     public function calculateCost($cartWeight, $country)
     {
         $destinationCountry = Country::where('name_' . app()->getLocale(), $country)->first();
-        $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
-        return $deliveryCost;
+        if ($destinationCountry->name_en === 'Kuwait') {
+            return 2;
+        } else {
+            $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
+            return $deliveryCost;
+        }
     }
 
     public function calcRateAramex($destinationCountry, $cartWeight)

@@ -63,7 +63,7 @@ class CartController extends PrimaryController
         $shippingCountry = Session::get('SHIPPING_COUNTRY');
 
 //        //@todo:// translate text
-        $countries = $this->country->has('currency')->where('name_en','!=','Kuwait')->pluck('name_' . app()->getLocale(), 'id');
+        $countries = $this->country->has('currency')->pluck('name_' . app()->getLocale(), 'id');
 
         return view('frontend.modules.cart.index', compact('cart', 'countries', 'shippingCountry'));
     }
