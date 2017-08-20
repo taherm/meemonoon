@@ -50,7 +50,7 @@
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="#">{{ $product->name }}</a>
+                                            <a href="{{ route('product.show',$product->id) }}">{{ $product->name }}</a>
                                         </td>
 
                                         <td class="real-product-price">
