@@ -66,6 +66,7 @@ class ShippingManager
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
             if (!is_null($country->Country->Name)) {
+                dd($params);
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
                 return $results->TotalAmount->Value;
