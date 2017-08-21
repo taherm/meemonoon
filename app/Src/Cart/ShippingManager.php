@@ -10,12 +10,8 @@ class ShippingManager
     public function calculateCost($cartWeight, $country)
     {
         $destinationCountry = Country::where('name_' . app()->getLocale(), $country)->first();
-        if ($destinationCountry->name_en === 'Kuwait') {
-            return 2;
-        } else {
-            $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
-            return $deliveryCost;
-        }
+        $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
+        return $deliveryCost;
     }
 
     public function calcRateAramex($destinationCountry, $cartWeight)
@@ -43,7 +39,7 @@ class ShippingManager
             ),
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
-                'ProductGroup' => 'EXP',
+                'ProductGroup' => ($destinationCountry->name_en === 'Kuwait') ? 'DOM' : 'EXP',
                 'ProductType' => 'PPX',
                 'ActualWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'ChargeableWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
