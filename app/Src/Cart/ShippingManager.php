@@ -11,6 +11,9 @@ class ShippingManager
     {
         $destinationCountry = Country::where('name_' . app()->getLocale(), $country)->first();
         $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
+        if($destinationCountry->iso_3166_2 === 'KW') {
+            throw new \Exception('still working on demostic module for aramex !!');
+        }
         return $deliveryCost;
     }
 
