@@ -39,7 +39,7 @@ class ShippingManager
             ),
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
-                'ProductGroup' => ($destinationCountry->name_en === 'Kuwait') ? 'DOM' : 'EXP',
+                'ProductGroup' => ($destinationCountry->iso_3166_2 === 'KW') ? 'DOM' : 'EXP',
                 'ProductType' => 'PPX',
                 'ActualWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'ChargeableWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
