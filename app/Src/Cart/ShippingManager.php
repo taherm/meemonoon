@@ -40,7 +40,7 @@ class ShippingManager
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
                 'ProductGroup' => ($destinationCountry->iso_3166_2 === 'KW') ? 'DOM' : 'EXP',
-                'ProductType' => 'PPX',
+                'ProductType' => ($destinationCountry->iso_3166_2 === 'KW') ? 'OND' : 'PPX',
                 'ActualWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'ChargeableWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'NumberOfPieces' => 1
