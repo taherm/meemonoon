@@ -188,17 +188,17 @@
                                     <p class="availability in-stock">{{ trans('general.availability') }} : <span style="color: #ff0000;">Out stock</span>
                                     </p>
                                 @endif
-                                <p class="availability in-stock">
-                                    @if(currency()->getCurrency(session()->get('currency')) == 'KWD')
-                                        <i class="fa fa-truck" aria-hidden="true"></i>
+                                {{--<p class="availability in-stock">--}}
+                                    {{--@if(currency()->getCurrency(session()->get('currency')) == 'KWD')--}}
+                                        {{--<i class="fa fa-truck" aria-hidden="true"></i>--}}
                                         {{--<strong>{{ trans('general.free_delivery_within_24_hours') }}</strong>--}}
-                                    @elseif(currency()->getCurrency(session()->get('currency')) == 'SAR')
-                                        <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
-                                    @else
-                                        <img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>
+                                    {{--@elseif(currency()->getCurrency(session()->get('currency')) == 'SAR')--}}
+                                        {{--<img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>--}}
+                                    {{--@else--}}
+                                        {{--<img src="{{asset('meem/frontend/img/aramex.png')}}" width="40"/>--}}
                                         {{--<strong>{{ trans('general.delivery_within_3_days') }}</strong>--}}
-                                    @endif
-                                </p>
+                                    {{--@endif--}}
+                                {{--</p>--}}
                                 </br>
                                 <div class="product-review">
                                     <p>{!! $product->product_meta->description !!}</p>
