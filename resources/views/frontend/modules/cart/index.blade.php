@@ -137,7 +137,7 @@
                                         <p>
                                             <span>{{ trans('cart.enter_ur_destination') }}</span></br>
                                             <span class="pull-left">
-                                                {{ trans('general.delivery_within_4_days') }}</br>sho
+                                                {{ trans('general.delivery_within_4_days') }}</br>
                                             </span>
                                         <span class="pull-right">
                                             <img src="http://meemonoon.dev/meem/frontend/img/aramex.png" alt=""
