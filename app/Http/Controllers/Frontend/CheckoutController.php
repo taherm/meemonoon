@@ -123,7 +123,7 @@ class CheckoutController extends PrimaryController
             // handle no shipment countries
         }
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name, $area);
 
         if (Cache::has('coupon.' . Auth::id())) {
 
@@ -157,11 +157,12 @@ class CheckoutController extends PrimaryController
             'net_amount' => $finalAmount,
             'shippingCountry' => 'shippingCost.country.' . $shippingCountry->name,
             'shippingCost' => (isset($shippingCost) && $shippingCost > 0) ? $shippingCost : 0,
-            'shippingQty' => 1
+            'shippingQty' => 1,
         ]);
+        $area = session()->has('SHIPPING_AREA') ? session()->get('SHIPPING_AREA') : null;
 
         return view('frontend.modules.checkout.index',
-            compact('user', 'cart', 'shippingCountry', 'shippingCost', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon'));
+            compact('user', 'cart', 'shippingCountry', 'shippingCost', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon','area'));
     }
 
     public function reviewOrder(Request $request, OrderRepository $orderRepository)

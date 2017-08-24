@@ -38,7 +38,7 @@
                                 <p class="tabletextp">{{ $cart->grandTotal }} KD</p>
                                 {!! (isset($coupon) && $coupon->value > 0) ? '<p class="tabletextp">'.$couponDiscountValue .'KD</p>' : null !!}
                                 {!! (isset($coupon) && $coupon->value > 0) ? '<p class="tabletextp">'.$amountAfterCoupon .'KD</p>' : null !!}
-                                <p class="tabletextp">{{ $shippingCost }} KD ({{ $shippingCountry->name }})</p>
+                                <p class="tabletextp">{{ $shippingCost }} KD ({{ $shippingCountry->name }} - {{ $area }})</p>
                                 <p class="tabletextp">{{ $finalAmount }} KD</p>
 
 
