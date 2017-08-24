@@ -69,6 +69,7 @@ class CheckoutController extends PrimaryController
         if ($request->has('shipping_country')) {
 
             Session::put('SHIPPING_COUNTRY', $request->shipping_country);
+            Session::put('SHIPPING_AREA', $request->area);
 
         } else {
             if (!Session::has('SHIPPING_COUNTRY')) {
@@ -84,10 +85,12 @@ class CheckoutController extends PrimaryController
                 }
 
                 Session::put('SHIPPING_COUNTRY', $request->shipping_country);
+                Session::put('SHIPPING_AREA', $request->area);
             }
         }
 
         $shippingCountry = Session::get('SHIPPING_COUNTRY');
+        $area = Session::get('SHIPPING_AREA');
 
         // @todo : use actual logged in user
         if (!auth()->check()) {
@@ -120,7 +123,7 @@ class CheckoutController extends PrimaryController
             // handle no shipment countries
         }
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
 
         if (Cache::has('coupon.' . Auth::id())) {
 

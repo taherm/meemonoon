@@ -150,7 +150,16 @@
                                     <div class="search-categori">
                                         <h5>{{ trans('general.country') }}</h5>
                                         <div class="category">
-                                            {{ Form::select('shipping_country',$countries,$shippingCountry,['class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
+                                            {{ Form::select('shipping_country',$countries,$shippingCountry,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="search-categori">
+                                        <h5>{{ trans('general.area') }}</h5>
+                                        <div class="category">
+                                            <select class="disabled" name="area" id="areas" style="min-width: 80px;">
+                                                <option value="">Select Area</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="rate-subtotal">
@@ -182,6 +191,23 @@
     @parent
     {{--REACT COUPON APP HERE--}}
     <script type="text/javascript" src="{{ asset('js/coupon-app.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#country').on('change', function(e) {
+                countryCode = e.target.value;
+                console.log('countryCode', countryCode);
+                $('#areas').html('').toggleClass('disabled');
+                $.get('api/country/' + countryCode, function(data) {
+                    for (var i in data) {
+                        data[i].map(function (v,index) {
+                            $('#areas').append(`<option value="${v}">${v}</option>`)
+                        });
+
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
 @endif
 

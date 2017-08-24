@@ -3,18 +3,19 @@
 namespace App\Src\Cart;
 
 use App\Src\Country\Country;
+use Carbon\Carbon;
 use Exception;
 
 class ShippingManager
 {
-    public function calculateCost($cartWeight, $country)
+    public function calculateCost($cartWeight, $country,$area)
     {
         $destinationCountry = Country::where('name_' . app()->getLocale(), $country)->first();
-        $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight);
+        $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight,$area);
         return $deliveryCost;
     }
 
-    public function calcRateAramex($destinationCountry, $cartWeight)
+    public function calcRateAramex($destinationCountry, $cartWeight,$area)
     {
         $params = array(
             'ClientInfo' => [
@@ -34,9 +35,10 @@ class ShippingManager
                 "CountryCode" => env('ORIGINAL_COUNTRY')
             ),
             'DestinationAddress' => array(
-                "City" => $destinationCountry->capital,
+                "City" => $area,
                 "CountryCode" => $destinationCountry->iso_3166_2
             ),
+            'Shipping Date' => Carbon::today(),
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
                 'ProductGroup' => ($destinationCountry->iso_3166_2 === 'KW') ? 'DOM' : 'EXP',
@@ -62,12 +64,14 @@ class ShippingManager
             ],
             'Code' => $destinationCountry->iso_3166_2,
         ];
+
         try {
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
             if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
+                dd($results);
                 return $results->TotalAmount->Value;
             }
         } catch (SoapFault $fault) {
