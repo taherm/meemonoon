@@ -8,7 +8,7 @@ use Exception;
 
 class ShippingManager
 {
-    public function calculateCost($cartWeight, $country,$area)
+    public function calculateCost($cartWeight,$country,$area)
     {
         $destinationCountry = Country::where('name_' . app()->getLocale(), $country)->first();
         $deliveryCost = $this->calcRateAramex($destinationCountry, $cartWeight,$area);

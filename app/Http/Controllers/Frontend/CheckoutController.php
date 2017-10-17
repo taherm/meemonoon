@@ -199,7 +199,9 @@ class CheckoutController extends PrimaryController
 
         $shippingCountry = $this->country->find($request->shipping_country);
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
+        $area = Session::get('SHIPPING_AREA');
+
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
 
         $orderDetails = session()->get('ORDER');
 
@@ -227,7 +229,6 @@ class CheckoutController extends PrimaryController
     public function checkout(Request $request, OrderRepository $orderRepository)
     {
 
-
         $user = auth()->user();
 
         $cartItems = $this->cart->getItems();
@@ -238,7 +239,9 @@ class CheckoutController extends PrimaryController
 
         $shippingCountry = $this->country->find($request->shipping_country);
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name);
+        $area = Session::get('SHIPPING_AREA');
+
+        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
 
         $orderDetails = session()->get('ORDER');
 
