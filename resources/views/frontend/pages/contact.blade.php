@@ -19,7 +19,7 @@
                             <!-- Map area -->
                             <div class="map-area">
                                 <div id="googleMap" style="width:100%;height:410px;">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.905730381179!2d47.99046772717284!3d29.373049321027096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf84a33dcae099%3A0x165185f48b750c50!2s86+St%2C+Kuwait+City%2C+Kuwait!5e0!3m2!1sen!2s!4v1484007617887" width="1150" height="410" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6955.856739054493!2d48.084835662426734!3d29.343094958730017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf762fcd8ae1c5%3A0x3d38baeb187cf5f1!2sSymphony+Style+Hotel+Kuwait!5e0!3m2!1sen!2s!4v1509296654509" width="1150" height="410" frameborder="0" style="border:0" allowfullscreen></iframe>
                                 </div>
                             </div><!-- End Map area -->
                         </div>
