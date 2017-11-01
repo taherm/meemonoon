@@ -20,7 +20,7 @@
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-offset-2">
                             <div class="contact-info">
                                 <h3>{{$privacyData->title}}</h3>
-                                <p>{{$privacyData->body}}</p>
+                                <p>{!! $privacyData->body !!}</p>
                             </div>
                         </div><!-- End About info -->
 

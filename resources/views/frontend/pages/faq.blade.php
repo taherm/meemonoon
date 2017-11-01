@@ -32,7 +32,7 @@
                                         <div id="q{{$counter++}}" class="panel-collapse collapse">
                                             <div class="panel-body">
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <p>{{$qa->answer}}</p>
+                                                    <p>{!! $qa->answer !!}</p>
                                                 </div>
                                             </div>
                                         </div>
