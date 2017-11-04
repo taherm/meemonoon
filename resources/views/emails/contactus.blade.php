@@ -266,11 +266,6 @@
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class='contentEditable'
                                                                          style='text-align: center;color:#AAAAAA;'>
-                                                                        <p> {{ env('APP_URL') }} Teamwork <br/>
-                                                                            Kuwait, Sharq <br/>
-                                                                            123456 <br/>
-                                                                            <a href={{ base_path() }}">7orof</a>
-                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </td>
