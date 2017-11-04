@@ -55,7 +55,6 @@ class PageController extends PrimaryController
 
             Mail::to($email)->cc($request->email)->queue(new SendContactus($request->request->all()));
 
-
         } catch (\Exception $e) {
 
             return redirect()->back()->with('info', $e->getMessage());

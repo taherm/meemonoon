@@ -1,5 +1,4 @@
 @extends('frontend.layouts.master')
-
 @section('body')
 
     <!-- About page body start -->
@@ -31,5 +30,4 @@
         </div>
     </div>
     <!-- About page body end -->
-
 @endsection

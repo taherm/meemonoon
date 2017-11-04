@@ -33,9 +33,9 @@ class SendContactus extends Mailable
         return $this->view('emails.newsletter')->with([
             'name' => $this->request['name'],
             'email' => $this->request['email'],
-            'subject' => $this->request['subject'],
-            'query_type' => $this->request['query_type'],
-            'message' => $this->request['message'],
+            'title' => $this->request['title'],
+            'inquiry_type' => $this->request['inquiry_type'],
+            'body' => $this->request['body'],
         ]);
     }
 }

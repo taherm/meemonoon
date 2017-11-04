@@ -60,10 +60,10 @@
                                             {!! Form::text('email', null, ['placeholder'=>'Email (required)']) !!}
                                         </div>
                                         <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                            {!! Form::text('subject', null, ['placeholder'=>'Subject (required)']) !!}
+                                            {!! Form::text('title', null, ['placeholder'=>'Subject (required)']) !!}
                                         </div>
                                         <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
-                                            {!! Form::select('Inquiry Type (required)', array('no' => 'Select Your Inquiry Type', 'how_to_shop' => 'How to shop?', 'product_information' => 'Product Information', 'delivery' => 'Delivery', 'refund' => 'Refund')) !!}
+                                            {!! Form::select('inquiry_type', array('no' => 'Select Your Inquiry Type', 'how_to_shop' => 'How to shop?', 'product_information' => 'Product Information', 'delivery' => 'Delivery', 'refund' => 'Refund')) !!}
                                         </div>
                                         <div class="col-lg-12 col-md-6 col-sm-12 col-xs-12">
                                             {!! Form::textarea('body', null, ['id'=>'message','cols'=>30,'rows'=>10,'placeholder'=>'Message (required)']) !!}
