@@ -30,7 +30,7 @@ class SendContactus extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.newsletter')->with([
+        return $this->view('emails.contactus')->with([
             'name' => $this->request['name'],
             'email' => $this->request['email'],
             'title' => $this->request['title'],

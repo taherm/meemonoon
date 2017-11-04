@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title> Contact Us | 7orof.com | {{ $data['subject'] }}</title>
+    <title>  {{ trans('general.contactus') }} | {{ config('app.name') }} | {{ $title }} </title>
     <style type="text/css">
         body {
             padding-top: 0 !important;
@@ -162,7 +162,7 @@
                                                                 <div class='contentEditableContainer contentImageEditable'>
                                                                     <div class='contentEditable'>
                                                                         <a target='_blank' href="[CLIENTS.WEBSITE]"><img
-                                                                                    src="{{ $message->embed('images/logo-150.png') }}"
+                                                                                    src="{{ $message->embed(asset('meem/frontend/img/logo/logo.png')) }}"
                                                                                     alt="Logo" width='60' height='60'
                                                                                     data-default="placeholder"
                                                                                     data-max-width="200"></a>
@@ -176,7 +176,7 @@
                                                                          style='text-align: left;font-weight: light; color:#555555;font-size:26;line-height: 39px;font-family: Helvetica Neue;'>
                                                                         <h1 class='big'><a target='_blank'
                                                                                            href="{{ app_path() }}"
-                                                                                           style='color:#444444'>7orof.com</a>
+                                                                                           style='color:#444444'>{{ env('APP_URL') }}</a>
                                                                         </h1>
                                                                     </div>
                                                                 </div>
@@ -224,15 +224,17 @@
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class='contentEditable'
                                                                          style='text-align: center;'>
-                                                                        <h2 style="font-size: 20px;">{{ ucfirst(trans('general.contact_us')) }}</h2>
+                                                                        <h2 style="font-size: 20px;">{{ ucfirst(trans('general.contactus')) }}</h2>
+
+                                                                        <h2 style="font-size: 20px;">{!! ucfirst($title) !!}</h2>
                                                                         <br>
 
-                                                                        <p>Message : {{ $data['content'] }}.</p>
+                                                                        {!! $name !!}
+
+                                                                        <p>{!! $body !!}.</p>
                                                                         <hr/>
                                                                         <p>
-                                                                            <p>Name : {{ $data['name'] }}</p>
-                                                                            <br>
-                                                                            <p>from : {{ $data['email'] }}</p>
+                                                                            <small>{!! $name !!} |  {!! $email !!}</small>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -264,10 +266,10 @@
                                                                 <div class='contentEditableContainer contentTextEditable'>
                                                                     <div class='contentEditable'
                                                                          style='text-align: center;color:#AAAAAA;'>
-                                                                        <p> 7orof.com<br/>
-                                                                            {{ Cache::get('contactusInfo')->address }}<br/>
-                                                                            {{ Cache::get('contactusInfo')->phone }}<br/>
-                                                                            <a href="http://7orof.com">7orof.com</a>
+                                                                        <p> {{ env('APP_URL') }} Teamwork <br/>
+                                                                            Kuwait, Sharq <br/>
+                                                                            123456 <br/>
+                                                                            <a href={{ base_path() }}">7orof</a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -282,62 +284,66 @@
 
                                     <div class='movableContent'>
                                         <table width="580" border="0" cellspacing="0" cellpadding="0" align="center">
-                                            <tr>
-                                                <td colspan="3" height='40'></td>
-                                            </tr>
-                                            <tr>
-                                                <td width='195'></td>
-                                                <td width='190' align='center' style='text-align: center;'>
-                                                    <table width='190' cellpadding="0" cellspacing="0" align="center">
                                                         <tr>
-                                                            <td width='10'></td>
-                                                            <td width='40'>
-                                                                <div class='contentEditableContainer contentTwitterEditable'>
-                                                                    <div class='contentEditable'
-                                                                         style='text-align: center;color:#AAAAAA;'>
-                                                                        <a href="http://twitter.com/{{Cache::get('contactusInfo')->twitter}}">
-                                                                        <img src="{{ $message->embed('images/twitter.png') }}"
-                                                                             alt="twitter" width='40' height='40'
-                                                                             data-max-width="40" data-customIcon="true">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
+                                                            <td colspan="3" height='40'></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width='195'></td>
+                                                            <td width='190' align='center' style='text-align: center;'>
+                                                                <table width='190' cellpadding="0" cellspacing="0" align="center">
+                                                                    <tr>
+                                                                        {{--<td width='40'>--}}
+                                                                        {{--<div class='contentEditableContainer contentFacebookEditable'>--}}
+                                                                        {{--<div class='contentEditable'--}}
+                                                                        {{--style='text-align: center;color:#AAAAAA;'>--}}
+                                                                        {{--<img src="{{ $message->embed('images/facebook.png') }}"--}}
+                                                                        {{--alt="facebook" width='40' height='40'--}}
+                                                                        {{--data-max-width="40" data-customIcon="true">--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                        {{--<td width='10'></td>--}}
+                                                                        {{--<td width='40'>--}}
+                                                                        {{--<div class='contentEditableContainer contentTwitterEditable'>--}}
+                                                                        {{--<div class='contentEditable'--}}
+                                                                        {{--style='text-align: center;color:#AAAAAA;'>--}}
+                                                                        {{--<img src="{{ $message->embed('images/twitter.png') }}"--}}
+                                                                        {{--alt="twitter" width='40' height='40'--}}
+                                                                        {{--data-max-width="40" data-customIcon="true">--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                        {{--<td width='10'></td>--}}
+                                                                        {{--<td width='40'>--}}
+                                                                        {{--<div class='contentEditableContainer contentImageEditable'>--}}
+                                                                        {{--<div class='contentEditable'--}}
+                                                                        {{--style='text-align: center;color:#AAAAAA;'>--}}
+                                                                        {{--<img src="{!! $message->embed('images/youtube.png') !!}"--}}
+                                                                        {{--alt="youtube" width='40' height='40'--}}
+                                                                        {{--data-max-width="40">--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                        {{--<td width='10'></td>--}}
+                                                                        {{--<td width='40'>--}}
+                                                                        {{--<div class='contentEditableContainer contentImageEditable'>--}}
+                                                                        {{--<div class='contentEditable'--}}
+                                                                        {{--style='text-align: center;color:#AAAAAA;'>--}}
+                                                                        {{--<img src="{!!  $message->embed('images/instagram.png') !!}"--}}
+                                                                        {{--alt='Social media' width='40' height='40'--}}
+                                                                        {{--data-max-width='40'>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</div>--}}
+                                                                        {{--</td>--}}
+                                                                    </tr>
+                                                                </table>
                                                             </td>
-                                                            <td width='10'></td>
-                                                            <td width='40'>
-                                                                <div class='contentEditableContainer contentImageEditable'>
-                                                                    <div class='contentEditable'
-                                                                         style='text-align: center;color:#AAAAAA;'>
-                                                                        <a href="http://youtube.com/{{Cache::get('contactusInfo')->youtube}}">
-                                                                            <img src="{{ $message->embed('images/youtube.png') }}"
-                                                                                 alt="Pinterest" width='40' height='40'
-                                                                                 data-max-width="40">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td width='10'></td>
-                                                            <td width='40'>
-                                                                <div class='contentEditableContainer contentImageEditable'>
-                                                                    <div class='contentEditable'
-                                                                         style='text-align: center;color:#AAAAAA;'>
-                                                                        <a href="http://instagram.com/{{Cache::get('contactusInfo')->instagram}}">
-                                                                        <img src="{{ $message->embed('images/instagram.png') }}"
-                                                                             alt="Pinterest" width='40' height='40'
-                                                                             data-max-width="40">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
+                                                            <td width='195'></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3" height='40'></td>
                                                         </tr>
                                                     </table>
-                                                </td>
-                                                <td width='195'></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3" height='40'></td>
-                                            </tr>
-                                        </table>
                                     </div>
                                     <!-- =============== END FOOTER =============== -->
                                 </td>
