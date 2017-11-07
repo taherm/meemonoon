@@ -7,7 +7,7 @@
                 <span class="number">{{ $order }}</span>{{ trans('general.payment_information') }}</a>
         </h4>
     </div>
-    <div id="checkut5" class="panel-collapse collapse">
+    <div id="checkut5" class="panel-collapse collapse in ">
         <div class="panel-body">
             <div class="col-xs-3">
                 <div class="form-group">
