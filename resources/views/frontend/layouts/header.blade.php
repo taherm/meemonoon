@@ -7,9 +7,10 @@
                 <div class="row">
                     @include('frontend.partials._nav_left')
                     <div class="col-lg-4 col-md-4 col-sm-4" style="max-height: 73px;">
-                        <div class="logo" >
+                        <div class="logo">
                             <a href="{{URL('/')}}"><img class="img-responsive" style="width : 100%; height : auto;"
-                                        src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}" alt=""></a>
+                                                        src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}"
+                                                        alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -30,17 +31,24 @@
                                 <ul style="{!! (App::isLocale('ar')) ? 'direction: rtl !important;' : null !!}">
                                     <li><a class="no-child" href="{{URL('/')}}">{{ trans('general.home') }}</a></li>
                                     @foreach($categories as $category)
-                                        <li class="dropdown">
+                                        <li>
                                             <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
+                                            <!-- mega menu start -->
                                             @if(count($category->children) > 0)
-                                                <ul>
+                                                <div class="mega-menu mega-menu3">
                                                     @foreach($category->children as $child)
+                                                        <span>
+                                                                <a class="mega-headline"
+                                                                   href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
+                                                            @if(count($child->children) > 0)
+                                                                @foreach($child->children as $subChild)
+                                                                    <a href="{{ route('category.show',[$child->id]) }}?child={{ $subChild->id }}">{{ $subChild->name }}</a>
+                                                                @endforeach
+                                                            @endif
+                                                            </span>
 
-                                                        <li>
-                                                            <a href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
-                                                        </li>
                                                     @endforeach
-                                                </ul>
+                                                </div>
                                             @endif
                                         </li>
                                     @endforeach

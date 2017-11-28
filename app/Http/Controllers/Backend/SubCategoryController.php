@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Core\PrimaryController;
 use App\Core\Services\Image\PrimaryImageService;
+use App\Src\Category\Category;
 use App\Src\Category\CategoryRepository;
 use App\Http\Requests\Backend\SubCategoryUpdate;
 use App\Http\Requests\Backend\SubCategoryCreate;
@@ -39,10 +40,14 @@ class SubCategoryController extends PrimaryController
      */
     public function create()
     {
-        $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
-        $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
-
-        return view('backend.modules.subcategory.create', compact('parentCategories'));
+        $subId = request()->has('sub_id') ? request()->sub_id : null;
+        if(!request()->has('sub_id')) {
+            $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
+            $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
+            return view('backend.modules.subcategory.create', compact('parentCategories'));
+        }
+        // children case
+        return view('backend.modules.subcategory.children.create', compact('subId'));
     }
 
     /**
@@ -53,7 +58,6 @@ class SubCategoryController extends PrimaryController
      */
     public function store(SubCategoryCreate $request)
     {
-
         try {
             $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
 
@@ -66,14 +70,12 @@ class SubCategoryController extends PrimaryController
                 return redirect()->route('backend.subcategory.index')->with('success', 'successfully created');
 
             }
-
             return redirect()->back()->with('error', 'not created !!');
 
         } catch (\Exception $e) {
 
             dd($e->getMessage());
         }
-
     }
 
     /**
@@ -103,15 +105,11 @@ class SubCategoryController extends PrimaryController
     {
         $subcategory = $this->category->model->whereId($id)->first();
 
-//        dd($subcategory);
-
         try {
 
             if ($request->hasFile('image')) {
 
                 $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
-
-//                dd($image);
 
                 $subcategory->update(['image' => $image]);
 

@@ -24,6 +24,18 @@
                                                     <label>
                                                         {!! Form::checkbox('categories[]',$child->id,(in_array($child->id,$categoriesList,true)) ? true : false) !!}
                                                         {{ $child->name }}
+                                                        @if(count($child->children) > 0)
+                                                            <ul class="list-unstyled">
+                                                                @foreach($child->children as $subChild)
+                                                                    <li style="margin-left: 10px">
+                                                                        <label>
+                                                                            {!! Form::checkbox('categories[]',$subChild->id,(in_array($subChild->id,$categoriesList,true)) ? true : false) !!}
+                                                                            {{ $subChild->name }}
+                                                                        </label>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
                                                     </label>
                                                 </li>
                                             @endforeach
