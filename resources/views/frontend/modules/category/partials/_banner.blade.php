@@ -4,7 +4,4 @@
             <img src="{{ asset('img/uploads/large/'.$category->image) }}" alt="" class="img-responsive">
         </a>
     </div>
-    <div class="col-lg-12">
-        <h4>{{ $category->name }}</h4>
-    </div>
 </div>
