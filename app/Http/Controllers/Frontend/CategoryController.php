@@ -61,11 +61,11 @@ class CategoryController extends PrimaryController
         if ($filters->request->has('child')) {
             $category = $this->categoryRepository->getById($filters->request->get('child'));
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $category->products()->filters($filters);
+            $products = $category->products()->filters($filters)->orderBy('id','desc');
         } else {
             $category = $this->categoryRepository->getById($parentId);
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $category->products()->filters($filters);
+            $products = $category->products()->filters($filters)->orderBy('id','desc');
         }
 
 
