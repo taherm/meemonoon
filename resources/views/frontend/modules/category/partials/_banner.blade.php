@@ -5,6 +5,6 @@
         </a>
     </div>
     <div class="col-lg-12">
-        <h5>{{ $category->name }}</h5>
+        <h4>{{ $category->name }}</h4>
     </div>
 </div>
