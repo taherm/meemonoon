@@ -37,7 +37,7 @@
                                                 <div class="simpleLens-big-image-container">
                                                     <a class="simpleLens-lens-image"
                                                        data-lens-image="{{asset('img/uploads/large/'.$product->product_meta->image)}}">
-                                                        <img src="{{asset('img/uploads/medium/'.$product->product_meta->image)}}"
+                                                        <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
                                                              class="simpleLens-big-image" alt="productd">
                                                     </a>
                                                 </div>
@@ -54,8 +54,8 @@
                                                     <div class="simpleLens-big-image-container">
                                                         <a class="simpleLens-lens-image"
                                                            data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
-                                                            <img src="{{asset('img/uploads/medium/'.$image->large_url)}}"
-                                                                 class="simpleLens-big-image" alt="productd">
+                                                            <img src="{{asset('img/uploads/large/'.$image->large_url)}}"
+                                                                 class="simpleLens-big-image" alt="{{ $product->name }}">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -70,8 +70,8 @@
                                                 @if(isset($product->product_meta->image))
                                                     <ul class="nav nav-tabs" role="tablist">
                                                         <li class="active"><a href="/#p-view-1" role="tab" data-toggle="tab">
-                                                                <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
-                                                                     width="100" height="100" alt="productd"></a>
+                                                                <img src="{{asset('img/uploads/large/'.$product->product_meta->image)}}"
+                                                                     width="100" height="100" alt="{{ $product->name }}"></a>
                                                         </li>
                                                     </ul>
                                                 @endif
