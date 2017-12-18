@@ -92,7 +92,7 @@
                                                                         href="{{'/#p-view-'. $count2++}}" role="tab"
                                                                         data-toggle="tab"><img
                                                                             src="{{asset('img/uploads/large/'.$image->large_url)}}"
-                                                                            width="100" height="100" alt="productd"></a>
+                                                                            width="100" height="100" alt="{{ $product->name }}"></a>
                                                             </li>
                                                         </ul>
 

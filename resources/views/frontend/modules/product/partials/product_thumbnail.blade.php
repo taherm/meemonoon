@@ -32,7 +32,7 @@
                     <a href="{{ route('product.show',$product->id) }}">
                         {{--                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))--}}
                         <img class="primary-img"
-                             src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="">
+                             src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt="{{ $product->name }}">
                         {{--@else--}}
                         {{--<img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
                         {{--@endif--}}
@@ -41,7 +41,7 @@
                             {{--                                @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))--}}
                             <img class="secondary-img"
                                  src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} "
-                                 alt="">
+                                 alt="{{ $product->name }}">
                             {{--@else--}}
                             {{--<img class="secondary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
                             {{--@endif--}}
