@@ -39,7 +39,7 @@
                                 <a href="{{ route('product.show',$product->id) }}">
                                     {{--                            @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))--}}
                                     <img class="primary-img"
-                                         src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} " alt=""
+                                         src="{{ url('img/uploads/medium/'.$product->product_meta->image) }} " alt=""
                                          style="width: 261px;height: 300px;">
                                     {{--@else--}}
                                     {{--<img class="primary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
@@ -48,7 +48,7 @@
                                     @if(isset($product->gallery->images->first()->thumb_url))
                                         {{--                                @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))--}}
                                         <img class="secondary-img"
-                                             src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} "
+                                             src="{{ url('img/uploads/medium/'.$product->gallery->images->first()->medium_url) }} "
                                              alt="" style="width: 261px;height: 300px;">
                                         {{--@else--}}
                                         {{--<img class="secondary-img" src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} " alt="" style="width: 261px;height: 300px;">--}}
@@ -79,7 +79,7 @@
                                                data-saleprice="{{ $product->product_meta->finalPrice  }} KD"
                                                data-price="{{ $product->product_meta->price }} KD"
                                                data-link="{{ route('product.show',$product->id) }}"
-                                               data-image="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }}"
+                                               data-image="{{ asset('img/uploads/medium/'.$product->product_meta->image) }}"
                                                data-description="{!! $product->product_meta->description !!}"
                                             >
                                                 <i class="fa fa-eye"></i>
@@ -117,9 +117,9 @@
                                     <span class="sale-text new-sale">{{ trans('general.new') }}</span>
                                 @endif
                                 <a href="#">
-                                    @if(file_exists(url('img/uploads/thumbnail/'.$product->product_meta->image)))
+                                    @if(file_exists(url('img/uploads/medium/'.$product->product_meta->image)))
                                         <img class="primary-img"
-                                             src="{{ url('img/uploads/thumbnail/'.$product->product_meta->image) }} "
+                                             src="{{ url('img/uploads/medium/'.$product->product_meta->image) }} "
                                              alt=""
                                              style="width: 261px;height: 300px;">
                                     @else
@@ -131,7 +131,7 @@
                                     @if(isset($product->gallery->images->first()->thumb_url))
                                         @if(file_exists(url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url)))
                                             <img class="secondary-img"
-                                                 src="{{ url('img/uploads/thumbnail/'.$product->gallery->images->first()->thumb_url) }} "
+                                                 src="{{ url('img/uploads/medium/'.$product->gallery->images->first()->thumb_url) }} "
                                                  alt="" style="width: 261px;height: 300px;">
                                         @else
                                             <img class="secondary-img"
@@ -165,7 +165,7 @@
                                                data-saleprice="{{ $product->product_meta->finalPrice  }} KD"
                                                data-price="{{ $product->product_meta->price }} KD"
                                                data-link="{{ route('product.show',$product->id) }}"
-                                               data-image="{{ asset('img/uploads/thumbnail/'.$product->product_meta->image) }}"
+                                               data-image="{{ asset('img/uploads/medium/'.$product->product_meta->image) }}"
                                                data-description="{!! $product->product_meta->description !!}"
                                             >
                                                 <i class="fa fa-eye"></i>
