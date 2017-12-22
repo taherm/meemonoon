@@ -9,7 +9,7 @@
                             {{--<li><a href="{{ route('product.tags',[$tag->name]) }}"--}}
                                    {{--style="font-size: {!!rand(6,20)!!}px !important;">{{ $tag->name }}</a></li>--}}
 
-                            <li><a href="{{ route('product.tags',[$tag->name]) }}"
+                            <li style=""><a href="{{ route('product.tags',[$tag->name]) }}"
                                    style="">{{ $tag->name }}</a></li>
                         @endforeach
                     </ul>
