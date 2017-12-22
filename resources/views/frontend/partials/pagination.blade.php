@@ -13,10 +13,10 @@
         @endif
     </div>
 </div>
-@if($products->count() > 9)
+@if($products->count() > 12)
     <div class="pages">
         <ol>
-            @for($i=1;$i <= round(isset($productsCounter) ? $productsCounter : $products->count() / (isset($perPage)) ? $perPage : 9); $i++)
+            @for($i=1;$i <= round(isset($productsCounter) ? $productsCounter : $products->count() / (isset($perPage)) ? $perPage : 12); $i++)
                 @if(str_contains(Request::getQueryString(),'page'))
                     <li class=""><a href="?&page={{ $i }}">{{ $i }}</a>
                     </li>
