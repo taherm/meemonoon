@@ -2,14 +2,14 @@
 <div class="left-sidebar">
     <div class="left-sidebar-title">
         <h3>{{ $category->name }}</h3>
-        <h3>{{ trans('general.shopping_options') }}</h3>
+        {{--<h3>{{ trans('general.shopping_options') }}</h3>--}}
     </div>
-    <div class="left-layout">
-        @include('frontend.modules.category.partials._filter_range')
+    {{--<div class="left-layout">--}}
+        {{--@include('frontend.modules.category.partials._filter_range')--}}
         {{--@include('frontend.modules.category.partials._filter_color')--}}
         {{--@include('frontend.modules.category.partials._filter_size')--}}
 {{--        @include('frontend.modules.category.partials._filter_subcategorxies')--}}
-    </div>
+    {{--</div>--}}
     <div class="left-sidebar-title">
         @include('frontend.modules.category.partials._tags')
     </div>

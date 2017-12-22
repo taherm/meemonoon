@@ -4,7 +4,7 @@
         <select id="sort" style="height: auto;">
             <option value="position">{{ trans('general.position') }}</option>
             <option value="name">{{ trans('general.name') }}</option>
-            <option value="price">{{ trans('general.price') }}</option>
+            {{--<option value="price">{{ trans('general.price') }}</option>--}}
         </select>
         @if(str_contains(request()->fullUrl(),'desc'))
             <a href="{{ request()->fullUrl().'&sort=asc' }}"><i class="fa fa-long-arrow-up"></i></a>

@@ -10,7 +10,8 @@
         </p>
         <div id="slider-range"></div>
     </div>
-</div><!-- End Price Filter Area -->
+</div>
+<!-- End Price Filter Area -->
 
 @section('customScripts')
     @parent

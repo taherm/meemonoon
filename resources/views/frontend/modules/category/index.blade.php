@@ -7,8 +7,9 @@
 <div class="shop-product-area">
     <div class="container">
         <div class="row">
+            <!--Filters start-->
             <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                <!--Filters start-->
+
                 @include('frontend.modules.category.partials._filters')
                         <!--Filters end-->
             </div>
