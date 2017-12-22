@@ -13,3 +13,4 @@ Homestead.json
 /public/fonts/cairo/*
 database/migrations/_______currencies_table
 composer.lock
+theme
