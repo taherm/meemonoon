@@ -13,7 +13,7 @@
         @endif
     </div>
 </div>
-@if($products->count() > 12)
+@if($products->count() >= 12)
     <div class="pages">
         <ol>
             @for($i=1;$i <= round(isset($productsCounter) ? $productsCounter : $products->count() / (isset($perPage)) ? $perPage : 12); $i++)
