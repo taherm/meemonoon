@@ -22,7 +22,7 @@ class CategoryController extends PrimaryController
     protected $productRepository;
     protected $userRepository;
     protected $companyRepository;
-    const limit = 6;
+    const limit = 12;
 
 
     public function __construct(
