@@ -13,8 +13,8 @@
         @endif
     </div>
 </div>
-@if($products->count() >= 12)
-    <div class="pages">
+{{--@if($products->count() >= 12)--}}
+    {{--<div class="pages">--}}
         {{--<ol>--}}
             {{--@for($i=1;$i <= round($products->count() / 12) + 1 ; $i++)--}}
                 {{--@if(str_contains(Request::getQueryString(),'page'))--}}
@@ -26,6 +26,6 @@
                 {{--@endif--}}
             {{--@endfor--}}
         {{--</ol>--}}
-        {{ $products->render() }}
-    </div>
-@endif
+        {{ $products->links() }}
+    {{--</div>--}}
+{{--@endif--}}
