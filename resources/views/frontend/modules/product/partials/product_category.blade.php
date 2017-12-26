@@ -124,7 +124,7 @@
                                              style="width: 261px;height: 300px;">
                                     @else
                                         <img class="primary-img"
-                                             src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} "
+                                             src="{{ url('img/uploads/medium/'.$product->product_meta->image) }} "
                                              alt="" style="width: 261px;height: 300px;">
                                     @endif
 
@@ -135,7 +135,7 @@
                                                  alt="" style="width: 261px;height: 300px;">
                                         @else
                                             <img class="secondary-img"
-                                                 src="{{ url('img/uploads/thumbnail/default-placeholder.jpg') }} "
+                                                 src="{{ url('img/uploads/medium/'.$product->product_meta->image) }} "
                                                  alt=""
                                                  style="width: 261px;height: 300px;">
                                         @endif
