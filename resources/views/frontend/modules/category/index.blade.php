@@ -8,12 +8,12 @@
     <div class="container">
         <div class="row">
             <!--Filters start-->
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+            {{--<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">--}}
 
-                @include('frontend.modules.category.partials._filters')
+{{--                @include('frontend.modules.category.partials._filters')--}}
                         <!--Filters end-->
-            </div>
-            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">
+            {{--</div>--}}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!--breadcrumbs start-->
                 {{--@include('frontend.modules.category.partials._breadcrumbs')--}}
                         <!--breadcrumbs end-->

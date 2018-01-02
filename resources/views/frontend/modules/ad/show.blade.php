@@ -1,5 +1,5 @@
 <!-- banner-area start -->
-<div class="banner-area fix">
+{{--<div class="banner-area fix">--}}
     <div class="container">
         <div class="row">
             @foreach($ads as $ad)
@@ -11,5 +11,5 @@
             @endforeach
         </div>
     </div>
-</div>
+{{--</div>--}}
 <!-- banner-area end -->
