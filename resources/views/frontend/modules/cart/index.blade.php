@@ -140,7 +140,7 @@
                                                 {{ trans('general.delivery_within_4_days') }}</br>
                                             </span>
                                         <span class="pull-right">
-                                            <img src="http://meemonoon.dev/meem/frontend/img/aramex.png" alt=""
+                                            <img src="/meem/frontend/img/aramex.png" alt=""
                                                  class="img-responsive" style="max-width: 60px;">
                                         </span>
                                         </p>
@@ -197,7 +197,7 @@
                 countryCode = e.target.value;
                 console.log('countryCode', countryCode);
                 $('#areas').html('').toggleClass('disabled');
-                $.get('api/country/' + countryCode, function(data) {
+                $.get('/api/country/' + countryCode, function(data) {
                     for (var i in data) {
                         data[i].map(function (v,index) {
                             $('#areas').append(`<option value="${v}">${v}</option>`)
