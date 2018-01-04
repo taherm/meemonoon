@@ -25,7 +25,7 @@
         <div class="form-group">
             <div class="col-md-3">
                 <label class="label" for="image" style="color: black;"> image*
-                    <small>1000*250</small>
+                    <small>['1150', '290']</small>
                 </label>
                 {!! Form::file('image',['class' => 'form-control','required' => true ]) !!}
             </div>

@@ -1,22 +1,9 @@
 @extends('backend.layouts.master')
 
 @section('content')
-    @if(isset($subcategory))
         {{ Form::model($subcategory,['route' => ['backend.subcategory.update',$subcategory->id],'method'=>'PATCH','files' => true,'class' => 'form-horizontal']) }}
-    @else
-        {{ Form::open(['route' => 'backend.subcategory.store','method'=>'POST','class'=>'form-horizontal']) }}
-    @endif
     <div class="form-body">
-
-        <div class="form-group">
-            <label class="col-md-2 control-label">parent Category:
-                <span class="required"> * </span>
-            </label>
-            <div class="col-md-3">
-                {!! Form::select('parent_id', $parentCategories , (isset($subcategory->parent) ? $subcategory->parent->id : old('parent_id')) ,['class' => 'form-control','required']) !!}
-            </div>
-        </div>
-
+        <input type="hidden" name="parent_id" value="{{ $subcategory->parent_id }}">
         <div class="form-group">
             <label class="col-md-2 control-label">name en:
                 <span class="required"> * </span>

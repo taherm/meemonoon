@@ -32,6 +32,11 @@
                                             <i class="fa fa-trash-o"></i>
                                         </button>
                                         {{ Form::close() }}</li>
+                                    <li>
+                                        <a href="{{ route('backend.subcategory.edit',['id' => $child->id, 'sub_id' => $subcategory->id]) }}" class="btn btn-outline btn-circle dark btn-sm black">
+                                            <i class="fa fa-edit"></i>
+                                            edit</a>
+                                    </li>
                                 @endforeach
                             </ul>
                             @else

@@ -59,7 +59,7 @@ class SubCategoryController extends PrimaryController
     public function store(SubCategoryCreate $request)
     {
         try {
-            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1150', '290']);
 
             $request->request->add(['image' => $image]);
 
@@ -87,11 +87,14 @@ class SubCategoryController extends PrimaryController
     public function edit($id)
     {
         $subcategory = $this->category->getById($id);
-        $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
-
-        $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
-
-        return view('backend.modules.subcategory.edit', compact('subcategory', 'parentCategories'));
+        $subId = request()->has('sub_id') ? request()->sub_id : null;
+        if(!request()->has('sub_id')) {
+            $parentCategoriesOnly = $this->category->getParentCategoriesOnly();
+            $parentCategories = $parentCategoriesOnly->pluck('name_en', 'id')->prepend("Please Select Parent Category", "");
+            return view('backend.modules.subcategory.edit', compact('subcategory', 'parentCategories'));
+        }
+        // children case also
+        return view('backend.modules.subcategory.children.edit', compact('subId','subcategory'));
     }
 
     /**
@@ -109,7 +112,7 @@ class SubCategoryController extends PrimaryController
 
             if ($request->hasFile('image')) {
 
-                $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+                $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1150', '290']);
 
                 $subcategory->update(['image' => $image]);
 

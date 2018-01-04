@@ -52,7 +52,7 @@ class CategoryController extends PrimaryController
     public function store(CategoryCreate $request)
     {
         try {
-            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+            $image = $this->imageService->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1150', '290']);
 
             $request->request->add(['image' => $image]);
 
@@ -95,7 +95,7 @@ class CategoryController extends PrimaryController
     {
         if ($request->hasFile('image')) {
             $image = new PrimaryImageService();
-            $image = $image->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1000', '250']);
+            $image = $image->CreateImage($request->file('image'), ['1', '1'], ['1', '1'], ['1150', '290']);
             $this->category->getById($id)->update(['image' => $image]);
         }
 
