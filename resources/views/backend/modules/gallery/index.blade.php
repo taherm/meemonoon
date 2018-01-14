@@ -52,4 +52,21 @@
     {{ Form::submit('submit',['class' => 'btn btn-outline btn-circle btn-success']) }}
     <a class="btn btn-outline btn-danger btn-circle" href="{{ route('backend.product.index') }}">cancel</a>
     {{ Form::close() }}
+    <div class="col-lg-12">
+        @foreach($gallery->images->chunk(4) as $set)
+            @foreach($set as $i)
+                <div class="col-sm-3">
+                    <img class="img-responsive img-thumbnail" style="max-height: 120px;"
+                         src="{{ asset('storage/uploads/images/thumbnail/'.$i->image) }}" alt="">
+                    <form method="post" action="{{ route('backend.image.destroy',$i->id) }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button type="submit" class="btn btn-circle btn-sm red">
+                            <i class="fa fa-fw fa-xs fa-remove"></i>
+                        </button>
+                    </form>
+                </div>
+            @endforeach
+        @endforeach
+    </div>
 @endsection

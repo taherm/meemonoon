@@ -31,7 +31,7 @@ class GalleryController extends PrimaryController
     public function index()
     {
         $product = $this->productRepository->getById(request()->get('product_id'));
-        $gallery = $product->gallery()->first();
+        $gallery = $product->gallery()->with('images')->first();
         return view('backend.modules.gallery.index', compact('product', 'gallery'));
     }
 

@@ -129,6 +129,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.
     Route::resource('attribute', 'ProductAttributeController');
     Route::resource('gallery', 'GalleryController');
     Route::post('gallery/image', ['as' => 'gallery.image.delete', 'uses' => 'GalleryController@deleteImage']);
+    Route::resource('image', 'ImageController');
     Route::resource('tag', 'TagController');
     Route::resource('category', 'CategoryController');
     Route::resource('subcategory', 'SubCategoryController');
