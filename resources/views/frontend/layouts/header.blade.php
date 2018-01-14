@@ -71,19 +71,34 @@
                         <nav id="dropdown">
                             <ul>
                                 <li><a href="{{URL('/')}}">home</a></li>
-                                {{--@foreach($categories as $category)--}}
-                                {{--<li class="dropdown">--}}
-                                {{--<a href="#">{{ trans('general.categories') }}</a>--}}
-                                {{--@if(count($category->children) > 0)--}}
-                                {{--<ul>--}}
-                                {{--<li><a href="{{ route('category.show',[Session::get('company_id'),$category->id]) }}">{{ $category->name }}</a></li>--}}
-                                {{--@foreach($category->children as $child)--}}
-                                {{--<li><a href="{{ route('category.show',[Session::get('company_id'),$category->id,$child->id]) }}">{{ $child->name }}</a></li>--}}
-                                {{--@endforeach--}}
-                                {{--</ul>--}}
-                                {{--@endif--}}
-                                {{--</li>--}}
-                                {{--@endforeach--}}
+                                <div class="main-menu main-menu2">
+                                    <nav>
+                                        <ul style="{!! (App::isLocale('ar')) ? 'direction: rtl !important;' : null !!}">
+                                            @foreach($categories as $category)
+                                                <li>
+                                                    <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
+                                                    <!-- mega menu start -->
+                                                    @if(count($category->children) > 0)
+                                                        <div class="main-menu main-menu4">
+                                                            @foreach($category->children as $child)
+                                                                <span>
+                                                                <a class="mega-headline"
+                                                                   href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
+                                                                    @if(count($child->children) > 0)
+                                                                        @foreach($child->children as $subChild)
+                                                                            <a href="{{ route('category.show',[$child->id]) }}?child={{ $subChild->id }}">{{ $subChild->name }}</a>
+                                                                        @endforeach
+                                                                    @endif
+                                                            </span>
+
+                                                            @endforeach
+                                                        </div>
+                                                    @endif
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </nav>
+                                </div>
                             </ul>
                         </nav>
                     </div>
