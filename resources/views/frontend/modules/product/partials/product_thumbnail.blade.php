@@ -94,5 +94,3 @@
     @endforeach
 </div>
 <!-- carousel-end -->
-
-@include('frontend.modules.product.partials.quick-view')

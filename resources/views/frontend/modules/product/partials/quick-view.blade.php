@@ -26,7 +26,8 @@
                             </div>
                             {{--<a href="shop.html" class="see-all">See all features</a>--}}
                             <div class="quick-add-to-cart">
-                                <a href="#" class="single_add_to_cart_button view-details" style="padding-top: 10px;">{{ trans('general.view_details') }}</a>
+                                <a href="#" class="single_add_to_cart_button view-details hidden-xs hidden-sm" style="padding-top: 10px;">{{ trans('general.view_details') }}</a>
+                                <a href="#" class="hidden-lg hidden-md" style="padding-top: 10px;">{{ trans('general.view_details') }}</a>
                             </div>
                             <div class="quick-desc"></div>
                             {{--<div class="social-sharing">--}}
