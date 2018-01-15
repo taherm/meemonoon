@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Jobs\SendEmail;
 use App\Src\User\UserRepository;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Core\PrimaryController;
@@ -47,9 +48,9 @@ class UserController extends PrimaryController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\Backend\UserStore $request)
+    public function store(Requests\Backend\UserStore $request, $id)
     {
-        return ('working fine from the create method');
+
     }
 
     /**
@@ -74,9 +75,8 @@ class UserController extends PrimaryController
      */
     public function edit($id)
     {
-        $user = $this->userRepository->getById($id);
-
-        return 'edit user working';
+        $element = User::whereId($id)->first();
+        return view('backend.modules.user.edit', compact('element'));
     }
 
     /**
@@ -88,9 +88,14 @@ class UserController extends PrimaryController
      */
     public function update(Requests\Backend\UserUpdate $request, $id)
     {
-        $user = $this->userRepository->getById($id);
+        $element = User::whereId($id)->first();
+        if ($request->has('password')) {
+            $element->password = bcrypt($request->password);
+        }
+        $element->email = $request->email;
+        $element->save();
 
-        return ('working fine from the update method');
+        return redirect()->route('backend.user.index')->with('success', 'user updated');
     }
 
     /**
@@ -101,15 +106,12 @@ class UserController extends PrimaryController
      */
     public function suspendStatus($id)
     {
-        if($this->userRepository->getById($id)->active)
-        {
+        if ($this->userRepository->getById($id)->active) {
             $this->userRepository->getById($id)->update(['active' => 0]);
-            return redirect()->back()->with('success',trans('messages.success.user-status-suspended'));
-        }
-        else
-        {
+            return redirect()->back()->with('success', trans('messages.success.user-status-suspended'));
+        } else {
             $this->userRepository->getById($id)->update(['active' => 1]);
-            return redirect()->back()->with('success',trans('messages.success.user-status-activated'));
+            return redirect()->back()->with('success', trans('messages.success.user-status-activated'));
         }
 
         return redirect()->back()->with('error', 'System Error!!');
@@ -133,14 +135,13 @@ class UserController extends PrimaryController
          * */
         $user = $this->userRepository->getById($id);
 
-        if($user->orders)
-        {
+        if ($user->orders) {
             $user->orders()->delete();
         }
 
         $user->delete();
 
-        return redirect()->back()->with('success',trans('messages.success.user-delete'));
+        return redirect()->back()->with('success', trans('messages.success.user-delete'));
     }
 
 }

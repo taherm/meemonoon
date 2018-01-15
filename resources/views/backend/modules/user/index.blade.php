@@ -18,7 +18,7 @@
                     <th> Username</th>
                     <th> Email</th>
                     <th> Status</th>
-                    <th> Phone</th>
+                    <th> edit</th>
                     <th width="20%"> Action</th>
                 </tr>
                 </thead>
@@ -34,7 +34,9 @@
                         @else
                             <td><span class="label label-sm label-warning"> Suspended </span></td>
                         @endif
-                        <td> {{$user->phone}} </td>
+                        <td>
+                            <a href="{{ route('backend.user.edit',$user->id) }}" class="btn btn-outline btn-circle green btn-sm"><i class="fa fa-fw fa-edit"></i> edit</a>
+
                         <td>
                             {{ Form::open(['route' => ['backend.user.suspend', $user->id] , 'method' => 'POST', 'style' => 'float:left;']) }}
                             @if($user->active)
