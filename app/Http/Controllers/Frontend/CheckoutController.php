@@ -287,7 +287,7 @@ class CheckoutController extends PrimaryController
             $emailToAdmin = new ConfirmUserOrder($order, 1);
 
             Mail::to(auth()->user()->email)->send($email);
-            Mail::to('info@meemonoon.com')->send($emailToAdmin);
+            Mail::to('info@meemonoon.com')->cc('order@meemonoon.com')->send($emailToAdmin);
 
             // consuming the coupon
             $coupon = Coupon::whereId($order->coupon_id)->update(['consumed' => true]);
