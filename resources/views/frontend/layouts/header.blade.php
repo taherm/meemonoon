@@ -67,44 +67,42 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 hidden-lg hidden-md">
-                    <div class="mobile-menu">
+
+                    <li class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
                                 <li><a href="{{URL('/')}}">home</a></li>
-                                <div class="main-menu main-menu2">
-                                    <nav>
-                                        <ul style="{!! (App::isLocale('ar')) ? 'direction: rtl !important;' : null !!}">
-                                            @foreach($categories as $category)
-                                                <li>
-                                                    <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
-                                                    <!-- mega menu start -->
-                                                    @if(count($category->children) > 0)
-                                                        <div class="main-menu main-menu4">
-                                                            @foreach($category->children as $child)
-                                                                <span>
-                                                                <a class="mega-headline"
-                                                                   href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
-                                                                    @if(count($child->children) > 0)
-                                                                        @foreach($child->children as $subChild)
-                                                                            <a href="{{ route('category.show',[$child->id]) }}?child={{ $subChild->id }}">{{ $subChild->name }}</a>
-                                                                        @endforeach
-                                                                    @endif
-                                                            </span>
-
-                                                            @endforeach
-                                                        </div>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </nav>
-                                </div>
+                                @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
+                                        <!-- mega menu start -->
+                                        @if(count($category->children) > 0)
+                                            <ul>
+                                                @foreach($category->children as $child)
+                                                    <li>
+                                                        <a class="mega-headline"
+                                                           href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
+                                                        @if(count($child->children) > 0)
+                                                            <ul>
+                                                                @foreach($child->children as $subChild)
+                                                                    <li>
+                                                                        <a href="{{ route('category.show',[$child->id]) }}?child={{ $subChild->id }}">{{ $subChild->name }}</a>
+                                                                    </li>
+                                                                @endforeach
+                                                            </ul>
+                                                        @endif
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
                             </ul>
                         </nav>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     <!-- mobile-menu-area end -->
 </header>
