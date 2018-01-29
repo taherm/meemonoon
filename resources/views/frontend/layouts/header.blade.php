@@ -67,8 +67,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 hidden-lg hidden-md">
-
-                    <li class="mobile-menu">
                         <nav id="dropdown">
                             <ul>
                                 <li><a href="{{URL('/')}}">home</a></li>
