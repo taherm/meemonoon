@@ -14,11 +14,11 @@
                     <option value="name">{{ trans('general.name') }}</option>
                     <option value="price">{{ trans('general.price') }}</option>
                 </select>
-                @if(str_contains(request()->fullUrl(),'desc'))
-                    <a href="{{ request()->fullUrl().'&sort=asc' }}"><i class="fa fa-long-arrow-up"></i></a>
-                @else
-                    <a href="{{ request()->fullUrl().'&sort=desc' }}"><i class="fa fa-long-arrow-down"></i></a>
-                @endif
+                {{--@if(str_contains(request()->fullUrl(),'desc'))--}}
+                    {{--<a href="{{ request()->fullUrl().'&sort=asc' }}"><i class="fa fa-long-arrow-up"></i></a>--}}
+                {{--@else--}}
+                    {{--<a href="{{ request()->fullUrl().'&sort=desc' }}"><i class="fa fa-long-arrow-down"></i></a>--}}
+                {{--@endif--}}
             </div>
         </div>
     </div>
