@@ -174,7 +174,7 @@ class CheckoutController extends PrimaryController
             'lastname' => 'required',
             'email' => 'required',
             'city' => 'required',
-            'mobile' => 'required_without_all:phone',
+            'mobile' => 'required',
         ]);
 
         $address = '';
@@ -328,6 +328,7 @@ class CheckoutController extends PrimaryController
                     'net_amount' => $orderDetails['net_amount'],
                     'email' => $request->email,
                     'address' => $request->address,
+                    'mobile' => session()->get('order_mobile'),
                     'payment_method' => $request->payment,
                     'invoice_id' => $paymentStatus[0]->referenceId
                 ]);
