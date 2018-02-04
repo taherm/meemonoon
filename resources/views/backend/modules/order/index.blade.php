@@ -21,6 +21,7 @@
                 <th>id</th>
                 <th>created_at</th>
                 <th>user_id</th>
+                <th>mobile</th>
                 <th>status</th>
                 <th>payment_method</th>
                 <th>coupon_id</th>
@@ -39,6 +40,7 @@
                     <td>{{ $order->id}}</td>
                     <td>{{ $order->created_at->format('d-m-Y') }}</td>
                     <td>{{ $order->user->fullName}}</td>
+                    <td>{{ $order->mobile}}</td>
                     <td>{{ $order->status}}</td>
                     <td>{{ $order->payment_method}}</td>
                     <td>{!! ($order->coupon_id <= 1) ? '<span class="label label-sm label-warning">N/A</span>' : $order->coupon_id !!}</td>
