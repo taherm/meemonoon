@@ -225,6 +225,8 @@ class CheckoutController extends PrimaryController
 
         $mobile = $request->mobile;
 
+        session()->put('order_mobile',$request->mobile);
+
         return view('frontend.modules.checkout.invoice_review',
             compact('finalAmount', 'cart', 'shippingCountry', 'shippingCost', 'orderDetails', 'mobile','address', 'payment', 'userEmail', 'coupon', 'couponDiscountValue', 'amountAfterCoupon'));
     }
@@ -270,7 +272,7 @@ class CheckoutController extends PrimaryController
                 'net_amount' => $orderDetails['net_amount'],
                 'email' => $request->email,
                 'address' => $request->address,
-                'mobile' => $request->mobile,
+                'mobile' => session()->get('order_mobile'),
                 'payment_method' => $request->payment,
             ]);
 

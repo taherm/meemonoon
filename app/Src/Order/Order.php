@@ -16,6 +16,7 @@ class Order extends PrimaryModel
 
     protected $localeStrings = [];
     protected $with = ['order_metas'];
+    protected $guarded = [''];
 
     /**
      * The "booting" method of the model.

@@ -284,6 +284,9 @@
                                                                 <span class="header-sm">Shipping Address</span><br />
                                                                 {{$address}}<br />
                                                                 <br />
+                                                                <span class="header-sm">Mobile</span><br />
+                                                                {{$mobile}}<br />
+                                                                <br />
                                                                 <span class="header-sm">Payment method</span> <br />
                                                                 {{$payment}}
                                                             </td>
