@@ -47,6 +47,12 @@
                                                                 {{$order->address}}
                                                             </td>
                                                         </tr>
+                                                        <tr>
+                                                            <td class="mini-block">
+                                                                <span class="header-sm">Mobile</span><br />
+                                                                {{$order->mobile}}
+                                                            </td>
+                                                        </tr>
                                                     </table>
                                                 </td>
                                             </tr>
