@@ -47,6 +47,12 @@
                         </a>
                     </li>
                     <li class="nav-item ">
+                        <a href="{{ route('backend.product.index',['trashed' => 1]) }}" class="nav-link ">
+                            <i class="icon-basket"></i>
+                            <span class="title">trashed products</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{route('backend.product.create')}}" class="nav-link ">
                             <i class="icon-plus"></i>
                             <span class="title">create product</span>

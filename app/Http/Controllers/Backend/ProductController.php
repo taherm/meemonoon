@@ -29,7 +29,7 @@ class ProductController extends PrimaryController
 
         if (request()->get('trashed') == 1) {
 
-            $products = $this->productRepository->model->orderBy('created_at', 'desc')->onlyTrashed()->get();
+            $products = Product::withoutGlobalScopes()->orderBy('created_at', 'desc')->onlyTrashed()->get();
 
         } else {
 
