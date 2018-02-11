@@ -30,7 +30,11 @@ class ProductController extends PrimaryController
 
         if (request()->get('trashed') == 1) {
 
-            $products = Product::withoutGlobalScopes()->orderBy('created_at', 'desc')->onlyTrashed()->get();
+            $productsWithoutMeta = Product::withoutGlobalScopes()->orderBy('created_at', 'desc')->whereDoesntHave('product_meta', function ($q) {
+                return $q;
+            })->get();
+            $trashed = Product::withoutGlobalScopes()->orderBy('created_at','desc')->onlyTrashed()->get();
+            $products = collect($productsWithoutMeta,$trashed);
 
         } else {
 
