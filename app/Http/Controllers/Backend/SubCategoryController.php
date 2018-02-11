@@ -145,7 +145,6 @@ class SubCategoryController extends PrimaryController
     {
         //check if category not assigned to any of products
         if ($this->category->getById($id)->products->count() > 0) {
-            dd($this->category->getById($id)->products);
             return redirect()->back()->with('error', 'SubCategory Assigned to Product!!');
         }
 
