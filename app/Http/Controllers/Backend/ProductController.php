@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Src\Product\Product;
 use App\Src\User\UserRepository;
 use App\Http\Requests;
 use App\Core\PrimaryController;
