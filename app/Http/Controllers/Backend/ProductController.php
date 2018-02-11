@@ -7,6 +7,7 @@ use App\Src\User\UserRepository;
 use App\Http\Requests;
 use App\Core\PrimaryController;
 use App\Src\Product\ProductRepository;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends PrimaryController
 {
@@ -35,6 +36,7 @@ class ProductController extends PrimaryController
             })->get();
             $trashed = Product::withoutGlobalScopes()->orderBy('created_at','desc')->onlyTrashed()->get();
             $products = collect($productsWithoutMeta,$trashed);
+            return view('backend.modules.product.trashed', compact('products'));
 
         } else {
 
@@ -125,8 +127,10 @@ class ProductController extends PrimaryController
      */
     public function destroy($id)
     {
-        $product = $this->productRepository->getById($id)->delete();
-
+        $product = Product::whereId($id)->first();
+        DB::table('order_metas')->where('product_id',$id)->delete();
+        DB::table('product_metas')->where('product_id',$id)->delete();
+        $product->forceDelete();
         return redirect()->back()->with('success', 'product deleted');
     }
 
