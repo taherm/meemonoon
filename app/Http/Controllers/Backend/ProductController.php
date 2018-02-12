@@ -128,6 +128,7 @@ class ProductController extends PrimaryController
     public function destroy($id)
     {
         $product = Product::whereId($id)->first();
+        DB::table('product_attributes')->where('product_id',$id)->delete();
         DB::table('order_metas')->where('product_id',$id)->delete();
         DB::table('product_metas')->where('product_id',$id)->delete();
         $product->forceDelete();
