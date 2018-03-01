@@ -166,7 +166,7 @@
                                         {{--<h4>Subtotal <span>{{ $cart->subTotal }} KD</span></h4>--}}
                                         <h2>{{ trans('general.grand_total') }}
                                             <span>{{ $cart->grandTotal }} KD</span></h2>
-                                        <button type="submit"
+                                        <button type="submit" id="forward" class="disabled"
                                                 class="col-lg-12 btn custom-button">{{ trans('cart.proceed_to_checkout') }}
                                         </button>
                                     </div>
@@ -206,6 +206,7 @@
                         });
 
                     }
+                    $('#forward').toggleClass('disabled');
                 });
             });
         });
