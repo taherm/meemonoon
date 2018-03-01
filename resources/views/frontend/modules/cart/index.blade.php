@@ -186,11 +186,13 @@
     </div>
 @endsection
 
-@if(Auth::user())
+
 @section('customScripts')
     @parent
     {{--REACT COUPON APP HERE--}}
+    @if(Auth::user())
     <script type="text/javascript" src="{{ asset('js/coupon-app.js') }}"></script>
+    @endif
     <script type="text/javascript">
         $(document).ready(function() {
             $('#country').on('change', function(e) {
@@ -209,7 +211,7 @@
         });
     </script>
 @endsection
-@endif
+
 
 
 
