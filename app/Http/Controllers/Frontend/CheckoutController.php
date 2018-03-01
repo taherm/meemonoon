@@ -66,7 +66,6 @@ class CheckoutController extends PrimaryController
      */
     public function index(Request $request)
     {
-        dd($request->all());
         if ($request->has('shipping_country')) {
 
             Session::put('SHIPPING_COUNTRY', $request->shipping_country);
@@ -76,7 +75,8 @@ class CheckoutController extends PrimaryController
             if (!Session::has('SHIPPING_COUNTRY')) {
 
                 $validator = Validator::make($request->all(), [
-                    'shipping_country' => 'required|numeric|exists:countries,id'
+                    'shipping_country' => 'required|numeric|exists:countries,id',
+                    'area'=> 'required|min2'
                 ]);
 
                 if ($validator->fails()) {
