@@ -66,6 +66,7 @@ class CheckoutController extends PrimaryController
      */
     public function index(Request $request)
     {
+        dd($request->all());
         if ($request->has('shipping_country')) {
 
             Session::put('SHIPPING_COUNTRY', $request->shipping_country);
