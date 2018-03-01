@@ -166,7 +166,7 @@
                                         {{--<h4>Subtotal <span>{{ $cart->subTotal }} KD</span></h4>--}}
                                         <h2>{{ trans('general.grand_total') }}
                                             <span>{{ $cart->grandTotal }} KD</span></h2>
-                                        <button type="submit" id="forward" class="hidden"
+                                        <button type="submit" id="forward" disabled
                                                 class="col-lg-12 btn custom-button">{{ trans('cart.proceed_to_checkout') }}
                                         </button>
                                     </div>
@@ -199,6 +199,7 @@
                 countryCode = e.target.value;
                 console.log('countryCode', countryCode);
                 $('#areas').html('').toggleClass('disabled');
+                $('#forward').attr('disabled','disabled');
                 $.get('/api/country/' + countryCode, function(data) {
                     for (var i in data) {
                         data[i].map(function (v,index) {
@@ -206,9 +207,11 @@
                         });
 
                     }
-                    $('#forward').toggleClass('hidden');
                 });
             });
+            $('#areas').on('change', function () {
+                $('#forward').removeAttr('disabled');
+            })
         });
     </script>
 @endsection
