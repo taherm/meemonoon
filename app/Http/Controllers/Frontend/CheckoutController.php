@@ -125,6 +125,7 @@ class CheckoutController extends PrimaryController
         }
 
         $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name, $area);
+
         if($shippingCost == 0) {
             return redirect()->route('cart.index')
                 ->with('error','unknown error .. please try again later');

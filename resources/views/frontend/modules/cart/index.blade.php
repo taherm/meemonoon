@@ -150,7 +150,7 @@
                                     <div class="search-categori">
                                         <h5>{{ trans('general.country') }}</h5>
                                         <div class="category">
-                                            {{ Form::select('shipping_country',$countries,$shippingCountry,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
+                                            {{ Form::select('shipping_country',$countries,null,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
                                         </div>
                                     </div>
 
@@ -195,23 +195,44 @@
     @endif
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#areas').html('<option value="">Select Area</option>');
             $('#country').on('change', function(e) {
                 countryCode = e.target.value;
                 console.log('countryCode', countryCode);
                 $('#areas').html('').toggleClass('disabled');
                 $('#forward').attr('disabled','disabled');
+//                $.ajax({
+//                    method : 'get',
+//                    url : '/api/country/' + countryCode,
+//                    timeout: (3 * 1000),
+//                    success: function(data){
+//                        console.log('the data', data);
+//                        for (var i in data) {
+//                            data[i].map(function (v,index) {
+//                                $('#areas').append(`<option value="${v}">${v}</option>`)
+//                            });
+//
+//                        }
+//                    },
+//                    error : function(e) {
+//                        console.log('the e case',e);
+//                    }
+//                })
                 $.get('/api/country/' + countryCode, function(data) {
-                    for (var i in data) {
-                        data[i].map(function (v,index) {
-                            $('#areas').append(`<option value="${v}">${v}</option>`)
-                        });
-
-                    }
+                    return setTimeout(injectAreas(data), 3000);
                 });
             });
             $('#areas').on('change', function () {
                 $('#forward').removeAttr('disabled');
             })
+            function injectAreas(data) {
+                for (var i in data) {
+                    data[i].map(function (v,index) {
+                        $('#areas').append(`<option value="${v}">${v}</option>`)
+                    });
+
+                }
+            }
         });
     </script>
 @endsection
