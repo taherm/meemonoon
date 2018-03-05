@@ -9,6 +9,8 @@ use App\Src\Product\ProductMeta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\Backend\ProductMetaUpdate;
+use App\Http\Requests\Backend\ProductMetaStore;
 
 class ProductMetaController extends PrimaryController
 {
@@ -49,7 +51,7 @@ class ProductMetaController extends PrimaryController
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\Backend\ProductMetaStore $request)
+    public function store(ProductMetaStore $request)
     {
         $request->request->add(['start_sale' => Carbon::parse($request->input('start_sale'))]);
         $request->request->add(['end_sale' => Carbon::parse($request->input('end_sale'))]);
@@ -120,7 +122,7 @@ class ProductMetaController extends PrimaryController
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\Backend\ProductMetaUpdate $request, $id)
+    public function update(ProductMetaUpdate $request, $id)
     {
 
         $productMeta = $this->productMeta->where('product_id', request()->product_id)->first();
