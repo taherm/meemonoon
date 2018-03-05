@@ -27,7 +27,7 @@ class ProductMetaStore extends FormRequest
             'product_id' => 'required',
             'image' => 'required|mimes:jpeg,bmp,png',
             'price' => 'required',
-            'weight' => 'required',
+            'weight' => 'required|min:1',
             'description_ar' => 'required',
             'description_en' => 'required',
             'notes_ar' => '',
