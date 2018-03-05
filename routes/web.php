@@ -20,6 +20,7 @@ Route::group(['namespace' => 'Frontend'], function () {
         if(!request()->user()->can('isAdmin')) {
             return abort(501,'Under Maintenance.');
         }
+        return true;
     } else {
         return abort(501,'Under Maintenance.');
     }
