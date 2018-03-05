@@ -16,7 +16,7 @@ Route::get('/logmein', function () {
  * â–‚ â–ƒ â–… â–† â–ˆ Frontend  â–ˆ â–† â–… â–ƒ â–‚
  ***************************************************************************************************/
 Route::group(['namespace' => 'Frontend'], function () {
-    if(!auth()->isAdmin) {
+    if(!auth()->can('isAdmin')) {
         abord('404','Site is Under Maintenance.');
     }
     Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
