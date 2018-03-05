@@ -18,10 +18,10 @@ Route::get('/logmein', function () {
 Route::group(['namespace' => 'Frontend'], function () {
     if(auth()->check()) {
         if(!request()->user()->can('isAdmin')) {
-            abort(404,'Under Maintenance.');
+            return abort(501,'Under Maintenance.');
         }
     } else {
-        abort(404,'Under Maintenance.');
+        return abort(501,'Under Maintenance.');
     }
     Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
     Route::get('/error', ['uses' => 'CheckoutController@paymentFail']);
