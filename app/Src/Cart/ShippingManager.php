@@ -66,12 +66,14 @@ class ShippingManager
         ];
 
         try {
+            if($destinationCountry->iso_3166_2 == 'KW') {
+                return 2.5;
+            }
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
             if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
-                dd($results);
                 return $results->TotalAmount->Value;
             }
         } catch (SoapFault $fault) {
