@@ -15,6 +15,7 @@ class AdminOnly
      */
     public function handle($request, Closure $next)
     {
+
         if ($request->user()->can('isAdmin')) {
 
             return $next($request);
