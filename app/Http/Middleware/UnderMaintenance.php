@@ -15,11 +15,12 @@ class UnderMaintenance
      */
     public function handle($request, Closure $next)
     {
+        if(auth()->check()) {
+            if ($request->user()->can('isAdmin')) {
 
-        if ($request->user()->can('isAdmin')) {
+                return $next($request);
 
-            return $next($request);
-
+            }
         }
 
         return abort(501,'UnderMaintenance');
