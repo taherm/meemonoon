@@ -42,7 +42,9 @@ class ShippingManager
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
                 'ProductGroup' => ($destinationCountry->iso_3166_2 == 'KW') ? 'DOM' : 'EXP',
-                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'DPX' : 'PPX',
+                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'DOM' : 'EXP',
+//                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'DPX' : 'DPX',
+                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'GPX' : 'PPX',
                 'ActualWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'ChargeableWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'NumberOfPieces' => 1
@@ -74,6 +76,7 @@ class ShippingManager
             if (!is_null($country->Country->Name)) {
                 $calcSoapClient = new \SoapClient(env('ARAMEX_CALC_URL'), array('trace' => 1));
                 $results = $calcSoapClient->CalculateRate($params);
+                dd($results);
                 return $results->TotalAmount->Value;
             }
         } catch (SoapFault $fault) {
