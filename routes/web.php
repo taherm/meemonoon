@@ -15,15 +15,7 @@ Route::get('/logmein', function () {
 /***************************************************************************************************
  * â–‚ â–ƒ â–… â–† â–ˆ Frontend  â–ˆ â–† â–… â–ƒ â–‚
  ***************************************************************************************************/
-Route::group(['namespace' => 'Frontend'], function () {
-    if(auth()->check()) {
-        if(!request()->user()->can('isAdmin')) {
-            return abort(501,'Under Maintenance.');
-        }
-        return true;
-    } else {
-        return abort(501,'Under Maintenance.');
-    }
+Route::group(['namespace' => 'Frontend','middleware' => 'UnderMaintenance'], function () {
     Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
     Route::get('/error', ['uses' => 'CheckoutController@paymentFail']);
 
