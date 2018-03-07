@@ -297,6 +297,12 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item ">
+                        <a href="{{ route('backend.currency.index') }}" class="nav-link ">
+                            <i class="fa fa-inbox"></i>
+                            <span class="title">Currencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
                         <a href="{{ route('backend.newsletter.index') }}" class="nav-link ">
                             <i class="fa fa-inbox"></i>
                             <span class="title">Newsletter</span>
