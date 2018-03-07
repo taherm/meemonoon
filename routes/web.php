@@ -15,7 +15,7 @@ Route::get('/logmein', function () {
 /***************************************************************************************************
  * â–‚ â–ƒ â–… â–† â–ˆ Frontend  â–ˆ â–† â–… â–ƒ â–‚
  ***************************************************************************************************/
-Route::group(['namespace' => 'Frontend','middleware' => 'UnderMaintenance'], function () {
+Route::group(['namespace' => 'Frontend'], function () {
     Route::get('/success', ['uses' => 'CheckoutController@paymentSuccess']);
     Route::get('/error', ['uses' => 'CheckoutController@paymentFail']);
 
