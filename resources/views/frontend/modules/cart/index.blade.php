@@ -150,7 +150,14 @@
                                     <div class="search-categori">
                                         <h5>{{ trans('general.country') }}</h5>
                                         <div class="category">
-                                            {{ Form::select('shipping_country',$countries,null,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}
+                                            <select class="orderby" name="shipping_country" id="country"
+                                                    style="min-width: 80px;" placeholder='Choose Shipping Country'>
+                                                @foreach($countries as $k => $v)
+                                                    <option value="">Select Country</option>
+                                                    <option value="{{ $k }}">{{ $v }}</option>
+                                                @endforeach
+                                            </select>
+                                            {{--                                            {{ Form::select('shipping_country',$countries,null,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}--}}
                                         </div>
                                     </div>
 
@@ -191,7 +198,7 @@
     @parent
     {{--REACT COUPON APP HERE--}}
     @if(Auth::user())
-    <script type="text/javascript" src="{{ asset('js/coupon-app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/coupon-app.js') }}"></script>
     @endif
     <script type="text/javascript">
         $(document).ready(function() {
@@ -200,7 +207,7 @@
                 countryCode = e.target.value;
                 console.log('countryCode', countryCode);
                 $('#areas').html('').toggleClass('disabled');
-                $('#forward').attr('disabled','disabled');
+                $('#forward').attr('disabled', 'disabled');
 //                $.ajax({
 //                    method : 'get',
 //                    url : '/api/country/' + countryCode,
@@ -222,12 +229,12 @@
                     return setTimeout(injectAreas(data), 3000);
                 });
             });
-            $('#areas').on('change', function () {
+            $('#areas').on('change', function() {
                 $('#forward').removeAttr('disabled');
             })
             function injectAreas(data) {
                 for (var i in data) {
-                    data[i].map(function (v,index) {
+                    data[i].map(function(v, index) {
                         $('#areas').append(`<option value="${v}">${v}</option>`)
                     });
 
