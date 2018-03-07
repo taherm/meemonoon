@@ -152,8 +152,8 @@
                                         <div class="category">
                                             <select class="orderby" name="shipping_country" id="country"
                                                     style="min-width: 80px;" placeholder='Choose Shipping Country'>
+                                                <option value="">Select Country</option>
                                                 @foreach($countries as $k => $v)
-                                                    <option value="">Select Country</option>
                                                     <option value="{{ $k }}">{{ $v }}</option>
                                                 @endforeach
                                             </select>
