@@ -11,6 +11,8 @@
                 <th>symbol</th>
                 <th>format</th>
                 <th>exchange_rate</th>
+                <th>active</th>
+                <th>toggle active</th>
             </tr>
             </thead>
             <tbody>
@@ -21,7 +23,12 @@
                     <td>{{ $currency->code }}</td>
                     <td>{{ $currency->symbol }}</td>
                     <td>{{ $currency->format }}</td>
+                    <td>{{ $currency->active ? 'active'  : 'not active'}}</td>
                     <td>{{ $currency->exchange_rate }}</td>
+                    <td>
+                        <a href="{{ route('backend.activation',['model' => 'currency','id' => $currency->id]) }}">
+                        <i class="fa fa-fw fa-check-circle"></i> toggle active</a>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

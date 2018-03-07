@@ -139,6 +139,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.
     Route::post('order/search', ['as' => 'order.search', 'uses' => 'OrderController@ordersBetweenDates']);
     Route::post('order/ship', ['as' => 'order.shipped', 'uses' => 'OrderController@addOrderTrackId']);
     Route::get('currency', ['as' => 'currency.index', 'uses' => 'CurrencyController@index']);
+    Route::get('activation', ['as' => 'activation', 'uses' => 'DashBoardController@toggleActivate']);
     Route::get('currency/update', ['as' => 'currency.update', 'uses' => 'CurrencyController@updateRates']);
     Route::get('backup/db', ['as' => 'backup.db', 'uses' => 'DashBoardController@BackupDB']);
     Route::get('newsletter/campaign', ['as' => 'newsletter.campaign', 'uses' => 'NewsLetterController@getCampaign']);
