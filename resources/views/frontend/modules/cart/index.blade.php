@@ -208,29 +208,12 @@
                 console.log('countryCode', countryCode);
                 $('#areas').html('').toggleClass('disabled');
                 $('#forward').attr('disabled', 'disabled');
-//                $.ajax({
-//                    method : 'get',
-//                    url : '/api/country/' + countryCode,
-//                    timeout: (3 * 1000),
-//                    success: function(data){
-//                        console.log('the data', data);
-//                        for (var i in data) {
-//                            data[i].map(function (v,index) {
-//                                $('#areas').append(`<option value="${v}">${v}</option>`)
-//                            });
-//
-//                        }
-//                    },
-//                    error : function(e) {
-//                        console.log('the e case',e);
-//                    }
-//                })
                 $.get('/api/country/' + countryCode, function(data) {
                     return setTimeout(injectAreas(data), 3000);
                 });
             });
             $('#areas').on('change', function() {
-                $('#forward').removeAttr('disabled');
+                return setTimeout($('#forward').removeAttr('disabled'), 2000);
             })
             function injectAreas(data) {
                 for (var i in data) {
