@@ -40,10 +40,10 @@ class ViewComposerService
     {
         $countriesList = collect([
             '414' => 'Kuwait',
-            '512' => 'Oman',
-            '634' => 'Qatar',
+//            '512' => 'Oman',
+//            '634' => 'Qatar',
             '682' => 'Saudi Arabia',
-            '48' => 'Bahrain',
+//            '48' => 'Bahrain',
             '784' => 'United Arab Emirates'
         ]);
 

@@ -27,7 +27,7 @@ Route::group(['namespace' => 'Frontend'], function () {
 });
 
 Route::get('country/{country_code}', function ($countryCode) {
-    $destinationCountry = Country::where('country_code',$countryCode)->first();
+    $destinationCountry = Country::where('country_code', $countryCode)->first();
     $country = [
         'ClientInfo' => [
             "UserName" => env('ARAMEX_USERNAME'),
@@ -45,7 +45,7 @@ Route::get('country/{country_code}', function ($countryCode) {
         'Code' => $destinationCountry->iso_3166_2,
     ];
     $area = [
-        'ClientInfo'  			=> array(
+        'ClientInfo' => [
             "UserName" => env('ARAMEX_USERNAME'),
             "Password" => env('ARAMEX_PASSWORD'),
             "Version" => "v2.0",
@@ -54,12 +54,10 @@ Route::get('country/{country_code}', function ($countryCode) {
             "AccountEntity" => env('ARAMEX_ACCOUNT_ENTITY'),
             "AccountCountryCode" => env('ARAMEX_ACCOUNT_COUNTRY_CODE'),
             'Source' => NULL
-        ),
+        ],
 
-        'Transaction' 			=> array(
-            'Reference1'			=> '001',
-        ),
-        'CountryCode'			=> $destinationCountry->iso_3166_2,
+        'Transaction' => ['Reference1' => '001'],
+        'CountryCode' => $destinationCountry->iso_3166_2,
     ];
     try {
         $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
@@ -67,7 +65,7 @@ Route::get('country/{country_code}', function ($countryCode) {
         if (!is_null($country->Country->Name)) {
             $aresSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $areas = $aresSoapClient->FetchCities($area);
-            return response()->json($areas->Cities,200);
+            return response()->json($areas->Cities, 200);
         }
     } catch (SoapFault $fault) {
         throw new \Exception("Shipping to {$destinationCountry->name} is not available");
