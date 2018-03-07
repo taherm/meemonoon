@@ -65,7 +65,7 @@ class ShippingManager
             'Code' => $destinationCountry->iso_3166_2,
         ];
 
-//        dd($params);
+        dd($params);
         try {
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
