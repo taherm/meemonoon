@@ -42,7 +42,7 @@ class ShippingManager
             'ShipmentDetails' => array(
                 'PaymentType' => 'P',
                 'ProductGroup' => ($destinationCountry->iso_3166_2 == 'KW') ? 'DOM' : 'EXP',
-                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'GPX' : 'GPX',
+                'ProductType' => ($destinationCountry->iso_3166_2 == 'KW') ? 'ONP' : 'EPX',
                 'ActualWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'ChargeableWeight' => array('Value' => $cartWeight, 'Unit' => 'KG'),
                 'NumberOfPieces' => 1
@@ -65,6 +65,7 @@ class ShippingManager
             'Code' => $destinationCountry->iso_3166_2,
         ];
 
+        dd($params);
         try {
             $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $country = $countriesSoapClient->FetchCountry($country);
