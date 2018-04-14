@@ -32,7 +32,6 @@ Route::get('countries', function () {
 
 Route::get('country/{country_code}', function ($countryCode) {
     $destinationCountry = Country::where('country_code', $countryCode)->first();
-    return $destinationCountry;
     $country = [
         'ClientInfo' => [
             "UserName" => env('ARAMEX_USERNAME'),
@@ -67,6 +66,7 @@ Route::get('country/{country_code}', function ($countryCode) {
     try {
         $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
         $country = $countriesSoapClient->FetchCountry($country);
+        dd($country);
         if (!is_null($country->Country->Name)) {
             $aresSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $areas = $aresSoapClient->FetchCities($area);
