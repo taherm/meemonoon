@@ -56,7 +56,8 @@ class CartController extends PrimaryController
 
         $cartItems = $this->cart->getItems();
 
-        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('id'))->get();
+
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('product_id'))->get();
 
         $cart = $this->cart->make($products);
 
@@ -126,6 +127,9 @@ class CartController extends PrimaryController
 
     public function addItem(Requests\Frontend\addProductToCart $request)
     {
+
+
+
         if ($this->cart->getItems()->count() > 1) {
 
             $ids = $this->cart->getItems()->pluck('id')->toArray();
@@ -139,7 +143,9 @@ class CartController extends PrimaryController
 //            }
         }
 
-        $this->cart->addItem(['id' => $request->product_id, 'quantity' => (int)$request->quantity, 'product_attribute_id' => (int)$request->product_attribute_id]);
+
+        $this->cart->addItem(['id' => $request->product_id.$request->product_attribute_id, 'product_id' => $request->product_id , 'quantity' => (int)$request->quantity, 'product_attribute_id' => (int)$request->product_attribute_id]);
+
         return redirect()->route('cart.index')->with('success', trans('cart.updated'));
 
     }

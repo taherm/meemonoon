@@ -48,7 +48,7 @@
                             <td colspan="4">
                                 <div class="button-check">
                                     <div class="">
-                                        <span class="col-lg-8">
+                                        <span class="col-lg-12">
                                             <a href="{{ action('Frontend\CartController@index') }}">
                                                 {{ trans('general.forget_item_edit_here') }}
                                             </a>
@@ -61,7 +61,7 @@
                                                 @endif
                                             </ul>
                                         </span>
-                                        <span class="col-lg-4">
+                                        <span class="col-lg-12 pull-left">
                                             <button type="submit" class="btn right-btn custom-button">
                                                 {{ trans('general.proceed_to_payment') }}
                                             </button>

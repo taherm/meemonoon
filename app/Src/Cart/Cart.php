@@ -2,7 +2,9 @@
 
 namespace App\Src\Cart;
 
+use App\Src\Product\Color;
 use App\Src\Product\Product;
+use App\Src\Product\Size;
 use Exception;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -26,7 +28,7 @@ class Cart {
         $this->cart = $cart;
     }
 
-    public function addItem(array $item ) {
+    public function addItem(array $item) {
         $this->validateItem($item);
         return $this->cart->addItem($item);
     }
@@ -81,12 +83,17 @@ class Cart {
         // prepare the cart items (calculate net weight,net price (sale,actual)
         $this->items = collect([]);
         $cartItems = $this->getItems();
-        $products->map(function($product) use ($cartItems) {
-            $cartItem = $cartItems[$product->id];
+        $cartItems->map(function($cartItem) use($cartItems) {
+            $product = Product::whereId($cartItem['product_id'])->first();
             $productQuantity = $cartItem['quantity'];
             // cast the array to object
             $item = (object) array_merge([
                 'name' => $product->name,
+                'product_attribute_id' => $cartItem['product_attribute_id'],
+                'color_id' => $product->product_attributes->where('id',$cartItem['product_attribute_id'])->first()->color_id,
+                'color_code' => Color::whereId($product->product_attributes->where('id',$cartItem['product_attribute_id'])->first()->color_id)->first()->code,
+                'size_name' => Size::whereId($product->product_attributes->where('id',$cartItem['product_attribute_id'])->first()->size_id)->first()->name,
+                'size_id' => $product->product_attributes->where('id',$cartItem['product_attribute_id'])->first()->size_id,
                 'image'=>$product->product_meta->image,
                 'sale_price' => $product->product_meta->final_price, // final price ... includes discount
                 'price' => $product->product_meta->price,
@@ -94,8 +101,9 @@ class Cart {
                 'grand_total'=> $product->product_meta->final_price * $productQuantity,
                 'total_weight'=> $product->product_meta->weight * $productQuantity,
             ],
-                $this->getItemByKey($product->id)
+                $this->getItemByKey($cartItem['id'])
             );
+
             $this->items->push($item);
         });
 
