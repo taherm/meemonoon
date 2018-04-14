@@ -31,7 +31,7 @@ Route::get('countries', function () {
 });
 
 Route::get('country/{country_code}', function ($countryCode) {
-    $destinationCountry = Country::where('country_code', $countryCode)->first();
+    $destinationCountry = Country::where('country_code', '=', $countryCode)->first();
     $country = [
         'ClientInfo' => [
             "UserName" => env('ARAMEX_USERNAME'),
