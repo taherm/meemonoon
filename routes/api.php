@@ -26,8 +26,13 @@ Route::group(['namespace' => 'Frontend'], function () {
 //        ->middleware('auth:api');
 });
 
+Route::get('countries', function () {
+    return Country::all();
+});
+
 Route::get('country/{country_code}', function ($countryCode) {
     $destinationCountry = Country::where('country_code', $countryCode)->first();
+    return $destinationCountry;
     $country = [
         'ClientInfo' => [
             "UserName" => env('ARAMEX_USERNAME'),
