@@ -220,7 +220,7 @@
                 $('#areas').html('').toggleClass('disabled');
                 $('#forward').attr('disabled', 'disabled');
                 $.get('/api/country/' + countryCode, function(data) {
-                    return setTimeout(injectAreas(data), 3000);
+                    return setTimeout(injectAreas(data), 4000);
                 });
             });
             $('#areas').on('change', function() {
