@@ -66,11 +66,12 @@ Route::get('country/{country_code}', function ($countryCode) {
     try {
         $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
         $country = $countriesSoapClient->FetchCountry($country);
-        dd($country);
         if (!is_null($country->Country->Name)) {
             $aresSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $areas = $aresSoapClient->FetchCities($area);
             return response()->json($areas->Cities, 200);
+        } else {
+            throw new \Exception("Error with Aramex .. please try again later.");
         }
     } catch (SoapFault $fault) {
         throw new \Exception("Shipping to {$destinationCountry->name} is not available");
