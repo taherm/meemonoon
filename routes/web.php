@@ -52,7 +52,7 @@ Route::group(['namespace' => 'Frontend'], function () {
      * â–‚ â–ƒ â–… â–† â–ˆ CART ROUTES â–ˆ â–† â–… â–ƒ â–‚
      ***************************************************************************************************/
     Route::post('cart/update', ['as' => 'cart.update', 'uses' => 'CartController@updateCart']);
-    Route::post('cart/clear', ['as' => 'cart.clear', 'uses' => 'CartController@clearCart']);
+    Route::get('cart/clear', ['as' => 'cart.clear', 'uses' => 'CartController@clearCart']);
     Route::post('cart/add', ['as' => 'cart.add', 'uses' => 'CartController@addItem']);
     Route::get('cart/{id}/remove', ['as' => 'cart.remove', 'uses' => 'CartController@removeItem']);
 //    Route::post('cart/checkout', 'CartController@checkout');

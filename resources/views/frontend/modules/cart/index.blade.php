@@ -26,6 +26,8 @@
                                 <tr>
                                     <th class="product-remove">{{ trans('cart.remove') }}</th>
                                     <th class="product-thumbnail">{{ trans('cart.image') }}</th>
+                                    <th class="product-thumbnail">{{ trans('cart.color') }}</th>
+                                    <th class="product-thumbnail">{{ trans('cart.size') }}</th>
                                     <th class="product-name">{{ trans('cart.product_name') }}</th>
                                     <th class="real-product-price">{{ trans('cart.unit_price') }}</th>
                                     <th class="product-quantity">{{ trans('cart.qty') }}</th>
@@ -37,20 +39,29 @@
                                 @foreach($cart->items as $product)
                                     <tr>
                                         <td class="product-remove">
-                                            <a href="{{ route('cart.remove',$product->id) }}">
+                                            <a href="{{ route('cart.remove',$product->product_id) }}">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="{{ route('product.show',$product->id) }}">
+                                            <a href="{{ route('product.show',$product->product_id) }}">
                                                 <img src="{{ asset('img/uploads/thumbnail/').'/'.$product->image}}"
                                                      width="140" height="180" alt=""/>
                                             </a>
                                         </td>
 
+                                        <td class="product-thumbnail">
+                                            <div class="col-lg-1"
+                                                 style="border: 1px solid lightgrey; min-height : 30px; margin: 3px; background-color : {!! $product->color_code !!}"></div>
+                                        </td>
+
+                                        <td class="product-thumbnail">
+                                            <div class="col-lg-1">{{ $product->size_name }}</div>
+                                        </td>
+
                                         <td class="product-name">
-                                            <a href="{{ route('product.show',$product->id) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('product.show',$product->product_id) }}">{{ $product->name }}</a>
                                         </td>
 
                                         <td class="real-product-price">
