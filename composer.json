@@ -13,7 +13,8 @@
         "rtconner/laravel-tagging": "^2.2",
         "rtconner/laravel-likeable": "^1.2",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "torann/currency": "^1.0"
+        "torann/currency": "^1.0",
+        "webpatser/laravel-countries": "^1.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

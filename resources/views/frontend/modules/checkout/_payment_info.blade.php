@@ -11,7 +11,7 @@
         <div class="panel-body">
             <div class="col-xs-3">
                 <div class="form-group">
-                    <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 15%;float: left;"/>
+                    <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 100px; height : auto; float: left;"/>
                     <label for="payment"><img src="{{asset('img/payment.png')}}" alt=""></label>
                     <div>Processed by My Fatorrah</div>
 
