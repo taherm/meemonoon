@@ -9,15 +9,15 @@
     </div>
     <div id="checkut5" class="panel-collapse collapse in ">
         <div class="panel-body">
-            <div class="col-xs-3">
+            <div class="col-xs-5">
                 <div class="form-group">
-                    <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 100px; height : auto; float: left;"/>
-                    <label for="payment"><img src="{{asset('img/payment.png')}}" alt=""></label>
+                    <input type="radio" name="payment" checked="checked" value="my_fatoorah" style="width: 15%;float: left;"/>
+                    <label for="payment"><img class="img-responsive" src="{{asset('img/payment.png')}}" alt=""></label>
                     <div>Processed by My Fatorrah</div>
 
                 </div>
             </div>
-            <div class="col-xs-3">
+            <div class="col-xs-5">
                 <div class="form-group">
                     <label for="payment">{{ trans('general.cash_on_delivery') }}</label>
                     @if($shippingCountry->id == '414')
