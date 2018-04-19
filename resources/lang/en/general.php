@@ -91,7 +91,7 @@ return array (
   'all_rights_reserved' => 'All Rights Reserved	',
   'home' => 'Home',
   'categories' => 'categories',
-  'new_arrival' => 'New Arivals',
+  'new_arrival' => 'New Arrivals',
   'on_sale_products' => 'On Sale Products',
   'name' => 'Name',
   'subscribe' => 'subscribe',
