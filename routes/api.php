@@ -63,10 +63,10 @@ Route::get('country/{country_code}', function ($countryCode) {
         'Transaction' => ['Reference1' => '001'],
         'CountryCode' => $destinationCountry->iso_3166_2,
     ];
-//    try {
+    try {
         $countriesSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
         $country = $countriesSoapClient->FetchCountry($country);
-        dd($country);
+//        dd($country);
         if (!is_null($country->Country) && !is_null($country->Country->Name)) {
             $aresSoapClient = new \SoapClient(env('ARAMEX_COUNTRY_URL'), array('trace' => 1));
             $areas = $aresSoapClient->FetchCities($area);
@@ -74,8 +74,8 @@ Route::get('country/{country_code}', function ($countryCode) {
         } else {
             throw new \Exception("Error with Aramex .. please try again later.");
         }
-//    } catch (SoapFault $fault) {
-//        dd($fault);
-//        throw new \Exception("Shipping to {$destinationCountry->name} is not available");
-//    }
+    } catch (SoapFault $fault) {
+        dd($fault);
+        throw new \Exception("Shipping to {$destinationCountry->name} is not available");
+    }
 });

@@ -10,7 +10,6 @@
         "intervention/image": "^2.3",
         "laravelcollective/html": "^5.3",
         "barryvdh/laravel-translation-manager": "^0.2.4",
-        "webpatser/laravel-countries": "^1.4",
         "rtconner/laravel-tagging": "^2.2",
         "rtconner/laravel-likeable": "^1.2",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
