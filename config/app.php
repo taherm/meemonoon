@@ -195,7 +195,8 @@ return [
         //
 
         // countries Service provider
-        'Webpatser\Countries\CountriesServiceProvider',
+//        'Webpatser\Countries\CountriesServiceProvider',
+//        Webpatser\Countries\CountriesServiceProvider::class,
         // ip Geo
 //        Torann\GeoIP\GeoIPServiceProvider::class,
 
