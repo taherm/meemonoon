@@ -37,10 +37,9 @@
                                 <tbody>
 
                                 @foreach($cart->items as $product)
-                                    {{ dd($product) }}
                                     <tr>
                                         <td class="product-remove">
-                                            <a href="{{ route('cart.remove',$product->id) }}">
+                                            <a href="{{ route('cart.remove',$product->id.$product->product_attribute_id) }}">
                                                 <i class="fa fa-times"></i>
                                             </a>
                                         </td>
