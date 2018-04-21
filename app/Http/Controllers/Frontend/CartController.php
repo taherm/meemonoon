@@ -116,12 +116,12 @@ class CartController extends PrimaryController
         return redirect()->back()->with('success', 'Cart Cleared');
     }
 
-    public function removeItem($productID)
+    public function removeItem($itemId)
     {
 
 //        dd($productID);
 //        dd(session('MEEM_CART'));
-        $this->cart->removeItem($productID);
+        $this->cart->removeItem($itemId);
         return redirect()->back()->with('success', 'Item Removed');
     }
 
