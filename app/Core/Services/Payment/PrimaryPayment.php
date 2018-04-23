@@ -202,7 +202,7 @@ PRODUCTS;
         $ResponseMessage = $ResponseMessage->item(0)->nodeValue;
 
 
-        dd($ResponseMessage);
+        dd($ResponseCode);
 
         if ($ResponseCode == 0) {
 
