@@ -100,9 +100,11 @@ class CheckoutController extends PrimaryController
 
         $user = auth()->user();
 
+
         $cartItems = $this->cart->getItems();
 
-        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->keys())->get();
+
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('product_id'))->get();
 
         // Prepare the cart to display
         $cart = $this->cart->make($products);
@@ -246,7 +248,7 @@ class CheckoutController extends PrimaryController
 
         $cartItems = $this->cart->getItems();
 
-        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->keys())->get();
+        $products = $this->productRepository->model->has('product_meta')->whereIn('id', $cartItems->pluck('product_id'))->get();
 
         $cart = $this->cart->make($products);
 
