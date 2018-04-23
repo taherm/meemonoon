@@ -201,6 +201,9 @@ PRODUCTS;
 
         $ResponseMessage = $ResponseMessage->item(0)->nodeValue;
 
+
+        dd($ResponseMessage);
+
         if ($ResponseCode == 0) {
 
             $referenceId = $doc->getElementsByTagName("referenceID")->item(0)->nodeValue;
