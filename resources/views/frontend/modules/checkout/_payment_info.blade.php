@@ -19,12 +19,12 @@
             </div>
             <div class="col-xs-5">
                 <div class="form-group">
-                    <label for="payment">{{ trans('general.cash_on_delivery') }}</label>
                     @if($shippingCountry->id == '414')
                         <input type="radio" name="payment" value="cash" style="width: 15%;"/>
                     @else
                         <input type="radio" name="payment" value="no" style="width: 15%;" disabled="disabled"/>
                     @endif
+                        <label for="payment">{{ trans('general.cash_on_delivery') }}</label>
                 </div>
             </div>
             <p>
