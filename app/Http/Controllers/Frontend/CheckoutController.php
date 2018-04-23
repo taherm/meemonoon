@@ -289,7 +289,7 @@ class CheckoutController extends PrimaryController
 
             $cart->items->map(function ($item) use ($order) {
                 $order->order_metas()->create([
-                    'product_id' => $item->id,
+                    'product_id' => $item->product_id,
                     'product_attribute_id' => $item->product_attribute_id,
                     'quantity' => $item->quantity,
                     'price' => $item->price,
