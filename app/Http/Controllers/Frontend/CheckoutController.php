@@ -315,7 +315,7 @@ class CheckoutController extends PrimaryController
             // My fatoorah
 //dd($orderDetails);
 //dd($cart);
-            dd($user);
+//            dd($user);
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
 
             dd($paymentStatus);
