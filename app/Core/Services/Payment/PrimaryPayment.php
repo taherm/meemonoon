@@ -187,6 +187,8 @@ PRODUCTS;
 
         $file_contents = htmlspecialchars(curl_exec($soap_do));
 
+        dd($file_contents);
+        
         curl_close($soap_do);
 
         $doc = new \DOMDocument();
