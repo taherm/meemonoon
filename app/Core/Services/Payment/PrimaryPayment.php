@@ -125,6 +125,9 @@ PRODUCTS;
 
         $soap_do = curl_init();
 
+
+        dd($soap_do);
+
         curl_setopt($soap_do, CURLOPT_URL, self::url);
 
         curl_setopt($soap_do, CURLOPT_CONNECTTIMEOUT, 10);
