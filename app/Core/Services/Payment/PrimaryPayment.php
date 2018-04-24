@@ -58,7 +58,7 @@ class PrimaryPayment implements primaryPaymentInterface
     <CustomerDC>
     <Name>' . $this->user->firstname . ' ' . $this->user->lastname . '</Name>
     <Email>' . $this->user->email . '</Email>
-    <Mobile>' . $this->user->mobile . '324234234234</Mobile>
+    <Mobile>' . count($this->user->mobile) > 1 ? $this->user->mobile : '1234567'  . '</Mobile>
     </CustomerDC>
     <MerchantDC>
         <merchant_code>' . self::MerchantCode . '</merchant_code>
@@ -175,16 +175,11 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
-//        dd($postString);
         try {
 
             $result = curl_exec($soap_do);
 
-            dd($result);
-
             $file_contents = htmlspecialchars($result);
-
-            dd($file_contents);
 
             $doc = new \DOMDocument();
 
