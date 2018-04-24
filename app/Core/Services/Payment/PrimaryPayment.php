@@ -153,13 +153,6 @@ PRODUCTS;
             'Content-type: text/xml'
         ));
 
-        $result = curl_exec($soap_do);
-        
-
-        $err = curl_error($soap_do);
-
-        dd($err);
-
         curl_close($soap_do);
 
         $soap_do = curl_init();
@@ -184,13 +177,14 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
-        $result = curl_exec($soap_do);
-
-        $err = curl_error($soap_do);
+        try {
+            $result = curl_exec($soap_do);
+        } catch (\Exception $e) {
+            $err = curl_error($soap_do);
+            dd($e->getMessage().'+'.$err);
+        }
 
         $file_contents = htmlspecialchars(curl_exec($soap_do));
-
-        dd($file_contents);
 
         curl_close($soap_do);
 
@@ -199,8 +193,6 @@ PRODUCTS;
         $doc->loadXML(html_entity_decode($file_contents));
 
         $ResponseCode = $doc->getElementsByTagName("ResponseCode");
-
-        dd($ResponseCode->item(0));
 
         $ResponseCode = $ResponseCode->item(0)->nodeValue;
 
