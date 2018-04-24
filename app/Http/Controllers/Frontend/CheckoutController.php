@@ -313,14 +313,8 @@ class CheckoutController extends PrimaryController
             return redirect()->to('/invoice/' . $order->id)->with('success', trans('general.message.order_created'));
         } else {
             // My fatoorah
-//dd($orderDetails);
-//dd($cart);
-//            dd($user);
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
 
-            dd($paymentStatus);
-
-//            dd($paymentStatus);
             if ($paymentStatus[0]->responseMessage) {
 
                 //reduce item quantity after successful order
