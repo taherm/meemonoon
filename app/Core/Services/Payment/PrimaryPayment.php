@@ -122,6 +122,8 @@ PRODUCTS;
     {
         $postString = $this->createXMLPaymentDetails();
 
+        dd($postString);
+
         $soap_do = curl_init();
 
         curl_setopt($soap_do, CURLOPT_URL, self::url);
