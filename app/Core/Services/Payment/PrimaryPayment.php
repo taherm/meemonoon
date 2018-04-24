@@ -58,7 +58,7 @@ class PrimaryPayment implements primaryPaymentInterface
     <CustomerDC>
     <Name>' . $this->user->firstname . ' ' . $this->user->lastname . '</Name>
     <Email>' . $this->user->email . '</Email>
-    <Mobile>' . $this->user->mobile . '</Mobile>
+    <Mobile>' . $this->user->mobile . '324234234234</Mobile>
     </CustomerDC>
     <MerchantDC>
         <merchant_code>' . self::MerchantCode . '</merchant_code>
