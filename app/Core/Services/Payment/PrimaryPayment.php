@@ -195,6 +195,8 @@ PRODUCTS;
 
         $ResponseCode = $doc->getElementsByTagName("ResponseCode");
 
+        dd($ResponseCode->item(0));
+
         $ResponseCode = $ResponseCode->item(0)->nodeValue;
 
         $ResponseMessage = $doc->getElementsByTagName("ResponseMessage");
