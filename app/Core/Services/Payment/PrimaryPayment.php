@@ -50,6 +50,7 @@ class PrimaryPayment implements primaryPaymentInterface
     public function createXMLPaymentDetails()
     {
 
+        $userMobile = count($this->user->mobile) > 1 ? $this->user->mobile : '1234567';
         return $this->postString = '<?xml version="1.0" encoding="windows-1256"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
 <soap12:Body>
@@ -58,7 +59,7 @@ class PrimaryPayment implements primaryPaymentInterface
     <CustomerDC>
     <Name>' . $this->user->firstname . ' ' . $this->user->lastname . '</Name>
     <Email>' . $this->user->email . '</Email>
-    <Mobile>' . count($this->user->mobile) > 1 ? $this->user->mobile : '1234567'  . '</Mobile>
+    <Mobile>' .  $userMobile . '</Mobile>
     </CustomerDC>
     <MerchantDC>
         <merchant_code>' . self::MerchantCode . '</merchant_code>
@@ -177,7 +178,7 @@ PRODUCTS;
 
 
         dd($postString);
-        
+
         try {
 
             $result = curl_exec($soap_do);
