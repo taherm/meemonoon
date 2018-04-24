@@ -39,7 +39,6 @@ class PrimaryPayment implements primaryPaymentInterface
 //    const errorURL = 'http://meemonoon.com/error';
 
 
-
     public function __construct($products, $orderDetails, $user)
     {
         $this->products = $products;
@@ -57,9 +56,9 @@ class PrimaryPayment implements primaryPaymentInterface
     <PaymentRequest xmlns="http://tempuri.org/">
     <req>
     <CustomerDC>
-    <Name>'.$this->user->firstname.' '.$this->user->lastname.'</Name>
-    <Email>'.$this->user->email.'</Email>
-    <Mobile>'.$this->user->mobile.'</Mobile>
+    <Name>' . $this->user->firstname . ' ' . $this->user->lastname . '</Name>
+    <Email>' . $this->user->email . '</Email>
+    <Mobile>' . $this->user->mobile . '</Mobile>
     </CustomerDC>
     <MerchantDC>
         <merchant_code>' . self::MerchantCode . '</merchant_code>
@@ -129,7 +128,7 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_CONNECTTIMEOUT, 10);
 
-        curl_setopt ($soap_do, CURLOPT_PORT , 81);
+        curl_setopt($soap_do, CURLOPT_PORT, 81);
 
         curl_setopt($soap_do, CURLOPT_TIMEOUT, 10);
 
@@ -179,46 +178,48 @@ PRODUCTS;
 
         try {
             $result = curl_exec($soap_do);
+            $file_contents = htmlspecialchars($result);
+
+            curl_close($soap_do);
+
+            $doc = new \DOMDocument();
+
+            $doc->loadXML(html_entity_decode($file_contents));
+
+            $ResponseCode = $doc->getElementsByTagName("ResponseCode");
+
+            $ResponseCode = $ResponseCode->item(0)->nodeValue;
+
+            $ResponseMessage = $doc->getElementsByTagName("ResponseMessage");
+
+            $ResponseMessage = $ResponseMessage->item(0)->nodeValue;
+
+            try {
+                if ($ResponseCode == 0) {
+
+                    $referenceId = $doc->getElementsByTagName("referenceID")->item(0)->nodeValue;
+
+                    $responseMessage = $doc->getElementsByTagName("ResponseMessage")->item(0)->nodeValue;
+
+                    $paymentURL = $doc->getElementsByTagName("paymentURL")->item(0)->nodeValue;
+
+                    $paymentDetails = (object)[
+                        'paymentURL' => $paymentURL,
+                        'responseMessage' => ($responseMessage == 'SUCCESS') ? true : false,
+                        'referenceId' => $referenceId
+                    ];
+
+                    return $paymentDetails;
+
+                }
+            } catch (\Exception $e) {
+                dd($e->getMessage());
+            }
+
         } catch (\Exception $e) {
             $err = curl_error($soap_do);
-            dd($e->getMessage().'+'.$err);
+            dd($e->getMessage() . '+' . $err);
         }
-
-        $file_contents = htmlspecialchars(curl_exec($soap_do));
-
-        curl_close($soap_do);
-
-        $doc = new \DOMDocument();
-
-        $doc->loadXML(html_entity_decode($file_contents));
-
-        $ResponseCode = $doc->getElementsByTagName("ResponseCode");
-
-        $ResponseCode = $ResponseCode->item(0)->nodeValue;
-
-        $ResponseMessage = $doc->getElementsByTagName("ResponseMessage");
-
-        $ResponseMessage = $ResponseMessage->item(0)->nodeValue;
-
-        if ($ResponseCode == 0) {
-
-            $referenceId = $doc->getElementsByTagName("referenceID")->item(0)->nodeValue;
-
-            $responseMessage = $doc->getElementsByTagName("ResponseMessage")->item(0)->nodeValue;
-
-            $paymentURL = $doc->getElementsByTagName("paymentURL")->item(0)->nodeValue;
-
-            $paymentDetails = (object)[
-                'paymentURL' => $paymentURL,
-                'responseMessage' => ($responseMessage == 'SUCCESS') ? true : false,
-                'referenceId' => $referenceId
-            ];
-
-            return $paymentDetails;
-
-        }
-
-        return false;
     }
 }
 
