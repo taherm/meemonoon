@@ -175,7 +175,7 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
-        dd($postString);
+//        dd($postString);
         try {
 
             $result = curl_exec($soap_do);
