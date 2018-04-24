@@ -207,23 +207,22 @@ PRODUCTS;
                         'responseMessage' => ($responseMessage == 'SUCCESS') ? true : false,
                         'referenceId' => $referenceId
                     ];
-
+                    curl_close($soap_do);
                     return $paymentDetails;
 
                 }
-                curl_close($soap_do);
 
             } catch (\Exception $e) {
-                dd($e->getMessage());
                 curl_close($soap_do);
+                return $e->getMessage();
             }
 
         } catch (\Exception $e) {
-            $err = curl_error($soap_do);
             echo curl_errno($soap_do);
             echo curl_error($soap_do);
+            $err = curl_error($soap_do);
             curl_close($soap_do);
-            dd($e->getMessage() . '+' . $err);
+            return ($e->getMessage() . '+' . $err);
         }
     }
 }
