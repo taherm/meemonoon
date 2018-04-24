@@ -181,6 +181,8 @@ PRODUCTS;
 
             $file_contents = htmlspecialchars($result);
 
+            dd($file_contents);
+            
             $doc = new \DOMDocument();
 
             $doc->loadXML(html_entity_decode($file_contents));
