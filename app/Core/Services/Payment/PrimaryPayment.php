@@ -122,7 +122,6 @@ PRODUCTS;
     {
         $postString = $this->createXMLPaymentDetails();
 
-        dd($postString);
 
         $soap_do = curl_init();
 
@@ -181,6 +180,8 @@ PRODUCTS;
             $result = curl_exec($soap_do);
 
             $file_contents = htmlspecialchars($result);
+
+            dd($file_contents);
 
             $doc = new \DOMDocument();
 
