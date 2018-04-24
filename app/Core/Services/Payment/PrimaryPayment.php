@@ -176,16 +176,11 @@ PRODUCTS;
 
         curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
-
-        dd($postString);
-
         try {
 
             $result = curl_exec($soap_do);
 
             $file_contents = htmlspecialchars($result);
-
-            dd($file_contents);
 
             $doc = new \DOMDocument();
 
