@@ -152,8 +152,6 @@ PRODUCTS;
             'Content-type: text/xml'
         ));
 
-        curl_close($soap_do);
-
         $soap_do = curl_init();
 
         curl_setopt($soap_do, CURLOPT_URL, self::url);
@@ -177,6 +175,7 @@ PRODUCTS;
         curl_setopt($soap_do, CURLOPT_USERPWD, self::userEmail . ":" . self::userPass);
 
         try {
+
             $result = curl_exec($soap_do);
             $file_contents = htmlspecialchars($result);
 
@@ -212,12 +211,18 @@ PRODUCTS;
                     return $paymentDetails;
 
                 }
+                curl_close($soap_do);
+
             } catch (\Exception $e) {
                 dd($e->getMessage());
+                curl_close($soap_do);
             }
 
         } catch (\Exception $e) {
             $err = curl_error($soap_do);
+            echo curl_errno($soap_do);
+            echo curl_error($soap_do);
+            curl_close($soap_do);
             dd($e->getMessage() . '+' . $err);
         }
     }
