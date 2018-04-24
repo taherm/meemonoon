@@ -82,6 +82,7 @@ class PrimaryPayment implements primaryPaymentInterface
     public function createProductsList()
     {
         $products = '';
+        dd($this->products->items);
         foreach ($this->products->items as $product) {
             $price = ($product->sale_price) ? $product->sale_price : $product->price;
             $products .= <<<PRODUCTS
@@ -188,7 +189,7 @@ PRODUCTS;
         $file_contents = htmlspecialchars(curl_exec($soap_do));
 
         dd($file_contents);
-        
+
         curl_close($soap_do);
 
         $doc = new \DOMDocument();
