@@ -179,10 +179,10 @@ PRODUCTS;
 
             $result = curl_exec($soap_do);
 
+            dd($result);
 
             $file_contents = htmlspecialchars($result);
 
-            dd($this->orderDetails);
             dd($file_contents);
 
             $doc = new \DOMDocument();
