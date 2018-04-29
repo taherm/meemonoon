@@ -103,6 +103,7 @@ class CategoryController extends PrimaryController
             'name_en' => $request->name_en,
             'name_ar' => $request->name_ar,
             'description_en' => $request->description_en,
+            'order' => $request->order,
             'description_ar' => $request->description_ar,
             'limited' => $request->limited
         ]);
