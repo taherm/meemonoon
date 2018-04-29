@@ -64,6 +64,7 @@ class GalleryController extends PrimaryController
                 'medium_url' => $image,
                 'large_url' => $image,
                 'caption_ar' => $request->caption_ar,
+                'order' => $request->order,
                 'caption_en' => $request->caption_en
             ]);
             return redirect()->back()->with('success','image saved');
@@ -112,6 +113,7 @@ class GalleryController extends PrimaryController
                 'thumb_url' => $image,
                 'medium_url' => $image,
                 'large_url' => $image,
+                'order' => $request->order,
                 'caption_ar' => $request->caption_ar,
                 'caption_en' => $request->caption_en
             ]);

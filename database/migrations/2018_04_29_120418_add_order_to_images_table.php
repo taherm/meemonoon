@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAddress2ToUsersTable extends Migration
+class AddOrderToImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddAddress2ToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('address2')->nullable()->after('address');
+        Schema::table('images', function (Blueprint $table) {
+            $table->integer('order')->nullable();
         });
     }
 
@@ -24,8 +24,8 @@ class AddAddress2ToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('address2');
+        Schema::table('images', function (Blueprint $table) {
+            $table->dropColumn('order');
         });
     }
 }
