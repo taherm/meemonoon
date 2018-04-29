@@ -28,7 +28,7 @@ class CategoryRepository extends PrimaryRepository
 
     public function getChildrenCategoriesWithParent()
     {
-        return $this->model->where('parent_id', '!=', 0)->with('parent')->get();
+        return $this->model->where('parent_id', '!=', 0)->with('parent','children')->get();
     }
 
     public function getOnlyChildrenCategories($id)

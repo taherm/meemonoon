@@ -48,7 +48,7 @@
                                         @endif
 
                                         @if(count($product->gallery->images) > 0)
-                                            @foreach($product->gallery->images as $image)
+                                            @foreach($product->gallery->images->sortBy('order') as $image)
                                                 <div class="tab-pane @if($count == 1) active @endif"
                                                      id="{{'p-view-'. $count++}}">
                                                     <div class="simpleLens-big-image-container">
@@ -85,7 +85,7 @@
 
                                                 </div>
                                                 @if(count($product->gallery->images) > 0)
-                                                    @foreach($product->gallery->images as $image)
+                                                    @foreach($product->gallery->images->sortBy('order') as $image)
 
                                                         <ul class="nav nav-tabs" role="tablist">
                                                             <li class="@if($count2 == 1) active @else last-li @endif"><a

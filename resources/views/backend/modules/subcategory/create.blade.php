@@ -30,6 +30,15 @@
         </div>
 
         <div class="form-group">
+            <label class="col-md-2 control-label"> Category Order :
+                <span class="required"> * </span>
+            </label>
+            <div class="col-md-3">
+                {!! Form::text('order', (isset($subcategory) ? $subcategory->order : old('order')) ,['class' => 'form-control','required']) !!}
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-3">
                 <label class="label" for="image" style="color: black;"> image*
                     <small>1000*250</small>

@@ -17,16 +17,16 @@
 
                 </div>
             </div>
-            <div class="col-xs-5">
-                <div class="form-group">
-                    @if($shippingCountry->id == '414')
-                        <input type="radio" name="payment" value="cash" style="width: 15%;"/>
-                    @else
-                        <input type="radio" name="payment" value="no" style="width: 15%;" disabled="disabled"/>
-                    @endif
-                        <label for="payment">{{ trans('general.cash_on_delivery') }}</label>
-                </div>
-            </div>
+            {{--<div class="col-xs-5">--}}
+                {{--<div class="form-group">--}}
+                    {{--@if($shippingCountry->id == '414')--}}
+                        {{--<input type="radio" name="payment" value="cash" style="width: 15%;"/>--}}
+                    {{--@else--}}
+                        {{--<input type="radio" name="payment" value="no" style="width: 15%;" disabled="disabled"/>--}}
+                    {{--@endif--}}
+                        {{--<label for="payment">{{ trans('general.cash_on_delivery') }}</label>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <p>
             {{--<ol style="direction: ltr;">--}}
                 {{--<li>K-net,Visa,master card (processed by MyFatoorah)</li>--}}

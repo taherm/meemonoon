@@ -34,6 +34,14 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-md-2 control-label"> Category Order :
+                <span class="required"> * </span>
+            </label>
+            <div class="col-md-3">
+                {!! Form::text('order', (isset($category) ? $category->order : old('order')) ,['class' => 'form-control','required']) !!}
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-lg-3 pull-right">
                 <img src="{{ asset('img/uploads/large/'.$category->image) }}" alt="" class="img-responsive">
             </div>

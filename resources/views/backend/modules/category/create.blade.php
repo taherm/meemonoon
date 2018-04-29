@@ -30,6 +30,14 @@
                 {!! Form::text('name_en', null ,['class' => 'form-control','required']) !!}
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label"> Category Order :
+                <span class="required"> * </span>
+            </label>
+            <div class="col-md-3">
+                {!! Form::text('order', null ,['class' => 'form-control','required']) !!}
+            </div>
+        </div>
         <div class="form-group hidden">
             <label class="col-md-2 control-label">description english :
                 <span class="required">  </span>

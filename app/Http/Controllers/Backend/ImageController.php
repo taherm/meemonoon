@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Src\Gallery\Image;
+use App\Src\Product\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
@@ -61,7 +62,8 @@ class ImageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $element = Image::whereId($id)->first();
+        return view('backend.modules.image.edit', compact('element', 'gallery_id'));
     }
 
     /**
@@ -73,8 +75,17 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $image = Image::whereId($id)->first()->update(['cover' => 1]);
-        return redirect()->back()->with('success', 'cover initialized for this album');
+        if ($request->has('cover')) {
+            $updated = Image::whereId($id)->first()->update(['cover' => 1]);
+            $updated ?
+                redirect()->back()->with('success', 'cover initialized for this album') : redirect()->back()->with('error', 'not updated !!!');
+        }
+        $element = Image::whereId($id)->first();
+        $updated = $element->update($request->except('product_id'));
+        if ($updated) {
+            return redirect()->route('backend.gallery.index', ['product_id' => $request->product_id])->with('success', 'cover initialized for this album');
+        }
+        return redirect()->back()->with('error', 'not updated !!!');
     }
 
     /**

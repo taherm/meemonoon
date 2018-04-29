@@ -35,10 +35,11 @@
                             <tr>
                                 <th>order_id</th>
                                 <th>product sku</th>
+                                <th>product name</th>
                                 <th>color</th>
                                 <th>size</th>
                                 <th>quantity</th>
-                                <th>created_at</th>
+                                <th>Order Date</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,10 +50,11 @@
                                         <a href="{{ route('backend.product.edit', [$orderMeta->product_id]) }}"
                                            class="btn btn-xs btn-circle btn-outline">{{ $orderMeta->product->sku }}</a>
                                     </td>
+                                    <td>{{ $orderMeta->product->name  }}</td>
                                     <td>{!! $orderMeta->product_attribute->colorName !!}</td>
                                     <td>{!! $orderMeta->product_attribute->sizeName !!}</td>
                                     <td>{!! $orderMeta->quantity !!}</td>
-                                    <td>{{ $orderMeta->created_at->diffForHumans()}}</td>
+                                    <td>{{ $orderMeta->created_at }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -70,6 +72,11 @@
         <div class="col-md-6"></div>
         <div class="col-md-6">
             <div class="well">
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name"> Mobile :</div>
+                    <div class="col-md-3 value"> {{ $order->user->mobile or 'No Mobile' }} </div>
+                </div>
+
                 <div class="row static-info align-reverse">
                     <div class="col-md-8 name"> Shipping Address :</div>
                     <div class="col-md-3 value"> {{ $order->address or 'No Address' }} </div>

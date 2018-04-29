@@ -73,8 +73,7 @@ class SubCategoryController extends PrimaryController
             return redirect()->back()->with('error', 'not created !!');
 
         } catch (\Exception $e) {
-
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 

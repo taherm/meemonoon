@@ -16,11 +16,13 @@
                                 Delete Image
                             </button>
                             {{ Form::close() }}
+                            <a href="{{ route('backend.image.edit',$image->id) }}?product_id={{ $product->id }}" class="btn btn-default">edit</a>
+                            {{--<a href="{{ route('backend.image.edit',$image->id) }}?cover=1" class="btn btn-default">make cover</a>--}}
                         </div>
                         <div class="panel-body">
                             <img class="img-thumbnail center"
                                  src={{ asset('img/uploads/thumbnail/'.$image->thumb_url) }} />
-                            <div class="caption">{{ $image->caption }}</div>
+                            <div class="caption">{{ $image->caption }} - order : {{ $image->order or 'no order' }}</div>
                         </div>
                     </div>
                 </div>
@@ -46,6 +48,10 @@
         <div class="col-lg-4">
             <label class="mt-checkbox"> caption english</label>
             {!! Form::text('caption_en',null,['class' =>'form-control','required']) !!}
+        </div>
+        <div class="col-lg-2">
+            <label class="mt-checkbox"> image order</label>
+            {!! Form::text('order',null,['class' =>'form-control','required']) !!}
         </div>
     </div>
 

@@ -33,14 +33,14 @@ class ProductController extends PrimaryController
 
             $productsWithoutMeta = Product::withoutGlobalScopes()->orderBy('created_at', 'desc')->whereDoesntHave('product_meta', function ($q) {
                 return $q;
-            })->get();
-            $trashed = Product::withoutGlobalScopes()->orderBy('created_at','desc')->onlyTrashed()->get();
+            })->with('categories')->get();
+            $trashed = Product::withoutGlobalScopes()->orderBy('created_at','desc')->onlyTrashed()->with('categories')->get();
             $products = collect($productsWithoutMeta,$trashed);
             return view('backend.modules.product.trashed', compact('products'));
 
         } else {
 
-            $products = $this->productRepository->model->orderBy('created_at', 'desc')->has('product_meta')->get();
+            $products = $this->productRepository->model->orderBy('created_at', 'desc')->has('product_meta')->with('categories')->get();
 
         }
         return view('backend.modules.product.index', compact('products'));
