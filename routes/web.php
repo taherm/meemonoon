@@ -123,6 +123,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.
     Route::post('user/status/{id}', ['as' => 'user.suspend', 'uses' => 'UserController@suspendStatus']);
     Route::resource('user', 'UserController');
     Route::resource('product', 'ProductController');
+    Route::get('product/restore/{id}', 'ProductController@restore')->name('product.restore');
     Route::resource('coupon', 'CouponController');
     Route::resource('meta', 'ProductMetaController');
     Route::resource('attribute', 'ProductAttributeController');

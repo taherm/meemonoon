@@ -9,7 +9,7 @@
                 <th> sku</th>
                 <th> name</th>
                 <th> created_at</th>
-                <th> delete</th>
+                <th> restore</th>
             </tr>
             </thead>
             <tbody>
@@ -19,11 +19,14 @@
                     <td> {{ str_limit($product->sku,10) }} </td>
                     <td> {{$product->name}} </td>
                     <td> {{ $product->created_at->diffForHumans() }}</td>
+                    {{--<td>--}}
+                        {{--{{ Form::open(['route' => ['backend.product.destroy',$product->id],'method' => 'DELETE']) }}--}}
+                        {{--<button class="btn btn-outline btn-circle dark btn-sm red"><i--}}
+                                    {{--class="fa fa-trash-o"></i></button>--}}
+                        {{--{{ Form::close() }}--}}
+                    {{--</td>--}}
                     <td>
-                        {{ Form::open(['route' => ['backend.product.destroy',$product->id],'method' => 'DELETE']) }}
-                        <button class="btn btn-outline btn-circle dark btn-sm red"><i
-                                    class="fa fa-trash-o"></i></button>
-                        {{ Form::close() }}
+                        <a href="{{ route('backend.product.restore', ['id' => $product->id]) }}" class="btn btn-warning btn-xs">restore</a>
                     </td>
                 </tr>
             @endforeach
