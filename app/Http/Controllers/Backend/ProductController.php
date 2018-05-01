@@ -7,6 +7,7 @@ use App\Src\User\UserRepository;
 use App\Http\Requests;
 use App\Core\PrimaryController;
 use App\Src\Product\ProductRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends PrimaryController
@@ -31,9 +32,6 @@ class ProductController extends PrimaryController
 
         if (request()->get('trashed') == 1) {
 
-//            $productsWithoutMeta = Product::withoutGlobalScopes()->orderBy('created_at', 'desc')->whereDoesntHave('product_meta', function ($q) {
-//                return $q;
-//            })->with('categories')->get();
             $products = Product::withoutGlobalScopes()->orderBy('created_at','desc')->onlyTrashed()->with('categories')->get();
             return view('backend.modules.product.trashed', compact('products'));
 
@@ -135,6 +133,12 @@ class ProductController extends PrimaryController
             return redirect()->back()->with('success', 'product deleted');
         }
         return redirect()->back()->with('error', 'product not deleted');
+    }
+
+    public function restore($id) {
+        $element = Product::withTrashed()->whereId($id)->first();
+        $element->restore();
+        return redirect()->back()->with('success', 'product restored');
     }
 
 }
