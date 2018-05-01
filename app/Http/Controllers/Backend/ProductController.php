@@ -127,12 +127,15 @@ class ProductController extends PrimaryController
      */
     public function destroy($id)
     {
-        $product = Product::whereId($id)->first();
-        DB::table('product_attributes')->where('product_id',$id)->delete();
-        DB::table('order_metas')->where('product_id',$id)->delete();
-        DB::table('product_metas')->where('product_id',$id)->delete();
-        $product->forceDelete();
-        return redirect()->back()->with('success', 'product deleted');
+        $product = Product::whereId($id)->delete();
+//        DB::table('product_attributes')->where('product_id',$id)->delete();
+//        DB::table('order_metas')->where('product_id',$id)->delete();
+//        DB::table('product_metas')->where('product_id',$id)->delete();
+//        $product->forceDelete();
+        if($product) {
+            return redirect()->back()->with('success', 'product deleted');
+        }
+        return redirect()->back()->with('error', 'product not deleted');
     }
 
 }
