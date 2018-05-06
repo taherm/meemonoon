@@ -22,6 +22,10 @@
                                         <a href="{{ route('backend.order.status.change',['id' => $order->id,'status' => 'completed']) }}">
                                             <i class="icon-bell"></i> Delivered</a>
                                     </li>
+                                    <li>
+                                        <a href="javascript:window.print()">
+                                        <i class="fa fa-fw fa-print"></i>Print This Page</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -74,7 +78,7 @@
             <div class="well">
                 <div class="row static-info align-reverse">
                     <div class="col-md-8 name"> Mobile :</div>
-                    <div class="col-md-3 value"> {{ $order->user->mobile or 'No Mobile' }} </div>
+                    <div class="col-md-3 value"> {{ $order->mobile or 'No Mobile' }} </div>
                 </div>
 
                 <div class="row static-info align-reverse">

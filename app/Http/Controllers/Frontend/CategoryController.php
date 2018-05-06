@@ -35,7 +35,7 @@ class CategoryController extends PrimaryController
         $this->companyRepository = $companyRepository;
         $this->productRepository = $productRepository;
     }
-
+    
 
     /**
      * Description : will get all products related to the current branch and company under the child Category
@@ -79,7 +79,6 @@ class CategoryController extends PrimaryController
 
         $products = $products->get();
 
-
         $productsCounter = $products->count();
 
         $perPage = self::limit;
@@ -88,11 +87,14 @@ class CategoryController extends PrimaryController
 
         $queryString = $filters->request->getQueryString();
 
+
         $childrenCategoryFlag = $this->categoryRepository->getOnlyChildrenCategories($parentId);
+
 
         return view('frontend.modules.category.index', compact('category', 'products', 'productsCounter',
             'perPage', 'parentId', 'childId', 'sizeCounter', 'colorCounter', 'queryString', 'subcategories', 'childrenCategoryFlag'));
     }
+
 
     /**
      * @param $products
