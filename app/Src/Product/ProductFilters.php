@@ -102,13 +102,13 @@ class ProductFilters extends QueryFilter
 
         switch ($this->request->type) {
             case 'name' :
-                return $this->builder->orderBy('products.name_' . app()->getLocale(), $sort);
-
+                return $this->builder->orderBy('name_' . app()->getLocale(), 'asc');
             case 'price' :
-
-                return $this->builder->whereHas('product_meta', function ($q) use ($sort) {
-                    $q->orderBy('price', $sort);
-                });
+                return $this->builder->
+                selectRaw('products.*')
+                    ->join('product_metas', 'product_metas.product_id', '=', 'products.id')
+                    ->where('product_metas.price', '>=', 1)
+                    ->orderBy('product_metas.price', 'asc');
 
             default :
                 return $this->builder->orderBy('products.name_' . app()->getLocale(), $sort);
