@@ -51,7 +51,7 @@ class Product extends PrimaryModel
      */
     public function product_meta()
     {
-        return $this->hasOne('App\Src\Product\ProductMeta');
+        return $this->hasOne('App\Src\Product\ProductMeta')->orderBy('price','asc');
     }
 
     public function scopeOnSale()

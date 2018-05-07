@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Src\Category\CategoryRepository;
 use App\Src\Company\CompanyRepository;
 use App\Src\Product\Color;
+use App\Src\Product\Product;
 use App\Src\Product\ProductFilters;
 use App\Src\Product\ProductRepository;
 use App\Http\Requests;
@@ -35,7 +36,7 @@ class CategoryController extends PrimaryController
         $this->companyRepository = $companyRepository;
         $this->productRepository = $productRepository;
     }
-    
+
 
     /**
      * Description : will get all products related to the current branch and company under the child Category
@@ -53,21 +54,18 @@ class CategoryController extends PrimaryController
         $queryString = $filters->request->getQueryString();
 
         if ($validator->fails() || !$parentId) {
-
             return redirect()->route('category.show', $parentId)->withErrors($validator)->with('error', trans('general.message.error.no_categories'));
-
         }
 
         if ($filters->request->has('child')) {
             $category = $this->categoryRepository->getById($filters->request->get('child'));
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $category->products()->filters($filters)->orderBy('id','desc');
+            $products = $category->products()->filters($filters)->orderBy('id', 'desc');
         } else {
             $category = $this->categoryRepository->getById($parentId);
             // fetch all the products according to the filter entered that belongs to the ParentCategory
-            $products = $category->products()->filters($filters)->orderBy('id','desc');
+            $products = $category->products()->filters($filters);
         }
-
 
 //         fetch the number of the sizes according to the products returned
         $sizeCounter = $this->getSizesForProducts(clone $products);
