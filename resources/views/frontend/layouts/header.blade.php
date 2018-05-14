@@ -6,14 +6,14 @@
             <div class="container">
                 <div class="row">
                     @include('frontend.partials._nav_left')
-                    <div class="col-lg-4 col-md-4 col-sm-4" style="max-height: 73px;">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="max-height: 73px;">
                         <div class="logo">
                             <a href="{{URL('/')}}"><img class="img-responsive" style="width : 100%; height : auto;"
                                                         src="{{asset('meem/frontend/img/logo/mainlogo.jpg')}}"
                                                         alt=""></a>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         @include('frontend.partials._nav_right')
                     </div>
                 </div>

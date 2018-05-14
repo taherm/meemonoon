@@ -1,6 +1,7 @@
 <ul>
-    <li><span>{{ trans('general.language') }}</span>
-        <ul style="left: 0px; width: 80px;">
+    <li class="currency">
+        <span>{{ trans('general.language') }}</span>
+        <ul>
             <li><a href="{{ url('/lang/ar') }}">{{ trans('general.arabic') }}</a></li>
             <li><a href="{{ url('/lang/en') }}">{{ trans('general.english') }}</a></li>
         </ul>
