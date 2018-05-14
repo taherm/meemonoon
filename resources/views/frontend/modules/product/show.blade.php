@@ -8,8 +8,8 @@
     <meta property="og:url" content="{{ request()->fullUrl() }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{ $product->name }}"/>
-    <meta property="og:description" content="{{ $product->product_meta->description }}"/>
-    <meta property="og:image" content="{{asset('img/uploads/large/'.$product->product_meta->image)}}"/>
+    <meta property="og:description" content="{!! $product->product_meta->description !!}"/>
+    <meta property="og:image" content="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"/>
 @endsection
 @section('body')
     <div class="single-page-area shop-product-area">
