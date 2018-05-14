@@ -9,12 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends PrimaryModel
 {
-
-
+    use SoftDeletes;
     protected $table = 'categories';
     public $localeStrings = ['name', 'description'];
     protected $guarded = [''];
-    use SoftDeletes;
 
     /**
      * * ParentCategory
