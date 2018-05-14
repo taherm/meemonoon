@@ -13,23 +13,23 @@
                         <ul>
                             <li>
                                 <div class="field fix">
-                                    <div class="input-box">
-                                        <label class="label" for="first">{{ trans('general.firstname') }} <em>*</em></label>
-                                        {{ Form::text('firstname',null,['class'=>'border-color']) }}
+                                    <div class="col-lg-6">
+                                            <label class="label" for="first">{{ trans('general.firstname') }} <em>*</em></label>
+                                            {{ Form::text('firstname',null,['class'=>'border-color']) }}
                                     </div>
-                                    <div class="input-box">
-                                        <label class="label" for="last"> {{ trans('general.lastname') }}<em>*</em></label>
-                                        {{ Form::text('lastname',null,['class'=>'border-color']) }}
+                                    <div class="col-lg-6">
+                                            <label class="label" for="last"> {{ trans('general.lastname') }}<em>*</em></label>
+                                            {{ Form::text('lastname',null,['class'=>'border-color']) }}
                                     </div>
                                 </div>
                             </li>
                             <li>
                                 <div class="field fix">
-                                    <div class="input-box">
+                                    <div class="col-lg-6">
                                         <label class="label" for="City">{{ trans('general.city') }} <em>*</em></label>
                                         {{ Form::text('city',null,['class'=>'border-color', 'required']) }}
                                     </div>
-                                    <div class="input-box">
+                                    <div class="col-lg-6">
                                         <label class="label" for="Country">{{ trans('general.country') }}<em>*</em></label>
                                         <div class="i-box">
 
@@ -56,31 +56,31 @@
                             <li>
                                 @if($shippingCountry->currency_symbol === 'KWD')
                                     <div class="field fix">
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="area">{{ trans('general.area') }}<em>*</em></label>
                                             {{ Form::text('area',(Auth::user()->area != '' ? Auth::user()->area: null),['class'=>'border-color', 'placeholder'=>'Area', 'required']) }}
                                         </div>
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="block">{{ trans('general.block') }}<em>*</em></label>
                                             {{ Form::text('block',(Auth::user()->block != '' ? Auth::user()->block: null),['class'=>'border-color', 'placeholder'=>'Block', 'required']) }}
                                         </div>
                                     </div>
                                     <div class="field fix">
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="street">{{ trans('general.street') }}<em>*</em></label>
                                             {{ Form::text('street',(Auth::user()->street != '' ? Auth::user()->street: null),['class'=>'border-color', 'placeholder'=>'Street', 'required']) }}
                                         </div>
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="building">{{ trans('general.building') }}</label>
                                             {{ Form::text('building',(Auth::user()->building != '' ? Auth::user()->building: null),['class'=>'border-color', 'placeholder'=>'Building']) }}
                                         </div>
                                     </div>
                                     <div class="field fix">
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="floor">{{ trans('general.floor') }}<em>*</em></label>
                                             {{ Form::text('floor',(Auth::user()->floor != '' ? Auth::user()->floor: null),['class'=>'border-color', 'placeholder'=>'Floor', 'required']) }}
                                         </div>
-                                        <div class="input-box">
+                                        <div class="col-lg-6">
                                             <label class="label" for="apartment">{{ trans('general.apartment') }}</label>
                                             {{ Form::text('apartment',(Auth::user()->apartment != '' ? Auth::user()->apartment: null),['class'=>'border-color', 'placeholder'=>'Apartment']) }}
                                         </div>
@@ -95,7 +95,7 @@
                             </li>
                             <li>
                                 <div class="field fix">
-                                    <div class="input-box">
+                                    <div class="col-lg-6">
                                         <label class="label" for="email">{{ trans('general.email') }} <em>*</em></label>
                                         {{ Form::text('email',(auth()->user() ? auth()->user()->email : null) ,['class'=>'border-color', 'required']) }}
                                     </div>
@@ -103,11 +103,11 @@
                             </li>
                             <li>
                                 <div class="field fix">
-                                    <div class="input-box">
+                                    <div class="col-lg-6">
                                         <label class="label" for="Zip">{{ trans('general.zip_code') }} <em>*</em></label>
                                         {{ Form::text('zip',null,['class'=>'border-color', 'required']) }}
                                     </div>
-                                    <div class="input-box">
+                                    <div class="col-lg-6">
                                         <label class="label" for="Mobile">{{ trans('general.contact_number') }}<em>*</em></label>
                                         {{ Form::text('mobile',null,['class'=>'border-color', 'required']) }}
                                     </div>
