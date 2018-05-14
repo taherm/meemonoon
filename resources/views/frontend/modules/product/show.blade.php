@@ -55,7 +55,7 @@
                                                         <a class="simpleLens-lens-image"
                                                            data-lens-image="{{asset('img/uploads/large/'.$image->large_url)}}">
                                                             <img src="{{asset('img/uploads/large/'.$image->large_url)}}"
-                                                                 class="simpleLens-big-image" alt="{{ $product->name }}">
+                                                                 class="simpleLens-big-image" alt="{{ $image->caption }}"/>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -71,7 +71,7 @@
                                                     <ul class="nav nav-tabs" role="tablist">
                                                         <li class="active"><a href="/#p-view-1" role="tab" data-toggle="tab">
                                                                 <img src="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"
-                                                                     width="100" height="100" alt="{{ $product->name }}"></a>
+                                                                     width="100" height="100" alt="{{ $product->name }}"/></a>
                                                         </li>
                                                     </ul>
                                                 @endif
@@ -92,7 +92,7 @@
                                                                         href="{{'/#p-view-'. $count2++}}" role="tab"
                                                                         data-toggle="tab"><img
                                                                             src="{{asset('img/uploads/large/'.$image->large_url)}}"
-                                                                            width="100" height="100" alt="{{ $product->name }}"></a>
+                                                                            width="100" height="100" alt="{{ $image->caption }}"/></a>
                                                             </li>
                                                         </ul>
 
