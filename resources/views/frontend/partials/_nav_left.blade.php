@@ -1,9 +1,7 @@
-<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-    <div class="top-left-item">
-        <div class="top-menu top-menu-4">
-            <nav>
-                @include('frontend.partials._currency_language')
-            </nav>
-        </div>
+<div class="top-left-item hidden-xs">
+    <div class="top-menu top-menu-4">
+        <nav>
+            @include('frontend.partials._currency_language')
+        </nav>
     </div>
 </div>
