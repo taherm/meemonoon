@@ -5,7 +5,7 @@
         <div id="topSlider" class="nivoSlider nevo-slider">
             @foreach($sliders as $slider)
                 <a href="{{ str_replace(URL('/'),'',$slider->url) }}">
-                    <img src="{{asset('img/uploads/large/'.$slider->image_path)}}" alt="{{ $slider->caption }}" style="display: inline !important;">
+                    <img src="{{asset('img/uploads/large/'.$slider->image_path)}}" alt="{{ $slider->caption }}" style="display: inline !important;"/>
                 </a>
             @endforeach
         </div>
