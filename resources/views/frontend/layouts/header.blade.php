@@ -33,26 +33,27 @@
                                 <ul style="{!! (App::isLocale('ar')) ? 'direction: rtl !important;' : null !!}">
                                     <li><a class="no-child" href="{{URL('/')}}">{{ trans('general.home') }}</a></li>
                                     @foreach($categories->sortBy('order') as $category)
-                                        <li>
-                                            <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
-                                            <!-- mega menu start -->
-                                            @if(count($category->children) > 0)
+
+                                        @if($category->children->count() >= 1)
+                                            <li>
+                                                <!-- mega menu start -->
+                                                <a href="{{ route('category.show',$category->id) }}">{{ $category->name }}</a>
                                                 <div class="mega-menu mega-menu3">
                                                     @foreach($category->children->sortBy('order') as $child)
-                                                        <span>
+                                                        @if(count($child->children) > 0)
+                                                            <span>
                                                                 <a class="mega-headline"
                                                                    href="{{ route('category.show',[$category->id]) }}?child={{ $child->id }}">{{ $child->name }}</a>
-                                                            @if(count($child->children) > 0)
+
                                                                 @foreach($child->children->sortBy('order') as $subChild)
                                                                     <a href="{{ route('category.show',[$child->id]) }}?child={{ $subChild->id }}">{{ $subChild->name }}</a>
                                                                 @endforeach
-                                                            @endif
                                                             </span>
-
+                                                        @endif
                                                     @endforeach
                                                 </div>
-                                            @endif
-                                        </li>
+                                            </li>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </nav>
