@@ -16,7 +16,7 @@
                             {{ Form::close() }}
                         </div>
                         <div class="panel-body">
-                            <img class="img-responsive img-thumbnail center" src="{{ asset('img/uploads/thumbnail/'.$slide->image_path) }}" style="max-height:150px;max-width: 150px;"/>
+                            <img class="img-responsive img-thumbnail center" src="{{ asset('img/uploads/medium/'.$slide->image_path) }}" style="max-height:150px;max-width: 150px;"/>
                             <br />
                             <div class="caption">
                                 {{--{{ $slide->caption_en }} <br />--}}
@@ -45,10 +45,6 @@
                 <input name="image" type="file" required/>
             </div>
         </div>
-        <div class="col-lg-4 hidden">
-            <label class="mt-checkbox"> caption </label>
-            {!! Form::text('caption_en','default',['class' =>'form-control','required']) !!}
-        </div>
         <div class="col-lg-2">
             <label class="mt-checkbox"> URL </label>
             {!! Form::text('url',null,['class' =>'form-control','required']) !!}
@@ -57,6 +53,14 @@
         <div class="col-lg-2">
             <label class="mt-checkbox"> order </label>
             {!! Form::text('order',null,['class' =>'form-control','required']) !!}
+        </div>
+        <div class="col-lg-4">
+            <label class="mt-checkbox"> caption en </label>
+            {!! Form::text('caption_en','default',['class' =>'form-control','required']) !!}
+        </div>
+        <div class="col-lg-4">
+            <label class="mt-checkbox"> caption ar </label>
+            {!! Form::text('caption_ar','default',['class' =>'form-control','required']) !!}
         </div>
     </div>
 

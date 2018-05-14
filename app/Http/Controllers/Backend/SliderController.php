@@ -57,6 +57,7 @@ class SliderController extends PrimaryController
                 'url' => $request->url,
                 'order' => $request->order,
                 'caption_en' => $request->caption_en,
+                'caption_ar' => $request->caption_ar,
                 'active'    => 1
             ]);
             return redirect()->back()->with('success','Slide saved');
