@@ -9,7 +9,7 @@
             <div class="row">
                 <!-- single-product start -->
                 @foreach($products as $product)
-                    <div class="{{ isset($cols)  ? $cols : 'col-lg-4 col-md-4 col-sm-4' }} col-xs-12"
+                    <div class="{{ isset($cols)  ? $cols : 'col-lg-3 col-md-3 col-sm-4' }} col-xs-12"
                          style="height: 500px !important; max-height: 500px !important; margin-bottom: 21px;padding-top: 40px;">
                         <!-- single-product end -->
                         <div class="single-product">
