@@ -54,7 +54,8 @@
 @if (app()->getLocale() === 'ar')
     {{--@if(str_contains('category.show',request()->route()->getName()) || str_contains('product.show',request()->route()->getName()))--}}
     {{--@if(!str_contains('home',request()->route()->getName()))--}}
-    <link rel="stylesheet" href="{{ asset('css/rtl.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/rtl.css') }}">--}}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.min.css') }}">
     {{--@endif--}}
     <link rel="stylesheet" href="{{ asset('css/custom-arabic.css') }}">
     <style type="text/css">
