@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-4 col-sm-4">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
     <div class="top-left-item">
         <div class="top-menu top-menu-4">
             <nav>
