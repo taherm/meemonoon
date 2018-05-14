@@ -18,7 +18,13 @@ class CategoryRepository extends PrimaryRepository
 
     public function getParentCategoriesWithChildren()
     {
-        return $this->model->where('parent_id', 0)->with('children')->get();
+        return $this->model->where('parent_id', 0)->whereHas('children', function ($q) {
+            $q->with(['children' => function ($q) {
+                return $q->whereHas('products', function ($q) {
+                    return $q;
+                }, '>', 0);
+            }]);
+        }, '>', 0)->get();
     }
 
     public function getParentCategoriesOnly()
@@ -28,7 +34,7 @@ class CategoryRepository extends PrimaryRepository
 
     public function getChildrenCategoriesWithParent()
     {
-        return $this->model->where('parent_id', '!=', 0)->with('parent','children')->get();
+        return $this->model->where('parent_id', '!=', 0)->with('parent', 'children')->get();
     }
 
     public function getOnlyChildrenCategories($id)
@@ -46,12 +52,12 @@ class CategoryRepository extends PrimaryRepository
     public function create(array $data)
     {
         $category = new Category;
-        $category->name_en          = $data['name_en'];
-        $category->name_ar          = $data['name_ar'];
-        $category->description_en   = $data['description_en'];
-        $category->description_ar   = $data['description_ar'];
+        $category->name_en = $data['name_en'];
+        $category->name_ar = $data['name_ar'];
+        $category->description_en = $data['description_en'];
+        $category->description_ar = $data['description_ar'];
 
-        return($category->save());
+        return ($category->save());
     }
 
     /**
@@ -64,13 +70,13 @@ class CategoryRepository extends PrimaryRepository
     public function createSubCategory(array $data)
     {
         $category = new Category;
-        $category->parent_id          = $data['parentCategory'];
-        $category->name_en            = $data['name_en'];
-        $category->name_ar            = $data['name_ar'];
-        $category->description_en     = $data['description_en'];
-        $category->description_ar     = $data['description_ar'];
+        $category->parent_id = $data['parentCategory'];
+        $category->name_en = $data['name_en'];
+        $category->name_ar = $data['name_ar'];
+        $category->description_en = $data['description_en'];
+        $category->description_ar = $data['description_ar'];
 
-        return($category->save());
+        return ($category->save());
     }
 
 }
