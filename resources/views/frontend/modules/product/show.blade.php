@@ -8,7 +8,7 @@
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="{{ $product->name }}"/>
     <meta property="og:description" content="{!! strip_tags($product->product_meta->description) !!}"/>
-    <meta property="og:image" content="/img/uploads/thumbnail/{{  $product->product_meta->image }}"/>
+    <meta property="og:image" content="{{asset('img/uploads/thumbnail/'.$product->product_meta->image)}}"/>
 @endsection
 @section('body')
     <div class="single-page-area shop-product-area">
