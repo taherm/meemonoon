@@ -71,7 +71,7 @@
                 <div class="col-md-12 hidden-lg hidden-md">
                     <nav id="dropdown">
                         <ul>
-                            <li><a href="{{URL('/')}}">home</a></li>
+                            <li><a href="{{URL('/')}}">{{ trans('home') }}</a></li>
                             <li><a href="{{ url('/lang/ar') }}">{{ trans('general.arabic') }}</a></li>
                             <li><a href="{{ url('/lang/en') }}">{{ trans('general.english') }}</a></li>
                             @foreach($categories->sortBy('order') as $category)

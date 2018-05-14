@@ -8,7 +8,7 @@ class Image extends PrimaryModel
 {
     protected $localeStrings = ['caption'];
     protected $table = 'images';
-    protected $fillable = ['gallery_id','order'];
+    protected $guarded = [''];
     /**
      * Gallery Image
      * hasMany relation
