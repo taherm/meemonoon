@@ -27,6 +27,7 @@
                     <td> {{$product->name}} </td>
                     <td> {{$product->product_meta->price}} </td>
                     <td> {{$product->product_meta->sale_price}} </td>
+                    {{ dd($product->totalQty) }}
                     <td> {{ $product->totalQty ? $product->totalQty : 'N/A' }} </td>
                     <td>
                         <a href="{{ route('backend.product.edit',[$product->id,'product_id' => $product->id]) }}"
