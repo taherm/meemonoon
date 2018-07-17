@@ -18,7 +18,7 @@ trait ProductHelpers
      */
     public function getTotalQtyAttribute()
     {
-        return $this->product_attributes->sum('qty');
+        return is_numeric($this->product_attributes->sum('qty')) ? $this->product_attributes->sum('qty') : 'N/A';
     }
 
     public function getRatingCounterAttribute()
