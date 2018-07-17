@@ -27,7 +27,7 @@
                     <td> {{$product->name}} </td>
                     <td> {{$product->product_meta->price}} </td>
                     <td> {{$product->product_meta->sale_price}} </td>
-                    <td> {{$product->totalQty }} </td>
+                    <td> {{ $product->totalQty ? $product->totalQty : 'N/A' }} </td>
                     <td>
                         <a href="{{ route('backend.product.edit',[$product->id,'product_id' => $product->id]) }}"
                            class="btn btn-outline btn-circle green btn-xs" title="edit product"><i
