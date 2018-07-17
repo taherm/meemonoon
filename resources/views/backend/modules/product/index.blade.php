@@ -10,7 +10,7 @@
                 <th> name</th>
                 <th> price</th>
                 <th> sale_price</th>
-                <th> total Qty</th>
+                {{--<th> total Qty</th>--}}
                 <th> edit</th>
                 <th> gallery</th>
                 <th> status</th>
@@ -27,7 +27,7 @@
                     <td> {{$product->name}} </td>
                     <td> {{$product->product_meta->price}} </td>
                     <td> {{$product->product_meta->sale_price}} </td>
-                    <td> {{ $product->totalQty }} </td>
+                    {{--<td> {{ $product->totalQty }} </td>--}}
                     <td>
                         <a href="{{ route('backend.product.edit',[$product->id,'product_id' => $product->id]) }}"
                            class="btn btn-outline btn-circle green btn-xs" title="edit product"><i
