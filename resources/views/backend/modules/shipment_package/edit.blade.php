@@ -1,12 +1,11 @@
-@extends('backend.layouts.app')
+@extends('backend.layouts.master')
 
 @section('content')
     <div class="portlet box blue">
-        @include('backend.partials.forms.form_title')
         <div class="portlet-body form">
             <form class="horizontal-form" role="form" method="POST"
                   action="{{ route('backend.package.update', $element->id) }}">
-                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="_method" value="put">
                 <div class="form-body">
                     <h3 class="form-section">Edit Shipment Package</h3>

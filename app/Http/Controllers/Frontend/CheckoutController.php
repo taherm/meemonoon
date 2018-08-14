@@ -317,7 +317,7 @@ class CheckoutController extends PrimaryController
         } else {
             // My fatoorah
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
-            
+
             if ($paymentStatus[0]->responseMessage) {
 
                 //reduce item quantity after successful order

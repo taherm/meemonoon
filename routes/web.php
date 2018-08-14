@@ -150,6 +150,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'as' => 'backend.
     Route::resource('color', 'ColorController', ['except' => 'destroy']);
     Route::resource('size', 'SizeController', ['except' => 'destroy']);
     Route::resource('chart', 'SizeChartController');
+    Route::resource('package', 'ShipmentPackageController');
 
     //Static Pages
     Route::get('pages', ['uses' => 'PageController@getAboutUs']);
