@@ -32,7 +32,11 @@
                                     <div class="col-lg-6">
                                         <label class="label" for="Country">{{ trans('general.country') }}<em>*</em></label>
                                         <div class="i-box">
-
+                                            <select name="country_id" id="country" required>
+                                                @foreach($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->name  }}</option>
+                                                    @endforeach
+                                            </select>
                                             {{--<select  id="country_id" name="country_id" class="form-control">--}}
                                             {{--@foreach($countries as $country)--}}
                                             {{--<option value="{{ $country->id }}"--}}

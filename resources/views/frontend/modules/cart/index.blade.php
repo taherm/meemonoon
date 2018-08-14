@@ -159,27 +159,19 @@
                                         </br>
                                     </div>
                                     <div class="search-categori">
-                                        <h5>{{ trans('general.country') }}</h5>
+                                        <h5>{{ trans('general.select_package') }}</h5>
                                         <div class="category">
-                                            <select class="orderby" name="shipping_country" id="country"
+                                            <select class="orderby" name="package_id" id="package"
                                                     style="min-width: 80px;" placeholder='Choose Shipping Country'>
-                                                <option value="">Select Country</option>
-                                                @foreach($countries as $k => $v)
-                                                    <option value="{{ $k }}">{{ $v }}</option>
+                                                <option value="">{{ trans('general.select_package') }}</option>
+                                                @foreach($packages as $package)
+                                                    <option value="{{ $package->id }}">{{ $package->name}}</option>
                                                 @endforeach
                                             </select>
                                             {{--                                            {{ Form::select('shipping_country',$countries,null,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}--}}
                                         </div>
                                     </div>
 
-                                    <div class="search-categori">
-                                        <h5>{{ trans('general.area') }}</h5>
-                                        <div class="category">
-                                            <select class="disabled" name="area" id="areas" style="min-width: 80px;">
-                                                <option value="">Select Area</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="rate-subtotal">
                                         {{--<h4>Subtotal <span>{{ $cart->subTotal }} KD</span></h4>--}}
                                         <h2>{{ trans('general.grand_total') }}
@@ -213,27 +205,26 @@
     @endif
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#areas').html('<option value="">Select Area</option>');
-            $('#country').on('change', function(e) {
-                countryCode = e.target.value;
-                console.log('countryCode', countryCode);
-                $('#areas').html('').toggleClass('disabled');
-                $('#forward').attr('disabled', 'disabled');
-                $.get('/api/country/' + countryCode, function(data) {
-                    return setTimeout(injectAreas(data), 4000);
-                });
+            // $('#areas').html('<option value="">Select Area</option>');
+            $('#package').on('change', function(e) {
+                packageId = e.target.value;
+                console.log('packageId', packageId);
+                $('#forward').removeAttr('disabled');
+                // $.get('/api/country/' + countryCode, function(data) {
+                //     return setTimeout(injectAreas(data), 4000);
+                // });
             });
-            $('#areas').on('change', function() {
-                return setTimeout($('#forward').removeAttr('disabled'), 2000);
-            })
-            function injectAreas(data) {
-                for (var i in data) {
-                    data[i].map(function(v, index) {
-                        $('#areas').append(`<option value="${v}">${v}</option>`)
-                    });
-
-                }
-            }
+            // $('#areas').on('change', function() {
+            //     return setTimeout($('#forward').removeAttr('disabled'), 2000);
+            // })
+            // function injectAreas(data) {
+            //     for (var i in data) {
+            //         data[i].map(function(v, index) {
+            //             $('#areas').append(`<option value="${v}">${v}</option>`)
+            //         });
+            //
+            //     }
+            // }
         });
     </script>
 @endsection

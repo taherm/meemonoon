@@ -13,6 +13,7 @@ use App\Src\Coupon\Coupon;
 use App\Src\Order\OrderRepository;
 use App\Src\Product\ProductAttribute;
 use App\Src\Product\ProductRepository;
+use App\Src\Shipment\ShipmentPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -66,32 +67,32 @@ class CheckoutController extends PrimaryController
      */
     public function index(Request $request)
     {
-        if ($request->has('shipping_country')) {
+//        if ($request->has('shipping_country')) {
+//
+//            Session::put('SHIPPING_COUNTRY', $request->shipping_country);
+//            Session::put('SHIPPING_AREA', $request->area);
+//
+//        } else {
+//            if (!Session::has('SHIPPING_COUNTRY')) {
+//
+//                $validator = Validator::make($request->all(), [
+//                    'shipping_country' => 'required|numeric|exists:countries,id',
+//                    'area'=> 'required|min2'
+//                ]);
+//
+//                if ($validator->fails()) {
+//                    return redirect()->route('cart.index')
+//                        ->withErrors($validator)
+//                        ->withInput();
+//                }
+//
+//                Session::put('SHIPPING_COUNTRY', $request->shipping_country);
+//                Session::put('SHIPPING_AREA', $request->area);
+//            }
+//        }
 
-            Session::put('SHIPPING_COUNTRY', $request->shipping_country);
-            Session::put('SHIPPING_AREA', $request->area);
-
-        } else {
-            if (!Session::has('SHIPPING_COUNTRY')) {
-
-                $validator = Validator::make($request->all(), [
-                    'shipping_country' => 'required|numeric|exists:countries,id',
-                    'area'=> 'required|min2'
-                ]);
-
-                if ($validator->fails()) {
-                    return redirect()->route('cart.index')
-                        ->withErrors($validator)
-                        ->withInput();
-                }
-
-                Session::put('SHIPPING_COUNTRY', $request->shipping_country);
-                Session::put('SHIPPING_AREA', $request->area);
-            }
-        }
-
-        $shippingCountry = Session::get('SHIPPING_COUNTRY');
-        $area = Session::get('SHIPPING_AREA');
+//        $shippingCountry = Session::get('SHIPPING_COUNTRY');
+//        $area = Session::get('SHIPPING_AREA');
 
         // @todo : use actual logged in user
         if (!auth()->check()) {
@@ -116,17 +117,18 @@ class CheckoutController extends PrimaryController
 
         }
 
-        $countries = $this->country->has('currency')->get();
+        $countries = $this->country->get();
 
-        $shippingCountry = $countries->where('id', (int)$shippingCountry)->first();
+//        $shippingCountry = $countries->where('id', (int)$shippingCountry)->first();
 
-        if (!$shippingCountry) {
+//        if (!$shippingCountry) {
 
-            dd('no shipment to this country');
+//            dd('no shipment to this country');
             // handle no shipment countries
-        }
+//        }
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name, $area);
+//        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name, $area);
+        $charge = ShipmentPackage::whereId(request()->package_id)->first()->charge;
 
 //        if($shippingCost == 0) {
 //            return redirect()->route('cart.index')
@@ -153,7 +155,8 @@ class CheckoutController extends PrimaryController
 
         }
 
-        $finalAmount = (isset($amountAfterCoupon) && $amountAfterCoupon > 0) ? $amountAfterCoupon + $shippingCost : $cart->grandTotal + $shippingCost;
+        $finalAmount = (isset($amountAfterCoupon) && $amountAfterCoupon > 0) ? $amountAfterCoupon + $charge : $cart->grandTotal + $charge;
+
 
         Session::put('ORDER', [
             'coupon_id' => (isset($coupon)) ? $coupon->id : 0,
@@ -163,20 +166,21 @@ class CheckoutController extends PrimaryController
             'amount' => $cart->subTotal,
             'sale_amount' => $cart->grandTotal,
             'net_amount' => $finalAmount,
-            'shippingCountry' => 'shippingCost.country.' . $shippingCountry->name,
-            'shippingCost' => (isset($shippingCost) && $shippingCost > 0) ? $shippingCost : 0,
+//            'shippingCountry' => 'shippingCost.country.' . $shippingCountry->name,
+            'shippingCost' => (isset($charge) && $charge > 0) ? $charge: 0,
             'shippingQty' => 1,
         ]);
         $area = session()->has('SHIPPING_AREA') ? session()->get('SHIPPING_AREA') : null;
 
         return view('frontend.modules.checkout.index',
-            compact('user', 'cart', 'shippingCountry', 'shippingCost', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon','area'));
+            compact('user', 'cart', 'countries', 'charge', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon','area'));
     }
 
     public function reviewOrder(Request $request, OrderRepository $orderRepository)
     {
         $this->validate($request, [
-            'shipping_country' => 'required|numeric|exists:countries,id',
+            'country_id' => 'required|numeric|exists:countries,id',
+            'charge' => 'required|numeric',
             'payment' => 'required|not_in:no',
             'firstname' => 'required',
             'lastname' => 'required',
@@ -187,7 +191,7 @@ class CheckoutController extends PrimaryController
 
         $address = '';
         //if shipping kuwait
-        if ($request->shipping_country === '414') {
+        if ($request->country_id === '414') {
             $address .= 'Area ' . $request->area . ' ';
             $address .= 'Block ' . $request->block . ' ';
             $address .= 'Street ' . $request->street . ' ';
@@ -207,11 +211,11 @@ class CheckoutController extends PrimaryController
 
         $cart = $this->cart->make($products);
 
-        $shippingCountry = $this->country->find($request->shipping_country);
+        $shippingCountry = $this->country->find($request->country_id);
 
         $area = Session::get('SHIPPING_AREA');
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
+        $shippingCost = $request->charge;
 
         $orderDetails = session()->get('ORDER');
 
@@ -227,7 +231,7 @@ class CheckoutController extends PrimaryController
 
         }
 
-        $finalAmount = (isset($amountAfterCoupon) && $amountAfterCoupon > 0) ? $amountAfterCoupon + $shippingCost : $cart->grandTotal + $shippingCost;
+        $finalAmount = (isset($amountAfterCoupon) && $amountAfterCoupon > 0) ? $amountAfterCoupon + request()->charge : $cart->grandTotal + request()->charge;
 
         $payment = $request->payment;
 
@@ -243,7 +247,6 @@ class CheckoutController extends PrimaryController
 
     public function checkout(Request $request, OrderRepository $orderRepository)
     {
-
         $user = auth()->user();
 
         $cartItems = $this->cart->getItems();
@@ -256,7 +259,7 @@ class CheckoutController extends PrimaryController
 
         $area = Session::get('SHIPPING_AREA');
 
-        $shippingCost = $this->shippingManager->calculateCost($cart->netWeight, $shippingCountry->name,$area);
+        $charge = $request->charge;
 
         $orderDetails = session()->get('ORDER');
 
@@ -277,7 +280,7 @@ class CheckoutController extends PrimaryController
                 'coupon_id' => $orderDetails['coupon_id'],
                 'coupon_value' => $orderDetails['couponValue'],
                 'amount' => $cart->subTotal,
-                'shipping_cost' => $shippingCost,
+                'shipping_cost' => $request->shippingCost,
                 'sale_amount' => $orderDetails['sale_amount'],
                 'net_amount' => $orderDetails['net_amount'],
                 'email' => $request->email,
@@ -314,7 +317,7 @@ class CheckoutController extends PrimaryController
         } else {
             // My fatoorah
             $paymentStatus = Event::fire(new NewOrder($cart, $orderDetails, $user));
-
+            
             if ($paymentStatus[0]->responseMessage) {
 
                 //reduce item quantity after successful order
@@ -325,6 +328,7 @@ class CheckoutController extends PrimaryController
                     ]);
                 }
 
+
                 $order = $orderRepository->model->create([
                     'status' => 'temp',
                     'user_id' => $user->id,
@@ -332,7 +336,7 @@ class CheckoutController extends PrimaryController
                     'coupon_id' => $orderDetails['coupon_id'],
                     'coupon_value' => $orderDetails['couponValue'],
                     'amount' => $cart->subTotal,
-                    'shipping_cost' => $shippingCost,
+                    'shipping_cost' => $request->shippingCost,
                     'sale_amount' => $orderDetails['sale_amount'],
                     'net_amount' => $orderDetails['net_amount'],
                     'email' => $request->email,

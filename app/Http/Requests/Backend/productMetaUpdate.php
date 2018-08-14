@@ -27,7 +27,7 @@ class ProductMetaUpdate extends FormRequest
         return [
             'product_id' => 'required',
             'price' => 'required',
-            'weight' => 'required|min:1',
+            'weight' => 'required',
             'description_ar' => 'required',
             'description_en' => 'required',
             'notes_ar' => '',

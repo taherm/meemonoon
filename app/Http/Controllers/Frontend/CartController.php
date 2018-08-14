@@ -9,6 +9,7 @@ use App\Src\Country\Country;
 use App\Src\Product\Product;
 use App\Src\Product\ProductAttribute;
 use App\Src\Product\ProductRepository;
+use App\Src\Shipment\ShipmentPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -68,7 +69,9 @@ class CartController extends PrimaryController
             return $q->where('active', true);
         })->pluck('name_' . app()->getLocale(), 'id');
 
-        return view('frontend.modules.cart.index', compact('cart', 'countries', 'shippingCountry'));
+        $packages = ShipmentPackage::where('active', true)->get();
+
+        return view('frontend.modules.cart.index', compact('cart', 'packages'));
     }
 
     /**

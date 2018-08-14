@@ -89,8 +89,8 @@ class DatabaseSeeder extends Seeder
             $this->call(OrderMetasTableSeeder::class);
             $this->command->info('Seeded the orderMetas!');
 
-//            $this->call(SliderAdsTableSeeder::class);
-//            $this->command->info('Seeded the slider ads!');
+            $this->call(SliderAdsTableSeeder::class);
+            $this->command->info('Seeded the slider ads!');
 
             $this->call(SideAdsTableSeeder::class);
             $this->command->info('Seeded the side ads!');

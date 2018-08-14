@@ -396,10 +396,11 @@
                                     <td>
                                         {!! Form::model($user = auth()->user(),['route' => ['checkout.index'], 'method' => 'post', 'files'=>true, 'class'=>'checkout-form product-form']) !!}
 
-                                        {{Form::hidden('shipping_country',$shippingCountry->id)}}
+                                        <input type="hidden" name="shipping_country" value="{{ $shippingCountry->id }}">
                                         {{Form::hidden('payment',$payment)}}
                                         {{Form::hidden('address',$address)}}
                                         {{Form::hidden('email',$userEmail)}}
+                                        <input type="hidden" name="shippingCost", value="{{ $shippingCost }}">
 
                                         <span class="left-btn" style="line-height: 50px;"><a href="{{ action('Frontend\CartController@index') }}" style="color: #bb8d51;">Edit Your Cart</a></span>
                                         <button type="submit" class="btn pull-left custom-button">Place your order</button>

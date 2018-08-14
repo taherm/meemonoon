@@ -30,7 +30,7 @@ $factory->define('App\Src\User\User', function (Faker\Generator $faker) {
         'lastname' => $faker->lastName,
         'email' => $faker->freeEmail,
         'address' => $faker->address,
-        'address2' => $faker->address,
+//        'address2' => $faker->address,
         'apartment' => $faker->randomDigit,
         'floor' => $faker->randomDigit,
         'building' => $faker->randomDigit,
@@ -220,12 +220,13 @@ $factory->define(Size::class, function (Faker\Generator $faker) {
 
 $factory->define('App\Src\Product\ProductAttribute', function (Faker\Generator $faker) {
     return [
-        'product_id' => Product::withoutGlobalScopes()->has('product_meta')->whereDoesntHave('product_attributes')->pluck('id')->unique()->shuffle()->first(),
+//        'product_id' => Product::withoutGlobalScopes()->has('product_meta')->whereDoesntHave('product_attributes')->pluck('id')->unique()->shuffle()->first(),
+        'product_id' => Product::all()->random()->id,
         'size_id' => Size::all()->random()->id,
         'color_id' => Color::all()->random()->id,
         'qty' => $faker->numberBetween(1, 50),
-        'notes_ar' => $faker->paragraph(1),
-        'notes_en' => $faker->paragraph(1),
+        'notes_ar' => $faker->paragraph,
+        'notes_en' => $faker->paragraph,
     ];
 
 });
