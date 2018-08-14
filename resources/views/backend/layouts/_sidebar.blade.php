@@ -297,12 +297,6 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item ">
-                        <a href="{{ route('backend.package.index') }}" class="nav-link ">
-                            <i class="fa fa-inbox"></i>
-                            <span class="title">shipment packages</span>
-                        </a>
-                    </li>
-                    <li class="nav-item ">
                         <a href="{{ route('backend.currency.index') }}" class="nav-link ">
                             <i class="fa fa-inbox"></i>
                             <span class="title">Currencies</span>
@@ -318,6 +312,32 @@
                         <a href="{{ url('backend/translations') }}" class="nav-link ">
                             <i class="fa fa-language"></i>
                             <span class="title">Translations</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="heading">
+                <h3 class="uppercase">Package</h3>
+            </li>
+            <li class="nav-item  open {{ (str_contains(Request::route()->getName(),'package') ? 'active' : '' ) }}">
+                <a href="javascript:;" class="nav-link nav-toggle">
+                    <i class="fa fa-gear"></i>
+                    <span class="title">Package</span>
+                    <span class="selected"></span>
+                    <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li class="nav-item ">
+                        <a href="{{ route('backend.package.index') }}" class="nav-link ">
+                            <i class="fa fa-inbox"></i>
+                            <span class="title">Packages</span>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('backend.package.create') }}" class="nav-link ">
+                            <i class="fa fa-inbox"></i>
+                            <span class="title">create shipment package</span>
                         </a>
                     </li>
                 </ul>

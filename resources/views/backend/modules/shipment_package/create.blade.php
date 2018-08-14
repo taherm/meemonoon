@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('backend.layouts.master')
 
 @section('content')
     <div class="portlet box blue">
