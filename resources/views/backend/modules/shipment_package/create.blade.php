@@ -2,11 +2,10 @@
 
 @section('content')
     <div class="portlet box blue">
-        @include('backend.partials.forms.form_title')
         <div class="portlet-body form">
             <form class="horizontal-form" role="form" method="POST"
                   action="{{ route('backend.package.store') }}" enctype="multipart/form-data">
-                @csrf
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-body">
                     <h3 class="form-section">Create Shipment Package</h3>
                     {{--name arabic / name english --}}
