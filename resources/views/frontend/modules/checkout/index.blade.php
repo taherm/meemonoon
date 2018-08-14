@@ -15,7 +15,6 @@
                                 )
                             @else
                                 {!! Form::model($user = auth()->user(),['route' => ['checkout.review'], 'method' => 'post', 'files'=>true, 'class'=>'checkout-form product-form']) !!}
-
                                 {{Form::hidden('shipping_country',$shippingCountry->id)}}
                                 @include('frontend.modules.checkout._billing_info',
                                     ['order'=>auth()->check() ? 1 : 2,'user'=>$user,'shippingCountry'=>$shippingCountry]

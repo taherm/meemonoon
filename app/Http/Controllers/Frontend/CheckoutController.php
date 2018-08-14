@@ -119,7 +119,7 @@ class CheckoutController extends PrimaryController
 
         $countries = $this->country->get();
 
-//        $shippingCountry = $countries->where('id', (int)$shippingCountry)->first();
+        $shippingCountry = Country::where('currency_code',session()->get('currency'))->first();
 
 //        if (!$shippingCountry) {
 
@@ -166,14 +166,14 @@ class CheckoutController extends PrimaryController
             'amount' => $cart->subTotal,
             'sale_amount' => $cart->grandTotal,
             'net_amount' => $finalAmount,
-//            'shippingCountry' => 'shippingCost.country.' . $shippingCountry->name,
+            'shippingCountry' => 'shippingCost.country.' . $shippingCountry->name,
             'shippingCost' => (isset($charge) && $charge > 0) ? $charge: 0,
             'shippingQty' => 1,
         ]);
         $area = session()->has('SHIPPING_AREA') ? session()->get('SHIPPING_AREA') : null;
 
         return view('frontend.modules.checkout.index',
-            compact('user', 'cart', 'countries', 'charge', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon','area'));
+            compact('user', 'cart', 'countries', 'charge', 'finalAmount', 'coupon', 'couponDiscountValue', 'amountAfterCoupon','area', 'shippingCountry'));
     }
 
     public function reviewOrder(Request $request, OrderRepository $orderRepository)
