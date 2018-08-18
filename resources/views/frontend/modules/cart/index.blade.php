@@ -165,7 +165,7 @@
                                                     style="min-width: 80px;" placeholder='Choose Shipping Country'>
                                                 <option value="">{{ trans('general.select_package') }}</option>
                                                 @foreach($packages as $package)
-                                                    <option value="{{ $package->id }}">{{ $package->name}}</option>
+                                                    <option value="{{ $package->id }}">{{ $package->slug }}</option>
                                                 @endforeach
                                             </select>
                                             {{--                                            {{ Form::select('shipping_country',$countries,null,['id' => 'country','class'=>'orderby','placeholder'=>'Choose Shipping Country']) }}--}}
