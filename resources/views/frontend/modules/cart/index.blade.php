@@ -148,10 +148,10 @@
                                         <p>
                                             <span>{{ trans('cart.enter_ur_destination') }}</span></br>
                                             <span class="pull-left">
-                                                {{ trans('general.delivery_within_4_days') }}</br>
+                                                {{ trans('general.delivery_within') }}</br>
                                             </span>
                                         <span class="pull-right">
-                                            <img src="/meem/frontend/img/aramex.png" alt=""
+                                            <img src="/meem/frontend/img/dhl.png" alt=""
                                                  class="img-responsive" style="max-width: 60px;">
                                         </span>
                                         </p>
